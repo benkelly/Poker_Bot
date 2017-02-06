@@ -20,6 +20,8 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		List<PlayingCard> deckList = new ArrayList<PlayingCard>();
 	}
 
+	/*Clears and reinitialise whole deck. e.g. a new fresh deck.
+	* */
 	void reset() {
 		this.clear();
 		for (int i = 0; i < 13; i++) {
@@ -30,6 +32,8 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		}
 	}
 
+	/*Randomises deck thoroughly.
+	* */
 	void shuffle() {
 		for (int i = 0; i < Math.pow(this.size(), 2); i++) {
 
@@ -37,12 +41,21 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		}
 	}
 
+	/*Removes First PlayingCard from deck and returns it.
+	* */
 	PlayingCard dealNext() {
 		PlayingCard curCard = this.get(0);
 		this.remove(0);
 		return curCard;
 	}
+	/*Returns a PlayingCard @Parameter back into Deck.
+	* */
+	void returnCard(PlayingCard discarded) {
+		this.add(discarded);
+	}
 
+	/*Used for texting class. returns string of cards in deck currently.
+	* */
 	String fullDeckToString() {
 		String strList = "";
 		for(int i=0; i<52; i++) {
@@ -67,6 +80,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		System.out.println(testDeck.size());
 		testDeck.reset();
 		System.out.println(testDeck.fullDeckToString());
+
 		System.out.println("***************************** deal");
 		PlayingCard dealtCard = testDeck.dealNext();
 		System.out.println(dealtCard.getFullName());
@@ -75,6 +89,11 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		PlayingCard dealtCard2 = testDeck.dealNext();
 		System.out.println(dealtCard2.getFullName());
 		System.out.println(testDeck.size());
+
+		System.out.println("***************************** return");
+		testDeck.returnCard(dealtCard);
+		System.out.println(testDeck.get(50).getFullName());
+
 
 	}
 }
