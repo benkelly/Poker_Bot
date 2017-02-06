@@ -21,6 +21,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	}
 
 	void reset() {
+		this.clear();
 		for (int i = 0; i < 13; i++) {
 			this.add(new PlayingCard(suitType[i], PlayingCard.HEARTS, faceValue[i], gameValue[i]));
 			this.add(new PlayingCard(suitType[i], PlayingCard.CLUBS, faceValue[i], gameValue[i]));
@@ -28,6 +29,20 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 			this.add(new PlayingCard(suitType[i], PlayingCard.DIAMONDS, faceValue[i], gameValue[i]));
 		}
 	}
+
+	void shuffle() {
+		for (int i = 0; i < Math.pow(this.size(), 2); i++) {
+
+			Collections.shuffle(this);
+		}
+	}
+
+	PlayingCard dealNext() {
+		PlayingCard curCard = this.get(0);
+		this.remove(0);
+		return curCard;
+	}
+
 	String fullDeckToString() {
 		String strList = "";
 		for(int i=0; i<52; i++) {
@@ -35,11 +50,6 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		}
 		return strList;
 	}
-
-	void shuffle() {
-		Collections.shuffle(this);
-	}
-
 
 
 	/*Class testing method
@@ -50,11 +60,22 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		testDeck.reset();
 		System.out.println(testDeck.fullDeckToString());
 		System.out.println("*************** shuffle");
+		System.out.println(testDeck.size());
 		testDeck.shuffle();
 		System.out.println(testDeck.fullDeckToString());
 		System.out.println("*************** reset");
+		System.out.println(testDeck.size());
 		testDeck.reset();
 		System.out.println(testDeck.fullDeckToString());
+		System.out.println("***************************** deal");
+		PlayingCard dealtCard = testDeck.dealNext();
+		System.out.println(dealtCard.getFullName());
+		System.out.println(testDeck.size());
+		testDeck.shuffle();
+		PlayingCard dealtCard2 = testDeck.dealNext();
+		System.out.println(dealtCard2.getFullName());
+		System.out.println(testDeck.size());
+
 	}
 }
 
