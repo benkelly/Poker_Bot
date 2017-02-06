@@ -2,6 +2,7 @@ package poker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 /**
  * Created by benjamin kelly on 02/02/2017.
@@ -9,35 +10,35 @@ import java.util.List;
  * student number: 14700869
 
  */
-public class DeckOfCards {
+public class DeckOfCards extends ArrayList<PlayingCard> {
 
 	private int[] faceValue = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private int[] gameValue = {14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private char[] suitType = {'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'};
 
 	public DeckOfCards() {
-
+		List<PlayingCard> deckList = new ArrayList<PlayingCard>();
 	}
 
-
 	void reset() {
-		List<PlayingCard> deckList = new ArrayList<PlayingCard>();
 		for (int i = 0; i < 13; i++) {
-			deckList.add(new PlayingCard(suitType[i], PlayingCard.HEARTS, faceValue[i], gameValue[i]));
-			deckList.add(new PlayingCard(suitType[i], PlayingCard.CLUBS, faceValue[i], gameValue[i]));
-			deckList.add(new PlayingCard(suitType[i], PlayingCard.SPADES, faceValue[i], gameValue[i]));
-			deckList.add(new PlayingCard(suitType[i], PlayingCard.DIAMONDS, faceValue[i], gameValue[i]));
+			this.add(new PlayingCard(suitType[i], PlayingCard.HEARTS, faceValue[i], gameValue[i]));
+			this.add(new PlayingCard(suitType[i], PlayingCard.CLUBS, faceValue[i], gameValue[i]));
+			this.add(new PlayingCard(suitType[i], PlayingCard.SPADES, faceValue[i], gameValue[i]));
+			this.add(new PlayingCard(suitType[i], PlayingCard.DIAMONDS, faceValue[i], gameValue[i]));
 		}
 	}
 	String fullDeckToString() {
 		String strList = "";
 		for(int i=0; i<52; i++) {
-			strList = strList + this.get(i).toString()+ this.get(i).getFullName() +"\n";
+			strList = strList + this.get(i).toString()+"\t"+ this.get(i).getFullName() +"\n";
 		}
 		return strList;
 	}
 
-
+	void shuffle() {
+		Collections.shuffle(this);
+	}
 
 
 
@@ -46,6 +47,12 @@ public class DeckOfCards {
 	public static void main(String[] args) {
 		System.out.println("poker.DeckOfCards.java!");
 		DeckOfCards testDeck = new DeckOfCards();
+		testDeck.reset();
+		System.out.println(testDeck.fullDeckToString());
+		System.out.println("*************** shuffle");
+		testDeck.shuffle();
+		System.out.println(testDeck.fullDeckToString());
+		System.out.println("*************** reset");
 		testDeck.reset();
 		System.out.println(testDeck.fullDeckToString());
 	}
