@@ -11,9 +11,11 @@ import java.util.Collections;
  */
 public class DeckOfCards extends ArrayList<PlayingCard> {
 
+	// Constant data of cards for deck.
 	private int[] faceValue = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private int[] gameValue = {14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private char[] suitType = {'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'};
+	private int returnCardCounter = 0;
 
 	public DeckOfCards() {
 		this.reset();
@@ -34,22 +36,31 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	/*Randomises deck thoroughly.
 	* */
 	void shuffle() {
-		for (int i = 0; i < Math.pow(this.size(), 2); i++) {
-			Collections.shuffle(this);
-		}
+		Collections.shuffle(this);
 	}
 
 	/*Removes First PlayingCard from deck and returns it.
 	* */
 	PlayingCard dealNext() {
-		PlayingCard curCard = this.get(0);
-		this.remove(0);
-		return curCard;
+		if (this != null && !this.isEmpty()) {
+			PlayingCard curCard = this.get(0);
+			this.remove(0);
+			return curCard;
+		}
+		else{
+			return null;
+		}
 	}
 	/*Returns a PlayingCard @Parameter back into Deck.
+		~ if all 52 cards returned, deck will reshuffle.
 	* */
 	void returnCard(PlayingCard discarded) {
 		this.add(discarded);
+		returnCardCounter++;
+		if(returnCardCounter == 52) {
+			this.shuffle();
+			returnCardCounter = 0;
+		}
 	}
 
 	/*Used for testing class. returns string of cards in deck currently.
@@ -68,7 +79,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	public static void main(String[] args) {
 		System.out.println("poker.DeckOfCards.java!");
 		DeckOfCards testDeck = new DeckOfCards();
-		//testDeck.reset();
+
 		System.out.println(testDeck.fullDeckToString());
 		System.out.println("*************** shuffle");
 		System.out.println(testDeck.size());

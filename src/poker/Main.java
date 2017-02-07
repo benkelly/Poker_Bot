@@ -18,6 +18,7 @@ public class Main {
 		deck.shuffle();
 		List<PlayingCard> player1 = new ArrayList<>();
 		List<PlayingCard> player2 = new ArrayList<>();
+
 		System.out.println("***************************** deal cards");
 		for (int i = 0; i < 5; i++) {
 			player1.add(deck.dealNext());
@@ -33,7 +34,24 @@ public class Main {
 			player1.remove(0);
 			player2.remove(0);
 		}
+
 		System.out.println(deck.size());
 		System.out.println(deck);
+
+		System.out.println("***************************** deal 52 cards");
+		for (int i = 0; i < 52; i++) {
+			player1.add(deck.dealNext());
+		}
+		System.out.println(deck.size());
+		System.out.println(deck);
+		player1.add(deck.dealNext());
+
+		System.out.println("***************************** return 52 cards and reshuffle");
+		for (int i = 0; i < 52; i++) {
+			deck.returnCard(player1.get(0));
+			player1.remove(0);
+		}
+		System.out.println(deck);
+		System.out.println(deck.size());
 	}
 }
