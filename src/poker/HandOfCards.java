@@ -30,14 +30,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			@Override
 			public int compare(PlayingCard s1, PlayingCard s2) {
 				return Float.compare(s1.getFaceValue(), s2.getFaceValue());
-				//return s1.getFaceValue().compareToIgnoreCase(s2.getFaceValue());
 			}
 		});
 	}
 
 
 	private boolean bestHandtype() {
-
 		if(true == isRoyalFlush) {
 			return isRoyalFlush();
 		}
@@ -74,6 +72,18 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*A, K, Q, J, 10 all of the same suit
 	* */
 	public boolean isRoyalFlush() {
+		if(this.get(0).getSuit().equals(this.get(1).getSuit())
+				&& this.get(0).getSuit().equals(this.get(2).getSuit())
+				&& this.get(0).getSuit().equals(this.get(3).getSuit())
+				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
+			if(this.get(0).getFaceValue() == 1 &&
+					this.get(1).getFaceValue() == 10 &&
+					this.get(2).getFaceValue() == 11 &&
+					this.get(3).getFaceValue() == 12 &&
+					this.get(4).getFaceValue() == 13 ) {
+				isRoyalFlush = true;
+			}
+		}
 		return isRoyalFlush;
 	}
 
@@ -95,6 +105,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Any five cards of the same suit, but not in sequence.
 	* */
 	public boolean isFlush() {
+		if(this.get(0).getSuit().equals(this.get(1).getSuit())
+				&& this.get(0).getSuit().equals(this.get(2).getSuit())
+				&& this.get(0).getSuit().equals(this.get(3).getSuit())
+				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
+			isFlush = true;
+		}
 		return isFlush;
 	}
 	/*Five cards in sequence, but not in the same suit
@@ -148,6 +164,27 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		System.out.println("*********** sort");
 		testHand.sort();
 		System.out.println(testHand.fullDeckToString());
+
+		DeckOfCards deck2 = new DeckOfCards();
+		HandOfCards flushDeck = new HandOfCards();
+			flushDeck.add(deck2.get(0));
+			flushDeck.add(deck2.get(4));
+			flushDeck.add(deck2.get(8));
+			flushDeck.add(deck2.get(12));
+			flushDeck.add(deck2.get(16));
+		//System.out.println(flushDeck.fullDeckToString());
+		System.out.println("*********** flushDeck");
+		System.out.println(flushDeck.isFlush());
+
+		HandOfCards royalFlushDeck = new HandOfCards();
+		royalFlushDeck.add(deck2.get(3));
+		royalFlushDeck.add(deck2.get(39));
+		royalFlushDeck.add(deck2.get(43));
+		royalFlushDeck.add(deck2.get(47));
+		royalFlushDeck.add(deck2.get(51));
+		System.out.println(royalFlushDeck.fullDeckToString());
+		System.out.println("*********** royalFlushDeck");
+		System.out.println(royalFlushDeck.isRoyalFlush());
 
 
 	}
