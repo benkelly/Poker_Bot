@@ -7,7 +7,6 @@ import java.util.Collections;
  * Created by benjamin kelly on 02/02/2017.
  * benjamin.kelly.1@ucdconnect.ie
  * student number: 14700869
-
  */
 public class DeckOfCards extends ArrayList<PlayingCard> {
 

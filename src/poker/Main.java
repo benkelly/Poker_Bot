@@ -20,6 +20,7 @@ public class Main {
 		List<PlayingCard> player2 = new ArrayList<>();
 
 		System.out.println("***************************** deal cards");
+		System.out.println(deck);
 		for (int i = 0; i < 5; i++) {
 			player1.add(deck.dealNext());
 			player2.add(deck.dealNext());
