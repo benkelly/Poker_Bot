@@ -90,6 +90,17 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Any five cards sequence in the same suit
 	* */
 	public boolean isStraightFlush() {
+		if(this.get(0).getSuit().equals(this.get(1).getSuit())
+				&& this.get(0).getSuit().equals(this.get(2).getSuit())
+				&& this.get(0).getSuit().equals(this.get(3).getSuit())
+				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
+			if (this.get(1).getFaceValue() == (this.get(0).getFaceValue() + 1) &&
+					this.get(2).getFaceValue() == (this.get(0).getFaceValue() + 2) &&
+					this.get(3).getFaceValue() == (this.get(0).getFaceValue() + 3) &&
+					this.get(4).getFaceValue() == (this.get(0).getFaceValue() + 4)) {
+				isStraightFlush = true;
+			}
+		}
 		return isStraightFlush;
 	}
 	/*All four cards of the same rank
@@ -167,11 +178,11 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 		DeckOfCards deck2 = new DeckOfCards();
 		HandOfCards flushDeck = new HandOfCards();
-			flushDeck.add(deck2.get(0));
-			flushDeck.add(deck2.get(4));
-			flushDeck.add(deck2.get(8));
-			flushDeck.add(deck2.get(12));
-			flushDeck.add(deck2.get(16));
+		flushDeck.add(deck2.get(0));
+		flushDeck.add(deck2.get(4));
+		flushDeck.add(deck2.get(8));
+		flushDeck.add(deck2.get(12));
+		flushDeck.add(deck2.get(16));
 		//System.out.println(flushDeck.fullDeckToString());
 		System.out.println("*********** flushDeck");
 		System.out.println(flushDeck.isFlush());
@@ -182,9 +193,19 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		royalFlushDeck.add(deck2.get(43));
 		royalFlushDeck.add(deck2.get(47));
 		royalFlushDeck.add(deck2.get(51));
-		System.out.println(royalFlushDeck.fullDeckToString());
+		//System.out.println(royalFlushDeck.fullDeckToString());
 		System.out.println("*********** royalFlushDeck");
 		System.out.println(royalFlushDeck.isRoyalFlush());
+
+		HandOfCards straightFlushDeck = new HandOfCards();
+		straightFlushDeck.add(deck2.get(5));
+		straightFlushDeck.add(deck2.get(9));
+		straightFlushDeck.add(deck2.get(13));
+		straightFlushDeck.add(deck2.get(17));
+		straightFlushDeck.add(deck2.get(21));
+		System.out.println(straightFlushDeck.fullDeckToString());
+		System.out.println("*********** straightFlushDeck");
+		System.out.println(straightFlushDeck.isStraightFlush());
 
 
 	}
