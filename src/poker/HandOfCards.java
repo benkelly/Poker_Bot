@@ -1,6 +1,8 @@
 package poker;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by benjamin kelly on 08/02/2017.
@@ -20,12 +22,53 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isPair = false;
 	private boolean isHighCard = false;
 
-
 	public HandOfCards() {
 	}
 
 	private void sort() {
-		//this.get().getFaceValue().sort();
+		Collections.sort(this ,new Comparator<PlayingCard>() {
+			@Override
+			public int compare(PlayingCard s1, PlayingCard s2) {
+				return Float.compare(s1.getFaceValue(), s2.getFaceValue());
+				//return s1.getFaceValue().compareToIgnoreCase(s2.getFaceValue());
+			}
+		});
+	}
+
+
+	private boolean bestHandtype() {
+
+		if(true == isRoyalFlush) {
+			return isRoyalFlush();
+		}
+		if(true ==  isStraightFlush) {
+			return isStraightFlush();
+		}
+		if(true ==  isFourOfAKind) {
+			return isFourOfAKind();
+		}
+		if(true ==  isFullHouse) {
+			return isFullHouse();
+		}
+		if(true ==  isFlush) {
+			return isFlush();
+		}
+		if(true ==  isStraight) {
+			return isStraight();
+		}
+		if(true ==  isThreeOfAKind) {
+			return isThreeOfAKind();
+		}
+		if(true ==  isTwoPair) {
+			return isTwoPair();
+		}
+		if(true ==  isPair) {
+			return isPair();
+		}
+		if(true ==  isHighCard) {
+			return isHighCard();
+		}
+		return false;
 	}
 
 	/*A, K, Q, J, 10 all of the same suit
@@ -101,6 +144,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		for (int i = 0; i < 5; i++) {
 			testHand.add(deck.dealNext());
 		}
+		System.out.println(testHand.fullDeckToString());
+		System.out.println("*********** sort");
 		testHand.sort();
 		System.out.println(testHand.fullDeckToString());
 
