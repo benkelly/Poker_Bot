@@ -23,6 +23,17 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isHighCard = false;
 
 	public HandOfCards(){
+	}
+
+	private void sort() {
+		Collections.sort(this ,new Comparator<PlayingCard>() {
+			@Override
+			public int compare(PlayingCard s1, PlayingCard s2) {
+				return Float.compare(s1.getFaceValue(), s2.getFaceValue());
+			}
+		});
+	}
+	private void generateHandType() {
 		this.isRoyalFlush();
 		this.isStraightFlush();
 		this.isFourOfAKind();
@@ -35,51 +46,51 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		this.isHighCard();
 	}
 
-	private void sort() {
-		Collections.sort(this ,new Comparator<PlayingCard>() {
-			@Override
-			public int compare(PlayingCard s1, PlayingCard s2) {
-				return Float.compare(s1.getFaceValue(), s2.getFaceValue());
-			}
-		});
+	private String HandtypeToBooleanStr() {
+		return"isRoyalFlush: "+this.isRoyalFlush+
+		"\nisStraightFlush: "+this.isStraightFlush+
+		"\nisFourOfAKind: "+this.isFourOfAKind+
+		"\nisFullHouse: "+this.isFullHouse+
+		"\nisFlush: "+this.isFlush+
+		"\nisStraight: "+this.isStraight+
+		"\nisThreeOfAKind: "+this.isThreeOfAKind+
+		"\nisTwoPair: "+this.isTwoPair+
+		"\nisPair: "+this.isPair+
+		"\nisHighCard: "+this.isHighCard;
 	}
-	private void generateHandtype() {
 
-
-	}
-
-	private boolean bestHandtype() {
+	private String bestHandType() {
 		if(true == isRoyalFlush) {
-			return isRoyalFlush();
+			return "Royal Flush";
 		}
 		if(true ==  isStraightFlush) {
-			return isStraightFlush();
+			return "StraightFlush";
 		}
 		if(true ==  isFourOfAKind) {
-			return isFourOfAKind();
+			return "FourOfAKind";
 		}
 		if(true ==  isFullHouse) {
-			return isFullHouse();
+			return "FullHouse";
 		}
 		if(true ==  isFlush) {
-			return isFlush();
+			return "Flush";
 		}
 		if(true ==  isStraight) {
-			return isStraight();
+			return "Straight";
 		}
 		if(true ==  isThreeOfAKind) {
-			return isThreeOfAKind();
+			return "ThreeOfAKind";
 		}
 		if(true ==  isTwoPair) {
-			return isTwoPair();
+			return "TwoPair";
 		}
 		if(true ==  isPair) {
-			return isPair();
+			return "Pair";
 		}
 		if(true ==  isHighCard) {
-			return isHighCard();
+			return "HighCard";
 		}
-		return false;
+		return null;
 	}
 
 	/*A, K, Q, J, 10 all of the same suit
@@ -429,11 +440,19 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		highCardDeck.sort();
 		System.out.println(highCardDeck.isTwoPair());
 		System.out.println(highCardDeck.isHighCard());
-		highCardDeck.generateHandtype();
-		System.out.println(highCardDeck.bestHandtype());
+		highCardDeck.generateHandType();
+		System.out.println(highCardDeck.bestHandType());
+		System.out.println(highCardDeck.HandtypeToBooleanStr());
 
-
-
+		System.out.println("*********** test all hands");
+		System.out.println("***** flushDeck");
+		flushDeck.generateHandType();
+		System.out.println(flushDeck.bestHandType());
+		//System.out.println(flushDeck.HandtypeToBooleanStr());
+		System.out.println("***** royalFlushDeck");
+		royalFlushDeck.generateHandType();
+		System.out.println(royalFlushDeck.bestHandType());
+		//System.out.println(royalFlushDeck.HandtypeToBooleanStr());
 
 	}
 }
