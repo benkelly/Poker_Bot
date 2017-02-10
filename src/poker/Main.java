@@ -16,43 +16,41 @@ public class Main {
 
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
-		List<PlayingCard> player1 = new ArrayList<>();
-		List<PlayingCard> player2 = new ArrayList<>();
+		HandOfCards player1 = new HandOfCards();
+		HandOfCards player2 = new HandOfCards();
+		HandOfCards player3 = new HandOfCards();
+		HandOfCards player4 = new HandOfCards();
+		HandOfCards player5 = new HandOfCards();
 
 		System.out.println("***************************** deal cards");
 		System.out.println(deck);
 		for (int i = 0; i < 5; i++) {
 			player1.add(deck.dealNext());
 			player2.add(deck.dealNext());
+			player3.add(deck.dealNext());
+			player4.add(deck.dealNext());
+			player5.add(deck.dealNext());
 		}
-		System.out.println(player1);
-		System.out.println(player2);
-		System.out.println(deck.size());
-		System.out.println("***************************** return cards");
-		for (int i = 0; i < 5; i++) {
-			deck.returnCard(player1.get(0));
-			deck.returnCard(player2.get(0));
-			player1.remove(0);
-			player2.remove(0);
-		}
-
-		System.out.println(deck.size());
-		System.out.println(deck);
-
-		System.out.println("***************************** deal 52 cards");
-		for (int i = 0; i < 52; i++) {
-			player1.add(deck.dealNext());
-		}
-		System.out.println(deck.size());
-		System.out.println(deck);
-		player1.add(deck.dealNext());
-
-		System.out.println("***************************** return 52 cards and reshuffle");
-		for (int i = 0; i < 52; i++) {
-			deck.returnCard(player1.get(0));
-			player1.remove(0);
-		}
-		System.out.println(deck);
-		System.out.println(deck.size());
+		System.out.println("player1: "+player1);
+		System.out.println("player2: "+player2);
+		System.out.println("player3: "+player3);
+		System.out.println("player4: "+player4);
+		System.out.println("player5: "+player5);
+		player1.generateHandType();
+		player2.generateHandType();
+		player3.generateHandType();
+		player4.generateHandType();
+		player5.generateHandType();
+		System.out.println("sort and calc hand type");
+		System.out.println("player1: "+player1);
+		System.out.println("player2: "+player2);
+		System.out.println("player3: "+player3);
+		System.out.println("player4: "+player4);
+		System.out.println("player5: "+player5);
+		System.out.println("player1: "+player1.getBestHandTypeName());
+		System.out.println("player2: "+player2.getBestHandTypeName());
+		System.out.println("player3: "+player3.getBestHandTypeName());
+		System.out.println("player4: "+player4.getBestHandTypeName());
+		System.out.println("player5: "+player5.getBestHandTypeName());
 	}
 }

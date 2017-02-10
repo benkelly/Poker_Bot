@@ -33,7 +33,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			}
 		});
 	}
-	private void generateHandType() {
+	public void generateHandType() {
+		this.sort();
 		this.isRoyalFlush();
 		this.isStraightFlush();
 		this.isFourOfAKind();
@@ -46,7 +47,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		this.isHighCard();
 	}
 
-	private String HandtypeToBooleanStr() {
+	/*For private testing: Returns string of all
+	*   boolean values for its hand.
+	*   ~ used to test if hand has multiple handTypes and if follows order
+	*   ~ generateHandType() needed to run first!
+	* */
+	private String handTypeToBooleanStr() {
 		return"isRoyalFlush: "+this.isRoyalFlush+
 		"\nisStraightFlush: "+this.isStraightFlush+
 		"\nisFourOfAKind: "+this.isFourOfAKind+
@@ -59,18 +65,21 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		"\nisHighCard: "+this.isHighCard;
 	}
 
-	private String bestHandType() {
+	/*Returns string of name of best hand type.
+	*   ~ generateHandType() needed to run first!
+	* */
+	public String getBestHandTypeName() {
 		if(true == isRoyalFlush) {
 			return "Royal Flush";
 		}
 		if(true ==  isStraightFlush) {
-			return "StraightFlush";
+			return "Straight Flush";
 		}
 		if(true ==  isFourOfAKind) {
-			return "FourOfAKind";
+			return "Four of a Kind";
 		}
 		if(true ==  isFullHouse) {
-			return "FullHouse";
+			return "Full House";
 		}
 		if(true ==  isFlush) {
 			return "Flush";
@@ -79,16 +88,16 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			return "Straight";
 		}
 		if(true ==  isThreeOfAKind) {
-			return "ThreeOfAKind";
+			return "Three of a Kind";
 		}
 		if(true ==  isTwoPair) {
-			return "TwoPair";
+			return "Two Pair";
 		}
 		if(true ==  isPair) {
 			return "Pair";
 		}
 		if(true ==  isHighCard) {
-			return "HighCard";
+			return "High Card";
 		}
 		return null;
 	}
@@ -262,7 +271,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		flushDeck.add(deck2.get(4));
 		flushDeck.add(deck2.get(8));
 		flushDeck.add(deck2.get(12));
-		flushDeck.add(deck2.get(16));
+		flushDeck.add(deck2.get(20));
 		//System.out.println(flushDeck.fullDeckToString());
 		System.out.println("*********** flushDeck");
 		System.out.println(flushDeck.isFlush());
@@ -378,22 +387,22 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 		HandOfCards pairDeck = new HandOfCards();
 		pairDeck.add(deck2.get(23));
-		pairDeck.add(deck2.get(0));
+		pairDeck.add(deck2.get(9));
 		pairDeck.add(deck2.get(1));
-		pairDeck.add(deck2.get(2));
+		pairDeck.add(deck2.get(51));
 		pairDeck.add(deck2.get(22));
 		//System.out.println(pairDeck.fullDeckToString());
-		System.out.println("*********** pairDeck aces*3,6*2");
+		System.out.println("*********** pairDeck ace,3c,6*2,kd");
 		pairDeck.sort();
 		System.out.println(pairDeck.isPair());
 		HandOfCards pairDeck2 = new HandOfCards();
 		pairDeck2.add(deck2.get(51));
-		pairDeck2.add(deck2.get(50));
-		pairDeck2.add(deck2.get(0));
+		pairDeck2.add(deck2.get(30));
+		pairDeck2.add(deck2.get(40));
 		pairDeck2.add(deck2.get(2));
-		pairDeck2.add(deck2.get(3));
+		pairDeck2.add(deck2.get(50));
 		//System.out.println(pairDeck2.fullDeckToString());
-		System.out.println("*********** pairDeck2 king*2,A*3");
+		System.out.println("*********** pairDeck2 king*2,A,8s,jh");
 		pairDeck2.sort();
 		System.out.println(pairDeck2.isPair());
 
@@ -435,24 +444,106 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		highCardDeck.add(deck2.get(30));
 		highCardDeck.add(deck2.get(50));
 		highCardDeck.add(deck2.get(9));
-		System.out.println(highCardDeck.fullDeckToString());
+		//System.out.println(highCardDeck.fullDeckToString());
 		System.out.println("*********** highCardDeck");
 		highCardDeck.sort();
-		System.out.println(highCardDeck.isTwoPair());
 		System.out.println(highCardDeck.isHighCard());
 		highCardDeck.generateHandType();
-		System.out.println(highCardDeck.bestHandType());
-		System.out.println(highCardDeck.HandtypeToBooleanStr());
+		//System.out.println(highCardDeck.getBestHandTypeName());
+		//System.out.println(highCardDeck.handTypeToBooleanStr());
 
-		System.out.println("*********** test all hands");
+		System.out.println("\n*********************** test all hands"); // testing made hands with all checking methods
+																			// to ensure they hold for that hand only
 		System.out.println("***** flushDeck");
 		flushDeck.generateHandType();
-		System.out.println(flushDeck.bestHandType());
-		//System.out.println(flushDeck.HandtypeToBooleanStr());
+		System.out.println(flushDeck.getBestHandTypeName());
+		//System.out.println(flushDeck.handTypeToBooleanStr());
+		//System.out.println(flushDeck.fullDeckToString());
+
+
 		System.out.println("***** royalFlushDeck");
 		royalFlushDeck.generateHandType();
-		System.out.println(royalFlushDeck.bestHandType());
-		//System.out.println(royalFlushDeck.HandtypeToBooleanStr());
+		System.out.println(royalFlushDeck.getBestHandTypeName());
+		//System.out.println(royalFlushDeck.handTypeToBooleanStr());
+
+		System.out.println("***** straightFlushDeck");
+		straightFlushDeck.generateHandType();
+		System.out.println(straightFlushDeck.getBestHandTypeName());
+		//System.out.println(straightFlushDeck.handTypeToBooleanStr());
+
+		System.out.println("***** fourOfAKindDeck");
+		fourOfAKindDeck.generateHandType();
+		System.out.println(fourOfAKindDeck.getBestHandTypeName());
+		//System.out.println(fourOfAKindDeck.handTypeToBooleanStr());
+
+		System.out.println("***** fourOfAKindDeck2");
+		fourOfAKindDeck2.generateHandType();
+		System.out.println(fourOfAKindDeck2.getBestHandTypeName());
+		//System.out.println(fourOfAKindDeck2.handTypeToBooleanStr());
+
+		System.out.println("***** threeOfAKindDeck");
+		threeOfAKindDeck.generateHandType();
+		System.out.println(threeOfAKindDeck.getBestHandTypeName());
+		//System.out.println(threeOfAKindDeck.handTypeToBooleanStr());
+
+		System.out.println("***** threeOfAKindDeck2");
+		threeOfAKindDeck2.generateHandType();
+		System.out.println(threeOfAKindDeck2.getBestHandTypeName());
+		//System.out.println(threeOfAKindDeck2.handTypeToBooleanStr());
+
+		System.out.println("***** threeOfAKindDeck3");
+		threeOfAKindDeck3.generateHandType();
+		System.out.println(threeOfAKindDeck3.getBestHandTypeName());
+		//System.out.println(threeOfAKindDeck3.handTypeToBooleanStr());
+
+		System.out.println("***** fullHouseDeck");
+		fullHouseDeck.generateHandType();
+		System.out.println(fullHouseDeck.getBestHandTypeName());
+		//System.out.println(fullHouseDeck.handTypeToBooleanStr());
+
+		System.out.println("***** fullHouseDeck2");
+		fullHouseDeck2.generateHandType();
+		System.out.println(fullHouseDeck2.getBestHandTypeName());
+		//System.out.println(fullHouseDeck2.handTypeToBooleanStr());
+
+		System.out.println("***** royalFlushDeck");
+		royalFlushDeck.generateHandType();
+		System.out.println(royalFlushDeck.getBestHandTypeName());
+		//System.out.println(royalFlushDeck.handTypeToBooleanStr());
+
+		System.out.println("***** straightDeck");
+		straightDeck.generateHandType();
+		System.out.println(straightDeck.getBestHandTypeName());
+		//System.out.println(straightDeck.handTypeToBooleanStr());
+
+		System.out.println("***** pairDeck");
+		pairDeck.generateHandType();
+		System.out.println(pairDeck.getBestHandTypeName());
+		//System.out.println(pairDeck.handTypeToBooleanStr());
+		//System.out.println(pairDeck.fullDeckToString());
+		System.out.println("***** pairDeck2");
+		pairDeck2.generateHandType();
+		System.out.println(pairDeck2.getBestHandTypeName());
+		//System.out.println(pairDeck2.handTypeToBooleanStr());
+		//System.out.println(pairDeck2.fullDeckToString());
+
+		System.out.println("***** twoPairDeck");
+		twoPairDeck.generateHandType();
+		System.out.println(twoPairDeck.getBestHandTypeName());
+		//System.out.println(twoPairDeck.handTypeToBooleanStr());
+		System.out.println("***** twoPairDeck2");
+		twoPairDeck2.generateHandType();
+		System.out.println(twoPairDeck2.getBestHandTypeName());
+		//System.out.println(twoPairDeck2.handTypeToBooleanStr());
+		System.out.println("***** twoPairDeck3");
+		twoPairDeck3.generateHandType();
+		System.out.println(twoPairDeck3.getBestHandTypeName());
+		//System.out.println(twoPairDeck3.handTypeToBooleanStr());
+
+		System.out.println("***** highCardDeck");
+		highCardDeck.generateHandType();
+		System.out.println(highCardDeck.getBestHandTypeName());
+		//System.out.println(highCardDeck.handTypeToBooleanStr());
 
 	}
 }
