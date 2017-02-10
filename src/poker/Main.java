@@ -39,15 +39,11 @@ public class Main {
 		player4.generateHandType();
 		player5.generateHandType();
 		System.out.println("sort and calc hand type");
-		System.out.println("player1: "+player1);
-		System.out.println("player2: "+player2);
-		System.out.println("player3: "+player3);
-		System.out.println("player4: "+player4);
-		System.out.println("player5: "+player5);
-		System.out.println("player1: "+player1.getBestHandTypeName());
-		System.out.println("player2: "+player2.getBestHandTypeName());
-		System.out.println("player3: "+player3.getBestHandTypeName());
-		System.out.println("player4: "+player4.getBestHandTypeName());
-		System.out.println("player5: "+player5.getBestHandTypeName());
+		System.out.println("player1: "+player1+"\t"+player1.getBestHandTypeName());
+		System.out.println("player1: "+player2+"\t"+player2.getBestHandTypeName());
+		System.out.println("player1: "+player3+"\t"+player3.getBestHandTypeName());
+		System.out.println("player1: "+player4+"\t"+player4.getBestHandTypeName());
+		System.out.println("player1: "+player5+"\t"+player5.getBestHandTypeName());
+
 	}
 }

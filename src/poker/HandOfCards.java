@@ -33,6 +33,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			}
 		});
 	}
+	/*Calls sort() then goes through all hand Type functions for its hand
+	* */
 	public void generateHandType() {
 		this.sort();
 		this.isRoyalFlush();
