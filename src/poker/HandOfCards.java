@@ -28,8 +28,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private void sort() {
 		Collections.sort(this ,new Comparator<PlayingCard>() {
 			@Override
-			public int compare(PlayingCard s1, PlayingCard s2) {
-				return Float.compare(s1.getFaceValue(), s2.getFaceValue());
+			public int compare(PlayingCard card1, PlayingCard card2) {
+				return Float.compare(card1.getFaceValue(), card2.getFaceValue());
 			}
 		});
 	}
