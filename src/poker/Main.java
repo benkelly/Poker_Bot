@@ -13,11 +13,18 @@ public class Main {
 
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
+
+
 		HandOfCards player1 = new HandOfCards();
 		HandOfCards player2 = new HandOfCards();
 		HandOfCards player3 = new HandOfCards();
 		HandOfCards player4 = new HandOfCards();
 		HandOfCards player5 = new HandOfCards();
+		HandOfCards player6 = new HandOfCards();
+		HandOfCards player7 = new HandOfCards();
+		HandOfCards player8 = new HandOfCards();
+		HandOfCards player9 = new HandOfCards();
+		HandOfCards player10 = new HandOfCards();
 
 		System.out.println("***************************** deal cards");
 		System.out.println(deck);
@@ -27,23 +34,43 @@ public class Main {
 			player3.add(deck.dealNext());
 			player4.add(deck.dealNext());
 			player5.add(deck.dealNext());
+			player6.add(deck.dealNext());
+			player7.add(deck.dealNext());
+			player8.add(deck.dealNext());
+			player9.add(deck.dealNext());
+			player10.add(deck.dealNext());
 		}
 		System.out.println("player1: "+player1);
 		System.out.println("player2: "+player2);
 		System.out.println("player3: "+player3);
 		System.out.println("player4: "+player4);
 		System.out.println("player5: "+player5);
+		System.out.println("player6: "+player6);
+		System.out.println("player7: "+player7);
+		System.out.println("player8: "+player8);
+		System.out.println("player9: "+player9);
+		System.out.println("player10: "+player10);
 		player1.generateHandType();
 		player2.generateHandType();
 		player3.generateHandType();
 		player4.generateHandType();
 		player5.generateHandType();
-		System.out.println("sort and calc hand type");
+		player6.generateHandType();
+		player7.generateHandType();
+		player8.generateHandType();
+		player9.generateHandType();
+		player10.generateHandType();
+		System.out.println("***************************** sort and calc hand type");
 		System.out.println("player1: "+player1+"\t"+player1.getBestHandTypeName());
-		System.out.println("player1: "+player2+"\t"+player2.getBestHandTypeName());
-		System.out.println("player1: "+player3+"\t"+player3.getBestHandTypeName());
-		System.out.println("player1: "+player4+"\t"+player4.getBestHandTypeName());
-		System.out.println("player1: "+player5+"\t"+player5.getBestHandTypeName());
+		System.out.println("player2: "+player2+"\t"+player2.getBestHandTypeName());
+		System.out.println("player3: "+player3+"\t"+player3.getBestHandTypeName());
+		System.out.println("player4: "+player4+"\t"+player4.getBestHandTypeName());
+		System.out.println("player5: "+player5+"\t"+player5.getBestHandTypeName());
+		System.out.println("player6: "+player6+"\t"+player6.getBestHandTypeName());
+		System.out.println("player7: "+player7+"\t"+player7.getBestHandTypeName());
+		System.out.println("player8: "+player8+"\t"+player8.getBestHandTypeName());
+		System.out.println("player9: "+player9+"\t"+player9.getBestHandTypeName());
+		System.out.println("player10: "+player10+"\t"+player10.getBestHandTypeName());
 
 	}
 }

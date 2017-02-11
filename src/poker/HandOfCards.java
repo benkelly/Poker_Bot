@@ -11,20 +11,22 @@ import java.util.Comparator;
  */
 public class HandOfCards extends ArrayList<PlayingCard> {
 
-	private boolean isRoyalFlush = false;
-	private boolean isStraightFlush = false;
-	private boolean isFourOfAKind = false;
-	private boolean isFullHouse = false;
-	private boolean isFlush = false;
-	private boolean isStraight = false;
-	private boolean isThreeOfAKind = false;
-	private boolean isTwoPair = false;
-	private boolean isPair = false;
-	private boolean isHighCard = false;
+	private boolean isRoyalFlush;
+	private boolean isStraightFlush;
+	private boolean isFourOfAKind;
+	private boolean isFullHouse;
+	private boolean isFlush;
+	private boolean isStraight;
+	private boolean isThreeOfAKind;
+	private boolean isTwoPair;
+	private boolean isPair;
+	private boolean isHighCard;
 
 	public HandOfCards(){
 	}
 
+	/*Sorts hand of cards in ascending order by their type value.
+	* */
 	private void sort() {
 		Collections.sort(this ,new Comparator<PlayingCard>() {
 			@Override
@@ -69,38 +71,21 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 	/*Returns string of name of best hand type.
 	*   ~ generateHandType() needed to run first!
+	*
+	*   ### In future I believe that each hand type will need an int value then * by the main card types
+	*   ### value to implement the scoring method.
 	* */
 	public String getBestHandTypeName() {
-		if(true == isRoyalFlush) {
-			return "Royal Flush";
-		}
-		if(true ==  isStraightFlush) {
-			return "Straight Flush";
-		}
-		if(true ==  isFourOfAKind) {
-			return "Four of a Kind";
-		}
-		if(true ==  isFullHouse) {
-			return "Full House";
-		}
-		if(true ==  isFlush) {
-			return "Flush";
-		}
-		if(true ==  isStraight) {
-			return "Straight";
-		}
-		if(true ==  isThreeOfAKind) {
-			return "Three of a Kind";
-		}
-		if(true ==  isTwoPair) {
-			return "Two Pair";
-		}
-		if(true ==  isPair) {
-			return "Pair";
-		}
-		if(true ==  isHighCard) {
-			return "High Card";
-		}
+		if(isRoyalFlush) return "Royal Flush";
+		if(isStraightFlush) return "Straight Flush";
+		if(isFourOfAKind) return "Four of a Kind";
+		if(isFullHouse) return "Full House";
+		if(isFlush) return "Flush";
+		if(isStraight) return "Straight";
+		if(isThreeOfAKind) return "Three of a Kind";
+		if(isTwoPair) return "Two Pair";
+		if(isPair) return "Pair";
+		if(isHighCard) return "High Card";
 		return null;
 	}
 
@@ -231,11 +216,11 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		}
 		return isPair;
 	}
-	/*Otherwise unrelater cards ranked by the highest single card.
+	/*Otherwise unrelated cards ranked by the highest single card.
 	* */
 	public boolean isHighCard() {
-		if(isRoyalFlush == false && isStraightFlush == false && isFourOfAKind == false && isFullHouse == false && 
-		isFlush == false && isStraight == false && isThreeOfAKind == false && isTwoPair == false && isPair == false ) {
+		if(!isRoyalFlush  && !isStraightFlush  && !isFourOfAKind  && !isFullHouse  &&
+		!isFlush  && !isStraight  && !isThreeOfAKind  && !isTwoPair  && !isPair  ) {
 			isHighCard =true;
 		}
 		return isHighCard;
@@ -256,6 +241,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	public static void main(String[] args) {
 		System.out.println("poker.HandOfCards.java!");
 
+		//testing sort()
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
 		HandOfCards testHand = new HandOfCards();
@@ -267,6 +253,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		testHand.sort();
 		System.out.println(testHand.fullDeckToString());
 
+
+		//testing hand classing methods with true cases.
 		DeckOfCards deck2 = new DeckOfCards();
 		HandOfCards flushDeck = new HandOfCards();
 		flushDeck.add(deck2.get(0));
@@ -286,7 +274,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		royalFlushDeck.add(deck2.get(51));
 		//System.out.println(royalFlushDeck.fullDeckToString());
 		System.out.println("*********** royalFlushDeck");
-		royalFlushDeck.sort();
+		//royalFlushDeck.sort();
 		System.out.println(royalFlushDeck.isRoyalFlush());
 
 		HandOfCards straightFlushDeck = new HandOfCards();
@@ -297,7 +285,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		straightFlushDeck.add(deck2.get(13));
 		//System.out.println(straightFlushDeck.fullDeckToString());
 		System.out.println("*********** straightFlushDeck");
-		straightFlushDeck.sort();
+		//straightFlushDeck.sort();
 		System.out.println(straightFlushDeck.isStraightFlush());
 
 
@@ -309,7 +297,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		fourOfAKindDeck.add(deck2.get(3));
 		//System.out.println(straightFlushDeck.fullDeckToString());
 		System.out.println("*********** fourOfAKindDeck aces");
-		fourOfAKindDeck.sort();
+		//fourOfAKindDeck.sort();
 		System.out.println(fourOfAKindDeck.isFourOfAKind());
 		HandOfCards fourOfAKindDeck2 = new HandOfCards();
 		fourOfAKindDeck2.add(deck2.get(51));
@@ -319,7 +307,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		fourOfAKindDeck2.add(deck2.get(3));
 		//System.out.println(straightFlushDeck.fullDeckToString());
 		System.out.println("*********** fourOfAKindDeck king");
-		fourOfAKindDeck2.sort();
+		//fourOfAKindDeck2.sort();
 		System.out.println(fourOfAKindDeck2.isFourOfAKind());
 
 
@@ -331,7 +319,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		threeOfAKindDeck.add(deck2.get(3));
 		//System.out.println(threeOfAKindDeck.fullDeckToString());
 		System.out.println("*********** threeOfAKindDeck aces");
-		threeOfAKindDeck.sort();
+		//threeOfAKindDeck.sort();
 		System.out.println(threeOfAKindDeck.isThreeOfAKind());
 		HandOfCards threeOfAKindDeck2 = new HandOfCards();
 		threeOfAKindDeck2.add(deck2.get(51));
@@ -341,7 +329,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		threeOfAKindDeck2.add(deck2.get(3));
 		//System.out.println(straightFlushDeck.fullDeckToString());
 		System.out.println("*********** threeOfAKindDeck2 king");
-		threeOfAKindDeck2.sort();
+		//threeOfAKindDeck2.sort();
 		System.out.println(threeOfAKindDeck2.isThreeOfAKind());
 		HandOfCards threeOfAKindDeck3 = new HandOfCards();
 		threeOfAKindDeck3.add(deck2.get(0));
@@ -351,7 +339,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		threeOfAKindDeck3.add(deck2.get(30));
 		//System.out.println(threeOfAKindDeck3.fullDeckToString());
 		System.out.println("*********** threeOfAKindDeck3 ace,3*2,8");
-		threeOfAKindDeck3.sort();
+		//threeOfAKindDeck3.sort();
 		System.out.println(threeOfAKindDeck3.isThreeOfAKind());
 
 		HandOfCards fullHouseDeck = new HandOfCards();
@@ -362,7 +350,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		fullHouseDeck.add(deck2.get(22));
 		//System.out.println(fullHouseDeck.fullDeckToString());
 		System.out.println("*********** fullHouseDeck aces*3,6*2");
-		fullHouseDeck.sort();
+		//fullHouseDeck.sort();
 		System.out.println(fullHouseDeck.isFullHouse());
 		HandOfCards fullHouseDeck2 = new HandOfCards();
 		fullHouseDeck2.add(deck2.get(51));
@@ -372,7 +360,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		fullHouseDeck2.add(deck2.get(3));
 		//System.out.println(fullHouseDeck2.fullDeckToString());
 		System.out.println("*********** fullHouseDeck2 king*2,A*3");
-		fullHouseDeck2.sort();
+		//fullHouseDeck2.sort();
 		System.out.println(fullHouseDeck2.isFullHouse());
 
 		HandOfCards straightDeck = new HandOfCards();
@@ -383,7 +371,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		straightDeck.add(deck2.get(9));
 		//System.out.println(straightDeck.fullDeckToString());
 		System.out.println("*********** straightDeck");
-		straightDeck.sort();
+		//straightDeck.sort();
 		System.out.println(straightDeck.isStraight());
 
 
@@ -395,7 +383,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		pairDeck.add(deck2.get(22));
 		//System.out.println(pairDeck.fullDeckToString());
 		System.out.println("*********** pairDeck ace,3c,6*2,kd");
-		pairDeck.sort();
+		//pairDeck.sort();
 		System.out.println(pairDeck.isPair());
 		HandOfCards pairDeck2 = new HandOfCards();
 		pairDeck2.add(deck2.get(51));
@@ -405,7 +393,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		pairDeck2.add(deck2.get(50));
 		//System.out.println(pairDeck2.fullDeckToString());
 		System.out.println("*********** pairDeck2 king*2,A,8s,jh");
-		pairDeck2.sort();
+		//pairDeck2.sort();
 		System.out.println(pairDeck2.isPair());
 
 
@@ -416,7 +404,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		twoPairDeck.add(deck2.get(2));
 		twoPairDeck.add(deck2.get(22));
 		System.out.println("*********** twoPairDeck aces*2,2,6*2");
-		twoPairDeck.sort();
+		//twoPairDeck.sort();
 		//System.out.println(twoPairDeck.fullDeckToString());
 		System.out.println(twoPairDeck.isTwoPair());
 		HandOfCards twoPairDeck2 = new HandOfCards();
@@ -427,7 +415,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		twoPairDeck2.add(deck2.get(3));
 		//System.out.println(twoPairDeck2.fullDeckToString());
 		System.out.println("*********** twoPairDeck2 king,J*2,A*2");
-		twoPairDeck2.sort();
+		//twoPairDeck2.sort();
 		System.out.println(twoPairDeck2.isTwoPair());
 		HandOfCards twoPairDeck3 = new HandOfCards();
 		twoPairDeck3.add(deck2.get(41));
@@ -437,7 +425,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		twoPairDeck3.add(deck2.get(3));
 		//System.out.println(twoPairDeck3.fullDeckToString());
 		System.out.println("*********** twoPairDeck3 king*2,J*2,A");
-		twoPairDeck3.sort();
+		//twoPairDeck3.sort();
 		System.out.println(twoPairDeck3.isTwoPair());
 
 		HandOfCards highCardDeck = new HandOfCards();
@@ -448,14 +436,16 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		highCardDeck.add(deck2.get(9));
 		//System.out.println(highCardDeck.fullDeckToString());
 		System.out.println("*********** highCardDeck");
-		highCardDeck.sort();
+		//highCardDeck.sort();
 		System.out.println(highCardDeck.isHighCard());
 		highCardDeck.generateHandType();
 		//System.out.println(highCardDeck.getBestHandTypeName());
 		//System.out.println(highCardDeck.handTypeToBooleanStr());
 
-		System.out.println("\n*********************** test all hands"); // testing made hands with all checking methods
-																			// to ensure they hold for that hand only
+
+		/*testing made hands against all checking methods to ensure they hold for that hand only
+		**/
+		System.out.println("\n*********************** test all hands");
 		System.out.println("***** flushDeck");
 		flushDeck.generateHandType();
 		System.out.println(flushDeck.getBestHandTypeName());
@@ -467,11 +457,15 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		royalFlushDeck.generateHandType();
 		System.out.println(royalFlushDeck.getBestHandTypeName());
 		//System.out.println(royalFlushDeck.handTypeToBooleanStr());
+		//System.out.println(royalFlushDeck.fullDeckToString());
+
+
 
 		System.out.println("***** straightFlushDeck");
 		straightFlushDeck.generateHandType();
 		System.out.println(straightFlushDeck.getBestHandTypeName());
 		//System.out.println(straightFlushDeck.handTypeToBooleanStr());
+		//System.out.println(straightFlushDeck.fullDeckToString());
 
 		System.out.println("***** fourOfAKindDeck");
 		fourOfAKindDeck.generateHandType();
