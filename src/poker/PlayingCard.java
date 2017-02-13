@@ -112,6 +112,18 @@ public class PlayingCard {
 		}
 		return suitStr;
 	}
+
+	/*returns string of cards Suit Symbol ♥, ♣, ♠, ♦.
+	* */
+	public String getSuitSymbol(){
+		switch(this.cardSuit) {
+			case 'H': return "♥";
+			case 'C': return "♣";
+			case 'S': return "♠";
+			case 'D': return "♦";
+		}
+		return "";
+	}
 	/*returns string of full name of card.
 	* */
 	public String getFullName(){
@@ -128,6 +140,7 @@ public class PlayingCard {
 		System.out.println(aceOfHearts.toString());
 		System.out.println(aceOfHearts.getFaceValue());
 		System.out.println(aceOfHearts.getGameValue());
+		System.out.println(aceOfHearts.getSuitSymbol());
 
 	}
 }
