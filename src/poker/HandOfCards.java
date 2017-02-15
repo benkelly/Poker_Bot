@@ -58,15 +58,15 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	* */
 	private String handTypeToBooleanStr() {
 		return"isRoyalFlush: "+this.isRoyalFlush+
-		"\nisStraightFlush: "+this.isStraightFlush+
-		"\nisFourOfAKind: "+this.isFourOfAKind+
-		"\nisFullHouse: "+this.isFullHouse+
-		"\nisFlush: "+this.isFlush+
-		"\nisStraight: "+this.isStraight+
-		"\nisThreeOfAKind: "+this.isThreeOfAKind+
-		"\nisTwoPair: "+this.isTwoPair+
-		"\nisPair: "+this.isPair+
-		"\nisHighCard: "+this.isHighCard;
+				"\nisStraightFlush: "+this.isStraightFlush+
+				"\nisFourOfAKind: "+this.isFourOfAKind+
+				"\nisFullHouse: "+this.isFullHouse+
+				"\nisFlush: "+this.isFlush+
+				"\nisStraight: "+this.isStraight+
+				"\nisThreeOfAKind: "+this.isThreeOfAKind+
+				"\nisTwoPair: "+this.isTwoPair+
+				"\nisPair: "+this.isPair+
+				"\nisHighCard: "+this.isHighCard;
 	}
 
 	/*Returns string of name of best hand type.
@@ -101,6 +101,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 					this.get(2).getFaceValue() == 11 &&
 					this.get(3).getFaceValue() == 12 &&
 					this.get(4).getFaceValue() == 13 ) {
+				this.add(this.remove(0)); // move Ace to end of hand
 				isRoyalFlush = true;
 			}
 		}
@@ -169,10 +170,23 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				this.get(2).getFaceValue() == (this.get(0).getFaceValue() + 2) &&
 				this.get(3).getFaceValue() == (this.get(0).getFaceValue() + 3) &&
 				this.get(4).getFaceValue() == (this.get(0).getFaceValue() + 4)) {
-			if(this.get(0).getSuit() != (this.get(1).getSuit())
+			if(this.get(0).getSuit() != (this.get(1).getSuit()) //if not same suit
 					|| this.get(0).getSuit() != (this.get(2).getSuit())
 					|| this.get(0).getSuit() != (this.get(3).getSuit())
 					|| this.get(0).getSuit() != (this.get(4).getSuit())) {
+				isStraight = true;
+			}
+		}
+		// if, 10, J, Q, K case
+		if (this.get(0).getGameValue() == (this.get(1).getGameValue() + 4) &&
+				this.get(2).getGameValue() == (this.get(1).getGameValue() + 1) &&
+				this.get(3).getGameValue() == (this.get(1).getGameValue() + 2) &&
+				this.get(4).getGameValue() == (this.get(1).getGameValue() + 3)) {
+			if(this.get(0).getSuit() != (this.get(1).getSuit()) //if not same suit
+					|| this.get(0).getSuit() != (this.get(2).getSuit())
+					|| this.get(0).getSuit() != (this.get(3).getSuit())
+					|| this.get(0).getSuit() != (this.get(4).getSuit())) {
+				this.add(this.remove(0)); // move Ace to end of hand
 				isStraight = true;
 			}
 		}
@@ -220,7 +234,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	* */
 	public boolean isHighCard() {
 		if(!isRoyalFlush  && !isStraightFlush  && !isFourOfAKind  && !isFullHouse  &&
-		!isFlush  && !isStraight  && !isThreeOfAKind  && !isTwoPair  && !isPair  ) {
+				!isFlush  && !isStraight  && !isThreeOfAKind  && !isTwoPair  && !isPair  ) {
 			isHighCard =true;
 		}
 		return isHighCard;
@@ -540,6 +554,40 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		highCardDeck.generateHandType();
 		System.out.println(highCardDeck.getBestHandTypeName());
 		//System.out.println(highCardDeck.handTypeToBooleanStr());
+
+		System.out.println("*********** spacial straight cases");
+
+		HandOfCards straightDeck2 = new HandOfCards();
+		straightDeck2.add(deck2.get(51));
+		straightDeck2.add(deck2.get(40));
+		straightDeck2.add(deck2.get(0));
+		straightDeck2.add(deck2.get(37));
+		straightDeck2.add(deck2.get(45));
+		//System.out.println(straightDeck2.fullDeckToString());
+		System.out.println("*********** straightDeck2 10c, jh, qc, kd, ah");
+		//straightDeck2.sort();
+		//System.out.println(straightDeck2.isStraight());
+		//System.out.println(straightDeck2.fullDeckToString());
+		straightDeck2.generateHandType();
+		System.out.println(straightDeck2.getBestHandTypeName());
+
+		HandOfCards royalFlushDeck2 = new HandOfCards();
+		royalFlushDeck2.add(deck2.get(48));
+		royalFlushDeck2.add(deck2.get(40));
+		royalFlushDeck2.add(deck2.get(0));
+		royalFlushDeck2.add(deck2.get(36));
+		royalFlushDeck2.add(deck2.get(44));
+		//System.out.println(royalFlushDeck2.fullDeckToString());
+		System.out.println("*********** royalFlushDeck2 10h, jh, qh, kh, ah");
+		//royalFlushDeck2.sort();
+		//System.out.println(royalFlushDeck2.isRoyalFlush());
+		//System.out.println(royalFlushDeck2.fullDeckToString());
+		royalFlushDeck2.generateHandType();
+		System.out.println(royalFlushDeck2.getBestHandTypeName());
+		System.out.println(royalFlushDeck2.fullDeckToString());
+
+
+
 
 	}
 }
