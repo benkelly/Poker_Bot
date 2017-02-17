@@ -22,22 +22,36 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isPair;
 	private boolean isHighCard;
 
+	// golbal calculations weights
+	private final int calcWeight = 14;
+	// hand type weights
+	private final int RoyalFlushWeight = 9000000;
+	private final int StraightFlushWeight = 8000000;
+	private final int FourOfAKindWeight = 7000000;
+	private final int FullHouseWeight = 6000000;
+	private final int FlushWeight = 5000000;
+	private final int StraightWeight = 4000000;
+	private final int ThreeOfAKindWeight = 3000000;
+	private final int TwoPairWeight = 2000000;
+	private final int PairWeight = 1000000;
+	private final int HighCardWeight = 0;
+
 	public HandOfCards(){
 	}
 
 	/*Sorts hand of cards in ascending order by their type value.
 	* */
-	private void sort() {
+	synchronized private void sort() {
 		Collections.sort(this ,new Comparator<PlayingCard>() {
 			@Override
 			public int compare(PlayingCard card1, PlayingCard card2) {
-				return Float.compare(card1.getFaceValue(), card2.getFaceValue());
+				return Float.compare(card1.faceValue(), card2.faceValue());
 			}
 		});
 	}
 	/*Calls sort() then goes through all hand Type functions for its hand
 	* */
-	public void generateHandType() {
+	synchronized public void generateHandType() {
 		this.sort();
 		this.isRoyalFlush();
 		this.isStraightFlush();
@@ -89,18 +103,83 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		return null;
 	}
 
+	public int getGameValue() {
+		if(isRoyalFlush) return 0;
+		if(isStraightFlush) return 0;
+		if(isFourOfAKind) {
+			return FourOfAKindWeight + this.get(2).gameValue();
+		}
+		if(isFullHouse) {
+			return FullHouseWeight + this.get(2).gameValue();
+		}
+		if(isFlush) {
+			return FlushWeight + this.calcHighCardScore();
+		}
+		if(isStraight) {
+			return StraightWeight + this.calcHighCardScore();
+		}
+		if(isThreeOfAKind) {
+			return ThreeOfAKindWeight + this.get(2).gameValue();
+		}
+		if(isTwoPair) {
+			int twoPairScore;
+			if ( this.get(0).gameValue() == this.get(1).gameValue() &&
+					this.get(2).gameValue() == this.get(3).gameValue() )
+				twoPairScore = 14*14*this.get(2).gameValue() + 14*this.get(0).gameValue() + this.get(4).gameValue();
+			else if ( this.get(0).gameValue() == this.get(1).gameValue() &&
+					this.get(3).gameValue() == this.get(4).gameValue() )
+				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(0).gameValue() + this.get(2).gameValue();
+			else
+				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(1).gameValue() + this.get(0).gameValue();
+			return TwoPairWeight + twoPairScore;
+		}
+		if(isPair) {
+			int pairScore;
+			if (this.get(0).gameValue() == this.get(1).gameValue())
+				pairScore = calcWeight*calcWeight*calcWeight*this.get(0).gameValue() +
+						+ this.get(2).gameValue() + calcWeight*this.get(3).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+			else if (this.get(1).gameValue() == this.get(2).gameValue())
+				pairScore = calcWeight*calcWeight*calcWeight*this.get(1).gameValue() +
+						+ this.get(0).gameValue() + calcWeight*this.get(3).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+			else if (this.get(2).gameValue() == this.get(3).gameValue())
+				pairScore = calcWeight*calcWeight*calcWeight*this.get(2).gameValue() +
+						+ this.get(0).gameValue() + calcWeight*this.get(1).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+			else
+				pairScore = calcWeight*calcWeight*calcWeight*this.get(3).gameValue() +
+						+ this.get(0).gameValue() + calcWeight*this.get(1).gameValue() + calcWeight*calcWeight*this.get(2).gameValue();
+			return PairWeight + pairScore;
+		}
+		if(isHighCard) {
+			return HighCardWeight + this.calcHighCardScore();
+		}
+		return 0;
+	}
+	private int calcHighCardScore() {
+		int highCardScore;
+		if(this.get(0).cardType().equals('A')){
+			this.add(this.remove(0)); // move Ace to end of hand
+		}
+		highCardScore = this.get(0).gameValue() + calcWeight* this.get(1).gameValue() + calcWeight*calcWeight* this.get(2).gameValue()
+				+ calcWeight*calcWeight*calcWeight* this.get(3).gameValue() + calcWeight*calcWeight*calcWeight*calcWeight* this.get(4).gameValue();
+		return highCardScore;
+	}
+
+
+
+
+	//////////////// Type testing cases ///////////////
 	/*A, K, Q, J, 10 all of the same suit
 	* */
 	public boolean isRoyalFlush() {
-		if(this.get(0).getSuit().equals(this.get(1).getSuit())
-				&& this.get(0).getSuit().equals(this.get(2).getSuit())
-				&& this.get(0).getSuit().equals(this.get(3).getSuit())
-				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
-			if(this.get(0).getFaceValue() == 1 &&
-					this.get(1).getFaceValue() == 10 &&
-					this.get(2).getFaceValue() == 11 &&
-					this.get(3).getFaceValue() == 12 &&
-					this.get(4).getFaceValue() == 13 ) {
+		if(this.get(0).cardSuit().equals(this.get(1).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(2).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(3).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(4).cardSuit())) {
+			if(this.get(0).faceValue() == 1 &&
+					this.get(1).faceValue() == 10 &&
+					this.get(2).faceValue() == 11 &&
+					this.get(3).faceValue() == 12 &&
+					this.get(4).faceValue() == 13 ) {
 				this.add(this.remove(0)); // move Ace to end of hand
 				isRoyalFlush = true;
 			}
@@ -111,14 +190,14 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Any five cards sequence in the same suit
 	* */
 	public boolean isStraightFlush() {
-		if(this.get(0).getSuit().equals(this.get(1).getSuit())
-				&& this.get(0).getSuit().equals(this.get(2).getSuit())
-				&& this.get(0).getSuit().equals(this.get(3).getSuit())
-				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
-			if (this.get(1).getFaceValue() == (this.get(0).getFaceValue() + 1) &&
-					this.get(2).getFaceValue() == (this.get(0).getFaceValue() + 2) &&
-					this.get(3).getFaceValue() == (this.get(0).getFaceValue() + 3) &&
-					this.get(4).getFaceValue() == (this.get(0).getFaceValue() + 4)) {
+		if(this.get(0).cardSuit().equals(this.get(1).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(2).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(3).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(4).cardSuit())) {
+			if (this.get(1).faceValue() == (this.get(0).faceValue() + 1) &&
+					this.get(2).faceValue() == (this.get(0).faceValue() + 2) &&
+					this.get(3).faceValue() == (this.get(0).faceValue() + 3) &&
+					this.get(4).faceValue() == (this.get(0).faceValue() + 4)) {
 				isStraightFlush = true;
 			}
 		}
@@ -127,12 +206,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*All four cards of the same rank
 	* */
 	public boolean isFourOfAKind() {
-		if (this.get(0).getFaceValue() == this.get(1).getFaceValue() &&
-				this.get(0).getFaceValue() == this.get(2).getFaceValue() &&
-				this.get(0).getFaceValue() == this.get(3).getFaceValue() ||
-				this.get(1).getFaceValue() == this.get(2).getFaceValue() &&
-						this.get(1).getFaceValue() == this.get(3).getFaceValue() &&
-						this.get(1).getFaceValue() == this.get(4).getFaceValue() ) {
+		if (this.get(0).faceValue() == this.get(1).faceValue() &&
+				this.get(0).faceValue() == this.get(2).faceValue() &&
+				this.get(0).faceValue() == this.get(3).faceValue() ||
+				this.get(1).faceValue() == this.get(2).faceValue() &&
+						this.get(1).faceValue() == this.get(3).faceValue() &&
+						this.get(1).faceValue() == this.get(4).faceValue() ) {
 			isFourOfAKind =true;
 		}
 		return isFourOfAKind;
@@ -140,14 +219,14 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Three of a kind combined with a pair
 	* */
 	public boolean isFullHouse() {
-		if (this.get(0).getFaceValue() == this.get(1).getFaceValue() &&
-				this.get(0).getFaceValue() == this.get(2).getFaceValue() &&
-				this.get(3).getFaceValue() == this.get(4).getFaceValue() ) {
+		if (this.get(0).faceValue() == this.get(1).faceValue() &&
+				this.get(0).faceValue() == this.get(2).faceValue() &&
+				this.get(3).faceValue() == this.get(4).faceValue() ) {
 			isFullHouse =true;
 		}
-		if (this.get(2).getFaceValue() == this.get(3).getFaceValue() &&
-				this.get(2).getFaceValue() == this.get(4).getFaceValue() &&
-				this.get(0).getFaceValue() == this.get(1).getFaceValue() ) {
+		if (this.get(2).faceValue() == this.get(3).faceValue() &&
+				this.get(2).faceValue() == this.get(4).faceValue() &&
+				this.get(0).faceValue() == this.get(1).faceValue() ) {
 			isFullHouse =true;
 		}
 		return isFullHouse;
@@ -155,10 +234,10 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Any five cards of the same suit, but not in sequence.
 	* */
 	public boolean isFlush() {
-		if(this.get(0).getSuit().equals(this.get(1).getSuit())
-				&& this.get(0).getSuit().equals(this.get(2).getSuit())
-				&& this.get(0).getSuit().equals(this.get(3).getSuit())
-				&& this.get(0).getSuit().equals(this.get(4).getSuit())) {
+		if(this.get(0).cardSuit().equals(this.get(1).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(2).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(3).cardSuit())
+				&& this.get(0).cardSuit().equals(this.get(4).cardSuit())) {
 			isFlush = true;
 		}
 		return isFlush;
@@ -166,26 +245,26 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Five cards in sequence, but not in the same suit
 	* */
 	public boolean isStraight() {
-		if (this.get(1).getFaceValue() == (this.get(0).getFaceValue() + 1) &&
-				this.get(2).getFaceValue() == (this.get(0).getFaceValue() + 2) &&
-				this.get(3).getFaceValue() == (this.get(0).getFaceValue() + 3) &&
-				this.get(4).getFaceValue() == (this.get(0).getFaceValue() + 4)) {
-			if(this.get(0).getSuit() != (this.get(1).getSuit()) //if not same suit
-					|| this.get(0).getSuit() != (this.get(2).getSuit())
-					|| this.get(0).getSuit() != (this.get(3).getSuit())
-					|| this.get(0).getSuit() != (this.get(4).getSuit())) {
+		if (this.get(1).faceValue() == (this.get(0).faceValue() + 1) &&
+				this.get(2).faceValue() == (this.get(0).faceValue() + 2) &&
+				this.get(3).faceValue() == (this.get(0).faceValue() + 3) &&
+				this.get(4).faceValue() == (this.get(0).faceValue() + 4)) {
+			if(this.get(0).cardSuit() != (this.get(1).cardSuit()) //if not same suit
+					|| this.get(0).cardSuit() != (this.get(2).cardSuit())
+					|| this.get(0).cardSuit() != (this.get(3).cardSuit())
+					|| this.get(0).cardSuit() != (this.get(4).cardSuit())) {
 				isStraight = true;
 			}
 		}
 		// if, 10, J, Q, K case
-		if (this.get(0).getGameValue() == (this.get(1).getGameValue() + 4) &&
-				this.get(2).getGameValue() == (this.get(1).getGameValue() + 1) &&
-				this.get(3).getGameValue() == (this.get(1).getGameValue() + 2) &&
-				this.get(4).getGameValue() == (this.get(1).getGameValue() + 3)) {
-			if(this.get(0).getSuit() != (this.get(1).getSuit()) //if not same suit
-					|| this.get(0).getSuit() != (this.get(2).getSuit())
-					|| this.get(0).getSuit() != (this.get(3).getSuit())
-					|| this.get(0).getSuit() != (this.get(4).getSuit())) {
+		if (this.get(0).gameValue() == (this.get(1).gameValue() + 4) &&
+				this.get(2).gameValue() == (this.get(1).gameValue() + 1) &&
+				this.get(3).gameValue() == (this.get(1).gameValue() + 2) &&
+				this.get(4).gameValue() == (this.get(1).gameValue() + 3)) {
+			if(this.get(0).cardSuit() != (this.get(1).cardSuit()) //if not same suit
+					|| this.get(0).cardSuit() != (this.get(2).cardSuit())
+					|| this.get(0).cardSuit() != (this.get(3).cardSuit())
+					|| this.get(0).cardSuit() != (this.get(4).cardSuit())) {
 				this.add(this.remove(0)); // move Ace to end of hand
 				isStraight = true;
 			}
@@ -195,12 +274,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Three cards of the same rank
 	* */
 	public boolean isThreeOfAKind() {
-		if (this.get(0).getFaceValue() == this.get(1).getFaceValue() &&
-				this.get(0).getFaceValue() == this.get(2).getFaceValue() ||
-				this.get(1).getFaceValue() == this.get(2).getFaceValue() &&
-						this.get(1).getFaceValue() == this.get(3).getFaceValue() ||
-				this.get(2).getFaceValue() == this.get(3).getFaceValue() &&
-						this.get(2).getFaceValue() == this.get(4).getFaceValue()) {
+		if (this.get(0).faceValue() == this.get(1).faceValue() &&
+				this.get(0).faceValue() == this.get(2).faceValue() ||
+				this.get(1).faceValue() == this.get(2).faceValue() &&
+						this.get(1).faceValue() == this.get(3).faceValue() ||
+				this.get(2).faceValue() == this.get(3).faceValue() &&
+						this.get(2).faceValue() == this.get(4).faceValue()) {
 			isThreeOfAKind = true;
 		}
 		return isThreeOfAKind;
@@ -208,13 +287,13 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Two separate pairs
 *    */
 	public boolean isTwoPair() {
-		if (this.get(0).getFaceValue() == this.get(1).getFaceValue() && this.get(2).getFaceValue() == this.get(3).getFaceValue() &&
-				this.get(3).getFaceValue() != this.get(4).getFaceValue() ||
-				this.get(1).getFaceValue() == this.get(2).getFaceValue() && this.get(3).getFaceValue() == this.get(4).getFaceValue() &&
-						this.get(0).getFaceValue() != this.get(1).getFaceValue() ||
-				this.get(0).getFaceValue() == this.get(1).getFaceValue() && this.get(3).getFaceValue() == this.get(4).getFaceValue() &&
-						this.get(1).getFaceValue() != this.get(2).getFaceValue() &&
-						this.get(2).getFaceValue() != this.get(3).getFaceValue() ) {
+		if (this.get(0).faceValue() == this.get(1).faceValue() && this.get(2).faceValue() == this.get(3).faceValue() &&
+				this.get(3).faceValue() != this.get(4).faceValue() ||
+				this.get(1).faceValue() == this.get(2).faceValue() && this.get(3).faceValue() == this.get(4).faceValue() &&
+						this.get(0).faceValue() != this.get(1).faceValue() ||
+				this.get(0).faceValue() == this.get(1).faceValue() && this.get(3).faceValue() == this.get(4).faceValue() &&
+						this.get(1).faceValue() != this.get(2).faceValue() &&
+						this.get(2).faceValue() != this.get(3).faceValue() ) {
 			isTwoPair = true;
 		}
 		return isTwoPair;
@@ -222,10 +301,10 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Two cards of the same rank
 	* */
 	public boolean isPair() {
-		if (this.get(0).getFaceValue() == this.get(1).getFaceValue() ||
-				this.get(1).getFaceValue() == this.get(2).getFaceValue() ||
-				this.get(2).getFaceValue() == this.get(3).getFaceValue() ||
-				this.get(3).getFaceValue() == this.get(4).getFaceValue() ) {
+		if (this.get(0).faceValue() == this.get(1).faceValue() ||
+				this.get(1).faceValue() == this.get(2).faceValue() ||
+				this.get(2).faceValue() == this.get(3).faceValue() ||
+				this.get(3).faceValue() == this.get(4).faceValue() ) {
 			isPair = true;
 		}
 		return isPair;

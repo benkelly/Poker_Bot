@@ -61,16 +61,16 @@ public class Main {
 		player9.generateHandType();
 		player10.generateHandType();
 		System.out.println("***************************** sort and calc hand type");
-		System.out.println("player1: "+player1+"\t"+player1.getBestHandTypeName());
-		System.out.println("player2: "+player2+"\t"+player2.getBestHandTypeName());
-		System.out.println("player3: "+player3+"\t"+player3.getBestHandTypeName());
-		System.out.println("player4: "+player4+"\t"+player4.getBestHandTypeName());
-		System.out.println("player5: "+player5+"\t"+player5.getBestHandTypeName());
-		System.out.println("player6: "+player6+"\t"+player6.getBestHandTypeName());
-		System.out.println("player7: "+player7+"\t"+player7.getBestHandTypeName());
-		System.out.println("player8: "+player8+"\t"+player8.getBestHandTypeName());
-		System.out.println("player9: "+player9+"\t"+player9.getBestHandTypeName());
-		System.out.println("player10: "+player10+"\t"+player10.getBestHandTypeName());
+		System.out.println("player1: "+player1+"\t"+player1.getBestHandTypeName()+"\t\tScore: "+player1.getGameValue());
+		System.out.println("player2: "+player2+"\t"+player2.getBestHandTypeName()+"\t\tScore: "+player2.getGameValue());
+		System.out.println("player3: "+player3+"\t"+player3.getBestHandTypeName()+"\t\tScore: "+player3.getGameValue());
+		System.out.println("player4: "+player4+"\t"+player4.getBestHandTypeName()+"\t\tScore: "+player4.getGameValue());
+		System.out.println("player5: "+player5+"\t"+player5.getBestHandTypeName()+"\t\tScore: "+player5.getGameValue());
+		System.out.println("player6: "+player6+"\t"+player6.getBestHandTypeName()+"\t\tScore: "+player6.getGameValue());
+		System.out.println("player7: "+player7+"\t"+player7.getBestHandTypeName()+"\t\tScore: "+player7.getGameValue());
+		System.out.println("player8: "+player8+"\t"+player8.getBestHandTypeName()+"\t\tScore: "+player8.getGameValue());
+		System.out.println("player9: "+player9+"\t"+player9.getBestHandTypeName()+"\t\tScore: "+player9.getGameValue());
+		System.out.println("player10: "+player10+"\t"+player10.getBestHandTypeName()+"\t\tScore: "+player10.getGameValue());
 
 	}
 }

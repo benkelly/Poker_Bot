@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/PlayingCard.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/PlayingCard.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/DeckOfCards.java" afterPath="$PROJECT_DIR$/src/poker/DeckOfCards.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/HandOfCards.java" afterPath="$PROJECT_DIR$/src/poker/HandOfCards.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/Main.java" afterPath="$PROJECT_DIR$/src/poker/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayingCard.java" afterPath="$PROJECT_DIR$/src/poker/PlayingCard.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,18 +37,18 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+            <state relative-caret-position="393">
+              <caret line="72" column="90" lean-forward="false" selection-start-line="72" selection-start-column="90" selection-end-line="72" selection-end-column="90" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeckOfCards.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeckOfCards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="46" column="27" lean-forward="true" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+            <state relative-caret-position="285">
+              <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HandOfCards.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HandOfCards.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8790">
-              <caret line="586" column="8" lean-forward="false" selection-start-line="586" selection-start-column="8" selection-end-line="586" selection-end-column="8" />
+            <state relative-caret-position="325">
+              <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="33" selection-end-line="118" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,8 +71,8 @@
       <file leaf-file-name="PlayingCard.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayingCard.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+            <state relative-caret-position="408">
+              <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -98,12 +101,15 @@
       <find>= false</find>
       <find>suitStr =</find>
       <find>straightFlushDeck2</find>
+      <find>getSuit</find>
+      <find>()()</find>
+      <find>]</find>
+      <find>));</find>
     </findStrings>
     <replaceStrings>
       <replace>) {</replace>
       <replace>&amp;&amp;</replace>
       <replace>==</replace>
-      <replace>()</replace>
       <replace>&quot;;</replace>
       <replace>handTypeToBooleanStr</replace>
       <replace>getBestHandTypeName</replace>
@@ -111,6 +117,9 @@
       <replace>!is</replace>
       <replace>return</replace>
       <replace>royalFlushDeck2</replace>
+      <replace>()</replace>
+      <replace>)</replace>
+      <replace>)+&quot;\tScore: &quot;+player1.getGameValue());</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -125,10 +134,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/PlayingCard.java" />
-        <option value="$PROJECT_DIR$/src/poker/Main.java" />
-        <option value="$PROJECT_DIR$/src/poker/PlayingCard.java" />
-        <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/DeckOfCards.java" />
+        <option value="$PROJECT_DIR$/src/poker/PlayingCard.java" />
+        <option value="$PROJECT_DIR$/src/poker/Main.java" />
+        <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
       </list>
     </option>
   </component>
@@ -757,7 +766,7 @@
       <workItem from="1486307169681" duration="618000" />
       <workItem from="1486383738389" duration="41437000" />
       <workItem from="1486982762819" duration="643000" />
-      <workItem from="1487150639591" duration="4806000" />
+      <workItem from="1487150639591" duration="11062000" />
     </task>
     <task id="LOCAL-00001" summary="test :^)">
       <created>1486253467488</created>
@@ -899,11 +908,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487155315480</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="_--">
+      <created>1487323494832</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1487323494832</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66663000" />
+    <option name="totallyTimeSpent" value="72919000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="23" width="1413" height="877" extended-state="0" />
@@ -974,7 +990,8 @@
     <MESSAGE value="cleaned up code for submission [Assignment_3]" />
     <MESSAGE value="added a Suit Symbol method in playingCard class. cos im all about the aesthetics  ♥, ♣, ♠, ♦" />
     <MESSAGE value="~ added straight type 10,j,q,k,a spacial case.&#10;~ moves ace to back of hand if this case" />
-    <option name="LAST_COMMIT_MESSAGE" value="~ added straight type 10,j,q,k,a spacial case.&#10;~ moves ace to back of hand if this case" />
+    <MESSAGE value="_--" />
+    <option name="LAST_COMMIT_MESSAGE" value="_--" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1172,36 +1189,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" column="5" lean-forward="false" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PlayingCard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="114" column="0" lean-forward="true" selection-start-line="114" selection-start-column="0" selection-end-line="114" selection-end-column="0" />
+        <state relative-caret-position="408">
+          <caret line="46" column="22" lean-forward="false" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8790">
-          <caret line="586" column="8" lean-forward="false" selection-start-line="586" selection-start-column="8" selection-end-line="586" selection-end-column="8" />
+        <state relative-caret-position="393">
+          <caret line="72" column="90" lean-forward="false" selection-start-line="72" selection-start-column="90" selection-end-line="72" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="48" column="13" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="46" column="27" lean-forward="true" selection-start-line="46" selection-start-column="27" selection-end-line="46" selection-end-column="27" />
+        <state relative-caret-position="325">
+          <caret line="118" column="33" lean-forward="false" selection-start-line="118" selection-start-column="33" selection-end-line="118" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -34,17 +34,17 @@ public class PlayingCard {
 	}
 	/*returns cards Face value as int.
 	* */
-	public int getFaceValue(){
+	public int faceValue(){
 		return this.faceValue;
 	}
 	/*returns cards Game value as int.
 	* */
-	public int getGameValue(){
+	public int gameValue(){
 		return this.gameValue;
 	}
 	/*returns string of cards type
 	* */
-	public String getType(){
+	public String cardType(){
 		String typeStr = "";
 		switch(this.cardType) {
 			case 'A':
@@ -94,7 +94,7 @@ public class PlayingCard {
 	}
 	/*returns string of cards Suit
 	* */
-	public String getSuit(){
+	public String cardSuit(){
 		String suitStr = "";
 		switch(this.cardSuit) {
 			case 'H':
@@ -127,7 +127,7 @@ public class PlayingCard {
 	/*returns string of full name of card.
 	* */
 	public String getFullName(){
-		return this.getType()+" of "+this.getSuit();
+		return this.cardType()+" of "+this.cardSuit();
 	}
 
 	/*Class testing method
@@ -138,8 +138,8 @@ public class PlayingCard {
 		PlayingCard aceOfHearts = new PlayingCard('A', PlayingCard.HEARTS, 1, 14);
 		System.out.println(aceOfHearts.getFullName());
 		System.out.println(aceOfHearts.toString());
-		System.out.println(aceOfHearts.getFaceValue());
-		System.out.println(aceOfHearts.getGameValue());
+		System.out.println(aceOfHearts.faceValue());
+		System.out.println(aceOfHearts.gameValue());
 		System.out.println(aceOfHearts.getSuitSymbol());
 
 	}
