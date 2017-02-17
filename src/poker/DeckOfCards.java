@@ -22,7 +22,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 
 	/*Clears and reinitialise whole deck. e.g. a new fresh deck.
 	* */
-	void reset() {
+	synchronized void reset() {
 		this.clear();
 		for (int i = 0; i < 13; i++) {
 			this.add(new PlayingCard(suitType[i], PlayingCard.HEARTS, faceValue[i], gameValue[i]));
@@ -34,13 +34,13 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 
 	/*Randomises deck thoroughly.
 	* */
-	void shuffle() {
+	synchronized void shuffle() {
 		Collections.shuffle(this);
 	}
 
 	/*Removes First PlayingCard from deck and returns it.
 	* */
-	PlayingCard dealNext() {
+	synchronized PlayingCard dealNext() {
 		if (this != null && !this.isEmpty()) {
 			PlayingCard curCard = this.get(0);
 			this.remove(0);
@@ -53,7 +53,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	/*Returns a PlayingCard @Parameter back into Deck.
 		~ if all 52 cards returned, deck will reshuffle.
 	* */
-	void returnCard(PlayingCard discarded) {
+	synchronized void returnCard(PlayingCard discarded) {
 		this.add(discarded);
 		returnCardCounter++;
 		if(returnCardCounter == 52) {
