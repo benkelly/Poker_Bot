@@ -133,12 +133,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			int twoPairScore;
 			if ( this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(2).gameValue() == this.get(3).gameValue() )
-				twoPairScore = 14*14*this.get(2).gameValue() + 14*this.get(0).gameValue() + this.get(4).gameValue();
+				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(2).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(4).gameValue();
 			else if ( this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(3).gameValue() == this.get(4).gameValue() )
-				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(0).gameValue() + this.get(2).gameValue();
+				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(2).gameValue();
 			else
-				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(1).gameValue() + this.get(0).gameValue();
+				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue();
 			return TWO_PAIR_WEIGHT + twoPairScore;
 		}
 		if(isPair) {
@@ -164,7 +164,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 	private int calcHighCardScore() {
 		int highCardScore;
-		if(this.get(0).cardType().equals('A')){
+		if(this.get(0).faceValue() == 1){
 			this.add(this.remove(0)); // move Ace to end of hand
 		}
 		highCardScore = this.get(0).gameValue() + CALC_WEIGHT * this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT * this.get(2).gameValue()
