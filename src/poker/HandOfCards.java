@@ -22,7 +22,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isPair;
 	private boolean isHighCard;
 
-	// golbal calculations weights
+	// global calculation weights
 	private final int calcWeight = 14;
 	// hand type weights
 	private final int RoyalFlushWeight = 9000000;
@@ -104,8 +104,12 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 
 	public int getGameValue() {
-		if(isRoyalFlush) return 0;
-		if(isStraightFlush) return 0;
+		if(isRoyalFlush) {
+			return RoyalFlushWeight + this.calcHighCardScore();
+		}
+		if(isStraightFlush) {
+			return StraightFlushWeight + this.calcHighCardScore();
+		}
 		if(isFourOfAKind) {
 			return FourOfAKindWeight + this.get(2).gameValue();
 		}
@@ -167,7 +171,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 
 
-	//////////////// Type testing cases ///////////////
+	//////////////// Type testing methods ///////////////
 	/*A, K, Q, J, 10 all of the same suit
 	* */
 	public boolean isRoyalFlush() {
@@ -417,7 +421,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		HandOfCards threeOfAKindDeck2 = new HandOfCards();
 		threeOfAKindDeck2.add(deck2.get(51));
 		threeOfAKindDeck2.add(deck2.get(50));
-		threeOfAKindDeck2.add(deck2.get(49));
+		threeOfAKindDeck2.add(deck2.get(40));
 		threeOfAKindDeck2.add(deck2.get(48));
 		threeOfAKindDeck2.add(deck2.get(3));
 		//System.out.println(straightFlushDeck.fullDeckToString());
@@ -663,8 +667,36 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		//System.out.println(royalFlushDeck2.fullDeckToString());
 		royalFlushDeck2.generateHandType();
 		System.out.println(royalFlushDeck2.getBestHandTypeName());
-		System.out.println(royalFlushDeck2.fullDeckToString());
+		//System.out.println(royalFlushDeck2.fullDeckToString());
 
+		System.out.println("*********** Testing card ranking scheme");
+		System.out.println("royalFlushDeck: "+royalFlushDeck.getGameValue());
+		System.out.println("royalFlushDeck2: "+royalFlushDeck2.getGameValue());
+		System.out.println("flushDeck: "+flushDeck.getGameValue());
+		System.out.println("straightFlushDeck: "+straightFlushDeck.getGameValue());
+		System.out.println("fourOfAKindDeck: "+fourOfAKindDeck.getGameValue());
+		System.out.println("fourOfAKindDeck2: "+fourOfAKindDeck2.getGameValue());
+		System.out.println("fourOfAKindDeck3: "+threeOfAKindDeck.getGameValue());
+		System.out.println("threeOfAKindDeck2: "+threeOfAKindDeck2.getGameValue());
+		System.out.println("threeOfAKindDeck3: "+threeOfAKindDeck3.getGameValue());
+
+		System.out.println("fullHouseDeck: "+fullHouseDeck.getGameValue());
+		System.out.println("fullHouseDeck2: "+fullHouseDeck2.getGameValue());
+
+		System.out.println("straightDeck: "+straightDeck.getGameValue());
+		System.out.println("straightDeck2: "+straightDeck2.getGameValue());
+		System.out.println("pairDeck: "+pairDeck.getGameValue());
+		System.out.println("pairDeck2: "+pairDeck2.getGameValue());
+
+		System.out.println("twoPairDeck: "+twoPairDeck.getGameValue());
+		System.out.println("twoPairDeck2: "+twoPairDeck2.getGameValue());
+		System.out.println("twoPairDeck3: "+twoPairDeck3.getGameValue());
+
+		System.out.println("highCardDeck: "+highCardDeck.getGameValue());
+
+
+		//System.out.println(fourOfAKindDeck2.fullDeckToString());
+		//System.out.println(threeOfAKindDeck2.fullDeckToString());
 
 
 
