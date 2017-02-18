@@ -14,6 +14,9 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	private int[] faceValue = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private int[] gameValue = {14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private char[] suitType = {'A', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'J', 'Q', 'K'};
+	static private final int DECK_SIZE = 52;
+
+
 	private int returnCardCounter = 0;
 
 	public DeckOfCards() {
@@ -24,7 +27,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	* */
 	synchronized void reset() {
 		this.clear();
-		for (int i = 0; i < 13; i++) {
+		for (int i = 0; i < suitType.length; i++) {
 			this.add(new PlayingCard(suitType[i], PlayingCard.HEARTS, faceValue[i], gameValue[i]));
 			this.add(new PlayingCard(suitType[i], PlayingCard.CLUBS, faceValue[i], gameValue[i]));
 			this.add(new PlayingCard(suitType[i], PlayingCard.SPADES, faceValue[i], gameValue[i]));
@@ -54,11 +57,13 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		~ if all 52 cards returned, deck will reshuffle.
 	* */
 	synchronized void returnCard(PlayingCard discarded) {
-		this.add(discarded);
-		returnCardCounter++;
-		if(returnCardCounter == 52) {
-			this.shuffle();
-			returnCardCounter = 0;
+		if(discarded!=null) {
+			this.add(discarded);
+			returnCardCounter++;
+			if (returnCardCounter == DECK_SIZE) {
+				this.shuffle();
+				returnCardCounter = 0;
+			}
 		}
 	}
 
@@ -66,7 +71,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 	* */
 	private String fullDeckToString() {
 		String strList = "";
-		for(int i=0; i<52; i++) {
+		for(int i=0; i<this.size(); i++) {
 			strList = strList + this.get(i).toString()+"\t"+ this.get(i).getFullName() +"\n";
 		}
 		return strList;
@@ -93,13 +98,17 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 		PlayingCard dealtCard = testDeck.dealNext();
 		System.out.println(dealtCard.getFullName());
 		System.out.println(testDeck.size());
-		testDeck.shuffle();
+		//testDeck.shuffle();
 		PlayingCard dealtCard2 = testDeck.dealNext();
 		System.out.println(dealtCard2.getFullName());
 		System.out.println(testDeck.size());
 
 		System.out.println("***************************** return");
 		testDeck.returnCard(dealtCard);
+		testDeck.returnCard(dealtCard2);
 		System.out.println(testDeck.get(50).getFullName());
+		System.out.println(testDeck.fullDeckToString());
+		System.out.println(testDeck.size());
+
 	}
 }

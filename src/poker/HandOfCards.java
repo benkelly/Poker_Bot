@@ -23,18 +23,22 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isHighCard;
 
 	// global calculation weights
-	private final int calcWeight = 14;
+	// this weight will * the highest card w/ higher power to insure greater score difference
+	// 14 as they're are 14 types of cards
+	static private final int CALC_WEIGHT = 14;
 	// hand type weights
-	private final int RoyalFlushWeight = 9000000;
-	private final int StraightFlushWeight = 8000000;
-	private final int FourOfAKindWeight = 7000000;
-	private final int FullHouseWeight = 6000000;
-	private final int FlushWeight = 5000000;
-	private final int StraightWeight = 4000000;
-	private final int ThreeOfAKindWeight = 3000000;
-	private final int TwoPairWeight = 2000000;
-	private final int PairWeight = 1000000;
-	private final int HighCardWeight = 0;
+	// using multiples of a million to segregate each hand in its own spectrum.
+	// therefor a TwoPair of 2s and 3s will still win over a Pair of aces and so on.
+	static private final int ROYAL_FLUSH_WEIGHT = 9000000;
+	static private final int STRAIGHT_FLUSH_WEIGHT = 8000000;
+	static private final int FOUR_OF_A_KIND_WEIGHT = 7000000;
+	static private final int FULL_HOUSE_WEIGHT = 6000000;
+	static private final int FLUSH_WEIGHT = 5000000;
+	static private final int STRAIGHT_WEIGHT = 4000000;
+	static private final int THREE_OF_A_KIND_WEIGHT = 3000000;
+	static private final int TWO_PAIR_WEIGHT = 2000000;
+	static private final int PAIR_WEIGHT = 1000000;
+	static private final int HIGH_CARD_WEIGHT = 0;
 
 	public HandOfCards(){
 	}
@@ -105,25 +109,25 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 	public int getGameValue() {
 		if(isRoyalFlush) {
-			return RoyalFlushWeight + this.calcHighCardScore();
+			return ROYAL_FLUSH_WEIGHT + this.calcHighCardScore();
 		}
 		if(isStraightFlush) {
-			return StraightFlushWeight + this.calcHighCardScore();
+			return STRAIGHT_FLUSH_WEIGHT + this.calcHighCardScore();
 		}
 		if(isFourOfAKind) {
-			return FourOfAKindWeight + this.get(2).gameValue();
+			return FOUR_OF_A_KIND_WEIGHT + this.get(2).gameValue();
 		}
 		if(isFullHouse) {
-			return FullHouseWeight + this.get(2).gameValue();
+			return FULL_HOUSE_WEIGHT + this.get(2).gameValue();
 		}
 		if(isFlush) {
-			return FlushWeight + this.calcHighCardScore();
+			return FLUSH_WEIGHT + this.calcHighCardScore();
 		}
 		if(isStraight) {
-			return StraightWeight + this.calcHighCardScore();
+			return STRAIGHT_WEIGHT + this.calcHighCardScore();
 		}
 		if(isThreeOfAKind) {
-			return ThreeOfAKindWeight + this.get(2).gameValue();
+			return THREE_OF_A_KIND_WEIGHT + this.get(2).gameValue();
 		}
 		if(isTwoPair) {
 			int twoPairScore;
@@ -135,26 +139,26 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(0).gameValue() + this.get(2).gameValue();
 			else
 				twoPairScore = 14*14*this.get(3).gameValue() + 14*this.get(1).gameValue() + this.get(0).gameValue();
-			return TwoPairWeight + twoPairScore;
+			return TWO_PAIR_WEIGHT + twoPairScore;
 		}
 		if(isPair) {
 			int pairScore;
 			if (this.get(0).gameValue() == this.get(1).gameValue())
-				pairScore = calcWeight*calcWeight*calcWeight*this.get(0).gameValue() +
-						+ this.get(2).gameValue() + calcWeight*this.get(3).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(0).gameValue() +
+						+ this.get(2).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else if (this.get(1).gameValue() == this.get(2).gameValue())
-				pairScore = calcWeight*calcWeight*calcWeight*this.get(1).gameValue() +
-						+ this.get(0).gameValue() + calcWeight*this.get(3).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(1).gameValue() +
+						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else if (this.get(2).gameValue() == this.get(3).gameValue())
-				pairScore = calcWeight*calcWeight*calcWeight*this.get(2).gameValue() +
-						+ this.get(0).gameValue() + calcWeight*this.get(1).gameValue() + calcWeight*calcWeight*this.get(4).gameValue();
+				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(2).gameValue() +
+						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else
-				pairScore = calcWeight*calcWeight*calcWeight*this.get(3).gameValue() +
-						+ this.get(0).gameValue() + calcWeight*this.get(1).gameValue() + calcWeight*calcWeight*this.get(2).gameValue();
-			return PairWeight + pairScore;
+				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(3).gameValue() +
+						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(2).gameValue();
+			return PAIR_WEIGHT + pairScore;
 		}
 		if(isHighCard) {
-			return HighCardWeight + this.calcHighCardScore();
+			return HIGH_CARD_WEIGHT + this.calcHighCardScore();
 		}
 		return 0;
 	}
@@ -163,8 +167,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		if(this.get(0).cardType().equals('A')){
 			this.add(this.remove(0)); // move Ace to end of hand
 		}
-		highCardScore = this.get(0).gameValue() + calcWeight* this.get(1).gameValue() + calcWeight*calcWeight* this.get(2).gameValue()
-				+ calcWeight*calcWeight*calcWeight* this.get(3).gameValue() + calcWeight*calcWeight*calcWeight*calcWeight* this.get(4).gameValue();
+		highCardScore = this.get(0).gameValue() + CALC_WEIGHT * this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT * this.get(2).gameValue()
+				+ CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(4).gameValue();
 		return highCardScore;
 	}
 
