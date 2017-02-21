@@ -14,9 +14,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("main class!");
+
+
+
 		int count =0;
 		while(true){
-		//for (int k = 0; k < 1000; k++) {
 
 			DeckOfCards deck = new DeckOfCards();
 			deck.shuffle();
@@ -46,7 +48,10 @@ public class Main {
 			System.out.println("********* winning hand *********");
 			System.out.println(playerList.get(9) + "\t" + playerList.get(9).getBestHandTypeName() + "\t\tScore: " + playerList.get(9).getGameValue()+"\n");
 
-			if(playerList.get(9).isStraightFlush()){
+
+			/*will loop til card looked for here is the winning hand
+			* */
+			if(playerList.get(9).isRoyalFlush()){
 				System.out.println(" hand: "+count);
 				return;
 			}

@@ -22,13 +22,17 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	private boolean isPair;
 	private boolean isHighCard;
 
-	// global calculation weights
-	// this weight will * the highest card w/ higher power to insure greater score difference
-	// 14 as they're are 14 types of cards
+	/*
+	* global calculation weights
+	* this weight will * the highest card w/ higher power to insure greater score difference
+	* 14 as they're are 14 types of cards
+	*/
 	static private final int CALC_WEIGHT = 14;
-	// hand type weights
-	// using multiples of a million to segregate each hand in its own spectrum.
-	// therefor a TwoPair of 2s and 3s will still win over a Pair of aces and so on.
+	/*
+	* hand type weights
+	* using multiples of a million to segregate each hand in its own spectrum.
+	* therefor a TwoPair of 2s and 3s will still win over a Pair of aces and so on.
+	*/
 	static private final int ROYAL_FLUSH_WEIGHT = 9000000;
 	static private final int STRAIGHT_FLUSH_WEIGHT = 8000000;
 	static private final int FOUR_OF_A_KIND_WEIGHT = 7000000;
@@ -162,6 +166,10 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		}
 		return 0;
 	}
+	/*Will calculate the high card score for this hand.
+	*   ~ the highest ranked cards have the greatest scoring to increase the scoring gaps between other high card hands
+	*   ~ i.e.      [], []*CALC_WEIGHT, []*CALC_WEIGHT^2, []*CALC_WEIGHT^3, []*CALC_WEIGHT^4
+	* */
 	private int calcHighCardScore() {
 		int highCardScore;
 		if(this.get(0).faceValue() == 1){
@@ -293,7 +301,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		return isThreeOfAKind;
 	}
 	/*Two separate pairs
-*    */
+	**/
 	public boolean isTwoPair() {
 		if (this.get(0).faceValue() == this.get(1).faceValue() && this.get(2).faceValue() == this.get(3).faceValue() &&
 				this.get(3).faceValue() != this.get(4).faceValue() ||
@@ -338,7 +346,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 
 	/*Class testing method
-		* */
+	* */
 	public static void main(String[] args) {
 		System.out.println("poker.HandOfCards.java!");
 
@@ -673,6 +681,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		System.out.println(royalFlushDeck2.getBestHandTypeName());
 		//System.out.println(royalFlushDeck2.fullDeckToString());
 
+
+
 		System.out.println("*********** Testing card ranking scheme");
 		System.out.println("royalFlushDeck: "+royalFlushDeck.getGameValue());
 		System.out.println("royalFlushDeck2: "+royalFlushDeck2.getGameValue());
@@ -697,6 +707,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		System.out.println("twoPairDeck3: "+twoPairDeck3.getGameValue());
 
 		System.out.println("highCardDeck: "+highCardDeck.getGameValue());
+		//System.out.println("highCardDeck: "+highCardDeck);
 
 
 		//System.out.println(fourOfAKindDeck2.fullDeckToString());
