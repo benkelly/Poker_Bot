@@ -31,14 +31,15 @@ public class Main {
 					object.add(deck.dealNext());
 				}
 			}
-			int position = 1;
+			int playNumber = 1;
 			for (HandOfCards object : playerList) {
 				//System.out.println("player1: "+object);
 				object.generateHandType();
-				System.out.println("player" + position + ": " + object + "\t" + object.getBestHandTypeName() + "\t\tScore: " + object.getGameValue());
-				position++;
+				System.out.println("player" + playNumber + ": " + object + "\t" + object.getBestHandTypeName() + "\t\tScore: " + object.getGameValue());
+				playNumber++;
 			}
 
+			// sorts players by score
 			Collections.sort(playerList, new Comparator<HandOfCards>() {
 				public int compare(HandOfCards card1, HandOfCards card2) {
 					return Float.compare(card1.getGameValue(), card2.getGameValue());

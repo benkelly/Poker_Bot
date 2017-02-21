@@ -136,13 +136,22 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		if(isTwoPair) {
 			int twoPairScore;
 			if ( this.get(0).gameValue() == this.get(1).gameValue() &&
-					this.get(2).gameValue() == this.get(3).gameValue() )
-				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(2).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(4).gameValue();
+					this.get(2).gameValue() == this.get(3).gameValue() ) {
+				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){ //check if ace pair in hand
+					this.add(this.remove(0)); // move Ace to end of hand
+					this.add(this.remove(0)); // move Ace to end of hand
+				}
+				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(2).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(4).gameValue(); }
 			else if ( this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(3).gameValue() == this.get(4).gameValue() )
 				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(2).gameValue();
-			else
-				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue();
+			else {
+				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){
+					this.add(this.remove(2)); // middle non-pair card to end of hand
+					this.add(this.remove(0)); // move Ace to end of hand
+					this.add(this.remove(0)); // move Ace to end of hand
+				}
+				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue(); }
 			return TWO_PAIR_WEIGHT + twoPairScore;
 		}
 		if(isPair) {
@@ -712,6 +721,34 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 		//System.out.println(fourOfAKindDeck2.fullDeckToString());
 		//System.out.println(threeOfAKindDeck2.fullDeckToString());
+
+		HandOfCards pairDeck3 = new HandOfCards();
+		pairDeck3.add(deck2.get(51));
+		pairDeck3.add(deck2.get(30));
+		pairDeck3.add(deck2.get(40));
+		pairDeck3.add(deck2.get(2));
+		pairDeck3.add(deck2.get(0));
+		//System.out.println(pairDeck2.fullDeckToString());
+		//System.out.println("*********** pairDeck3 a,A,8s,jh");
+		//System.out.println(pairDeck3);
+		pairDeck3.generateHandType();
+		//System.out.println(pairDeck3);
+		System.out.println(pairDeck3 + "\t" + pairDeck3.getBestHandTypeName() + "\t\tScore: " + pairDeck3.getGameValue());
+		HandOfCards pairDeck4= new HandOfCards();
+		pairDeck4.add(deck2.get(51));
+		pairDeck4.add(deck2.get(30));
+		pairDeck4.add(deck2.get(40));
+		pairDeck4.add(deck2.get(6));
+		pairDeck4.add(deck2.get(4));
+		//System.out.println(pairDeck4.fullDeckToString());
+		//System.out.println("*********** pairDeck4 2,2,8s,j, h");
+		//System.out.println(pairDeck4);
+		pairDeck4.generateHandType();
+		//System.out.println(pairDeck4);
+		System.out.println(pairDeck4 + "\t" + pairDeck4.getBestHandTypeName() + "\t\tScore: " + pairDeck4.getGameValue());
+		//testing 2 pair scoring
+		System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue());
+		System.out.println(twoPairDeck3 + "\t" + twoPairDeck3.getBestHandTypeName() + "\t\tScore: " + twoPairDeck3.getGameValue());
 
 
 
