@@ -57,6 +57,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			}
 		});
 	}
+
 	/*Calls sort() then goes through all hand Type functions for its hand
 	* */
 	synchronized public void generateHandType() {
@@ -94,8 +95,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Returns string of name of best hand type.
 	*   ~ generateHandType() needed to run first!
 	*
-	*   ### In future I believe that each hand type will need an int value then * by the main card types
-	*   ### value to implement the scoring method.
+	*
+	*
 	* */
 	public String getBestHandTypeName() {
 		if(isRoyalFlush) return "Royal Flush";
@@ -112,67 +113,64 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 
 	public int getGameValue() {
-		if(isRoyalFlush) {
-			return ROYAL_FLUSH_WEIGHT + this.calcHighCardScore();
-		}
-		if(isStraightFlush) {
-			return STRAIGHT_FLUSH_WEIGHT + this.calcHighCardScore();
-		}
-		if(isFourOfAKind) {
-			return FOUR_OF_A_KIND_WEIGHT + this.get(2).gameValue();
-		}
-		if(isFullHouse) {
-			return FULL_HOUSE_WEIGHT + this.get(2).gameValue();
-		}
-		if(isFlush) {
-			return FLUSH_WEIGHT + this.calcHighCardScore();
-		}
-		if(isStraight) {
-			return STRAIGHT_WEIGHT + this.calcHighCardScore();
-		}
-		if(isThreeOfAKind) {
-			return THREE_OF_A_KIND_WEIGHT + this.get(2).gameValue();
-		}
+		if(isRoyalFlush) return ROYAL_FLUSH_WEIGHT + this.calcHighCardScore();
+		if(isStraightFlush) return STRAIGHT_FLUSH_WEIGHT + this.calcHighCardScore();
+		if(isFourOfAKind) return FOUR_OF_A_KIND_WEIGHT + this.get(2).gameValue(); // card 3 == gameValue of group
+		if(isFullHouse) return FULL_HOUSE_WEIGHT + this.get(2).gameValue(); // card 3 == gameValue of pair of 3
+		if(isFlush) return FLUSH_WEIGHT + this.calcHighCardScore();
+		if(isStraight) return STRAIGHT_WEIGHT + this.calcHighCardScore();
+		if(isThreeOfAKind) return THREE_OF_A_KIND_WEIGHT + this.get(2).gameValue(); // card 3 == gameValue of pair of 3
 		if(isTwoPair) {
-			int twoPairScore;
+			int twoPairScore; // score: [highest pair]*CALC_WEIGHT^2 + [highest pair]*CALC_WEIGHT + [non pair]
 			if ( this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(2).gameValue() == this.get(3).gameValue() ) {
+				// if pair [P1], [P1], [P2], [P2], []
 				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){ //check if ace pair in hand
-					this.add(this.remove(0)); // move Ace to end of hand
-					this.add(this.remove(0)); // move Ace to end of hand
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(0).gameValue() + CALC_WEIGHT *this.get(2).gameValue() + this.get(4).gameValue();
 				}
-				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(2).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(4).gameValue(); }
+				else {
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(2).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(4).gameValue();
+				}
+			}
 			else if ( this.get(0).gameValue() == this.get(1).gameValue() &&
-					this.get(3).gameValue() == this.get(4).gameValue() )
-				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(2).gameValue();
-			else {
-				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){
-					this.add(this.remove(2)); // middle non-pair card to end of hand
-					this.add(this.remove(0)); // move Ace to end of hand
-					this.add(this.remove(0)); // move Ace to end of hand
+					this.get(3).gameValue() == this.get(4).gameValue() ) {
+				// if pair [P1], [P1], [], [P2], [P2]
+				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){ //check if ace pair in hand
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(0).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + this.get(2).gameValue();
 				}
+				else {
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(0).gameValue() + this.get(2).gameValue();
+				}
+			}
+			else { // if pair [], [P1], [P1], [P2], [P2]
+				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(1).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + this.get(0).gameValue(); }
+				else {
 				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue(); }
+			}
 			return TWO_PAIR_WEIGHT + twoPairScore;
 		}
-		if(isPair) {
+		if(isPair) { // score: [lowest] + [2nd high]*CALC_WEIGHT + [highest]*CALC_WEIGHT^2 + [pair]*CALC_WEIGHT^3
 			int pairScore;
 			if (this.get(0).gameValue() == this.get(1).gameValue())
+				// if pair [P], [P], [], [], []
 				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(0).gameValue() +
 						+ this.get(2).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else if (this.get(1).gameValue() == this.get(2).gameValue())
+				// if pair [], [P], [P], [], []
 				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(1).gameValue() +
 						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else if (this.get(2).gameValue() == this.get(3).gameValue())
+				// if pair [], [], [P], [P], []
 				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(2).gameValue() +
 						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(4).gameValue();
 			else
+				// if pair [], [], [], [P], [P]
 				pairScore = CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT *this.get(3).gameValue() +
 						+ this.get(0).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT *this.get(2).gameValue();
 			return PAIR_WEIGHT + pairScore;
 		}
-		if(isHighCard) {
-			return HIGH_CARD_WEIGHT + this.calcHighCardScore();
-		}
+		if(isHighCard) return HIGH_CARD_WEIGHT + this.calcHighCardScore();
 		return 0;
 	}
 	/*Will calculate the high card score for this hand.
