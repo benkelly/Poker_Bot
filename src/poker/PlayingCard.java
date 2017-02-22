@@ -45,72 +45,34 @@ public class PlayingCard {
 	/*returns string of cards type
 	* */
 	public String cardType(){
-		String typeStr = "";
 		switch(this.cardType) {
-			case 'A':
-				typeStr = "Ace";
-				break;
-			case '1':
-				typeStr = "One";
-				break;
-			case '2':
-				typeStr = "Two";
-				break;
-			case '3':
-				typeStr = "Three";
-				break;
-			case '4':
-				typeStr = "Four";
-				break;
-			case '5':
-				typeStr = "Five";
-				break;
-			case '6':
-				typeStr = "Six";
-				break;
-			case '7':
-				typeStr = "Seven";
-				break;
-			case '8':
-				typeStr = "Eight";
-				break;
-			case '9':
-				typeStr = "Nine";
-				break;
-			case '0':
-				typeStr = "Ten";
-				break;
-			case 'J':
-				typeStr = "Jack";
-				break;
-			case 'Q':
-				typeStr = "Queen";
-				break;
-			case 'K':
-				typeStr = "King";
-				break;
+			case 'A': return "Ace";
+			case '1': return "One";
+			case '2': return "Two";
+			case '3': return "Three";
+			case '4': return "Four";
+			case '5': return "Five";
+			case '6': return "Six";
+			case '7': return "Seven";
+			case '8': return "Eight";
+			case '9': return "Nine";
+			case '0': return "Ten";
+			case 'J': return "Jack";
+			case 'Q': return "Queen";
+			case 'K': return "King";
 		}
-		return typeStr;
+		return "";
 	}
 	/*returns string of cards Suit
 	* */
 	public String cardSuit(){
-		String suitStr = "";
 		switch(this.cardSuit) {
-			case 'H':
-				suitStr = "Hearts";
-				break;
-			case 'C':
-				suitStr = "Clubs";
-				break;
-			case 'S':
-				suitStr = "Spades";
-				break;
-			case 'D':
-				suitStr = "Diamonds";
-				break;
+			case 'H': return "Hearts";
+			case 'C': return "Clubs";
+			case 'S': return "Spades";
+			case 'D': return "Diamonds";
 		}
-		return suitStr;
+		return "";
 	}
 
 	/*returns string of cards Suit Symbol ♥, ♣, ♠, ♦.
