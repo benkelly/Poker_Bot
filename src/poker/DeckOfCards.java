@@ -21,6 +21,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 
 	public DeckOfCards() {
 		this.reset();
+		this.shuffle();
 	}
 
 	/*Clears and reinitialise whole deck. e.g. a new fresh deck.
@@ -37,7 +38,7 @@ public class DeckOfCards extends ArrayList<PlayingCard> {
 
 	/*Randomises deck thoroughly.
 	* */
-	synchronized void shuffle() {
+	synchronized private void shuffle() {
 		Collections.shuffle(this);
 	}
 

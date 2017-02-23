@@ -143,10 +143,11 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				}
 			}
 			else { // if pair [], [P1], [P1], [P2], [P2]
-				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1){
-					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(1).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + this.get(0).gameValue(); }
+				if(this.get(0).faceValue() == 1 && this.get(1).faceValue() == 1) {
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(1).gameValue() + CALC_WEIGHT *this.get(3).gameValue() + this.get(0).gameValue();
+				}
 				else {
-				twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue(); }
+					twoPairScore = CALC_WEIGHT * CALC_WEIGHT  *this.get(3).gameValue() + CALC_WEIGHT *this.get(1).gameValue() + this.get(0).gameValue(); }
 			}
 			return TWO_PAIR_WEIGHT + twoPairScore;
 		}
@@ -183,9 +184,37 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			this.add(this.remove(0)); // move Ace to end of hand
 		}
 		highCardScore = this.get(0).gameValue() + CALC_WEIGHT * this.get(1).gameValue() + CALC_WEIGHT * CALC_WEIGHT * this.get(2).gameValue()
-				+ CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(3).gameValue() + CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(4).gameValue();
+				+ CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(3).gameValue()
+				+ CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * CALC_WEIGHT * this.get(4).gameValue();
 		return highCardScore;
 	}
+
+
+	/*[Assignment_5]
+	* Returns an int value for that chosen card in hand which will be the calculated
+	* probability for this hands type of if its wise to discard or keep that card in the hand
+	* */
+	public int getDiscardProbability(int cardPosition) {
+		if(isRoyalFlush) return 0;
+		if(isStraightFlush) return 0;
+		if(isFourOfAKind) {
+			if (cardPosition != this.get(2).faceValue()) {
+				return 5; // no probability of getting better hand, but possible to bluff with this card.
+			}
+			else
+				return 0;
+		}
+		if(isFullHouse) return 0;
+		if(isFlush) return 0;
+		if(isStraight) return 0;
+		if(isThreeOfAKind) return 0;
+		if(isTwoPair) return 0;
+		if(isPair) return 0;
+		if(isHighCard) return 0;
+
+		return 0;
+	}
+
 
 
 
@@ -359,7 +388,6 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 		//testing sort()
 		DeckOfCards deck = new DeckOfCards();
-		deck.shuffle();
 		HandOfCards testHand = new HandOfCards();
 		for (int i = 0; i < 5; i++) {
 			testHand.add(deck.dealNext());

@@ -14,9 +14,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		System.out.println("main class!");
-
+/*
+		// test 10 players hands
 		DeckOfCards deck = new DeckOfCards();
-		deck.shuffle();
 		ArrayList<HandOfCards> playerList = new ArrayList<HandOfCards>();
 		for (int i = 0; i < 10; i++) { playerList.add(new HandOfCards()); }
 		for (HandOfCards object : playerList) {
@@ -36,14 +36,13 @@ public class Main {
 		});
 		System.out.println("********* winning hand *********");
 		System.out.println(playerList.get(9) + "\t" + playerList.get(9).getBestHandTypeName() + "\t\tScore: " + playerList.get(9).getGameValue()+"\n");
+*/
 
 
-
-/*	////// testing till winning hand wanted is true: e.g. RoyalFlush
+	// keep testing till winning hand wanted is true: e.g. RoyalFlush
 		int count =0;
 		while(true){
 			DeckOfCards deck = new DeckOfCards();
-			deck.shuffle();
 			ArrayList<HandOfCards> playerList = new ArrayList<HandOfCards>();
 			for (int i = 0; i < 10; i++) { playerList.add(new HandOfCards()); }
 			for (HandOfCards object : playerList) {
@@ -63,13 +62,14 @@ public class Main {
 			});
 			System.out.println("********* winning hand *********");
 			System.out.println(playerList.get(9) + "\t" + playerList.get(9).getBestHandTypeName() + "\t\tScore: " + playerList.get(9).getGameValue()+"\n");
-			*//*will loop til card looked for here is the winning hand
-			* *//*
+			//*will loop til card looked for here is the winning hand
+			//*
 			if(playerList.get(9).isRoyalFlush()){
 				System.out.println(" hand: "+count);
 				return;
 			}
 			count++;
-		}*/
+		}
+
 	}
 }
