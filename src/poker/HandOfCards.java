@@ -529,7 +529,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 					return 100 * (1 / 11);
 				}
 			}
-			return 0;
+			return 50;
 		}
 		return 0;
 	}
