@@ -195,23 +195,342 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	* probability for this hands type of if its wise to discard or keep that card in the hand
 	* */
 	public int getDiscardProbability(int cardPosition) {
-		if(isRoyalFlush) return 0;
-		if(isStraightFlush) return 0;
-		if(isFourOfAKind) {
-			if (cardPosition != this.get(2).faceValue()) {
+		if (isRoyalFlush) return 0; // need to preform any discard probability
+		if (isStraightFlush) return 0; // need to preform any discard probability
+		if (isFourOfAKind) {
+			if (this.get(cardPosition).faceValue() != this.get(2).faceValue()) {
 				return 5; // no probability of getting better hand, but possible to bluff with this card.
-			}
-			else
+			} else
 				return 0;
 		}
-		if(isFullHouse) return 0;
-		if(isFlush) return 0;
-		if(isStraight) return 0;
-		if(isThreeOfAKind) return 0;
-		if(isTwoPair) return 0;
-		if(isPair) return 0;
-		if(isHighCard) return 0;
+		if (isFullHouse) return 0; // need to preform any discard probability
+		if (isFlush) return 0; // need to preform any discard probability
+		if (isStraight) return 0; // need to preform any discard probability
+		if (isThreeOfAKind) {
+			if (this.get(cardPosition).faceValue() != this.get(2).faceValue()) {
+				return 100 * (1 / 14 * 3); // chance of getting another getting another pair
+			} else
+				return 0;
+		}
+		if (isTwoPair) {
+			if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
+					this.get(cardPosition).gameValue() != this.get(2).gameValue()) {
+				// if pair [P1], [P1], [P2], [P2], []
+				if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+						this.get(0).cardSuit() == this.get(2).cardSuit() &&
+						this.get(0).cardSuit() == this.get(3).cardSuit()) { // if two pair in same suit
+					return 100 * (1 / 10);  // chance of getting flush
+				} else
+					return 100 * (1 / 14 * 2);  // chance of getting full house
+			} else if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
+					this.get(cardPosition).gameValue() != this.get(3).gameValue()) {
+				// if pair [P1], [P1], [], [P2], [P2]
+				if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+						this.get(0).cardSuit() == this.get(3).cardSuit() &&
+						this.get(0).cardSuit() == this.get(4).cardSuit()) { // if two pair in same suit
+					return 100 * (1 / 10);  // chance of getting flush
+				} else
+					return 100 * (1 / 14 * 2);  // chance of getting full house
+			} else if (this.get(cardPosition).gameValue() != this.get(1).gameValue() &&
+					this.get(cardPosition).gameValue() != this.get(3).gameValue()) {
+				// if pair [], [P1], [P1], [P2], [P2]
+				if (this.get(1).cardSuit() == this.get(2).cardSuit() &&
+						this.get(1).cardSuit() == this.get(3).cardSuit() &&
+						this.get(1).cardSuit() == this.get(4).cardSuit()) { // if two pair in same suit
+					return 100 * (1 / 10);  // chance of getting flush
+				} else
+					return 100 * (1 / 14 * 2);  // chance of getting full house
+			}
+			return 0;
+		}
+		if (isPair) {
+			if (this.get(0).gameValue() == this.get(1).gameValue()) {
+				// if pair [P], [P], [], [], []
+				if (this.get(cardPosition).gameValue() == this.get(0).gameValue()) {
+					// if flush
+					if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						return 0;
+					}
+					// if straight
+					else if (this.get(cardPosition).faceValue() + 1 == this.get(2).faceValue() &&
+							this.get(cardPosition).faceValue() + 2 == this.get(3).faceValue() &&
+							this.get(cardPosition).faceValue() + 3 == this.get(4).faceValue()) {
+						return 0;
+					} else
+						return 100 * (1 / 10);
+				}
+				else {
+					// test if flush
+					if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+							this.get(0).cardSuit() == this.get(2).cardSuit() &&
+							this.get(0).cardSuit() == this.get(3).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+					if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+							this.get(0).cardSuit() == this.get(2).cardSuit() &&
+							this.get(0).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
+							return 100 * (1 / 11);
+						}
 
+					}
+					if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+							this.get(0).cardSuit() == this.get(3).cardSuit() &&
+							this.get(0).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+
+					// test if straight
+					if (this.get(0).faceValue() + 1 == this.get(2).faceValue() &&
+							this.get(0).faceValue() + 2 == this.get(3).faceValue() &&
+							this.get(0).faceValue() + 3 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(1).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+					if (this.get(1).faceValue() + 1 == this.get(2).faceValue() &&
+							this.get(1).faceValue() + 2 == this.get(3).faceValue() &&
+							this.get(1).faceValue() + 3 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(0).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+				}
+			}
+			else if (this.get(1).gameValue() == this.get(2).gameValue()) {
+				// if pair [], [P], [P], [], []
+				if (this.get(cardPosition).gameValue() == this.get(1).gameValue()) {
+					// if flush
+					if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(4).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(0).cardSuit()) { // if pair in same suit + 2 other cards
+						return 0;
+					}
+					// if straight
+					else if (this.get(cardPosition).faceValue() - 1 == this.get(0).faceValue() &&
+							this.get(cardPosition).faceValue() + 2 == this.get(3).faceValue() &&
+							this.get(cardPosition).faceValue() + 3 == this.get(4).faceValue()) {
+						return 0;
+					} else
+						return 100 * (1 / 10);
+				} else {
+					// test if flush
+					if (this.get(1).cardSuit() == this.get(0).cardSuit() &&
+							this.get(1).cardSuit() == this.get(2).cardSuit() &&
+							this.get(1).cardSuit() == this.get(3).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+					if (this.get(1).cardSuit() == this.get(0).cardSuit() &&
+							this.get(1).cardSuit() == this.get(2).cardSuit() &&
+							this.get(1).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+
+					}
+					if (this.get(1).cardSuit() == this.get(0).cardSuit() &&
+							this.get(1).cardSuit() == this.get(3).cardSuit() &&
+							this.get(1).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+
+					// test if straight
+					if (this.get(1).faceValue() == this.get(2).faceValue() &&
+							this.get(1).faceValue() + 1 == this.get(3).faceValue() &&
+							this.get(1).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(0).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+					if (this.get(0).faceValue() == this.get(2).faceValue() &&
+							this.get(0).faceValue() + 1 == this.get(3).faceValue() &&
+							this.get(0).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(1).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+				}
+			}
+			else if (this.get(2).gameValue() == this.get(3).gameValue()) {
+				// if pair [], [], [P], [P], []
+				if (this.get(cardPosition).gameValue() == this.get(2).gameValue()) {
+					// if flush
+					if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(4).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(0).cardSuit()) { // if pair in same suit + 2 other cards
+						return 0;
+					}
+					// if straight
+					else if (this.get(cardPosition).faceValue() - 2 == this.get(0).faceValue() &&
+							this.get(cardPosition).faceValue() - 1 == this.get(1).faceValue() &&
+							this.get(cardPosition).faceValue() + 1 == this.get(4).faceValue()) {
+						return 0;
+					} else
+						return 100 * (1 / 10);
+				} else {
+					// test if flush
+					if (this.get(2).cardSuit() == this.get(0).cardSuit() &&
+							this.get(2).cardSuit() == this.get(1).cardSuit() &&
+							this.get(2).cardSuit() == this.get(3).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+					if (this.get(2).cardSuit() == this.get(0).cardSuit() &&
+							this.get(2).cardSuit() == this.get(1).cardSuit() &&
+							this.get(2).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+
+					}
+					if (this.get(2).cardSuit() == this.get(0).cardSuit() &&
+							this.get(2).cardSuit() == this.get(3).cardSuit() &&
+							this.get(2).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+
+					// test if straight
+					if (this.get(2).faceValue() == this.get(1).faceValue() &&
+							this.get(2).faceValue() + 1 == this.get(3).faceValue() &&
+							this.get(2).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(0).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+					if (this.get(0).faceValue() == this.get(2).faceValue() &&
+							this.get(0).faceValue() + 1 == this.get(3).faceValue() &&
+							this.get(0).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(1).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+				}
+			}
+			else if (this.get(3).gameValue() == this.get(4).gameValue()) {
+				// if pair [], [], [], [P], [P]
+				if (this.get(cardPosition).gameValue() == this.get(3).gameValue()){
+					// if flush
+					if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(2).cardSuit() &&
+							this.get(cardPosition).cardSuit() == this.get(0).cardSuit()) { // if pair in same suit + 2 other cards
+						return 0;
+					}
+					// if straight
+					else if (this.get(cardPosition).faceValue() - 3 == this.get(0).faceValue() &&
+							this.get(cardPosition).faceValue() - 2 == this.get(1).faceValue() &&
+							this.get(cardPosition).faceValue() - 1 == this.get(2).faceValue()) {
+						return 0;
+					} else
+						return 100 * (1 / 10);
+				} else {
+					// test if flush
+					if (this.get(3).cardSuit() == this.get(0).cardSuit() &&
+							this.get(3).cardSuit() == this.get(1).cardSuit() &&
+							this.get(3).cardSuit() == this.get(2).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+					if (this.get(3).cardSuit() == this.get(0).cardSuit() &&
+							this.get(3).cardSuit() == this.get(1).cardSuit() &&
+							this.get(3).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+
+					}
+					if (this.get(3).cardSuit() == this.get(0).cardSuit() &&
+							this.get(3).cardSuit() == this.get(2).cardSuit() &&
+							this.get(3).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+						if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit()) {
+							return 100 * (1 / 11);
+						}
+					}
+
+					// test if straight
+					if (this.get(3).faceValue() == this.get(1).faceValue() &&
+							this.get(3).faceValue() + 1 == this.get(2).faceValue() &&
+							this.get(3).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(0).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+					if (this.get(0).faceValue() == this.get(2).faceValue() &&
+							this.get(0).faceValue() + 1 == this.get(3).faceValue() &&
+							this.get(0).faceValue() + 2 == this.get(4).faceValue()) {
+						if (this.get(cardPosition).faceValue() == this.get(1).faceValue()) {
+							return 100 * (4 / 52);
+						}
+					}
+				}
+			}
+			return 30;
+		}
+		if(isHighCard) {
+			// test if straight
+			if(this.get(0).faceValue() == 1){
+				this.add(this.remove(0)); // move Ace to end of hand
+			}
+			if (this.get(0).gameValue()+1 == this.get(1).gameValue() &&
+					this.get(0).gameValue()+2 == this.get(2).gameValue() &&
+					this.get(0).gameValue()+3 == this.get(3).gameValue()) {
+				if (this.get(cardPosition).gameValue() == this.get(4).gameValue()) {
+					return 100 * (4 / 14 * 4);
+				}
+			}
+			else if (this.get(1).gameValue()+1 == this.get(2).gameValue() &&
+					this.get(1).gameValue()+2 == this.get(3).gameValue() &&
+					this.get(1).gameValue()+3 == this.get(4).gameValue()){
+				if (this.get(cardPosition).gameValue() == this.get(0).gameValue()) {
+					return 100*(4/14*4);
+				}
+
+			}
+			// test if flush
+			else if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
+					this.get(0).cardSuit() == this.get(2).cardSuit() &&
+					this.get(0).cardSuit() == this.get(3).cardSuit()) { // if pair in same suit + 2 other cards
+				if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+					return 100 * (1 / 11);
+				}
+			}
+			else if (this.get(1).cardSuit() == this.get(0).cardSuit() &&
+					this.get(1).cardSuit() == this.get(2).cardSuit() &&
+					this.get(1).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+				if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit()) {
+					return 100 * (1 / 11);
+				}
+
+			}
+			else if (this.get(2).cardSuit() == this.get(0).cardSuit() &&
+					this.get(2).cardSuit() == this.get(1).cardSuit() &&
+					this.get(2).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+				if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
+					return 100 * (1 / 11);
+				}
+			}
+			else if (this.get(3).cardSuit() == this.get(3).cardSuit() &&
+					this.get(3).cardSuit() == this.get(1).cardSuit() &&
+					this.get(3).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
+				if (this.get(cardPosition).cardSuit() == this.get(0).cardSuit()) {
+					return 100 * (1 / 11);
+				}
+			}
+			return 0;
+		}
 		return 0;
 	}
 
@@ -773,8 +1092,9 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		//System.out.println(pairDeck4);
 		System.out.println(pairDeck4 + "\t" + pairDeck4.getBestHandTypeName() + "\t\tScore: " + pairDeck4.getGameValue());
 		//testing 2 pair scoring
-		System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue());
-		System.out.println(twoPairDeck3 + "\t" + twoPairDeck3.getBestHandTypeName() + "\t\tScore: " + twoPairDeck3.getGameValue());
+		//System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue());
+		System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue()+"prob"+twoPairDeck2.getDiscardProbability(0)+twoPairDeck2.getDiscardProbability(1)+twoPairDeck2.getDiscardProbability(2)+twoPairDeck2.getDiscardProbability(3)+twoPairDeck2.getDiscardProbability(4));
+		System.out.println(twoPairDeck3 + "\t" + twoPairDeck3.getBestHandTypeName() + "\t\tScore: " + twoPairDeck3.getGameValue()+"prob"+twoPairDeck3.getDiscardProbability(0)+twoPairDeck3.getDiscardProbability(1)+twoPairDeck3.getDiscardProbability(2)+twoPairDeck3.getDiscardProbability(3)+twoPairDeck3.getDiscardProbability(4));
 
 
 

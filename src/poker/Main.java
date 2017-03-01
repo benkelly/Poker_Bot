@@ -51,7 +51,9 @@ public class Main {
 			int playNumber = 1;
 			for (HandOfCards object : playerList) {
 				object.generateHandType();
-				System.out.println("player" + playNumber + ": " + object + "\t" + object.getBestHandTypeName() + "\t\tScore: " + object.getGameValue());
+				//System.out.println("player" + playNumber + ": " + object + "\t" + object.getBestHandTypeName() + "\t\tScore: " + object.getGameValue());
+				System.out.println("player" + playNumber + ": " + object.getBestHandTypeName() + "\t\tScore: " + object.getGameValue()+"prob"+object.getDiscardProbability(0)+object.getDiscardProbability(1)+object.getDiscardProbability(2)+object.getDiscardProbability(3)+object.getDiscardProbability(4));
+
 				playNumber++;
 			}
 			// sorts players by score
