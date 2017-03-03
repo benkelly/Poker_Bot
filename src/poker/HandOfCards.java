@@ -200,8 +200,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		if (isFourOfAKind) {
 			if (this.get(cardPosition).faceValue() != this.get(2).faceValue()) {
 				return 5; // no probability of getting better hand, but possible to bluff with this card.
-			}
-			else
+			} else
 				return 0;
 		}
 		if (isFullHouse) return 0; // need to preform any discard probability
@@ -213,33 +212,28 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 					return 21; // chance of getting a flush 100*(10/47)=21%
 				}
 				return 0;
-			}
-			else if (isBrokenStraightCard(cardPosition)) {
+			} else if (isBrokenStraightCard(cardPosition)) {
 				if (this.get(cardPosition).gameValue() != this.get(2).gameValue()) {
 					return 9; // chance of getting a straight 100*(4/47)=9
 				}
 				return 0;
-			}
-			else if (this.get(cardPosition).gameValue() != this.get(2).gameValue()) {
+			} else if (this.get(cardPosition).gameValue() != this.get(2).gameValue()) {
 				return 23; // chance of getting another getting a 4 of a kind 100*(1/13*3)=23%
-			}
-			else
+			} else
 				return 0;
 		}
 		if (isTwoPair) {
 			if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
 					this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(cardPosition).gameValue() != this.get(2).gameValue() &&
-					this.get(2).gameValue() == this.get(3).gameValue() ) { // if pair [P1], [P1], [P2], [P2], []
+					this.get(2).gameValue() == this.get(3).gameValue()) { // if pair [P1], [P1], [P2], [P2], []
 				return 15; // 100*(1/14*2)=15% chance of getting full house
-			}
-			else if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
+			} else if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
 					this.get(0).gameValue() == this.get(1).gameValue() &&
 					this.get(cardPosition).gameValue() != this.get(3).gameValue() &&
-					this.get(3).gameValue() == this.get(4).gameValue() ) { // if pair [P1], [P1], [], [P2], [P2]
+					this.get(3).gameValue() == this.get(4).gameValue()) { // if pair [P1], [P1], [], [P2], [P2]
 				return 15; // 100*(1/14*2)=15% chance of getting full house
-			}
-			else if (this.get(cardPosition).gameValue() != this.get(1).gameValue() &&
+			} else if (this.get(cardPosition).gameValue() != this.get(1).gameValue() &&
 					this.get(1).gameValue() == this.get(2).gameValue() &&
 					this.get(cardPosition).gameValue() != this.get(3).gameValue() &&
 					this.get(3).gameValue() == this.get(4).gameValue()) { // if pair [], [P1], [P1], [P2], [P2]
@@ -248,114 +242,99 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			return 0;
 		}
 		if (isPair) {
+			if (isBrokenFlushCard(cardPosition)) { // if one in pair is causing broken flush
+				return 21; // chance of getting a flush 100*(10/47)=21%
+			}
 			if (isBrokenStraightCard(cardPosition)) {
 				return 9; // chance of getting a straight 100*(4/47)=9
 			}
-
 			if (this.get(cardPosition).gameValue() != this.get(0).gameValue() &&
-					this.get(0).gameValue() == this.get(1).gameValue() ) {
-				// if pair [P], [P], [], [], []
-				// if flush
-				if (this.get(cardPosition).cardSuit() != this.get(0).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-					return 21; // chance of a flush 100*(10/47)
+					this.get(0).gameValue() == this.get(1).gameValue()) {
+				if (this.get(cardPosition).cardSuit() == this.get(0).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(1).cardSuit()) {
+					return 4; // 100*(2/47)=4 chance of flush
 				}
-				if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-					return 21; // chance of a flush 100*(10/47)
-				} else
-					return 10;
-
+				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
+					return 1;
+				}
+				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+					return 2;
+				}
+				return 30; // high chance of changing
 			}
-
 			if (this.get(cardPosition).gameValue() != this.get(1).gameValue() &&
-					this.get(1).gameValue() == this.get(2).gameValue() ) {
+					this.get(1).gameValue() == this.get(2).gameValue()) {
 				// if pair [], [P], [P], [], []
-				// if flush
-				if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-					return 21; // chance of a flush 100*(10/47)
+				if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(2).cardSuit()) {
+					return 4; // 100*(2/47)=4 chance of flush
 				}
-				if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() &&
-						this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-					return 21; // chance of a flush 100*(10/47)
-				} else
-					return 10;
-
-
+				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
+					return 1;
+				}
+				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+					return 2;
+				}
+				return 30; // high chance of changing
 			}
-
 			if (this.get(cardPosition).gameValue() != this.get(2).gameValue() &&
-					this.get(2).gameValue() == this.get(3).gameValue() ) {
+					this.get(2).gameValue() == this.get(3).gameValue()) {
 				// if pair [], [], [P], [P], []
-			}
+				if (this.get(cardPosition).cardSuit() == this.get(2).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
+					return 4; // 100*(2/47)=4 chance of flush
+				}
+				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
+					return 1;
+				}
+				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+					return 2;
+				}
+				return 30; // high chance of changing
 
+			}
 			if (this.get(cardPosition).gameValue() != this.get(3).gameValue() &&
-					this.get(3).gameValue() == this.get(4).gameValue() ) {
+					this.get(3).gameValue() == this.get(4).gameValue()) {
 				// if pair [], [], [], [P], [P]
+				if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
+					return 4; // 100*(2/47)=4 chance of flush
+				}
+				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
+					return 1;
+				}
+				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+					return 2;
+				}
+				return 30; // high chance of changing
 			}
 			return 0;
 		}
-		if(isHighCard) {
-			// test if straight
+		if (isHighCard) {
 			if(this.get(0).faceValue() == 1){
 				this.add(this.remove(0)); // move Ace to end of hand
 			}
-			if (this.get(0).gameValue()+1 == this.get(1).gameValue() &&
-					this.get(0).gameValue()+2 == this.get(2).gameValue() &&
-					this.get(0).gameValue()+3 == this.get(3).gameValue()) {
-				if (this.get(cardPosition).gameValue() == this.get(4).gameValue()) {
-					return 100 * (4 / 14 * 4);
-				}
-			}
-			else if (this.get(1).gameValue()+1 == this.get(2).gameValue() &&
-					this.get(1).gameValue()+2 == this.get(3).gameValue() &&
-					this.get(1).gameValue()+3 == this.get(4).gameValue()){
-				if (this.get(cardPosition).gameValue() == this.get(0).gameValue()) {
-					return 100*(4/14*4);
-				}
 
+			if (isBrokenFlushCard(cardPosition)) { // if one in pair is causing broken flush
+				return 21; // chance of getting a flush 100*(10/47)=21%
 			}
-			// test if flush
-			else if (this.get(0).cardSuit() == this.get(1).cardSuit() &&
-					this.get(0).cardSuit() == this.get(2).cardSuit() &&
-					this.get(0).cardSuit() == this.get(3).cardSuit()) { // if pair in same suit + 2 other cards
-				if (this.get(cardPosition).cardSuit() == this.get(4).cardSuit()) {
-					return 100 * (1 / 11);
-				}
+			if (isBrokenStraightCard(cardPosition)) {
+				return 9; // chance of getting a straight 100*(4/47)=9
 			}
-			else if (this.get(1).cardSuit() == this.get(0).cardSuit() &&
-					this.get(1).cardSuit() == this.get(2).cardSuit() &&
-					this.get(1).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-				if (this.get(cardPosition).cardSuit() == this.get(1).cardSuit()) {
-					return 100 * (1 / 11);
-				}
-
+			if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
+				return 0;
 			}
-			else if (this.get(2).cardSuit() == this.get(0).cardSuit() &&
-					this.get(2).cardSuit() == this.get(1).cardSuit() &&
-					this.get(2).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-				if (this.get(cardPosition).cardSuit() == this.get(3).cardSuit()) {
-					return 100 * (1 / 11);
-				}
+			if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+				return 0;
 			}
-			else if (this.get(3).cardSuit() == this.get(3).cardSuit() &&
-					this.get(3).cardSuit() == this.get(1).cardSuit() &&
-					this.get(3).cardSuit() == this.get(4).cardSuit()) { // if pair in same suit + 2 other cards
-				if (this.get(cardPosition).cardSuit() == this.get(0).cardSuit()) {
-					return 100 * (1 / 11);
-				}
-			}
-			return 50;
+			else
+				return 60; // very high chance to change
 		}
 		return 0;
 	}
 
-	/* used in isThreeOfAKind cases
+	/* Used in getDiscardProbability()
+   	* used in isThreeOfAKind cases
 	* */
 	private boolean isBrokenStraightCard(int cardPosition){
 		switch (cardPosition) {
@@ -406,7 +385,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		}
 		return false;
 	}
-	/* used in isThreeOfAKind cases
+	/* Used in getDiscardProbability()
+	* used in isThreeOfAKind cases
 	* */
 	private boolean isBrokenFlushCard(int cardPosition){
 		switch (cardPosition) {
@@ -460,6 +440,59 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 
 
+	/* Used in getDiscardProbability()
+	* used in HighCard cases
+	* */
+	private boolean isSimalarSuitsInHand(int cardPosition){
+		switch (cardPosition) {
+			case 0:
+				if( this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(2).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 1:
+				if( this.get(cardPosition).cardSuit() == this.get(0).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(2).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 2:
+				if( this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(0).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 3:
+				if( this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(2).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(0).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 4:
+				if( this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(2).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(3).cardSuit() ||
+						this.get(cardPosition).cardSuit() == this.get(0).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+		}
+		return false;
+	}
 
 
 
