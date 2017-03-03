@@ -257,7 +257,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
 					return 1;
 				}
-				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+				if ( isSimilarSuitsInHand(cardPosition)) { // hold any similar suited cards
 					return 2;
 				}
 				return 30; // high chance of changing
@@ -272,7 +272,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
 					return 1;
 				}
-				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+				if ( isSimilarSuitsInHand(cardPosition)) { // hold any similar suited cards
 					return 2;
 				}
 				return 30; // high chance of changing
@@ -287,7 +287,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
 					return 1;
 				}
-				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+				if ( isSimilarSuitsInHand(cardPosition)) { // hold any similar suited cards
 					return 2;
 				}
 				return 30; // high chance of changing
@@ -303,7 +303,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
 					return 1;
 				}
-				if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+				if ( isSimilarSuitsInHand(cardPosition)) { // hold any similar suited cards
 					return 2;
 				}
 				return 30; // high chance of changing
@@ -324,7 +324,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 			if ( this.get(cardPosition).gameValue() >= 10) { // hold any high cards
 				return 0;
 			}
-			if ( isSimalarSuitsInHand(cardPosition)) { // hold any similar suited cards
+			if ( isSimilarSuitsInHand(cardPosition)) { // hold any similar suited cards
 				return 0;
 			}
 			else
@@ -443,7 +443,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/* Used in getDiscardProbability()
 	* used in HighCard cases
 	* */
-	private boolean isSimalarSuitsInHand(int cardPosition){
+	private boolean isSimilarSuitsInHand(int cardPosition){
 		switch (cardPosition) {
 			case 0:
 				if( this.get(cardPosition).cardSuit() == this.get(1).cardSuit() ||
@@ -493,6 +493,26 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		}
 		return false;
 	}
+
+
+	synchronized public int discard() {
+		int discardCount = 0;
+/*
+		for (PlayingCard object : this) {
+			if (this.get(object).get)
+		}
+*/
+		for (int i = 0; i < this.size(); i++) {
+			if(getDiscardProbability(i)>0) {
+				deck.deal
+
+
+				discardCount++;
+			}
+		}
+		return discardCount;
+	}
+
 
 
 
