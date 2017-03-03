@@ -200,7 +200,8 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		if (isFourOfAKind) {
 			if (this.get(cardPosition).faceValue() != this.get(2).faceValue()) {
 				return 5; // no probability of getting better hand, but possible to bluff with this card.
-			} else
+			}
+			else
 				return 0;
 		}
 		if (isFullHouse) return 0; // need to preform any discard probability
@@ -208,8 +209,15 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		if (isStraight) return 0; // need to preform any discard probability
 		if (isThreeOfAKind) {
 			if (this.get(cardPosition).faceValue() != this.get(2).faceValue()) {
-				return 100 * (1 / 14 * 3); // chance of getting another getting another pair
-			} else
+				return 100 * (1 / 13 * 3); // chance of getting another getting a 4 of a kind
+			}
+			if (isBrokenFlushCard(cardPosition)) {
+				return 100 * (10 / 47); // chance of getting a flush
+			}
+			if (isBrokenStraightCard(cardPosition)) {
+				return 100*(4/47); // chance of getting a straight
+			}
+			else
 				return 0;
 		}
 		if (isTwoPair) {
@@ -534,7 +542,110 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		return 0;
 	}
 
-
+	/* used in isThreeOfAKind cases
+	* */
+	private boolean isBrokenStraightCard(int cardPosition){
+		switch (cardPosition) {
+			case 0:
+				if(this.get(cardPosition).faceValue()+1 != this.get(1).faceValue() && // [], [S], [S], [S], [S]
+					this.get(cardPosition).faceValue()+2 != this.get(2).faceValue() &&
+					this.get(cardPosition).faceValue()+3 != this.get(3).faceValue() &&
+					this.get(cardPosition).faceValue()+4 != this.get(4).faceValue() ) {
+				return true;
+			}
+			else
+				return false;
+			case 1:				
+				if(this.get(cardPosition).faceValue()-1 != this.get(0).faceValue() && // [S], [], [S], [S], [S]
+					this.get(cardPosition).faceValue()+1 != this.get(2).faceValue() &&
+					this.get(cardPosition).faceValue()+2 != this.get(3).faceValue() &&
+					this.get(cardPosition).faceValue()+3 != this.get(4).faceValue() ) {
+				return true;
+			}
+			else
+				return false;
+			case 2:
+				if(this.get(cardPosition).faceValue()-1 != this.get(1).faceValue() && // [S], [S], [], [S], [S]
+					this.get(cardPosition).faceValue()-2 != this.get(0).faceValue() &&
+					this.get(cardPosition).faceValue()+1 != this.get(3).faceValue() &&
+					this.get(cardPosition).faceValue()+2 != this.get(4).faceValue() ) {
+				return true;
+			}
+			else
+				return false;
+			case 3:				
+				if(this.get(cardPosition).faceValue()-2 != this.get(1).faceValue() && // [S], [S], [S], [], [S]
+					this.get(cardPosition).faceValue()-1 != this.get(2).faceValue() &&
+					this.get(cardPosition).faceValue()-3 != this.get(0).faceValue() &&
+					this.get(cardPosition).faceValue()+1 != this.get(4).faceValue() ) {
+				return true;
+			}
+			else
+				return false;
+			case 4:			
+				if(this.get(cardPosition).faceValue()-3 != this.get(1).faceValue() && // [], [S], [S], [S], []
+					this.get(cardPosition).faceValue()-2 != this.get(2).faceValue() &&
+					this.get(cardPosition).faceValue()-1 != this.get(3).faceValue() &&
+					this.get(cardPosition).faceValue()-4 != this.get(0).faceValue() ) {
+				return true;
+			}
+			else
+				return false;
+		}
+		return false;
+	}
+	/* used in isThreeOfAKind cases
+	* */
+	private boolean isBrokenFlushCard(int cardPosition){
+		switch (cardPosition) {
+			case 0:
+				if(this.get(cardPosition).cardSuit() != this.get(1).cardSuit() && // [], [S], [S], [S], [S]
+						this.get(cardPosition).cardSuit() != this.get(2).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(3).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 1:
+				if(this.get(cardPosition).cardSuit() != this.get(0).cardSuit() && // [S], [], [S], [S], [S]
+						this.get(cardPosition).cardSuit() != this.get(2).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(3).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 2:
+				if(this.get(cardPosition).cardSuit() != this.get(1).cardSuit() && // [S], [S], [], [S], [S]
+						this.get(cardPosition).cardSuit() != this.get(0).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(3).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 3:
+				if(this.get(cardPosition).cardSuit() != this.get(1).cardSuit() && // [S], [S], [S], [], [S]
+						this.get(cardPosition).cardSuit() != this.get(2).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(0).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(4).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+			case 4:
+				if(this.get(cardPosition).cardSuit() != this.get(1).cardSuit() && // [], [S], [S], [S], []
+						this.get(cardPosition).cardSuit() != this.get(2).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(3).cardSuit() &&
+						this.get(cardPosition).cardSuit() != this.get(0).cardSuit() ) {
+					return true;
+				}
+				else
+					return false;
+		}
+		return false;
+	}
 
 
 
@@ -1093,10 +1204,88 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		System.out.println(pairDeck4 + "\t" + pairDeck4.getBestHandTypeName() + "\t\tScore: " + pairDeck4.getGameValue());
 		//testing 2 pair scoring
 		//System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue());
-		System.out.println(twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue()+"prob"+twoPairDeck2.getDiscardProbability(0)+twoPairDeck2.getDiscardProbability(1)+twoPairDeck2.getDiscardProbability(2)+twoPairDeck2.getDiscardProbability(3)+twoPairDeck2.getDiscardProbability(4));
-		System.out.println(twoPairDeck3 + "\t" + twoPairDeck3.getBestHandTypeName() + "\t\tScore: " + twoPairDeck3.getGameValue()+"prob"+twoPairDeck3.getDiscardProbability(0)+twoPairDeck3.getDiscardProbability(1)+twoPairDeck3.getDiscardProbability(2)+twoPairDeck3.getDiscardProbability(3)+twoPairDeck3.getDiscardProbability(4));
+		
+		//*************** testing discard Probability 
+		System.out.println("\t\t*************** testing discard Probability \n");
+		System.out.println("twoPairDeck2 "+twoPairDeck2 + "\t" + twoPairDeck2.getBestHandTypeName() + "\t\tScore: " + twoPairDeck2.getGameValue()+"\t\tprob: "+twoPairDeck2.getDiscardProbability(0)+","+twoPairDeck2.getDiscardProbability(1)+","+twoPairDeck2.getDiscardProbability(2)+","+twoPairDeck2.getDiscardProbability(3)+","+twoPairDeck2.getDiscardProbability(4));
+		System.out.println("twoPairDeck3 "+twoPairDeck3 + "\t" + twoPairDeck3.getBestHandTypeName() + "\t\tScore: " + twoPairDeck3.getGameValue()+"\t\tprob: "+twoPairDeck3.getDiscardProbability(0)+","+twoPairDeck3.getDiscardProbability(1)+","+twoPairDeck3.getDiscardProbability(2)+","+twoPairDeck3.getDiscardProbability(3)+","+twoPairDeck3.getDiscardProbability(4));
+		System.out.println("twoPairDeck "+twoPairDeck + "\t" + twoPairDeck.getBestHandTypeName() + "\t\tScore: " + twoPairDeck.getGameValue()+"\t\tprob: "+twoPairDeck.getDiscardProbability(0)+","+twoPairDeck.getDiscardProbability(1)+","+twoPairDeck.getDiscardProbability(2)+","+twoPairDeck.getDiscardProbability(3)+","+twoPairDeck.getDiscardProbability(4));
 
+		System.out.println(pairDeck + "\t" + pairDeck.getBestHandTypeName() + "\t\tScore: "
+				+ pairDeck.getGameValue()+"\t\tprob: "+pairDeck.getDiscardProbability(0)+","+pairDeck.getDiscardProbability(1)
+				+","+pairDeck.getDiscardProbability(2)+","+pairDeck.getDiscardProbability(3)
+				+","+pairDeck.getDiscardProbability(4));
+		System.out.println(pairDeck2 + "\t" + pairDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ pairDeck2.getGameValue()+"\t\tprob: "+pairDeck2.getDiscardProbability(0)+","+pairDeck2.getDiscardProbability(1)
+				+","+pairDeck2.getDiscardProbability(2)+","+pairDeck2.getDiscardProbability(3)
+				+","+pairDeck2.getDiscardProbability(4));
+		System.out.println(pairDeck3 + "\t" + pairDeck3.getBestHandTypeName() + "\t\tScore: "
+				+ pairDeck3.getGameValue()+"\t\tprob: "+pairDeck3.getDiscardProbability(0)+","+pairDeck3.getDiscardProbability(1)
+				+","+pairDeck3.getDiscardProbability(2)+","+pairDeck3.getDiscardProbability(3)
+				+","+pairDeck3.getDiscardProbability(4));
+		System.out.println(pairDeck4 + "\t" + pairDeck4.getBestHandTypeName() + "\t\tScore: "
+				+ pairDeck4.getGameValue()+"\t\tprob: "+pairDeck4.getDiscardProbability(0)+","+pairDeck4.getDiscardProbability(1)
+				+","+pairDeck4.getDiscardProbability(2)+","+pairDeck4.getDiscardProbability(3)
+				+","+pairDeck4.getDiscardProbability(4));
 
+		System.out.println(straightDeck + "\t" + straightDeck.getBestHandTypeName() + "\t\tScore: "
+				+ straightDeck.getGameValue()+"\t\tprob: "+straightDeck.getDiscardProbability(0)+","+straightDeck.getDiscardProbability(1)
+				+","+straightDeck.getDiscardProbability(2)+","+straightDeck.getDiscardProbability(3)
+				+","+straightDeck.getDiscardProbability(4));
+		System.out.println(straightDeck2 + "\t" + straightDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ straightDeck2.getGameValue()+"\t\tprob: "+straightDeck2.getDiscardProbability(0)+","+straightDeck2.getDiscardProbability(1)
+				+","+straightDeck2.getDiscardProbability(2)+","+straightDeck2.getDiscardProbability(3)
+				+","+straightDeck2.getDiscardProbability(4));
 
+		System.out.println(fullHouseDeck + "\t" + fullHouseDeck.getBestHandTypeName() + "\t\tScore: "
+				+ fullHouseDeck.getGameValue()+"\t\tprob: "+fullHouseDeck.getDiscardProbability(0)+","+fullHouseDeck.getDiscardProbability(1)
+				+","+fullHouseDeck.getDiscardProbability(2)+","+fullHouseDeck.getDiscardProbability(3)
+				+","+fullHouseDeck.getDiscardProbability(4));
+		System.out.println(fullHouseDeck2 + "\t" + fullHouseDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ fullHouseDeck2.getGameValue()+"\t\tprob: "+fullHouseDeck2.getDiscardProbability(0)+","+fullHouseDeck2.getDiscardProbability(1)
+				+","+fullHouseDeck2.getDiscardProbability(2)+","+fullHouseDeck2.getDiscardProbability(3)
+				+","+fullHouseDeck2.getDiscardProbability(4));
+		
+		System.out.println(threeOfAKindDeck2 + "\t" + threeOfAKindDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ threeOfAKindDeck2.getGameValue()+"\t\tprob: "+threeOfAKindDeck2.getDiscardProbability(0)+","+threeOfAKindDeck2.getDiscardProbability(1)
+				+","+threeOfAKindDeck2.getDiscardProbability(2)+","+threeOfAKindDeck2.getDiscardProbability(3)
+				+","+threeOfAKindDeck2.getDiscardProbability(4));
+		System.out.println(threeOfAKindDeck3 + "\t" + threeOfAKindDeck3.getBestHandTypeName() + "\t\tScore: "
+				+ threeOfAKindDeck3.getGameValue()+"\t\tprob: "+threeOfAKindDeck3.getDiscardProbability(0)+","+threeOfAKindDeck3.getDiscardProbability(1)
+				+","+threeOfAKindDeck3.getDiscardProbability(2)+","+threeOfAKindDeck3.getDiscardProbability(3)
+				+","+threeOfAKindDeck3.getDiscardProbability(4));
+
+		System.out.println(fourOfAKindDeck + "\t" + fourOfAKindDeck.getBestHandTypeName() + "\t\tScore: "
+				+ fourOfAKindDeck.getGameValue()+"\t\tprob: "+fourOfAKindDeck.getDiscardProbability(0)+","+fourOfAKindDeck.getDiscardProbability(1)
+				+","+fourOfAKindDeck.getDiscardProbability(2)+","+fourOfAKindDeck.getDiscardProbability(3)
+				+","+fourOfAKindDeck.getDiscardProbability(4));
+		System.out.println(fourOfAKindDeck2 + "\t" + fourOfAKindDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ fourOfAKindDeck2.getGameValue()+"\t\tprob: "+fourOfAKindDeck2.getDiscardProbability(0)+","+fourOfAKindDeck2.getDiscardProbability(1)
+				+","+fourOfAKindDeck2.getDiscardProbability(2)+","+fourOfAKindDeck2.getDiscardProbability(3)
+				+","+fourOfAKindDeck2.getDiscardProbability(4));
+		System.out.println(threeOfAKindDeck + "\t" + threeOfAKindDeck.getBestHandTypeName() + "\t\tScore: "
+				+ threeOfAKindDeck.getGameValue()+"\t\tprob: "+threeOfAKindDeck.getDiscardProbability(0)+","+threeOfAKindDeck.getDiscardProbability(1)
+				+","+threeOfAKindDeck.getDiscardProbability(2)+","+threeOfAKindDeck.getDiscardProbability(3)
+				+","+threeOfAKindDeck.getDiscardProbability(4));
+		System.out.println(straightFlushDeck + "\t" + straightFlushDeck.getBestHandTypeName() + "\t\tScore: "
+				+ straightFlushDeck.getGameValue()+"\t\tprob: "+straightFlushDeck.getDiscardProbability(0)+","+straightFlushDeck.getDiscardProbability(1)
+				+","+straightFlushDeck.getDiscardProbability(2)+","+straightFlushDeck.getDiscardProbability(3)
+				+","+straightFlushDeck.getDiscardProbability(4));
+
+		System.out.println(flushDeck + "\t" + flushDeck.getBestHandTypeName() + "\t\tScore: "
+				+ flushDeck.getGameValue()+"\t\tprob: "+flushDeck.getDiscardProbability(0)+","+flushDeck.getDiscardProbability(1)
+				+","+flushDeck.getDiscardProbability(2)+","+flushDeck.getDiscardProbability(3)
+				+","+flushDeck.getDiscardProbability(4));
+		
+		System.out.println(royalFlushDeck + "\t" + royalFlushDeck.getBestHandTypeName() + "\t\tScore: "
+				+ royalFlushDeck.getGameValue()+"\t\tprob: "+royalFlushDeck.getDiscardProbability(0)+","+royalFlushDeck.getDiscardProbability(1)
+				+","+royalFlushDeck.getDiscardProbability(2)+","+royalFlushDeck.getDiscardProbability(3)
+				+","+royalFlushDeck.getDiscardProbability(4));
+		System.out.println(royalFlushDeck2 + "\t" + royalFlushDeck2.getBestHandTypeName() + "\t\tScore: "
+				+ royalFlushDeck2.getGameValue()+"\t\tprob: "+royalFlushDeck2.getDiscardProbability(0)+","+royalFlushDeck2.getDiscardProbability(1)
+				+","+royalFlushDeck2.getDiscardProbability(2)+","+royalFlushDeck2.getDiscardProbability(3)
+				+","+royalFlushDeck2.getDiscardProbability(4));
+		
+		
 	}
 }
