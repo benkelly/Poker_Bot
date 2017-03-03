@@ -72,8 +72,7 @@ public class Main {
 			});
 			System.out.println("********* winning hand *********");
 			System.out.println(playerList.get(9) + "\t" + playerList.get(9).getBestHandTypeName() + "\t\tScore: " + playerList.get(9).getGameValue()+"\n");
-			/*//*will loop til card looked for here is the winning hand
-			/*//*
+			// will loop til card looked for here is the winning hand
 			if(playerList.get(9).isRoyalFlush()){
 				System.out.println(" hand: "+count);
 				return;
