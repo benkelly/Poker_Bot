@@ -58,6 +58,10 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		});
 	}
 
+	synchronized public void removeCard(int index) {
+		this.remove(index);
+	}
+
 	/*Calls sort() then goes through all hand Type functions for its hand
 	* */
 	synchronized public void generateHandType() {
@@ -194,7 +198,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	* Returns an int value for that chosen card in hand which will be the calculated
 	* probability for this hands type of if its wise to discard or keep that card in the hand
 	* */
-	public int getDiscardProbability(int cardPosition) {
+	synchronized public int getDiscardProbability(int cardPosition) {
 		if (isRoyalFlush) return 0; // need to preform any discard probability
 		if (isStraightFlush) return 0; // need to preform any discard probability
 		if (isFourOfAKind) {
@@ -427,10 +431,10 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 				else
 					return false;
 			case 4:
-				if(this.get(cardPosition).cardSuit() != this.get(1).cardSuit() && // [], [S], [S], [S], []
-						this.get(1).cardSuit() == this.get(2).cardSuit() &&
-						this.get(1).cardSuit() == this.get(3).cardSuit() &&
-						this.get(1).cardSuit() == this.get(0).cardSuit() ) {
+				if(this.get(cardPosition).cardSuit() != this.get(0).cardSuit() && // [S], [S], [S], [S], []
+						this.get(0).cardSuit() == this.get(1).cardSuit() &&
+						this.get(0).cardSuit() == this.get(2).cardSuit() &&
+						this.get(0).cardSuit() == this.get(3).cardSuit() ) {
 					return true;
 				}
 				else

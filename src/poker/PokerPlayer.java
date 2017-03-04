@@ -41,15 +41,53 @@ public class PokerPlayer {
 
 	synchronized public int discard() {
 		int discardCount = 0;
-		for (int i = 0; i < hand.size(); i++) {
+		PlayingCard temp;
+		for (int i = 0; i < MAX_HAND; i++) {
 			if (discardCount >= 3) { return discardCount; }
-			if(hand.getDiscardProbability(i)>0) {
-				DeckOfCards.getInstance().returnCard(hand.get(i));
-				hand.remove(i);
+			if(hand.getDiscardProbability(i) > 0) {
+				//DeckOfCards.getInstance().returnCard(hand.get(i));
+				temp = hand.get(i);
+				//hand.removeCard(i);
+				DeckOfCards.getInstance().returnCard(temp);
+
 				discardCount++;
 			}
 		}
 		return discardCount;
+	}
+
+
+
+	/*Class testing method
+	* */
+	public static void main(String[] args) {
+		System.out.println("poker.PokerPlayer.java!");
+		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
+		for (int j = 0; j < 10; j++) {
+			playerList.add(new PokerPlayer());
+		}
+		int playNumber = 1;
+		for (PokerPlayer object : playerList) {
+			System.out.println("player" + playNumber + ": " + object + "\t" + object.hand.getBestHandTypeName()
+					+ "\t\tScore: " + object.hand.getGameValue() + "\tprob: " + object.hand.getDiscardProbability(0) + ", "
+					+ object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", "
+					+ object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
+			playNumber++;
+		}
+		System.out.println(DeckOfCards.getInstance().size());
+
+		playerList.get(0).discard();
+
+		playNumber = 1;
+		for (PokerPlayer object : playerList) {
+			System.out.println("player" + playNumber + ": " + object + "\t" + object.hand.getBestHandTypeName()
+					+ "\t\tScore: " + object.hand.getGameValue() + "\tprob: " + object.hand.getDiscardProbability(0) + ", "
+					+ object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", "
+					+ object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
+			playNumber++;
+		}
+
+		System.out.println(DeckOfCards.getInstance().size());
 	}
 
 }
