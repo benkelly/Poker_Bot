@@ -495,23 +495,6 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	}
 
 
-	synchronized public int discard() {
-		int discardCount = 0;
-/*
-		for (PlayingCard object : this) {
-			if (this.get(object).get)
-		}
-*/
-		for (int i = 0; i < this.size(); i++) {
-			if(getDiscardProbability(i)>0) {
-				deck.deal
-
-
-				discardCount++;
-			}
-		}
-		return discardCount;
-	}
 
 
 

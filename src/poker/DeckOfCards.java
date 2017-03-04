@@ -9,20 +9,28 @@ import java.util.Collections;
  * student number: 14700869
  */
 public class DeckOfCards extends ArrayList<PlayingCard> {
+	private static DeckOfCards instance;
+
 
 	// Constant data of cards for deck.
 	private int[] faceValue = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private int[] gameValue = {14, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
 	private char[] suitType = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'};
 	static private final int DECK_SIZE = 52;
-
-
 	private int returnCardCounter = 0;
 
 	public DeckOfCards() {
 		this.reset();
 		this.shuffle();
 	}
+
+	public static DeckOfCards getInstance()
+	{
+		if (instance == null) { instance = new DeckOfCards();}
+		return instance;
+	}
+
+
 
 	/*Clears and reinitialise whole deck. e.g. a new fresh deck.
 	* */
