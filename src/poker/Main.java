@@ -15,6 +15,27 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("main class!");
 
+		
+		//PokerPlayer player1 = new PokerPlayer();
+		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
+		for (int j = 0; j < 10; j++) {
+			playerList.add(new PokerPlayer());
+		}
+		int playNumber = 1;
+		for (PokerPlayer object : playerList) {
+			System.out.println("player" + playNumber + ": " + object + "\t" + object.hand.getBestHandTypeName() + "\t\tScore: " + object.hand.getGameValue() + "\tprob: " + object.hand.getDiscardProbability(0) + ", " + object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", " + object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
+			playNumber++;
+		}
+		playNumber = 1;
+		for (PokerPlayer object : playerList) {
+			object.discard();
+			System.out.println("player" + playNumber + ": " + object + "\t" + object.hand.getBestHandTypeName() + "\t\tScore: " + object.hand.getGameValue() + "\tprob: " + object.hand.getDiscardProbability(0) + ", " + object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", " + object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
+			playNumber++;
+		}
+
+
+		
+/*
 		for (int i = 0; i < 10; i++) {
 
 
@@ -45,6 +66,7 @@ public class Main {
 			System.out.println("********* winning hand *********");
 			System.out.println(playerList.get(9) + "\t" + playerList.get(9).getBestHandTypeName() + "\t\tScore: " + playerList.get(9).getGameValue() + "\n");
 		}
+*/
 /*
 
 	// keep testing till winning hand wanted is true: e.g. RoyalFlush

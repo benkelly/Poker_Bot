@@ -1,5 +1,7 @@
 package poker;
 
+import java.util.ArrayList;
+
 /**
  * Created by benjamin kelly on 03/03/2017.
  * benjamin.kelly.1@ucdconnect.ie
@@ -17,6 +19,14 @@ public class PokerPlayer {
 		getCurrentHandInfo();
 	}
 
+	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
+	*
+	* */
+	public String toString(){
+		return hand.toString();
+	}
+
+
 	synchronized private void getInitialHand() {
 		for (int i = 0; i < MAX_HAND; i++) {
 			hand.add(DeckOfCards.getInstance().dealNext());
@@ -31,14 +41,15 @@ public class PokerPlayer {
 
 	synchronized public int discard() {
 		int discardCount = 0;
-		for (int i = 0; i < MAX_HAND; i++) {
-			if (discardCount >= 3) { break; }
+		for (int i = 0; i < hand.size(); i++) {
+			if (discardCount >= 3) { return discardCount; }
 			if(hand.getDiscardProbability(i)>0) {
-				discardCount++;
 				DeckOfCards.getInstance().returnCard(hand.get(i));
 				hand.remove(i);
+				discardCount++;
 			}
 		}
 		return discardCount;
 	}
+
 }
