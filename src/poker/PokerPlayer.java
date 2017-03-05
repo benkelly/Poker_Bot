@@ -1,6 +1,7 @@
 package poker;
 
-import java.util.ArrayList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 /**
  * Created by benjamin kelly on 03/03/2017.
@@ -42,17 +43,50 @@ public class PokerPlayer {
 	synchronized public int discard() {
 		int discardCount = 0;
 		PlayingCard temp;
-		for (int i = 0; i < MAX_HAND; i++) {
-			if (discardCount >= 3) { return discardCount; }
-			if(hand.getDiscardProbability(i) > 0) {
-				//DeckOfCards.getInstance().returnCard(hand.get(i));
-				temp = hand.get(i);
-				//hand.removeCard(i);
-				DeckOfCards.getInstance().returnCard(temp);
 
+		List<probabilityScoreList> scoreList = new ArrayList<>();
+		for (int i = 0; i < MAX_HAND; i++) {
+			scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i)));
+		}
+		//System.out.println(scoreList);
+		// sorts scores in descending order
+		Collections.sort(scoreList ,new Comparator<probabilityScoreList>() {
+			@Override
+			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
+				return Float.compare(score2.getCardProbabilityScore(), score1.getCardProbabilityScore());
+			}
+		});
+		//System.out.println(scoreList);
+
+
+		for (probabilityScoreList object : scoreList) {
+			if (discardCount >= 3) { return discardCount; }
+			if( object.getCardProbabilityScore() > 0) {
+				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
+				temp = hand.get(object.cardLocation);
+				System.out.println("*****card discarded: "+temp+"\t"+temp.getFullName());
+				hand.remove(temp);
 				discardCount++;
 			}
+
+//////////////////// BEN you need to remove cards without fucking up other cards index!!!!!!
+
 		}
+
+/*
+
+			for (int i = 0; i < MAX_HAND; i++) {
+			if (discardCount >= 3) { return discardCount; }
+			if(hand.getDiscardProbability(i) > 0) {
+				DeckOfCards.getInstance().returnCard(hand.get(i));
+				temp = hand.get(i);
+				//hand.remove(temp);
+				//DeckOfCards.getInstance().returnCard(temp);
+				System.out.println("*****card discarded: "+temp+"\t"+temp.getFullName());
+				discardCount++;
+			}
+			}*/
+
 		return discardCount;
 	}
 
@@ -90,4 +124,25 @@ public class PokerPlayer {
 		System.out.println(DeckOfCards.getInstance().size());
 	}
 
+	private class probabilityScoreList {
+		int cardLocation;
+		int cardProbabilityScore;
+
+		probabilityScoreList(int location, int probabilityScore) {
+			cardLocation = location;
+			cardProbabilityScore = probabilityScore;
+		}
+		public int getCardLocation() {
+			return cardLocation;
+		}
+		public int getCardProbabilityScore() {
+			return cardProbabilityScore;
+		}
+
+		public String toString(){
+			return "["+this.cardLocation+", "+this.cardProbabilityScore+"]";
+		}
+	}
 }
+
+
