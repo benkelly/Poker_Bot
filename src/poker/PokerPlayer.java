@@ -48,7 +48,7 @@ public class PokerPlayer {
 		for (int i = 0; i < MAX_HAND; i++) {
 			scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i)));
 		}
-		//System.out.println(scoreList);
+		System.out.println(scoreList);
 		// sorts scores in descending order
 		Collections.sort(scoreList ,new Comparator<probabilityScoreList>() {
 			@Override
@@ -56,36 +56,34 @@ public class PokerPlayer {
 				return Float.compare(score2.getCardProbabilityScore(), score1.getCardProbabilityScore());
 			}
 		});
-		//System.out.println(scoreList);
+		System.out.println(scoreList);
 
-
+		List<probabilityScoreList> removeList = new ArrayList<>();
 		for (probabilityScoreList object : scoreList) {
-			if (discardCount >= 3) { return discardCount; }
-			if( object.getCardProbabilityScore() > 0) {
+			if (discardCount >= 3) {
+				return discardCount;
+			}
+			if (object.getCardProbabilityScore() > 0) {
 				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
 				temp = hand.get(object.cardLocation);
-				System.out.println("*****card discarded: "+temp+"\t"+temp.getFullName());
-				hand.remove(temp);
+				System.out.println("*****card discarded: " + temp + "\t" + temp.getFullName());
+				//hand.remove(temp);
+				removeList.add(object);
 				discardCount++;
 			}
-
-//////////////////// BEN you need to remove cards without fucking up other cards index!!!!!!
-
 		}
 
-/*
-
-			for (int i = 0; i < MAX_HAND; i++) {
-			if (discardCount >= 3) { return discardCount; }
-			if(hand.getDiscardProbability(i) > 0) {
-				DeckOfCards.getInstance().returnCard(hand.get(i));
-				temp = hand.get(i);
-				//hand.remove(temp);
-				//DeckOfCards.getInstance().returnCard(temp);
-				System.out.println("*****card discarded: "+temp+"\t"+temp.getFullName());
-				discardCount++;
+		Collections.sort(removeList ,new Comparator<probabilityScoreList>() {
+			@Override
+			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
+				return Float.compare(score2.getCardLocation(), score1.getCardLocation());
 			}
-			}*/
+		});
+		for (int i = 0; i < removeList.size()-1; i++) {
+			if (removeList.get(i) != null) {
+				hand.removeCard(removeList.get(i).cardLocation);
+			}
+		}
 
 		return discardCount;
 	}
