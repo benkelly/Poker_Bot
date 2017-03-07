@@ -20,7 +20,6 @@ public class PokerPlayer {
 	}
 
 	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
-	*
 	* */
 	public String toString() {
 		return hand.toString();
@@ -34,6 +33,16 @@ public class PokerPlayer {
 		}
 
 	}
+
+	/*private method collects new card from deck after discarding.
+	* */
+	synchronized public void getNewCardsForHand() {
+		for (int i = hand.size(); i < MAX_HAND; i++) {
+			hand.add(DeckOfCards.getInstance().dealNext());
+		}
+
+	}
+
 	/*private method gets and returns hands current score and updates currentHandScore
 	* */
 	synchronized private int getCurrentHandInfo() {
@@ -45,9 +54,8 @@ public class PokerPlayer {
 
 	synchronized public int discard() {
 		int discardCount = 0;
-		PlayingCard temp;
-
 		List<probabilityScoreList> scoreList = new ArrayList<>();
+
 		for (int i = 0; i < MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
 		// sorts scores in descending order
 		sortProbabilityScoreDescending(scoreList);
@@ -56,8 +64,6 @@ public class PokerPlayer {
 			if (discardCount >= 3) { break; }
 			else if (object.getCardProbabilityScore() > 0) {
 				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
-				//temp = hand.get(object.cardLocation);
-				//System.out.println("*****card discarded: " + temp + "\t" + temp.getFullName());
 				removeList.add(object);
 				discardCount++;
 			}
@@ -95,7 +101,8 @@ public class PokerPlayer {
 		});
 	}
 
-
+	/*Object used in lists to sort cards scores.
+	* */
 	private class probabilityScoreList {
 		int cardLocation;
 		int cardProbabilityScore;
@@ -105,11 +112,11 @@ public class PokerPlayer {
 			cardProbabilityScore = probabilityScore;
 		}
 
-		public int getCardLocation() {
+		private int getCardLocation() {
 			return cardLocation;
 		}
 
-		public int getCardProbabilityScore() {
+		private int getCardProbabilityScore() {
 			return cardProbabilityScore;
 		}
 
@@ -136,21 +143,19 @@ public class PokerPlayer {
 					+ object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", "
 					+ object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
 			playNumber++;
-			//object.hand.discard();
 		}
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 
 		for (int i = 0; i < playerList.size(); i++) {
 			playerList.get(i).discard();
+			//playerList.get(i).getNewCardsForHand();
 		}
-
 
 		playNumber = 1;
 		for (PokerPlayer object : playerList) {
 			System.out.println("player" + playNumber + ": " + object + "\t");
 			playNumber++;
 		}
-
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 	}
 }
