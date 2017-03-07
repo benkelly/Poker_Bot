@@ -1,6 +1,5 @@
 package poker;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -10,9 +9,9 @@ import java.util.*;
  */
 public class PokerPlayer {
 
-	int MAX_HAND = 5;
-	int currentHandScore = 0;
-	HandOfCards hand = new HandOfCards();
+	private int MAX_HAND = 5;
+	public int currentHandScore = 0;
+	public HandOfCards hand = new HandOfCards();
 
 
 	public PokerPlayer() {
@@ -27,17 +26,20 @@ public class PokerPlayer {
 		return hand.toString();
 	}
 
-
+	/*private method creates first hand from deck.
+	* */
 	synchronized private void getInitialHand() {
 		for (int i = 0; i < MAX_HAND; i++) {
 			hand.add(DeckOfCards.getInstance().dealNext());
 		}
 
 	}
-
-	synchronized private void getCurrentHandInfo() {
+	/*private method gets and returns hands current score and updates currentHandScore
+	* */
+	synchronized private int getCurrentHandInfo() {
 		hand.generateHandType();
 		currentHandScore = hand.getGameValue();
+		return currentHandScore;
 	}
 
 
@@ -46,57 +48,53 @@ public class PokerPlayer {
 		PlayingCard temp;
 
 		List<probabilityScoreList> scoreList = new ArrayList<>();
-		for (int i = 0; i < MAX_HAND; i++) {
-			scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i)));
-		}
-		System.out.println(scoreList);
+		for (int i = 0; i < MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
 		// sorts scores in descending order
-		Collections.sort(scoreList, new Comparator<probabilityScoreList>() {
-			@Override
-			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
-				return Float.compare(score2.getCardProbabilityScore(), score1.getCardProbabilityScore());
-			}
-		});
-		System.out.println(scoreList);
-		System.out.println("hand: "+hand);
-
-
+		sortProbabilityScoreDescending(scoreList);
 		List<probabilityScoreList> removeList = new ArrayList<>();
 		for (probabilityScoreList object : scoreList) {
-			if (discardCount >= 3) {
-				break;
-			}
+			if (discardCount >= 3) { break; }
 			else if (object.getCardProbabilityScore() > 0) {
 				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
-				temp = hand.get(object.cardLocation);
-				System.out.println("*****card discarded: " + temp + "\t" + temp.getFullName());
-				//hand.remove(temp);
+				//temp = hand.get(object.cardLocation);
+				//System.out.println("*****card discarded: " + temp + "\t" + temp.getFullName());
 				removeList.add(object);
 				discardCount++;
 			}
 		}
-
-		System.out.println(removeList);
-		Collections.sort(removeList, new Comparator<probabilityScoreList>() {
-			@Override
-			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
-				return Float.compare(score2.getCardLocation(), score1.getCardLocation());
-			}
-		});
-
-		System.out.println(removeList);
-
+		// to avoid index out of bounds, sort removeList into descending order and remove.
+		sortLocationDescending(removeList);
 
 		for (int i = 0; i < removeList.size() - 1; i++) {
 			if (removeList.get(i) != null) {
 				hand.removeCard(removeList.get(i).cardLocation);
 			}
 		}
-		System.out.println("hand: "+hand);
-		System.out.println("deck: "+DeckOfCards.getInstance());
-
 		return discardCount;
 	}
+
+	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
+	* */
+	private void sortLocationDescending(List<probabilityScoreList> currentList) {
+		Collections.sort(currentList, new Comparator<probabilityScoreList>() {
+			@Override
+			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
+				return Float.compare(score2.getCardLocation(), score1.getCardLocation());
+			}
+		});
+	}
+
+	/*Will sort List<probabilityScoreList> object.cardProbabilityScore in descending order
+	* */
+	private void sortProbabilityScoreDescending(List<probabilityScoreList> currentList) {
+		Collections.sort(currentList, new Comparator<probabilityScoreList>() {
+			@Override
+			public int compare(probabilityScoreList score1, probabilityScoreList score2) {
+				return Float.compare(score2.getCardProbabilityScore(), score1.getCardProbabilityScore());
+			}
+		});
+	}
+
 
 	private class probabilityScoreList {
 		int cardLocation;
@@ -138,20 +136,13 @@ public class PokerPlayer {
 					+ object.hand.getDiscardProbability(1) + ", " + object.hand.getDiscardProbability(2) + ", "
 					+ object.hand.getDiscardProbability(3) + ", " + object.hand.getDiscardProbability(4));
 			playNumber++;
-			object.hand.discard();
+			//object.hand.discard();
 		}
-		System.out.println(DeckOfCards.getInstance().size());
+		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 
-		playerList.get(0).discard();
-		playerList.get(1).discard();
-		playerList.get(2).discard();
-		playerList.get(3).discard();
-		playerList.get(4).discard();
-		playerList.get(5).discard();
-		playerList.get(6).discard();
-		playerList.get(7).discard();
-		playerList.get(8).discard();
-		playerList.get(9).discard();
+		for (int i = 0; i < playerList.size(); i++) {
+			playerList.get(i).discard();
+		}
 
 
 		playNumber = 1;
@@ -160,6 +151,6 @@ public class PokerPlayer {
 			playNumber++;
 		}
 
-		System.out.println(DeckOfCards.getInstance().size());
+		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 	}
 }
