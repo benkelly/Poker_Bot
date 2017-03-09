@@ -11,9 +11,12 @@ public class PokerPlayer {
 
 	private int MAX_HAND = 5;
 	private int MAX_DISCARD = 3;
-	public int currentHandScore = 0;
+
 	public HandOfCards hand = new HandOfCards();
+
+	public int currentHandScore = 0;
 	public int totalDiscardCount = 0;
+	public int totalTakeCardCount = 0;
 
 
 	public PokerPlayer() {
@@ -42,6 +45,7 @@ public class PokerPlayer {
 		if(hand.size() < MAX_HAND) {
 			for (int i = hand.size(); i < MAX_HAND; i++) {
 				hand.add(DeckOfCards.getInstance().dealNext());
+				totalTakeCardCount++;
 			}
 		}
 	}
@@ -68,14 +72,12 @@ public class PokerPlayer {
 			if (object.getCardProbabilityScore() > 0) {
 				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
-				System.out.println("+******** remove " + object+"\t"+hand.get(object.cardLocation));
 				discardCount++;
 				totalDiscardCount++;
 			}
 		}
 		// to avoid index out of bounds, sort removeList into descending order and remove.
 		sortLocationDescending(removeList);
-		System.out.println("removeList: " + removeList);
 
 		for (int i = 0; i < removeList.size() ; i++) {
 			if (removeList.get(i) != null) {
