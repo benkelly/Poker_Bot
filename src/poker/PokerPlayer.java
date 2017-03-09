@@ -10,8 +10,10 @@ import java.util.*;
 public class PokerPlayer {
 
 	private int MAX_HAND = 5;
+	private int MAX_DISCARD = 3;
 	public int currentHandScore = 0;
 	public HandOfCards hand = new HandOfCards();
+	public int totalDiscardCount = 0;
 
 
 	public PokerPlayer() {
@@ -37,10 +39,11 @@ public class PokerPlayer {
 	/*private method collects new card from deck after discarding.
 	* */
 	synchronized public void getNewCardsForHand() {
-		for (int i = hand.size(); i < MAX_HAND; i++) {
-			hand.add(DeckOfCards.getInstance().dealNext());
+		if(hand.size() < MAX_HAND) {
+			for (int i = hand.size(); i < MAX_HAND; i++) {
+				hand.add(DeckOfCards.getInstance().dealNext());
+			}
 		}
-
 	}
 
 	/*private method gets and returns hands current score and updates currentHandScore
@@ -61,17 +64,20 @@ public class PokerPlayer {
 		sortProbabilityScoreDescending(scoreList);
 		List<probabilityScoreList> removeList = new ArrayList<>();
 		for (probabilityScoreList object : scoreList) {
-			if (discardCount >= 3) { break; }
-			else if (object.getCardProbabilityScore() > 0) {
+			if (discardCount >= MAX_DISCARD ) { break; }
+			if (object.getCardProbabilityScore() > 0) {
 				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
+				System.out.println("+******** remove " + object+"\t"+hand.get(object.cardLocation));
 				discardCount++;
+				totalDiscardCount++;
 			}
 		}
 		// to avoid index out of bounds, sort removeList into descending order and remove.
 		sortLocationDescending(removeList);
+		System.out.println("removeList: " + removeList);
 
-		for (int i = 0; i < removeList.size() - 1; i++) {
+		for (int i = 0; i < removeList.size() ; i++) {
 			if (removeList.get(i) != null) {
 				hand.removeCard(removeList.get(i).cardLocation);
 			}

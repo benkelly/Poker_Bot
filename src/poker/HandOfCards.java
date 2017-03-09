@@ -99,8 +99,6 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Returns string of name of best hand type.
 	*   ~ generateHandType() needed to run first!
 	*
-	*
-	*
 	* */
 	public String getBestHandTypeName() {
 		if(isRoyalFlush) return "Royal Flush";
