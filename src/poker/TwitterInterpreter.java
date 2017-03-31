@@ -1,5 +1,6 @@
 package poker;
 
+import sun.plugin.util.UserProfile;
 import twitter4j.*;
 import twitter4j.conf.*;
 
@@ -17,7 +18,7 @@ public class TwitterInterpreter {
 	private static TwitterInterpreter instance;
 
 	/* API Keys to our Twitter account (https://twitter.com/poker__bot)
-	 *  Remove keys in future if keys if showing off this code to potential employers ppl
+	 *  Remove keys in future if keys if showing off this code to potential employers/ppl
 	 *  or you'll get shanked my me.
 	 *  Love ben XXX
 	* */
@@ -26,8 +27,8 @@ public class TwitterInterpreter {
 	private final String ACCESS_TOKEN = "824278872212512768-zibsklC9KmsURIg0APsDFEvQMIWAXWe";
 	private final String ACCESS_TOKEN_SECRET = "BpIBU1x5t4sHf9ZJ5zNduWDngKDxn9vsQd2Yr3RHw42JA";
 
-	private Twitter twitter;
-
+	private Twitter twitter; // thread safe, initialised in setTwitterInstance()
+	private TwitterStream twitterStream;
 
 	public static TwitterInterpreter getInstance()
 	{
@@ -36,11 +37,12 @@ public class TwitterInterpreter {
 	}
 	public TwitterInterpreter() {
 		setTwitterInstance();
+		setTwitterStreamInstance();
 	}
 
 	/* initialises app with twitter api keys and makes TwitterFactory instance
 	* */
-	private void setTwitterInstance() {
+	private final void setTwitterInstance() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 				.setOAuthConsumerKey(CONSUMER_KEY)
@@ -48,8 +50,23 @@ public class TwitterInterpreter {
 				.setOAuthAccessToken(ACCESS_TOKEN)
 				.setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
 		TwitterFactory tf = new TwitterFactory(cb.build());
-		 twitter = tf.getInstance();
+		twitter = tf.getInstance();
 	}
+	/* initialises app with twitter api keys and makes TwitterStreamFactory instance
+	* */
+	private final void setTwitterStreamInstance() {
+		ConfigurationBuilder cb = new ConfigurationBuilder();
+		cb.setDebugEnabled(true)
+				.setOAuthConsumerKey(CONSUMER_KEY)
+				.setOAuthConsumerSecret(CONSUMER_SECRET)
+				.setOAuthAccessToken(ACCESS_TOKEN)
+				.setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
+		TwitterStreamFactory tsf = new TwitterStreamFactory(cb.build());
+		twitterStream = tsf.getInstance();
+
+	}
+
+
 
 	private void postTweet(String strStatus) {
 		Status status = null;
@@ -102,7 +119,6 @@ public class TwitterInterpreter {
 
 	private void repliesToBot() {
 		List<Status> statuses = null;
-
 		try {
 			statuses = twitter.getMentionsTimeline();
 		} catch (TwitterException e) {
@@ -113,12 +129,36 @@ public class TwitterInterpreter {
 		}
 	}
 
+	private void repliesToBotLoop() {
+
+		do {
+			final long startTime = System.nanoTime();
+
+			this.repliesToBot();
+
+			final long duration = System.nanoTime() - startTime;
+			if ((5500 - duration / 1000000) > 0) {
+				//logger.info("Sleep for " + (6000 - duration / 1000000) + " miliseconds");
+				try {
+					Thread.sleep((5500 - duration / 1000000));
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		} while (true);
+
+	}
+
+
+	private void publicStreamReader() {
+
+	}
 
 
 
 	/*Class testing method
 	* */
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		System.out.println("poker.TwitterInterpreter.java!");
 
 		TwitterInterpreter ti = new TwitterInterpreter();
@@ -127,7 +167,8 @@ public class TwitterInterpreter {
 		//ti.getTimeline();
 		//ti.sendDirectMessages("b3nkelly", "hey sxc ;)");
 		//ti.searchForTweets("trump");
-		ti.repliesToBot();
+		//ti.repliesToBot();
+		ti.repliesToBotLoop();
 
 	}
 }
