@@ -29,6 +29,8 @@ public class TwitterInterpreter {
 
 	private Twitter twitter; // thread safe, initialised in setTwitterInstance()
 	private TwitterStream twitterStream;
+	private Paging repliesPage = new Paging();
+
 
 	public static TwitterInterpreter getInstance()
 	{
@@ -120,17 +122,17 @@ public class TwitterInterpreter {
 	private void repliesToBot() {
 		List<Status> statuses = null;
 		try {
-			statuses = twitter.getMentionsTimeline();
+			statuses = twitter.getMentionsTimeline(repliesPage);
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
 		for (Status status : statuses) {
 			System.out.println("@" + status.getUser().getScreenName() + " : " + status.getText());
+			repliesPage.setSinceId(status.getId());
 		}
 	}
 
 	private void repliesToBotLoop() {
-
 		do {
 			final long startTime = System.nanoTime();
 
@@ -146,7 +148,6 @@ public class TwitterInterpreter {
 				}
 			}
 		} while (true);
-
 	}
 
 

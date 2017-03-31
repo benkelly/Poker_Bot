@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/PlayingCard.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/PlayingCard.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
     </list>
@@ -97,8 +95,8 @@
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-24">
-              <caret line="56" column="18" lean-forward="false" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+            <state relative-caret-position="66">
+              <caret line="134" column="33" lean-forward="false" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -879,14 +877,7 @@
       <workItem from="1486982762819" duration="643000" />
       <workItem from="1487150639591" duration="93100000" />
       <workItem from="1488978619838" duration="5665000" />
-      <workItem from="1490811895853" duration="17167000" />
-    </task>
-    <task id="LOCAL-00002" summary="added shuffle, deck class looks nicer XX">
-      <created>1486418705058</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1486418705058</updated>
+      <workItem from="1490811895853" duration="18567000" />
     </task>
     <task id="LOCAL-00003" summary="PlayingCard dealNext() made">
       <created>1486421253665</created>
@@ -1224,11 +1215,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490915077861</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="added a bit more to TwitterInterpreter :^)">
+      <created>1490965826266</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1490965826270</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177789000" />
+    <option name="totallyTimeSpent" value="179189000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="23" width="1413" height="877" extended-state="0" />
@@ -1243,7 +1241,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.502477" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1284,7 +1282,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="DeckofCards, tested in main class" />
     <MESSAGE value="Tested more, in main class" />
     <MESSAGE value="~ added deck reshuffle if 52 cards returned to deck.&#10;~ unable to deal more than 52 cards from deck." />
     <MESSAGE value="Started HandOfCards class. started most of its methods" />
@@ -1309,7 +1306,8 @@
     <MESSAGE value="assignment_6 improved :^)" />
     <MESSAGE value="Initial group comment. &#10;classes from assignments added." />
     <MESSAGE value="connected twitter account to TwitterInterpreter. added twitter4j libs to project ( ask me if you need help adding them as dependents in your IDE :^) )&#10;&#10;methods made:&#10;~ postTweet( str)&#10;~ show timeline&#10;~ search public tweets (str)&#10;~ show mentions&#10;~ send DM (str username, str msg)" />
-    <option name="LAST_COMMIT_MESSAGE" value="connected twitter account to TwitterInterpreter. added twitter4j libs to project ( ask me if you need help adding them as dependents in your IDE :^) )&#10;&#10;methods made:&#10;~ postTweet( str)&#10;~ show timeline&#10;~ search public tweets (str)&#10;~ show mentions&#10;~ send DM (str username, str msg)" />
+    <MESSAGE value="added a bit more to TwitterInterpreter :^)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a bit more to TwitterInterpreter :^)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1741,8 +1739,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-24">
-          <caret line="56" column="18" lean-forward="false" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        <state relative-caret-position="66">
+          <caret line="134" column="33" lean-forward="false" selection-start-line="134" selection-start-column="17" selection-end-line="134" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
