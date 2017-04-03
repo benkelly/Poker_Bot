@@ -1,6 +1,5 @@
 package poker;
 
-import sun.plugin.util.UserProfile;
 import twitter4j.*;
 import twitter4j.conf.*;
 

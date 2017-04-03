@@ -1,5 +1,7 @@
 package poker;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.*;
 
 /**
@@ -17,12 +19,21 @@ public class PokerPlayer {
 
 	public HandOfCards hand = new HandOfCards();
 
+	// basic stats
+	private String playerName = "";
+	private int playerChipAmount = 0;
+
 	public int currentHandScore = 0;
 	public int totalDiscardCount = 0;
 	public int totalTakeCardCount = 0;
 
+	// current round variables
+	private boolean paidStake = false;
 
-	public PokerPlayer() {
+	public PokerPlayer(String name, int chips) {
+		playerName = name;
+		playerChipAmount = chips;
+
 		getInitialHand();
 		getCurrentHandInfo();
 	}
@@ -137,15 +148,41 @@ public class PokerPlayer {
 	}
 
 
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public int getPlayerChipAmount() {
+		return playerChipAmount;
+	}
+
+	public int getCurrentHandScore() {
+		hand.generateHandType();
+		return hand.getGameValue();
+	}
+
+	public void payCurrentstake() {
+		//playerChipAmount -
+		//TODO
+	}
+
+	public boolean isPaidStake() {
+		return paidStake;
+	}
+
+	public void resetPaidStake() {
+		paidStake = false;
+	}
+
 	/*Class testing method
-	* */
+				* */
 	public static void main(String[] args) {
 		System.out.println("poker.PokerPlayer.java!");
 		//System.out.println("deck: "+DeckOfCards.getInstance());
 
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer());
+			playerList.add(new PokerPlayer("player:"+j, 3000));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {
