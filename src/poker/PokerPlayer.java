@@ -161,9 +161,13 @@ public class PokerPlayer {
 		return hand.getGameValue();
 	}
 
-	public void payCurrentstake() {
-		//playerChipAmount -
-		//TODO
+	public void payCurrentStake() {
+		if(playerChipAmount >= PokerGame.getInstance().getCurrentRoundsHeldStake()) {
+			playerChipAmount -= PokerGame.getInstance().getCurrentRoundsHeldStake();
+			PokerGame.getInstance().addToCurrentRoundsHeldStake(PokerGame.getInstance().getCurrentRoundsHeldStake());
+			paidStake = true;
+		}
+		System.out.println(this.getPlayerName()+"unable to payCurrentStake...");
 	}
 
 	public boolean isPaidStake() {
@@ -173,6 +177,23 @@ public class PokerPlayer {
 	public void resetPaidStake() {
 		paidStake = false;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	/*Class testing method
 				* */

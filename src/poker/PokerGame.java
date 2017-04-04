@@ -11,6 +11,11 @@ import java.util.ArrayList;
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
 public class PokerGame extends ArrayList<PokerPlayer> {
+	private static PokerGame instance;
+
+	// fixed game stats
+	private static final int MAX_BOTS = 3;
+	private static final int INITIAL_CHIP_AMOUNT = 3000;
 
 	// game stats
 	private boolean gameOver = false;
@@ -24,15 +29,25 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	public PokerGame() {
 		setPokerTable();
+
+
+
+
+	}
+
+	public static PokerGame getInstance()
+	{
+		if (instance == null) { instance = new PokerGame();}
+		return instance;
 	}
 
 	/*adds poker players to game.
 	* */
 	private void setPokerTable() {
-		this.add(new PokerPlayer("human", 3000)); // add human user.
+		this.add(new PokerPlayer("human", INITIAL_CHIP_AMOUNT)); // add human user.
 		// add bots
-		for (int j = 0; j < 3; j++) {
-			this.add(new PokerPlayer("bot: "+j, 3000));
+		for (int j = 0; j < MAX_BOTS; j++) {
+			this.add(new PokerPlayer("bot: "+j, INITIAL_CHIP_AMOUNT));
 		}
 	}
 
@@ -76,6 +91,31 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	public int getRoundCount() {
 		return roundCount;
 	}
+
+	/*returns int of current round's stake value for players
+	* */
+	public int getCurrentRoundsHeldStake() {
+		return currentRoundsHeldStake;
+	}
+
+	/*pokerPlayers able to add their stake in conjunction with PokerPlayer.payCurrentStake()
+	* */
+	public void addToCurrentRoundsHeldStake(int addStake) {
+		currentRoundsHeldStake += addStake;
+	}
+
+	/*returns int of total amount of betted stake of the current hand
+	* */
+	public int getCurrentRoundsStakeAmount() {
+		return currentRoundsStakeAmount;
+	}
+
+
+
+
+
+
+
 
 
 	/*Class testing method
