@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * Eoin Kerr - 13366801 - eoin.kerr@ucdconnect.ie
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
+
 public class PokerGame extends ArrayList<PokerPlayer> {
 	private static PokerGame instance;
 
@@ -29,9 +30,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	public PokerGame() {
 		setPokerTable();
-
-
-
 
 	}
 
@@ -109,13 +107,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	public int getCurrentRoundsStakeAmount() {
 		return currentRoundsStakeAmount;
 	}
-
-
-
-
-
-
-
 
 
 	/*Class testing method

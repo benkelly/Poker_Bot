@@ -20,7 +20,7 @@ public class PokerPlayer {
 	public HandOfCards hand = new HandOfCards();
 
 	// basic stats
-	private String playerName = "";
+	String playerName = "";
 	private int playerChipAmount = 0;
 
 	public int currentHandScore = 0;
@@ -37,6 +37,8 @@ public class PokerPlayer {
 		getInitialHand();
 		getCurrentHandInfo();
 	}
+
+
 
 	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
 	* */
@@ -177,18 +179,6 @@ public class PokerPlayer {
 	public void resetPaidStake() {
 		paidStake = false;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
