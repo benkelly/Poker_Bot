@@ -29,11 +29,15 @@ public class PlayerBot extends PokerPlayer {
 		playerName = generateName();
 	}
 
+	/*returns string of a random name generated form a list of names.
+	* */
 	private String generateName() {
 		String randomFirstName = getNameFromFile(FIRST_NAMES_LIST);
 		String randomLastName = getNameFromFile(LAST_NAMES_LIST);
 		return randomFirstName+" "+randomLastName;
 	}
+	/*used in generateName()
+	* */
 	private String getNameFromFile(String inputFile) {
 		BufferedReader reader = null;
 		try {
