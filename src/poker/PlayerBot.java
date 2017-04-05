@@ -1,6 +1,5 @@
 package poker;
 
-import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,8 +19,8 @@ import java.util.Random;
 public class PlayerBot extends PokerPlayer {
 
 	// fixed stats
-	private static String FIRST_NAMES_LIST = "resources/firstNames.txt";
-	private static String LAST_NAMES_LIST = "resources/lastNames.txt";
+	private static final String FIRST_NAMES_LIST = "resources/firstNames.txt";
+	private static final String LAST_NAMES_LIST = "resources/lastNames.txt";
 
 
 	public PlayerBot(int chips) {
@@ -63,6 +62,12 @@ public class PlayerBot extends PokerPlayer {
 		Random r = new Random();
 		return lines.get(r.nextInt(lines.size()));
 	}
+
+
+
+
+
+
 
 
 	/*Class testing method

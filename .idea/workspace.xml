@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="started a bit for pokerBot!&#10;&#10;made a random generate name from a large list">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,14 +56,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="31" column="69" lean-forward="false" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+            <state relative-caret-position="262">
+              <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1518#1526#0" expanded="true" />
+                <element signature="e#1508#1516#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,18 +72,17 @@
       <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+            <state relative-caret-position="381">
+              <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4190#4191#0" expanded="true" />
-                <element signature="e#4214#4215#0" expanded="true" />
-                <element signature="e#4251#4252#0" expanded="true" />
-                <element signature="e#4281#4282#0" expanded="true" />
-                <element signature="e#4813#4814#0" expanded="true" />
-                <element signature="e#4836#4837#0" expanded="true" />
-                <element signature="e#4869#4870#0" expanded="true" />
-                <element signature="e#4893#4894#0" expanded="true" />
+                <element signature="e#4174#4175#0" expanded="true" />
+                <element signature="e#4198#4199#0" expanded="true" />
+                <element signature="e#4235#4236#0" expanded="true" />
+                <element signature="e#4265#4266#0" expanded="true" />
+                <element signature="e#4797#4798#0" expanded="true" />
+                <element signature="e#4820#4821#0" expanded="true" />
+                <element signature="e#4853#4854#0" expanded="true" />
+                <element signature="e#4877#4878#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -89,32 +91,32 @@
       <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+            <state relative-caret-position="465">
+              <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
               <folding>
                 <element signature="e#828#841#0" expanded="true" />
-                <element signature="e#2279#2280#0" expanded="true" />
-                <element signature="e#2301#2302#0" expanded="true" />
-                <element signature="e#2371#2372#0" expanded="true" />
-                <element signature="e#2395#2396#0" expanded="true" />
-                <element signature="e#2502#2503#0" expanded="true" />
-                <element signature="e#2538#2539#0" expanded="true" />
-                <element signature="e#2692#2693#0" expanded="true" />
-                <element signature="e#2733#2734#0" expanded="true" />
-                <element signature="e#2851#2852#0" expanded="true" />
-                <element signature="e#2889#2890#0" expanded="true" />
-                <element signature="e#2963#2964#0" expanded="true" />
-                <element signature="e#3013#3014#0" expanded="true" />
+                <element signature="e#2267#2268#0" expanded="true" />
+                <element signature="e#2289#2290#0" expanded="true" />
+                <element signature="e#2359#2360#0" expanded="true" />
+                <element signature="e#2383#2384#0" expanded="true" />
+                <element signature="e#2490#2491#0" expanded="true" />
+                <element signature="e#2526#2527#0" expanded="true" />
+                <element signature="e#2680#2681#0" expanded="true" />
+                <element signature="e#2721#2722#0" expanded="true" />
+                <element signature="e#2839#2840#0" expanded="true" />
+                <element signature="e#2877#2878#0" expanded="true" />
+                <element signature="e#2950#2951#0" expanded="true" />
+                <element signature="e#3000#3001#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="180">
+              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding>
                 <element signature="e#432#433#0" expanded="true" />
                 <element signature="e#482#483#0" expanded="true" />
@@ -126,20 +128,8 @@
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
+            <state relative-caret-position="-2244">
               <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HandOfCards.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1215">
-              <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -238,8 +228,8 @@
         <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
         <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       </list>
     </option>
   </component>
@@ -325,7 +315,7 @@
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="xpath.settings" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -893,14 +883,7 @@
       <workItem from="1486982762819" duration="643000" />
       <workItem from="1487150639591" duration="93100000" />
       <workItem from="1488978619838" duration="5665000" />
-      <workItem from="1490811895853" duration="31206000" />
-    </task>
-    <task id="LOCAL-00007" summary="~ added deck reshuffle if 52 cards returned to deck.&#10;~ unable to deal more than 52 cards from deck.">
-      <created>1486506207307</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1486506207307</updated>
+      <workItem from="1490811895853" duration="36249000" />
     </task>
     <task id="LOCAL-00008" summary="Started HandOfCards class. started most of its methods">
       <created>1486635313741</created>
@@ -1238,11 +1221,18 @@
       <option name="project" value="LOCAL" />
       <updated>1491396054638</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="started a bit for pokerBot!&#10;&#10;made a random generate name from a large list">
+      <created>1491396191747</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1491396191748</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191828000" />
+    <option name="totallyTimeSpent" value="196871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="23" width="1413" height="877" extended-state="0" />
@@ -1369,15 +1359,14 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4190#4191#0" expanded="true" />
-            <element signature="e#4214#4215#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
-            <element signature="e#4281#4282#0" expanded="true" />
-            <element signature="e#4813#4814#0" expanded="true" />
-            <element signature="e#4836#4837#0" expanded="true" />
-            <element signature="e#4869#4870#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#4174#4175#0" expanded="true" />
+            <element signature="e#4198#4199#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4265#4266#0" expanded="true" />
+            <element signature="e#4797#4798#0" expanded="true" />
+            <element signature="e#4820#4821#0" expanded="true" />
+            <element signature="e#4853#4854#0" expanded="true" />
+            <element signature="e#4877#4878#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1456,15 +1445,14 @@
         <state relative-caret-position="270">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4190#4191#0" expanded="true" />
-            <element signature="e#4214#4215#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
-            <element signature="e#4281#4282#0" expanded="true" />
-            <element signature="e#4813#4814#0" expanded="true" />
-            <element signature="e#4836#4837#0" expanded="true" />
-            <element signature="e#4869#4870#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#4174#4175#0" expanded="true" />
+            <element signature="e#4198#4199#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4265#4266#0" expanded="true" />
+            <element signature="e#4797#4798#0" expanded="true" />
+            <element signature="e#4820#4821#0" expanded="true" />
+            <element signature="e#4853#4854#0" expanded="true" />
+            <element signature="e#4877#4878#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1680,14 +1668,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayingCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/twitter4j/twitter4j-core-4.0.4.jar!/twitter4j/conf/ConfigurationBuilder.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -1701,37 +1681,6 @@
         <state relative-caret-position="388">
           <caret line="274" column="48" lean-forward="false" selection-start-line="274" selection-start-column="48" selection-end-line="274" selection-end-column="87" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1215">
-          <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1753,53 +1702,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state relative-caret-position="262">
+          <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4190#4191#0" expanded="true" />
-            <element signature="e#4214#4215#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
-            <element signature="e#4281#4282#0" expanded="true" />
-            <element signature="e#4813#4814#0" expanded="true" />
-            <element signature="e#4836#4837#0" expanded="true" />
-            <element signature="e#4869#4870#0" expanded="true" />
-            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#1508#1516#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+          <folding>
+            <element signature="e#4174#4175#0" expanded="true" />
+            <element signature="e#4198#4199#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#4265#4266#0" expanded="true" />
+            <element signature="e#4797#4798#0" expanded="true" />
+            <element signature="e#4820#4821#0" expanded="true" />
+            <element signature="e#4853#4854#0" expanded="true" />
+            <element signature="e#4877#4878#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayingCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="3" lean-forward="false" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="57" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="109" column="0" lean-forward="false" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
+        <state relative-caret-position="465">
+          <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
           <folding>
             <element signature="e#828#841#0" expanded="true" />
-            <element signature="e#2279#2280#0" expanded="true" />
-            <element signature="e#2301#2302#0" expanded="true" />
-            <element signature="e#2371#2372#0" expanded="true" />
-            <element signature="e#2395#2396#0" expanded="true" />
-            <element signature="e#2502#2503#0" expanded="true" />
-            <element signature="e#2538#2539#0" expanded="true" />
-            <element signature="e#2692#2693#0" expanded="true" />
-            <element signature="e#2733#2734#0" expanded="true" />
-            <element signature="e#2851#2852#0" expanded="true" />
-            <element signature="e#2889#2890#0" expanded="true" />
-            <element signature="e#2963#2964#0" expanded="true" />
-            <element signature="e#3013#3014#0" expanded="true" />
+            <element signature="e#2267#2268#0" expanded="true" />
+            <element signature="e#2289#2290#0" expanded="true" />
+            <element signature="e#2359#2360#0" expanded="true" />
+            <element signature="e#2383#2384#0" expanded="true" />
+            <element signature="e#2490#2491#0" expanded="true" />
+            <element signature="e#2526#2527#0" expanded="true" />
+            <element signature="e#2680#2681#0" expanded="true" />
+            <element signature="e#2721#2722#0" expanded="true" />
+            <element signature="e#2839#2840#0" expanded="true" />
+            <element signature="e#2877#2878#0" expanded="true" />
+            <element signature="e#2950#2951#0" expanded="true" />
+            <element signature="e#3000#3001#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="31" column="69" lean-forward="false" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+        <state relative-caret-position="-2244">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1518#1526#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding>
+            <element signature="e#432#433#0" expanded="true" />
+            <element signature="e#482#483#0" expanded="true" />
           </folding>
         </state>
       </provider>

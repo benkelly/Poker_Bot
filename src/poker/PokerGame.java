@@ -31,6 +31,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	public PokerGame() {
 		setPokerTable();
 
+
 	}
 
 	public static PokerGame getInstance()
@@ -45,7 +46,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		this.add(new PokerPlayer("human", INITIAL_CHIP_AMOUNT)); // add human user.
 		// add bots
 		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PokerPlayer("bot: "+j, INITIAL_CHIP_AMOUNT));
+			this.add(new PlayerBot(INITIAL_CHIP_AMOUNT));
 		}
 	}
 
@@ -107,7 +108,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	public int getCurrentRoundsStakeAmount() {
 		return currentRoundsStakeAmount;
 	}
-
 
 	/*Class testing method
 	* */

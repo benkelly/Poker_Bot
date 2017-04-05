@@ -1,6 +1,5 @@
 package poker;
 
-import com.sun.xml.internal.bind.v2.TODO;
 
 import java.util.*;
 
@@ -14,8 +13,8 @@ import java.util.*;
  */
 public class PokerPlayer {
 
-	private int MAX_HAND = 5;
-	private int MAX_DISCARD = 3;
+	private static final int MAX_HAND = 5;
+	private static final int MAX_DISCARD = 3;
 
 	public HandOfCards hand = new HandOfCards();
 
@@ -186,7 +185,7 @@ public class PokerPlayer {
 
 
 	/*Class testing method
-				* */
+	* */
 	public static void main(String[] args) {
 		System.out.println("poker.PokerPlayer.java!");
 		//System.out.println("deck: "+DeckOfCards.getInstance());
