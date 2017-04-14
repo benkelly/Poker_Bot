@@ -54,9 +54,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private void currentRoundPlayerOptions() {
 		payAnteFee(currentRoundsAnteAmount); // players pay their ante to enter game.
 
-		for (PokerPlayer player : this) { // players choose card discard options
+/*		for (PokerPlayer player : this) { // players choose card discard options
 			player.playersHandOptions();
-		}
+		}*/
 
 
 

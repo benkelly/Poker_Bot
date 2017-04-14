@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Group: @poker_bot
@@ -18,7 +20,7 @@ public class PokerPlayer {
 
 	private static final int MAX_HAND = 5;
 	private static final int MAX_DISCARD = 3;
-	
+
 	private DeckOfCards gameDeck;
 	private PokerGame pokerGame;
 
@@ -74,27 +76,47 @@ public class PokerPlayer {
 
 		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "+hand.getBestHandTypeName());
 		String inputStr = getConsoleInput();
-		if(inputStr.toLowerCase().equals("auto discard") | inputStr.toLowerCase().equals("a") | inputStr.toLowerCase().equals("auto") ) {
-			discard();
+
+		if(inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a") | inputStr.toLowerCase().contains("auto") ) {
+			if(inputStr.matches(".*\\d+.*")) { // if str has number
+				String isStrInt = extractIntFromString(inputStr);
+				int discardAmount = Integer.parseInt(isStrInt);
+				if (discardAmount < MAX_DISCARD && discardAmount > 0) {
+					discard(discardAmount);
+				}
+				else
+					discard();
+			}
+			else {
+				discard();
+			}
 			getNewCardsForHand();
 		}
 
 
+		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "+hand.getBestHandTypeName());
 	}
 
 
 
 
 	public void playersBettingOptions() {
-		System.out.println(this.getPlayerName()+": your current hand is: "+hand+"");
+		System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
 		String inputStr = getConsoleInput();
-			if(inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps") | inputStr.toLowerCase().equals("pay stake") ) {
-				payCurrentStake();
+		if (inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps") | inputStr.toLowerCase().equals("pay stake")) {
+			payCurrentStake();
+		}
+
+		if (inputStr.toLowerCase().contains("increase") | inputStr.toLowerCase().contains("i") | inputStr.toLowerCase().contains("r")
+				| inputStr.toLowerCase().contains("rise")) {
+			System.out.println("fjdsanjdsnfdska;fdslfkjnadsfkljdsfkjlnxz,.cmn");
+			if (inputStr.matches(".*\\d+.*")) { // if str has number
+				String isStrInt = extractIntFromString(inputStr);
+				increaseStake(Integer.parseInt(isStrInt));
+				System.out.println(Integer.parseInt(isStrInt));
+
 			}
-
-
-
-
+		}
 	}
 
 
@@ -124,7 +146,7 @@ public class PokerPlayer {
 	synchronized public int discard() {
 		return discard(MAX_DISCARD);
 	}
-		synchronized public int discard(int discardAmount) {
+	synchronized public int discard(int discardAmount) {
 		if(discardAmount > MAX_DISCARD) { discardAmount = MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();
@@ -238,7 +260,7 @@ public class PokerPlayer {
 				int stakeDiff = amount - pokerGame.getCurrentRoundsHeldStake();
 				playerChipAmount -= amount;
 				pokerGame.addToCurrentRoundsHeldStake(amount);
-
+				pokerGame.setCurrentRoundsStakeAmount(amount);
 				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
 
 				currentStakePaid = amount;
@@ -322,6 +344,23 @@ public class PokerPlayer {
 		}
 	}
 
+	public static String extractIntFromString(final String str) {
+
+		if(str == null || str.isEmpty()) return "";
+
+		StringBuilder sb = new StringBuilder();
+		boolean found = false;
+		for(char c : str.toCharArray()){
+			if(Character.isDigit(c)){
+				sb.append(c);
+				found = true;
+			}
+			else if(found) {
+				break;
+			}
+		}
+		return sb.toString();
+	}
 
 
 	/*Class testing method
