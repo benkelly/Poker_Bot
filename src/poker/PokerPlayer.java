@@ -43,6 +43,8 @@ public class PokerPlayer {
 		playerChipAmount = chips;
 		pokerGame = game;
 		gameDeck = deck;
+
+
 		getInitialHand();
 		getCurrentHandInfo();
 	}

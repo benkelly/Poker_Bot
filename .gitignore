@@ -1,12 +1,4 @@
 
-*.class
+*.DS_Store
 
 *.class
-
-*.class
-
-out/production/COMP30050/poker/Main.class
-
-out/production/COMP30050/poker/PlayingCard.class
-
-out/production/COMP30050/.DS_Store
