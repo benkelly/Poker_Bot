@@ -20,6 +20,7 @@ public class PokerPlayer {
 	private static final int MAX_DISCARD = 3;
 	
 	private DeckOfCards gameDeck;
+	private PokerGame pokerGame;
 
 	public HandOfCards hand = new HandOfCards();
 
@@ -37,9 +38,10 @@ public class PokerPlayer {
 	// current round variables
 	private boolean paidStake = false;
 
-	public PokerPlayer(String name,DeckOfCards deck,  int chips) {
+	public PokerPlayer(String name,PokerGame game, DeckOfCards deck,  int chips) {
 		playerName = name;
 		playerChipAmount = chips;
+		pokerGame = game;
 		gameDeck = deck;
 		getInitialHand();
 		getCurrentHandInfo();
@@ -62,9 +64,9 @@ public class PokerPlayer {
 	}
 
 	public void playersOptions() {
-		System.out.println("your current hand is: "+hand+"");
+		System.out.println(this.getPlayerName()+": your current hand is: "+hand+"");
 		String inputStr = getConsoleInput();
-			if(inputStr.toLowerCase() == "paystake" | inputStr.toLowerCase() == "ps" | inputStr.toLowerCase() == "pay stake" ) {
+			if(inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps") | inputStr.toLowerCase().equals("pay stake") ) {
 				payCurrentStake();
 			}
 
@@ -184,28 +186,33 @@ public class PokerPlayer {
 	}
 
 	public void payCurrentStake() {
-		if(playerChipAmount >= PokerGame.getInstance().getCurrentRoundsHeldStake()) {
-			playerChipAmount -= PokerGame.getInstance().getCurrentRoundsHeldStake();
-			PokerGame.getInstance().addToCurrentRoundsHeldStake(PokerGame.getInstance().getCurrentRoundsHeldStake());
-			currentStakePaid = PokerGame.getInstance().getCurrentRoundsHeldStake();
+		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
+		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
+
+		if(playerChipAmount >= pokerGame.getCurrentRoundsStakeAmount()) {
+			playerChipAmount -= pokerGame.getCurrentRoundsStakeAmount();
+			pokerGame.addToCurrentRoundsHeldStake(pokerGame.getCurrentRoundsStakeAmount());
+			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
 			paidStake = true;
-			PokerGame.getInstance().addToCurRoundPlayerList(this); // add self to cur hand/round list
+			pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
+			System.out.println(this.getPlayerName()+"payCurrentStake paid");
+
 		}
 		System.out.println(this.getPlayerName()+"unable to payCurrentStake...");
 	}
 
 	public void increaseStake(int amount) {
 		if(playerChipAmount >= amount) {
-			if (amount > PokerGame.getInstance().getCurrentRoundsHeldStake()) {
-				int stakeDiff = amount - PokerGame.getInstance().getCurrentRoundsHeldStake();
+			if (amount > pokerGame.getCurrentRoundsHeldStake()) {
+				int stakeDiff = amount - pokerGame.getCurrentRoundsHeldStake();
 				playerChipAmount -= amount;
-				PokerGame.getInstance().addToCurrentRoundsHeldStake(amount);
-				
-				PokerGame.getInstance().matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
-				
+				pokerGame.addToCurrentRoundsHeldStake(amount);
+
+				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
+
 				currentStakePaid = amount;
 				paidStake = true;
-				PokerGame.getInstance().addToCurRoundPlayerList(this); // add self to cur hand/round list
+				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 			}
 		}
 	}
@@ -218,17 +225,17 @@ public class PokerPlayer {
 
 		if(inputStr.toLowerCase() == "y" | inputStr.toLowerCase() =="ok" |inputStr.toLowerCase() == "yes") {
 			if(playerChipAmount >= stakeIncrease) {
-				PokerGame.getInstance().addToCurrentRoundsHeldStake(stakeIncrease);
+				pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
 				playerChipAmount -= stakeIncrease;
-				currentStakePaid = PokerGame.getInstance().getCurrentRoundsHeldStake();
-				
+				currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+
 			}
 			else{
-				PokerGame.getInstance().curRoundPlayerFolds(this);
+				pokerGame.curRoundPlayerFolds(this);
 			}
 		}
 		if(inputStr.toLowerCase() == "n" | inputStr.toLowerCase() == "nah" | inputStr.toLowerCase() == "no") {
-			PokerGame.getInstance().curRoundPlayerFolds(this);
+			pokerGame.curRoundPlayerFolds(this);
 		}
 	}
 
@@ -273,7 +280,7 @@ public class PokerPlayer {
 
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer("player:"+j, DeckOfCards.getInstance(), 3000));
+			playerList.add(new PokerPlayer("player:"+j,PokerGame.getInstance(),  DeckOfCards.getInstance(), 3000));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {

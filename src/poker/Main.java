@@ -18,7 +18,7 @@ public class Main {
 
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer("bot: "+j,DeckOfCards.getInstance(),  30000));
+			playerList.add(new PokerPlayer("bot: "+j,PokerGame.getInstance(), DeckOfCards.getInstance(),  30000));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {

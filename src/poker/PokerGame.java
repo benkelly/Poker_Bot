@@ -24,14 +24,16 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private int roundCount = 0;
 
 	// current round variables
-	private int currentRoundsStakeAmount = 0; // the current round cost
+	private int currentRoundsStakeAmount = 100; // the current round cost
 	private int currentRoundsHeldStake = 0; // the current pot (the ships on the table)
 	private ArrayList<PokerPlayer> curRoundPlayerList = new ArrayList<PokerPlayer>(); // player playing that current hand of poker
 
 
 	public PokerGame() {
 		setPokerTable();
-		gameDeck = new DeckOfCards();
+
+
+		currentRoundPlayerOptions();
 	}
 	public static PokerGame getInstance()
 	{
@@ -42,12 +44,22 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*adds poker players to game.
 	* */
 	private void setPokerTable() {
-		this.add(new PokerPlayer("human", gameDeck, INITIAL_CHIP_AMOUNT)); // add human user.
+		this.add(new PokerPlayer("human",this, gameDeck, INITIAL_CHIP_AMOUNT)); // add human user.
 		// add bots
 		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PlayerBot(gameDeck, INITIAL_CHIP_AMOUNT));
+			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
 		}
 	}
+
+	private void currentRoundPlayerOptions() {
+		for (PokerPlayer player : this) {
+			player.playersOptions();
+
+		}
+	}
+
+
+
 
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
@@ -130,8 +142,13 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		currentRoundsHeldStake += addStake;
 	}
 
+
+	public void setCurrentRoundsStakeAmount(int currentRoundsStakeAmount) {
+		this.currentRoundsStakeAmount = currentRoundsStakeAmount;
+	}
+
 	/*returns int of total amount of betted stake of the current hand
-	* */
+		* */
 	public int getCurrentRoundsStakeAmount() {
 		return currentRoundsStakeAmount;
 	}
@@ -145,9 +162,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		PokerGame pg = new PokerGame();
 		for (PokerPlayer object : pg) {
 			System.out.println(object.toString());
+			System.out.println(object.getPlayerChipAmount());
+
 		}
 		System.out.println(pg.gameDeck.getInstance().size());
 		System.out.println(pg.gameDeck.getInstance().toString());
 
-		}
+		System.out.println("getCurrentRoundsHeldStake: "+pg.getCurrentRoundsHeldStake());
+
+
+	}
 }
