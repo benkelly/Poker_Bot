@@ -35,7 +35,7 @@ public class Main {
 		for (int j = 0; j < 100; j++) {
 
 		for (int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).discard();
+			playerList.get(i).discard(3);
 			playerList.get(i).getNewCardsForHand();
 		}
 

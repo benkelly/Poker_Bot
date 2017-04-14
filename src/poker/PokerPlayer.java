@@ -34,6 +34,7 @@ public class PokerPlayer {
 	public int totalDiscardCount = 0;
 	public int totalTakeCardCount = 0;
 	public int totalRoundsWon = 0;
+	public int totalRoundsPlayed = 0;
 
 	// current round variables
 	private boolean paidStake = false;
@@ -65,7 +66,26 @@ public class PokerPlayer {
 
 	}
 
-	public void playersOptions() {
+	public void playersHandOptions() {
+
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "+hand.getBestHandTypeName());
+		String inputStr = getConsoleInput();
+		if(inputStr.toLowerCase().equals("auto discard") | inputStr.toLowerCase().equals("a") | inputStr.toLowerCase().equals("auto") ) {
+			discard();
+			getNewCardsForHand();
+		}
+
+
+	}
+
+
+
+
+	public void playersBettingOptions() {
 		System.out.println(this.getPlayerName()+": your current hand is: "+hand+"");
 		String inputStr = getConsoleInput();
 			if(inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps") | inputStr.toLowerCase().equals("pay stake") ) {
@@ -99,7 +119,13 @@ public class PokerPlayer {
 	}
 
 
+	/*auto discards cards based on their discard getDiscardProbability
+	* */
 	synchronized public int discard() {
+		return discard(MAX_DISCARD);
+	}
+		synchronized public int discard(int discardAmount) {
+		if(discardAmount > MAX_DISCARD) { discardAmount = MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();
 
@@ -108,7 +134,7 @@ public class PokerPlayer {
 		sortProbabilityScoreDescending(scoreList);
 		List<probabilityScoreList> removeList = new ArrayList<>();
 		for (probabilityScoreList object : scoreList) {
-			if (discardCount >= MAX_DISCARD ) { break; }
+			if (discardCount >= discardAmount ) { break; }
 			if (object.getCardProbabilityScore() > 0) {
 				gameDeck.getInstance().returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
@@ -203,6 +229,9 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName()+"unable to payCurrentStake...");
 	}
 
+	/*command to increase stake to stated amount
+	*
+	* */
 	public void increaseStake(int amount) {
 		if(playerChipAmount >= amount) {
 			if (amount > pokerGame.getCurrentRoundsHeldStake()) {
@@ -219,6 +248,8 @@ public class PokerPlayer {
 		}
 	}
 
+	/* previous players who betted will be asked to match the new stake or fold
+	* */
 	public void reRaiseStake(int stakeIncrease) {
 
 		System.out.println("do you want to re-raise of "+stakeIncrease+ " (y/n)?");
@@ -230,7 +261,6 @@ public class PokerPlayer {
 				pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
 				playerChipAmount -= stakeIncrease;
 				currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
-
 			}
 			else{
 				pokerGame.curRoundPlayerFolds(this);
@@ -241,6 +271,8 @@ public class PokerPlayer {
 		}
 	}
 
+	/*get keyboard input
+	* */
 	private String getConsoleInput() {
 		String str= "";
 		try{
@@ -255,9 +287,23 @@ public class PokerPlayer {
 		return str;
 	}
 
+	public void payAnteFee(int anteFee) {
+		if(playerChipAmount >= anteFee) {
+			pokerGame.addToCurrentRoundsHeldStake(anteFee);
+			playerChipAmount -= anteFee;
+			totalRoundsPlayed++;
+		}
+		else {
+			pokerGame.playerIsBankrupted(this);
+		}
+	}
+
+
+
 
 	public void receivesStake(int amount) {
 		playerChipAmount += amount;
+		totalRoundsWon++;
 	}
 
 
@@ -270,7 +316,11 @@ public class PokerPlayer {
 	}
 
 
-
+	private void getHandsDiscardProbability() {
+		for (int i = 0; i < MAX_HAND; i++) {
+			hand.getDiscardProbability(i);
+		}
+	}
 
 
 
@@ -295,7 +345,7 @@ public class PokerPlayer {
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 
 		for (int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).discard();
+			playerList.get(i).discard(MAX_DISCARD);
 			//playerList.get(i).getNewCardsForHand();
 		}
 

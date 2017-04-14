@@ -24,7 +24,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private int roundCount = 0;
 
 	// current round variables
-	private int currentRoundsStakeAmount = 100; // the current round cost
+	private int currentRoundsAnteAmount = 100; // the current round ante, entering fee
+	private int currentRoundsStakeAmount = currentRoundsAnteAmount; // the current round cost
 	private int currentRoundsHeldStake = 0; // the current pot (the ships on the table)
 	private ArrayList<PokerPlayer> curRoundPlayerList = new ArrayList<PokerPlayer>(); // player playing that current hand of poker
 
@@ -35,8 +36,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 		currentRoundPlayerOptions();
 	}
-	public static PokerGame getInstance()
-	{
+	public static PokerGame getInstance() {
 		if (instance == null) { instance = new PokerGame();}
 		return instance;
 	}
@@ -52,28 +52,43 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 	private void currentRoundPlayerOptions() {
-		for (PokerPlayer player : this) {
-			player.playersOptions();
+		payAnteFee(currentRoundsAnteAmount); // players pay their ante to enter game.
 
+		for (PokerPlayer player : this) { // players choose card discard options
+			player.playersHandOptions();
+		}
+
+
+
+		for (PokerPlayer player : this) { // players choose their betting options
+			player.playersBettingOptions();
 		}
 	}
 
-
-
+	/*player will pay enter fee if unable then bankrupted
+	* */
+	private void payAnteFee(int AnteFee) {
+		for (PokerPlayer player : this) {
+			player.payAnteFee(AnteFee);
+		}
+	}
 
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
 	* */
-	private void removePlayer(int number) {
-		if(number == 0) {
+	public void playerIsBankrupted(PokerPlayer player) {
+		if( this.get(0).getPlayerName().equals(player.getPlayerName())) {
 			gameOver = true;
 			System.out.println(this.get(0).getPlayerName()+" is bankrupt.... game over dude....");
 		}
-		this.remove(number);
-		System.out.println(this.get(number).getPlayerName()+" is bankrupt!");
+		else {
+			for (PlayingCard card : player.hand) {
+				gameDeck.returnCard(card);
+			}
+			this.remove(player);
+			System.out.println(player.getPlayerName() + " is bankrupt!");
+		}
 	}
-
-
 
 
 	private void getRoundwinner() {
@@ -90,8 +105,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		int index = 0;
 		for (PokerPlayer object : curRoundPlayerList) {
 			if (tempHighScore < object.getCurrentHandScore()) { // re-calcs all players current scores.
-			tempHighScore = object.getCurrentHandScore();
-			tempHighScorePlayerIndex = index;
+				tempHighScore = object.getCurrentHandScore();
+				tempHighScorePlayerIndex = index;
 			}
 			index++;
 		}
@@ -161,7 +176,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		// testing deck instance
 		PokerGame pg = new PokerGame();
 		for (PokerPlayer object : pg) {
-			System.out.println(object.toString());
+			object.hand.generateHandType();
+			System.out.println(object.toString()+"   "+object.hand.getBestHandTypeName());
 			System.out.println(object.getPlayerChipAmount());
 
 		}
