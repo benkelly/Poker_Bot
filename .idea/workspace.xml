@@ -1,12 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="started a bit for pokerBot!&#10;&#10;made a random generate name from a large list">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" />
+    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/10_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/10_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/10_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/10_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/2_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/2_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/2_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/2_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/3_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/3_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/3_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/3_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/4_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/4_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/4_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/4_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/5_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/5_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/5_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/5_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/6_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/6_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/6_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/6_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/7_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/7_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/7_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/7_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/8_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/8_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/8_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/8_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/9_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/9_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/9_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/9_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_spades2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/black_joker.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_clubs2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_diamonds2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_hearts2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_spades2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_clubs2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_diamonds2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_hearts2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/king_of_spades2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_clubs.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_clubs2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_diamonds.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_diamonds2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_hearts.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_hearts2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_spades.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_spades2.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/images/playing_cards/red_joker.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,7 +100,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
+            <state relative-caret-position="270">
               <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="17" />
               <folding />
             </state>
@@ -47,7 +110,7 @@
       <file leaf-file-name="DeckOfCards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
+            <state relative-caret-position="420">
               <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="33" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -59,11 +122,10 @@
       <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
+            <state relative-caret-position="330">
               <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1508#1516#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +134,8 @@
       <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+            <state relative-caret-position="2505">
+              <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
               <folding>
                 <element signature="e#4174#4175#0" expanded="true" />
                 <element signature="e#4198#4199#0" expanded="true" />
@@ -88,39 +150,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-              <folding>
-                <element signature="e#828#841#0" expanded="true" />
-                <element signature="e#2267#2268#0" expanded="true" />
-                <element signature="e#2289#2290#0" expanded="true" />
-                <element signature="e#2359#2360#0" expanded="true" />
-                <element signature="e#2383#2384#0" expanded="true" />
-                <element signature="e#2490#2491#0" expanded="true" />
-                <element signature="e#2526#2527#0" expanded="true" />
-                <element signature="e#2680#2681#0" expanded="true" />
-                <element signature="e#2721#2722#0" expanded="true" />
-                <element signature="e#2839#2840#0" expanded="true" />
-                <element signature="e#2877#2878#0" expanded="true" />
-                <element signature="e#2950#2951#0" expanded="true" />
-                <element signature="e#3000#3001#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="801">
+              <caret line="76" column="20" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#432#433#0" expanded="true" />
-                <element signature="e#482#483#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,8 +173,8 @@
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2244">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -225,11 +270,11 @@
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayingCard.java" />
         <option value="$PROJECT_DIR$/src/poker/GameState.java" />
-        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
         <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
       </list>
     </option>
   </component>
@@ -240,7 +285,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
+    <option name="x" value="28" />
     <option name="y" value="23" />
     <option name="width" value="1413" />
     <option name="height" value="877" />
@@ -261,7 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -271,6 +315,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Poker_Bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Poker_Bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Poker_Bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="twitter4j" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,10 +364,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Poker_Bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Poker_Bot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -322,13 +399,14 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/images/playing_cards" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources" />
       <recent name="$PROJECT_DIR$/twitter4j" />
       <recent name="$PROJECT_DIR$/src/poker" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.PlayerBot">
@@ -883,14 +961,8 @@
       <workItem from="1486982762819" duration="643000" />
       <workItem from="1487150639591" duration="93100000" />
       <workItem from="1488978619838" duration="5665000" />
-      <workItem from="1490811895853" duration="36249000" />
-    </task>
-    <task id="LOCAL-00008" summary="Started HandOfCards class. started most of its methods">
-      <created>1486635313741</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1486635313741</updated>
+      <workItem from="1490811895853" duration="37120000" />
+      <workItem from="1491907992092" duration="2850000" />
     </task>
     <task id="LOCAL-00009" summary="sort() working">
       <created>1486647002251</created>
@@ -1228,32 +1300,38 @@
       <option name="project" value="LOCAL" />
       <updated>1491396191748</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="started a bit for pokerBot!&#10;&#10;made a random generate name from a large list">
+      <created>1491412920365</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1491412920368</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196871000" />
+    <option name="totallyTimeSpent" value="200592000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1413" height="877" extended-state="0" />
-    <editor active="true" />
+    <frame x="28" y="23" width="1413" height="877" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.497523" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.502477" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16914366" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16914366" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1265,6 +1343,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.497523" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979476" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1326,6 +1405,24 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="22" column="1" lean-forward="true" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1434,9 +1531,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2610">
           <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-          <folding>
-            <element signature="e#7312#7313#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1654,9 +1748,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
-          <folding>
-            <element signature="e#7312#7313#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1672,7 +1763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="295" column="0" lean-forward="false" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1680,13 +1770,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="274" column="48" lean-forward="false" selection-start-line="274" selection-start-column="48" selection-end-line="274" selection-end-column="87" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
+        <state relative-caret-position="270">
           <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="17" />
           <folding />
         </state>
@@ -1694,7 +1783,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
+        <state relative-caret-position="420">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="33" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1704,19 +1793,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
+        <state relative-caret-position="330">
           <caret line="28" column="5" lean-forward="false" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1508#1516#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="183" column="0" lean-forward="true" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
+        <state relative-caret-position="2505">
+          <caret line="183" column="0" lean-forward="false" selection-start-line="183" selection-start-column="0" selection-end-line="183" selection-end-column="0" />
           <folding>
             <element signature="e#4174#4175#0" expanded="true" />
             <element signature="e#4198#4199#0" expanded="true" />
@@ -1748,46 +1836,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <element signature="e#828#841#0" expanded="true" />
-            <element signature="e#2267#2268#0" expanded="true" />
-            <element signature="e#2289#2290#0" expanded="true" />
-            <element signature="e#2359#2360#0" expanded="true" />
-            <element signature="e#2383#2384#0" expanded="true" />
-            <element signature="e#2490#2491#0" expanded="true" />
-            <element signature="e#2526#2527#0" expanded="true" />
-            <element signature="e#2680#2681#0" expanded="true" />
-            <element signature="e#2721#2722#0" expanded="true" />
-            <element signature="e#2839#2840#0" expanded="true" />
-            <element signature="e#2877#2878#0" expanded="true" />
-            <element signature="e#2950#2951#0" expanded="true" />
-            <element signature="e#3000#3001#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="300">
+          <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2244">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="315">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#432#433#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="801">
+          <caret line="76" column="20" lean-forward="true" selection-start-line="76" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
