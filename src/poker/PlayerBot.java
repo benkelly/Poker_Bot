@@ -23,8 +23,8 @@ public class PlayerBot extends PokerPlayer {
 	private static final String LAST_NAMES_LIST = "resources/lastNames.txt";
 
 
-	public PlayerBot(int chips) {
-		super("", chips);
+	public PlayerBot(DeckOfCards deck, int chips) {
+		super("", deck, chips);
 		playerName = generateName();
 	}
 
@@ -75,7 +75,7 @@ public class PlayerBot extends PokerPlayer {
 	public static void main(String[] args) {
 		System.out.println("poker.PlayerBot.java!");
 
-		PlayerBot pb = new PlayerBot(3000);
+		PlayerBot pb = new PlayerBot(DeckOfCards.getInstance(), 3000);
 		System.out.println(pb.getPlayerName());
 		System.out.println(pb.getPlayerChipAmount());
 	}
