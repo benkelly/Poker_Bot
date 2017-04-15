@@ -5,8 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Group: @poker_bot
@@ -39,7 +37,7 @@ public class PokerPlayer {
 	public int totalRoundsPlayed = 0;
 
 	// current round variables
-	private boolean paidStake = false;
+	//private boolean paidStake = false;
 
 	public PokerPlayer(String name,PokerGame game, DeckOfCards deck,  int chips) {
 		playerName = name;
@@ -106,23 +104,35 @@ public class PokerPlayer {
 	public boolean playersBettingOptions() {
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
 		String inputStr = getConsoleInput();
-		if (inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps")
-				| inputStr.toLowerCase().equals("pay stake")) {
+		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
+				| inputStr.toLowerCase().equals("pay stake") | inputStr.toLowerCase().contains("call")
+				| inputStr.toLowerCase().startsWith("c")) {
 			payCurrentStake();
 			return true;
 		}
 
 		if (inputStr.toLowerCase().contains("increase") | inputStr.toLowerCase().contains("i")
-				| inputStr.toLowerCase().contains("r") | inputStr.toLowerCase().contains("rise")) {
-			if (inputStr.matches(".*\\d+.*")) { // if str has number
-				String isStrInt = extractIntFromString(inputStr);
-				increaseStake(Integer.parseInt(isStrInt));
-				//System.out.println(Integer.parseInt(isStrInt));
+				| inputStr.toLowerCase().startsWith("r") | inputStr.toLowerCase().startsWith("rise")) {
+			System.out.println(this.getPlayerName() + ": *********** increase triggered");
+			while (true){
 
+				if (inputStr.matches(".*\\d+.*")) { // if str has number
+					String isStrInt = extractIntFromString(inputStr);
+					increaseStake(Integer.parseInt(isStrInt));
+					//System.out.println(Integer.parseInt(isStrInt));
+					System.out.println(this.getPlayerName() + ": *********** increaseStake() called");
+					return true;
+				}
+				else{
+					System.out.println(this.getPlayerName() + ": please re-enter the amount: ");
+					inputStr = getConsoleInput();
+				}
 			}
+		}
+		if (inputStr.toLowerCase().contains("fold") | inputStr.toLowerCase().startsWith("f")) {
+			foldFromRound();
 			return true;
 		}
-
 		return false;
 	}
 
@@ -228,7 +238,6 @@ public class PokerPlayer {
 		}
 	}
 
-
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -242,6 +251,8 @@ public class PokerPlayer {
 		return hand.getGameValue();
 	}
 
+	/*player will call the current stake to stay in game.
+	* */
 	synchronized public void payCurrentStake() {
 		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
 		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
@@ -250,7 +261,7 @@ public class PokerPlayer {
 			playerChipAmount -= pokerGame.getCurrentRoundsStakeAmount();
 			pokerGame.addToCurrentRoundsHeldStake(pokerGame.getCurrentRoundsStakeAmount());
 			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
-			paidStake = true;
+			//paidStake = true;
 			pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 			System.out.println(this.getPlayerName()+"payCurrentStake paid");
 
@@ -263,23 +274,19 @@ public class PokerPlayer {
 	* */
 	synchronized public void increaseStake(int amount) {
 		if(playerChipAmount >= amount) {
-			if (amount > pokerGame.getCurrentRoundsHeldStake()) {
-				int stakeDiff = amount - pokerGame.getCurrentRoundsHeldStake();
+			if (amount > pokerGame.getCurrentRoundsStakeAmount()) {
+				int stakeDiff = amount - pokerGame.getCurrentRoundsStakeAmount();
 				playerChipAmount -= amount;
 				pokerGame.addToCurrentRoundsHeldStake(amount);
 				pokerGame.setCurrentRoundsStakeAmount(amount);
 
-				//System.out.println("before matchStakeIncrease called");
 				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
-				//System.out.println("after matchStakeIncrease called");
-
-
 
 				currentStakePaid = amount;
-				paidStake = true;
+				//paidStake = true;
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 
-				System.out.println(this.getPlayerName()+"increaseStake paid");
+				System.out.println(this.getPlayerName()+" increaseStake paid"); // for testing
 
 			}
 		}
@@ -289,23 +296,32 @@ public class PokerPlayer {
 	* */
 	synchronized public void reRaiseStake(int stakeIncrease) {
 
-		System.out.println("do you want to re-raise of "+stakeIncrease+ " (y/n)?");
+		System.out.println(playerName+": do you want to re-raise of "+stakeIncrease+ " (y/n)?");
 		String inputStr= getConsoleInput();
 
 
-		if(inputStr.toLowerCase() == "y" | inputStr.toLowerCase() =="ok" |inputStr.toLowerCase() == "yes") {
+		if(inputStr.toLowerCase().startsWith("y") ) {
 			if(playerChipAmount >= stakeIncrease) {
 				pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
 				playerChipAmount -= stakeIncrease;
 				currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+				return;
 			}
 			else{
-				pokerGame.curRoundPlayerFolds(this);
+				//pokerGame.curRoundPlayerFolds(this);
+				foldFromRound();
+				return;
 			}
 		}
-		if(inputStr.toLowerCase() == "n" | inputStr.toLowerCase() == "nah" | inputStr.toLowerCase() == "no") {
-			pokerGame.curRoundPlayerFolds(this);
+		if(inputStr.toLowerCase().startsWith("n") ) {
+			foldFromRound();
+			return;
 		}
+	}
+
+	synchronized private void foldFromRound() {
+		pokerGame.curRoundPlayerFolds(this);
+		System.out.println(playerName+": has folded.");
 	}
 
 	/*get keyboard input
@@ -324,6 +340,9 @@ public class PokerPlayer {
 		return str;
 	}
 
+	/*PokerGame will call this at beginning of every round.
+	* - if player
+	* */
 	public void payAnteFee(int anteFee) {
 		if(playerChipAmount >= anteFee) {
 			pokerGame.addToCurrentRoundsHeldStake(anteFee);
@@ -337,37 +356,39 @@ public class PokerPlayer {
 
 
 
-
+	/*when player wins round, PokerGame will call this.
+	* */
 	public void receivesStake(int amount) {
 		playerChipAmount += amount;
 		totalRoundsWon++;
 	}
 
 
-	public boolean isPaidStake() {
+/*	public boolean isPaidStake() {
 		return paidStake;
 	}
 
 	public void resetPaidStake() {
 		paidStake = false;
-	}
+	}*/
 
-
+	/*Calcs Probability for all 5 cards in players hand.
+	* */
 	private void getHandsDiscardProbability() {
 		for (int i = 0; i < MAX_HAND; i++) {
 			hand.getDiscardProbability(i);
 		}
 	}
 
+	/*Collects number from String.
+	* */
 	public static String extractIntFromString(final String str) {
-
-		if(str == null || str.isEmpty()) return "";
-
+		if(str == null || str.isEmpty()) { return ""; }
 		StringBuilder sb = new StringBuilder();
 		boolean found = false;
-		for(char c : str.toCharArray()){
-			if(Character.isDigit(c)){
-				sb.append(c);
+		for(char cur: str.toCharArray()) {
+			if(Character.isDigit(cur)) {
+				sb.append(cur);
 				found = true;
 			}
 			else if(found) {

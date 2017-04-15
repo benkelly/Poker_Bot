@@ -1,6 +1,7 @@
 package poker;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Group: @poker_bot
@@ -67,7 +68,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	/*player will pay enter fee if unable then bankrupted
 	* */
-	private void payAnteFee(int AnteFee) {
+	synchronized private void payAnteFee(int AnteFee) {
 		for (PokerPlayer player : this) {
 			player.payAnteFee(AnteFee);
 		}
@@ -76,7 +77,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
 	* */
-	public void playerIsBankrupted(PokerPlayer player) {
+	synchronized public void playerIsBankrupted(PokerPlayer player) {
 		if( this.get(0).getPlayerName().equals(player.getPlayerName())) {
 			gameOver = true;
 			System.out.println(this.get(0).getPlayerName()+" is bankrupt.... game over dude....");
@@ -91,7 +92,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 
-	private void getRoundwinner() {
+	synchronized private void getRoundwinner() {
 		PokerPlayer temp = calcPlayerHandScores();
 		temp.receivesStake(currentRoundsHeldStake);
 		temp.totalRoundsWon += 1;
@@ -99,7 +100,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 	/*Returns the pokerPlayer with the highest score.
 	* */
-	private PokerPlayer calcPlayerHandScores() {
+	synchronized private PokerPlayer calcPlayerHandScores() {
 		int tempHighScore = 0;
 		int tempHighScorePlayerIndex = 0;
 		int index = 0;
@@ -119,15 +120,34 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		curRoundPlayerList.clear();
 	}
 
-	public void addToCurRoundPlayerList(PokerPlayer temp) {
+	synchronized public void addToCurRoundPlayerList(PokerPlayer temp) {
 		curRoundPlayerList.add(temp);
 	}
 
-	public void curRoundPlayerFolds(PokerPlayer temp) {
-		curRoundPlayerList.remove(temp);
+	synchronized public void curRoundPlayerFolds(PokerPlayer temp) {
+		if(curRoundPlayerList.contains(temp)) {
+			System.out.println("curRoundPlayerList contain: "+temp.getPlayerName());
+			curRoundPlayerList.remove(temp);
+
+/*
+			// removing by index seems to be alot safer :^)
+			int index = 0;
+			for (PokerPlayer object : curRoundPlayerList) {
+				if(temp.getPlayerName().equals(object.getPlayerName())){
+					break;
+				}
+				index++;
+			}
+			curRoundPlayerList.remove();
+
+			//curRoundPlayerList.remove(index);
+*/
+
+			}
+		System.out.println("curRoundPlayerList end");
 	}
 
-	public void matchStakeIncrease(int stakeIncrease) {
+	synchronized public void matchStakeIncrease(int stakeIncrease) {
 		//System.out.println("matchStakeIncrease START");
 		for (PokerPlayer object : curRoundPlayerList) {
 			object.reRaiseStake(stakeIncrease);
