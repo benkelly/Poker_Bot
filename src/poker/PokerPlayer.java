@@ -52,12 +52,12 @@ public class PokerPlayer {
 		getCurrentHandInfo();
 	}
 
-
 	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
 		return hand.toString();
 	}
+
 
 	/*private method creates first hand from deck.
 	* */
@@ -74,10 +74,12 @@ public class PokerPlayer {
 		hand.getGameValue();
 		getHandsDiscardProbability();
 
-		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "+hand.getBestHandTypeName());
+		System.out.println(this.getPlayerName()+": your current hand is: "+hand
+				+" HandType: "+hand.getBestHandTypeName());
 		String inputStr = getConsoleInput();
 
-		if(inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a") | inputStr.toLowerCase().contains("auto") ) {
+		if(inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
+				| inputStr.toLowerCase().contains("auto") ) {
 			if(inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				int discardAmount = Integer.parseInt(isStrInt);
@@ -94,29 +96,34 @@ public class PokerPlayer {
 		}
 
 
-		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "+hand.getBestHandTypeName());
+		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "
+				+hand.getBestHandTypeName());
 	}
 
 
 
 
-	public void playersBettingOptions() {
+	public boolean playersBettingOptions() {
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
 		String inputStr = getConsoleInput();
-		if (inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps") | inputStr.toLowerCase().equals("pay stake")) {
+		if (inputStr.toLowerCase().equals("paystake") | inputStr.toLowerCase().equals("ps")
+				| inputStr.toLowerCase().equals("pay stake")) {
 			payCurrentStake();
+			return true;
 		}
 
-		if (inputStr.toLowerCase().contains("increase") | inputStr.toLowerCase().contains("i") | inputStr.toLowerCase().contains("r")
-				| inputStr.toLowerCase().contains("rise")) {
-			System.out.println("fjdsanjdsnfdska;fdslfkjnadsfkljdsfkjlnxz,.cmn");
+		if (inputStr.toLowerCase().contains("increase") | inputStr.toLowerCase().contains("i")
+				| inputStr.toLowerCase().contains("r") | inputStr.toLowerCase().contains("rise")) {
 			if (inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				increaseStake(Integer.parseInt(isStrInt));
-				System.out.println(Integer.parseInt(isStrInt));
+				//System.out.println(Integer.parseInt(isStrInt));
 
 			}
+			return true;
 		}
+
+		return false;
 	}
 
 
@@ -235,7 +242,7 @@ public class PokerPlayer {
 		return hand.getGameValue();
 	}
 
-	public void payCurrentStake() {
+	synchronized public void payCurrentStake() {
 		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
 		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
 
@@ -254,25 +261,33 @@ public class PokerPlayer {
 	/*command to increase stake to stated amount
 	*
 	* */
-	public void increaseStake(int amount) {
+	synchronized public void increaseStake(int amount) {
 		if(playerChipAmount >= amount) {
 			if (amount > pokerGame.getCurrentRoundsHeldStake()) {
 				int stakeDiff = amount - pokerGame.getCurrentRoundsHeldStake();
 				playerChipAmount -= amount;
 				pokerGame.addToCurrentRoundsHeldStake(amount);
 				pokerGame.setCurrentRoundsStakeAmount(amount);
+
+				//System.out.println("before matchStakeIncrease called");
 				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
+				//System.out.println("after matchStakeIncrease called");
+
+
 
 				currentStakePaid = amount;
 				paidStake = true;
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
+
+				System.out.println(this.getPlayerName()+"increaseStake paid");
+
 			}
 		}
 	}
 
 	/* previous players who betted will be asked to match the new stake or fold
 	* */
-	public void reRaiseStake(int stakeIncrease) {
+	synchronized public void reRaiseStake(int stakeIncrease) {
 
 		System.out.println("do you want to re-raise of "+stakeIncrease+ " (y/n)?");
 		String inputStr= getConsoleInput();

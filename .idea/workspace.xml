@@ -67,8 +67,8 @@
       <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="115" column="61" lean-forward="false" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+            <state relative-caret-position="120">
+              <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3936#3937#0" expanded="true" />
@@ -83,11 +83,11 @@
                 <element signature="e#6507#6508#0" expanded="true" />
                 <element signature="e#6544#6545#0" expanded="true" />
                 <element signature="e#6574#6575#0" expanded="true" />
-                <element signature="e#9512#9513#0" expanded="true" />
-                <element signature="e#9535#9536#0" expanded="true" />
-                <element signature="e#9568#9569#0" expanded="true" />
-                <element signature="e#9592#9593#0" expanded="true" />
-                <element signature="e#10290#10303#0" expanded="true" />
+                <element signature="e#9746#9747#0" expanded="true" />
+                <element signature="e#9769#9770#0" expanded="true" />
+                <element signature="e#9802#9803#0" expanded="true" />
+                <element signature="e#9826#9827#0" expanded="true" />
+                <element signature="e#10524#10537#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,8 +96,8 @@
       <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="56" column="2" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="58" selection-end-column="11" />
+            <state relative-caret-position="366">
+              <caret line="196" column="1" lean-forward="true" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -114,7 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>()()</find>
       <find>]</find>
       <find>));</find>
       <find>PRIVATE FINAL</find>
@@ -144,6 +143,7 @@
       <find>gameDeck.</find>
       <find>PokerGame</find>
       <find>pokerGame.getInstance()</find>
+      <find>toString</find>
     </findStrings>
     <replaceStrings>
       <replace>) {</replace>
@@ -240,20 +240,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twitter4j" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -869,14 +855,7 @@
       <workItem from="1487150639591" duration="93100000" />
       <workItem from="1488978619838" duration="5665000" />
       <workItem from="1490811895853" duration="37120000" />
-      <workItem from="1491907992092" duration="21185000" />
-    </task>
-    <task id="LOCAL-00015" summary="added main test.&#10;added public to string">
-      <created>1486714423603</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1486714423603</updated>
+      <workItem from="1491907992092" duration="22877000" />
     </task>
     <task id="LOCAL-00016" summary="added main test.&#10;added public to string">
       <created>1486718184284</created>
@@ -1214,15 +1193,22 @@
       <option name="project" value="LOCAL" />
       <updated>1492207764079</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added even more to pokerGame and pokerPlayer">
+      <created>1492213590025</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1492213590026</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218927000" />
+    <option name="totallyTimeSpent" value="220619000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="23" width="1413" height="877" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1233,7 +1219,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.502477" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1343,11 +1329,11 @@
             <element signature="e#6507#6508#0" expanded="true" />
             <element signature="e#6544#6545#0" expanded="true" />
             <element signature="e#6574#6575#0" expanded="true" />
-            <element signature="e#9512#9513#0" expanded="true" />
-            <element signature="e#9535#9536#0" expanded="true" />
-            <element signature="e#9568#9569#0" expanded="true" />
-            <element signature="e#9592#9593#0" expanded="true" />
-            <element signature="e#10290#10303#0" expanded="true" />
+            <element signature="e#9746#9747#0" expanded="true" />
+            <element signature="e#9769#9770#0" expanded="true" />
+            <element signature="e#9802#9803#0" expanded="true" />
+            <element signature="e#9826#9827#0" expanded="true" />
+            <element signature="e#10524#10537#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1439,11 +1425,11 @@
             <element signature="e#6507#6508#0" expanded="true" />
             <element signature="e#6544#6545#0" expanded="true" />
             <element signature="e#6574#6575#0" expanded="true" />
-            <element signature="e#9512#9513#0" expanded="true" />
-            <element signature="e#9535#9536#0" expanded="true" />
-            <element signature="e#9568#9569#0" expanded="true" />
-            <element signature="e#9592#9593#0" expanded="true" />
-            <element signature="e#10290#10303#0" expanded="true" />
+            <element signature="e#9746#9747#0" expanded="true" />
+            <element signature="e#9769#9770#0" expanded="true" />
+            <element signature="e#9802#9803#0" expanded="true" />
+            <element signature="e#9826#9827#0" expanded="true" />
+            <element signature="e#10524#10537#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1720,16 +1706,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="62" lean-forward="false" selection-start-line="77" selection-start-column="62" selection-end-line="77" selection-end-column="62" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1770,18 +1746,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="77" column="62" lean-forward="false" selection-start-line="77" selection-start-column="62" selection-end-line="77" selection-end-column="62" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="56" column="2" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="58" selection-end-column="11" />
+        <state relative-caret-position="366">
+          <caret line="196" column="1" lean-forward="true" selection-start-line="196" selection-start-column="1" selection-end-line="196" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="115" column="61" lean-forward="false" selection-start-line="115" selection-start-column="61" selection-end-line="115" selection-end-column="61" />
+        <state relative-caret-position="120">
+          <caret line="52" column="5" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3936#3937#0" expanded="true" />
@@ -1796,11 +1782,11 @@
             <element signature="e#6507#6508#0" expanded="true" />
             <element signature="e#6544#6545#0" expanded="true" />
             <element signature="e#6574#6575#0" expanded="true" />
-            <element signature="e#9512#9513#0" expanded="true" />
-            <element signature="e#9535#9536#0" expanded="true" />
-            <element signature="e#9568#9569#0" expanded="true" />
-            <element signature="e#9592#9593#0" expanded="true" />
-            <element signature="e#10290#10303#0" expanded="true" />
+            <element signature="e#9746#9747#0" expanded="true" />
+            <element signature="e#9769#9770#0" expanded="true" />
+            <element signature="e#9802#9803#0" expanded="true" />
+            <element signature="e#9826#9827#0" expanded="true" />
+            <element signature="e#10524#10537#0" expanded="true" />
           </folding>
         </state>
       </provider>

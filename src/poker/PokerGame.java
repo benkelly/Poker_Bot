@@ -61,7 +61,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 
 		for (PokerPlayer player : this) { // players choose their betting options
-			player.playersBettingOptions();
+			while(player.playersBettingOptions()==false){}
 		}
 	}
 
@@ -128,9 +128,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 	public void matchStakeIncrease(int stakeIncrease) {
+		//System.out.println("matchStakeIncrease START");
 		for (PokerPlayer object : curRoundPlayerList) {
 			object.reRaiseStake(stakeIncrease);
+			System.out.println(object);
+
 		}
+		//System.out.println("matchStakeIncrease ENd");
+
 	}
 
 	/*returns bool statement the game continue to next round or not.
@@ -185,6 +190,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		System.out.println(pg.gameDeck.getInstance().toString());
 
 		System.out.println("getCurrentRoundsHeldStake: "+pg.getCurrentRoundsHeldStake());
+		System.out.println("curRoundPlayerList: "+pg.curRoundPlayerList);
 
 
 	}
