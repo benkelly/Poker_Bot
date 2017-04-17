@@ -294,32 +294,30 @@ public class PokerPlayer {
 
 	/* previous players who betted will be asked to match the new stake or fold
 	* */
-	synchronized public void reRaiseStake(int stakeIncrease) {
+	synchronized public boolean reRaiseStake(int stakeIncrease) {
 
-		System.out.println(playerName+": do you want to re-raise of "+stakeIncrease+ " (y/n)?");
-		String inputStr= getConsoleInput();
+		System.out.println(playerName + ": do you want to re-raise of " + stakeIncrease + " (y/n)?");
+		String inputStr = getConsoleInput();
 
-
-		if(inputStr.toLowerCase().startsWith("y") ) {
-			if(playerChipAmount >= stakeIncrease) {
-				pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
-				playerChipAmount -= stakeIncrease;
-				currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
-				return;
+		while (true) {
+			if (inputStr.toLowerCase().startsWith("y")) {
+				if (playerChipAmount >= stakeIncrease) {
+					pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
+					playerChipAmount -= stakeIncrease;
+					currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+					return true;
+				} else {
+					return false;
+				}
 			}
-			else{
-				//pokerGame.curRoundPlayerFolds(this);
-				foldFromRound();
-				return;
+			if (inputStr.toLowerCase().startsWith("n")) {
+				return false;
 			}
-		}
-		if(inputStr.toLowerCase().startsWith("n") ) {
-			foldFromRound();
-			return;
 		}
 	}
 
-	synchronized private void foldFromRound() {
+
+	synchronized public void foldFromRound() {
 		pokerGame.curRoundPlayerFolds(this);
 		System.out.println(playerName+": has folded.");
 	}

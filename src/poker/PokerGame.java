@@ -2,6 +2,8 @@ package poker;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Group: @poker_bot
@@ -124,38 +126,26 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		curRoundPlayerList.add(temp);
 	}
 
-	synchronized public void curRoundPlayerFolds(PokerPlayer temp) {
+	synchronized public int curRoundPlayerFolds(PokerPlayer temp) {
 		if(curRoundPlayerList.contains(temp)) {
-			System.out.println("curRoundPlayerList contain: "+temp.getPlayerName());
+			//System.out.println("curRoundPlayerList contain: "+temp.getPlayerName());
 			curRoundPlayerList.remove(temp);
-
-/*
-			// removing by index seems to be alot safer :^)
-			int index = 0;
-			for (PokerPlayer object : curRoundPlayerList) {
-				if(temp.getPlayerName().equals(object.getPlayerName())){
-					break;
-				}
-				index++;
 			}
-			curRoundPlayerList.remove();
-
-			//curRoundPlayerList.remove(index);
-*/
-
-			}
-		System.out.println("curRoundPlayerList end");
+		return 0;
 	}
 
 	synchronized public void matchStakeIncrease(int stakeIncrease) {
 		//System.out.println("matchStakeIncrease START");
+		ArrayList<PokerPlayer> foldingList = new ArrayList<PokerPlayer>(); // players going to fold
+
 		for (PokerPlayer object : curRoundPlayerList) {
-			object.reRaiseStake(stakeIncrease);
-			System.out.println(object);
-
+			if( object.reRaiseStake(stakeIncrease) == false ) { // if player chooses fold add to list
+				foldingList.add(object);
+			}
 		}
-		//System.out.println("matchStakeIncrease ENd");
-
+		for (PokerPlayer object : foldingList) {
+			object.foldFromRound();
+		}
 	}
 
 	/*returns bool statement the game continue to next round or not.
@@ -172,24 +162,24 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	/*returns int of current round's stake value for players
 	* */
-	public int getCurrentRoundsHeldStake() {
+	synchronized public int getCurrentRoundsHeldStake() {
 		return currentRoundsHeldStake;
 	}
 
 	/*pokerPlayers able to add their stake in conjunction with PokerPlayer.payCurrentStake()
 	* */
-	public void addToCurrentRoundsHeldStake(int addStake) {
+	synchronized public void addToCurrentRoundsHeldStake(int addStake) {
 		currentRoundsHeldStake += addStake;
 	}
 
 
-	public void setCurrentRoundsStakeAmount(int currentRoundsStakeAmount) {
+	synchronized public void setCurrentRoundsStakeAmount(int currentRoundsStakeAmount) {
 		this.currentRoundsStakeAmount = currentRoundsStakeAmount;
 	}
 
 	/*returns int of total amount of betted stake of the current hand
 		* */
-	public int getCurrentRoundsStakeAmount() {
+	synchronized public int getCurrentRoundsStakeAmount() {
 		return currentRoundsStakeAmount;
 	}
 
