@@ -1,9 +1,6 @@
 package poker;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * Group: @poker_bot
@@ -34,10 +31,13 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 
 	public PokerGame() {
-		setPokerTable();
+		setPokerTable(); // adds humand and bots to poker table
+
+		currentRoundPlayerOptions(); // gets players round inputs
 
 
-		currentRoundPlayerOptions();
+		getRoundWinner();
+
 	}
 	public static PokerGame getInstance() {
 		if (instance == null) { instance = new PokerGame();}
@@ -54,18 +54,19 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		}
 	}
 
+	/*allows users to input their hand changes and betting options.
+	* */
 	private void currentRoundPlayerOptions() {
 		payAnteFee(currentRoundsAnteAmount); // players pay their ante to enter game.
 
-/*		for (PokerPlayer player : this) { // players choose card discard options
-			player.playersHandOptions();
-		}*/
-
-
+		for (PokerPlayer player : this) { // players choose card discard options
+			while(player.playersHandOptions()==false){}
+		}
 
 		for (PokerPlayer player : this) { // players choose their betting options
 			while(player.playersBettingOptions()==false){}
 		}
+
 	}
 
 	/*player will pay enter fee if unable then bankrupted
@@ -92,13 +93,20 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			System.out.println(player.getPlayerName() + " is bankrupt!");
 		}
 	}
+	synchronized private void currentRoundAllTurnOverCards() {
+		getRoundWinner();
+	}
 
 
-	synchronized private void getRoundwinner() {
+
+	synchronized private void getRoundWinner() {
 		PokerPlayer temp = calcPlayerHandScores();
 		temp.receivesStake(currentRoundsHeldStake);
 		temp.totalRoundsWon += 1;
 		System.out.println(temp.getPlayerName()+" is the winner!");
+		System.out.println(temp.getPlayerName()+": new Chips amount: "+temp.getPlayerChipAmount());
+		System.out.println("ships now on table: "+getCurrentRoundsHeldStake());
+
 	}
 	/*Returns the pokerPlayer with the highest score.
 	* */
@@ -106,9 +114,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		int tempHighScore = 0;
 		int tempHighScorePlayerIndex = 0;
 		int index = 0;
-		for (PokerPlayer object : curRoundPlayerList) {
-			if (tempHighScore < object.getCurrentHandScore()) { // re-calcs all players current scores.
-				tempHighScore = object.getCurrentHandScore();
+		for (PokerPlayer player : curRoundPlayerList) {
+			if (tempHighScore < player.getCurrentHandScore()) { // re-calcs all players current scores.
+				tempHighScore = player.getCurrentHandScore();
 				tempHighScorePlayerIndex = index;
 			}
 			index++;

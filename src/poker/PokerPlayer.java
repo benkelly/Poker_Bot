@@ -39,21 +39,21 @@ public class PokerPlayer {
 	// current round variables
 	//private boolean paidStake = false;
 
-	public PokerPlayer(String name,PokerGame game, DeckOfCards deck,  int chips) {
+	public PokerPlayer(String name, PokerGame game, DeckOfCards deck, int chips) {
 		playerName = name;
-		playerChipAmount = chips;
 		pokerGame = game;
 		gameDeck = deck;
+		playerChipAmount = chips;
 
 
 		getInitialHand();
 		getCurrentHandInfo();
 	}
 
-	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
+	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
-		return hand.toString();
+		return playerName + ": " + hand.toString();
 	}
 
 
@@ -66,41 +66,72 @@ public class PokerPlayer {
 
 	}
 
-	public void playersHandOptions() {
-
+	/*public method, used in PokerGame to allow player to chose its hand option cmds
+	* */
+	public boolean playersHandOptions() {
 		hand.generateHandType();
 		hand.getGameValue();
 		getHandsDiscardProbability();
 
-		System.out.println(this.getPlayerName()+": your current hand is: "+hand
-				+" HandType: "+hand.getBestHandTypeName());
+		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
+				+ " HandType: " + hand.getBestHandTypeName());
 		String inputStr = getConsoleInput();
 
-		if(inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
-				| inputStr.toLowerCase().contains("auto") ) {
-			if(inputStr.matches(".*\\d+.*")) { // if str has number
+		//auto discard cmd.
+		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
+				| inputStr.toLowerCase().contains("auto")) {
+			if (inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				int discardAmount = Integer.parseInt(isStrInt);
 				if (discardAmount < MAX_DISCARD && discardAmount > 0) {
 					discard(discardAmount);
-				}
-				else
+				} else
 					discard();
-			}
-			else {
+			} else {
 				discard();
 			}
 			getNewCardsForHand();
+			return true;
 		}
+		// user discard cmd.
+		if (inputStr.toUpperCase().contains(hand.get(0).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(1).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(2).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(3).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(4).toString().toUpperCase())
+				| inputStr.toLowerCase().startsWith("d")
+				| inputStr.toLowerCase().contains("discard")) {
+			System.out.println(this.getPlayerName() + ": it worked!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println(hand.get(0).toString().toUpperCase());
+			int discardCount = 0;
+			ArrayList<PlayingCard> discardList = new ArrayList<>();
 
-
-		System.out.println(this.getPlayerName()+": your current hand is: "+hand+" HandType: "
-				+hand.getBestHandTypeName());
+			for (PlayingCard card : hand) {
+				if (inputStr.toUpperCase().contains(card.toString().toUpperCase())) {
+					if (discardCount < MAX_DISCARD) {
+						discardList.add(card);
+						System.out.println(card + ": added to removedList");
+						discardCount++;
+					}
+				}
+			}
+			for (PlayingCard card : discardList) {
+				hand.remove(card);
+				System.out.println(card + ": removed");
+			}
+			getNewCardsForHand();
+			System.out.println(this.getPlayerName() + ": your new hand is: " + hand
+					+ " HandType: " + hand.getBestHandTypeName());
+			return true;
+		}
+		// keep cmd
+		if (inputStr.toLowerCase().contains("keep") | inputStr.toLowerCase().startsWith("k")) {
+			return true;
+		}
+		return false;
 	}
-
-
-
-
+	/*public method, used in PokerGame to allow player to chose its betting cmds
+	* */
 	public boolean playersBettingOptions() {
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
 		String inputStr = getConsoleInput();
@@ -136,9 +167,7 @@ public class PokerPlayer {
 		return false;
 	}
 
-
-
-	/*private method collects new card from deck after discarding.
+	/*public method collects new card from deck after discarding.
 	* */
 	synchronized public void getNewCardsForHand() {
 		if(hand.size() < MAX_HAND) {
@@ -148,7 +177,6 @@ public class PokerPlayer {
 			}
 		}
 	}
-
 	/*private method gets and returns hands current score and updates currentHandScore
 	* */
 	synchronized private int getCurrentHandInfo() {
@@ -156,7 +184,6 @@ public class PokerPlayer {
 		currentHandScore = hand.getGameValue();
 		return currentHandScore;
 	}
-
 
 	/*auto discards cards based on their discard getDiscardProbability
 	* */

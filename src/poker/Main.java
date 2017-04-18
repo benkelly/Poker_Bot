@@ -16,6 +16,10 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("main class!");
 
+
+
+
+/*
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
 			playerList.add(new PokerPlayer("bot: "+j,PokerGame.getInstance(), DeckOfCards.getInstance(),  30000));
@@ -59,6 +63,8 @@ public class Main {
 		System.out.println("DeckOfCards: " + DeckOfCards.getInstance().size());
 		System.out.println("DeckOfCards: " + DeckOfCards.getInstance());
 
+
 		}
+		*/
 	}
 }
