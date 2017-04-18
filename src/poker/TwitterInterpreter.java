@@ -121,7 +121,7 @@ public class TwitterInterpreter {
 	private void repliesToBot() {
 		List<Status> statuses = null;
 		try {
-			statuses = twitter.getMentionsTimeline(repliesPage);
+			statuses = twitter.getMentionsTimeline(repliesPage.sinceId(0));
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
