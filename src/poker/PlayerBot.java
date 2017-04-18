@@ -24,7 +24,7 @@ public class PlayerBot extends PokerPlayer {
 
 
 	public PlayerBot(PokerGame game, DeckOfCards deck, int chips) {
-		super("", game, deck, chips);
+		super("", game, deck, chips, false);
 		playerName = generateName();
 	}
 
@@ -62,12 +62,6 @@ public class PlayerBot extends PokerPlayer {
 		Random r = new Random();
 		return lines.get(r.nextInt(lines.size()));
 	}
-
-
-
-
-
-
 
 
 	/*Class testing method

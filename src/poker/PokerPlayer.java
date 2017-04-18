@@ -16,17 +16,15 @@ import java.util.*;
  */
 public class PokerPlayer {
 
-	private static final int MAX_HAND = 5;
-	private static final int MAX_DISCARD = 3;
-
 	private DeckOfCards gameDeck;
-	private PokerGame pokerGame;
+	PokerGame pokerGame;
 
 	public HandOfCards hand = new HandOfCards();
 
 	// basic stats
 	String playerName = "";
-	private int playerChipAmount = 0;
+	public boolean isHuman;
+	int playerChipAmount = 0;
 
 	private int currentStakePaid = 0;
 
@@ -39,11 +37,12 @@ public class PokerPlayer {
 	// current round variables
 	//private boolean paidStake = false;
 
-	public PokerPlayer(String name, PokerGame game, DeckOfCards deck, int chips) {
+	public PokerPlayer(String name, PokerGame game, DeckOfCards deck, int chips, boolean human) {
 		playerName = name;
 		pokerGame = game;
 		gameDeck = deck;
 		playerChipAmount = chips;
+		isHuman = human;
 
 
 		getInitialHand();
@@ -60,7 +59,7 @@ public class PokerPlayer {
 	/*private method creates first hand from deck.
 	* */
 	synchronized private void getInitialHand() {
-		for (int i = 0; i < MAX_HAND; i++) {
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
 			hand.add(gameDeck.getInstance().dealNext());
 		}
 
@@ -83,7 +82,7 @@ public class PokerPlayer {
 			if (inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				int discardAmount = Integer.parseInt(isStrInt);
-				if (discardAmount < MAX_DISCARD && discardAmount > 0) {
+				if (discardAmount < pokerGame.MAX_DISCARD && discardAmount > 0) {
 					discard(discardAmount);
 				} else
 					discard();
@@ -108,7 +107,7 @@ public class PokerPlayer {
 
 			for (PlayingCard card : hand) {
 				if (inputStr.toUpperCase().contains(card.toString().toUpperCase())) {
-					if (discardCount < MAX_DISCARD) {
+					if (discardCount < pokerGame.MAX_DISCARD) {
 						discardList.add(card);
 						System.out.println(card + ": added to removedList");
 						discardCount++;
@@ -170,8 +169,8 @@ public class PokerPlayer {
 	/*public method collects new card from deck after discarding.
 	* */
 	synchronized public void getNewCardsForHand() {
-		if(hand.size() < MAX_HAND) {
-			for (int i = hand.size(); i < MAX_HAND; i++) {
+		if(hand.size() < pokerGame.MAX_HAND) {
+			for (int i = hand.size(); i < pokerGame.MAX_HAND; i++) {
 				hand.add(gameDeck.getInstance().dealNext());
 				totalTakeCardCount++;
 			}
@@ -188,14 +187,14 @@ public class PokerPlayer {
 	/*auto discards cards based on their discard getDiscardProbability
 	* */
 	synchronized public int discard() {
-		return discard(MAX_DISCARD);
+		return discard(pokerGame.MAX_DISCARD);
 	}
 	synchronized public int discard(int discardAmount) {
-		if(discardAmount > MAX_DISCARD) { discardAmount = MAX_DISCARD; }
+		if(discardAmount > pokerGame.MAX_DISCARD) { discardAmount = pokerGame.MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();
 
-		for (int i = 0; i < MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
 		// sorts scores in descending order
 		sortProbabilityScoreDescending(scoreList);
 		List<probabilityScoreList> removeList = new ArrayList<>();
@@ -218,6 +217,16 @@ public class PokerPlayer {
 		}
 		return discardCount;
 	}
+
+	synchronized public void returnHandToDeck() {
+		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
+		for (PlayingCard card : hand) {
+			gameDeck.getInstance().returnCard(card);
+		}
+		hand.clear();
+		//System.out.println(getPlayerName()+": returnHandToDeck END ");
+		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
+		}
 
 	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
 	* */
@@ -290,10 +299,11 @@ public class PokerPlayer {
 			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
 			//paidStake = true;
 			pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
-			System.out.println(this.getPlayerName()+"payCurrentStake paid");
+			System.out.println(this.getPlayerName()+": payCurrentStake paid");
 
 		}
-		System.out.println(this.getPlayerName()+"unable to payCurrentStake...");
+		else
+			System.out.println(this.getPlayerName()+": unable to payCurrentStake...");
 	}
 
 	/*command to increase stake to stated amount
@@ -368,13 +378,28 @@ public class PokerPlayer {
 	/*PokerGame will call this at beginning of every round.
 	* - if player
 	* */
-	public void payAnteFee(int anteFee) {
-		if(playerChipAmount >= anteFee) {
-			pokerGame.addToCurrentRoundsHeldStake(anteFee);
-			playerChipAmount -= anteFee;
-			totalRoundsPlayed++;
+	public void payAnteFee(int anteFee, boolean nextRound) {
+		String inputStr = "";
+		if ( nextRound ) {
+			//while (!inputStr.toLowerCase().startsWith("y") |!inputStr.toLowerCase().startsWith("n")) {
+				System.out.println(playerName + ": do you want to play another round (y/n)?");
+				inputStr = getConsoleInput();
+			//}
 		}
 		else {
+			inputStr = "y";
+		}
+
+		if (inputStr.toLowerCase().startsWith("y")) {
+			if (playerChipAmount >= anteFee) {
+				pokerGame.addToCurrentRoundsHeldStake(anteFee);
+				playerChipAmount -= anteFee;
+				totalRoundsPlayed++;
+			} else {
+				pokerGame.playerIsBankrupted(this);
+			}
+		}
+		if (inputStr.toLowerCase().startsWith("n")) {
 			pokerGame.playerIsBankrupted(this);
 		}
 	}
@@ -400,7 +425,7 @@ public class PokerPlayer {
 	/*Calcs Probability for all 5 cards in players hand.
 	* */
 	private void getHandsDiscardProbability() {
-		for (int i = 0; i < MAX_HAND; i++) {
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
 			hand.getDiscardProbability(i);
 		}
 	}
@@ -432,7 +457,7 @@ public class PokerPlayer {
 
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer("player:"+j,PokerGame.getInstance(),  DeckOfCards.getInstance(), 3000));
+			playerList.add(new PokerPlayer("player:"+j,PokerGame.getInstance(),  DeckOfCards.getInstance(), 3000, true));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {
@@ -445,7 +470,7 @@ public class PokerPlayer {
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 
 		for (int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).discard(MAX_DISCARD);
+			playerList.get(i).discard(PokerGame.getInstance().MAX_DISCARD);
 			//playerList.get(i).getNewCardsForHand();
 		}
 
