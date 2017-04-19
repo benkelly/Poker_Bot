@@ -52,7 +52,7 @@ public class PokerPlayer {
 	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
-		return playerName + ": " + hand.toString();
+		return playerName+ ": " + hand.toString();
 	}
 
 
@@ -226,7 +226,7 @@ public class PokerPlayer {
 		hand.clear();
 		//System.out.println(getPlayerName()+": returnHandToDeck END ");
 		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
-		}
+	}
 
 	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
 	* */
@@ -378,13 +378,17 @@ public class PokerPlayer {
 	/*PokerGame will call this at beginning of every round.
 	* - if player
 	* */
-	public void payAnteFee(int anteFee, boolean nextRound) {
+	public void payAnteFee(int anteFee, boolean noUserInputForRound) {
 		String inputStr = "";
-		if ( nextRound ) {
-			//while (!inputStr.toLowerCase().startsWith("y") |!inputStr.toLowerCase().startsWith("n")) {
+		if ( !noUserInputForRound ) {
+			boolean inputLoop = true;
+			while ( inputLoop ) {
 				System.out.println(playerName + ": do you want to play another round (y/n)?");
 				inputStr = getConsoleInput();
-			//}
+				if(inputStr.toLowerCase().startsWith("y") | inputStr.toLowerCase().startsWith("n")) {
+					inputLoop = false;
+				}
+			}
 		}
 		else {
 			inputStr = "y";
