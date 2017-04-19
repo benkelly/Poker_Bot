@@ -42,7 +42,7 @@ public class visualHand extends JPanel {
 	/*conver jPannel to img
 	* */
 	public BufferedImage createImage(JPanel panel) {
-		int w = panel.getWidth();
+		int w = panel.getWidth()*5;
 		int h = panel.getHeight();
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = bi.createGraphics();
@@ -56,9 +56,13 @@ public class visualHand extends JPanel {
 	public static void main(String[] args) {
 		System.out.println("poker.VisualHand.java!");
 
-		visualHand vH = new visualHand("resources/images/playing_cards/2_of_clubs.png");
+		///visualHand vH = new visualHand("resources/images/playing_cards/2C.png");
 
-
+		visualHand vH = new visualHand(new ImageIcon("resources/images/playing_cards/2C.png").getImage());
+		JFrame frame = new JFrame();
+		frame.getContentPane().add(vH);
+		frame.pack();
+		frame.setVisible(true);
 
 
 
