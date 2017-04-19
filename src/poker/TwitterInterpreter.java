@@ -119,14 +119,16 @@ public class TwitterInterpreter {
 
 
 	private void repliesToBot() {
+		long recentid = 1;
 		List<Status> statuses = null;
 		try {
-			statuses = twitter.getMentionsTimeline(repliesPage.sinceId(0));
+			statuses = twitter.getMentionsTimeline(repliesPage.sinceId(recentid));
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
 		for (Status status : statuses) {
-			System.out.println("@" + status.getUser().getScreenName() + " : " + status.getText());
+			recentid = Math.min(status.getId(),recentid);
+			//System.out.println("@" + status.getUser().getScreenName() + " : " + status.getText());
 			repliesPage.setSinceId(status.getId());
 		}
 	}
