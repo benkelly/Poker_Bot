@@ -1,8 +1,11 @@
 package poker;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Group: @poker_bot
@@ -16,7 +19,9 @@ public class visualHand extends JPanel {
 	private static int PIC_WIDTH = 1600;
 	private static int PIC_HIGHT = 800;
 	private int cardWidth;
+	private int PlayerChips;
 
+	private Image pokerChips;
 	private Image card1;
 	private Image card2;
 	private Image card3;
@@ -24,18 +29,21 @@ public class visualHand extends JPanel {
 	private Image card5;
 
 
-	public visualHand(String c1, String c2, String c3, String c4, String c5) {
+	public visualHand(String c1, String c2, String c3, String c4, String c5, int chipAmount) {
+		PlayerChips = chipAmount;
+		ImageIcon chips = new ImageIcon("resources/images/chips.png");
+		//ImageIcon chips = new ImageIcon("resources/images/playing_cards/" + c1);
 		ImageIcon crd1 = new ImageIcon("resources/images/playing_cards/" + c1);
 		ImageIcon crd2 = new ImageIcon("resources/images/playing_cards/" + c2);
 		ImageIcon crd3 = new ImageIcon("resources/images/playing_cards/" + c3);
 		ImageIcon crd4 = new ImageIcon("resources/images/playing_cards/" + c4);
 		ImageIcon crd5 = new ImageIcon("resources/images/playing_cards/" + c5);
+		pokerChips = chips.getImage();
 		card1 = crd1.getImage();
 		card2 = crd2.getImage();
 		card3 = crd3.getImage();
 		card4 = crd4.getImage();
 		card5 = crd5.getImage();
-		//this.
 	}
 
 
@@ -52,25 +60,76 @@ public class visualHand extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
-		g.drawImage(card1, 0, 0, null);
-		g.drawImage(card2, 200, 0, null);
-		g.drawImage(card3, 400, 0, null);
-		g.drawImage(card4, 600, 0, null);
-		g.drawImage(card5, 800, 0, null);
+		g.drawImage(createResizedCopy(card1, (int)(card1.getWidth(null)*0.8),(int)(card1.getHeight(null)*0.7),false ), 25, 25, null);
+		g.drawImage(createResizedCopy(card2, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 225, 25, null);
+		g.drawImage(createResizedCopy(card3, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 425, 25, null);
+		g.drawImage(createResizedCopy(card4, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 625, 25, null);
+		g.drawImage(createResizedCopy(card5, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 825, 25, null);
+		g.drawImage(createResizedCopy(pokerChips, (int)(pokerChips.getWidth(null)*0.3),(int)(pokerChips.getHeight(null)*0.3),false ), 25, 550, null);
+		g.setFont(new Font("TimesRoman", Font.PLAIN, 200));
+		g.drawString(" = "+PlayerChips, 255, 725);
 
 	}
 
+	public static visualHand generateVisual(HandOfCards h, int chips){
+		System.out.println(h.get(0).toString());
+		System.out.println(h.get(1).toString());
+		System.out.println(h.get(2).toString());
+		System.out.println(h.get(3).toString());
+		System.out.println(h.get(4).toString());
+
+		visualHand vH = new visualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
+				h.get(2).toString() + ".png",h.get(3).toString() + ".png",h.get(4).toString() + ".png", chips);
+		JFrame frame = new JFrame();
+		//frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
+		frame.setBackground(Color.gray);
+		frame.getContentPane().add(vH);
+		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
+		frame.setMinimumSize(new Dimension(PIC_WIDTH, PIC_HIGHT));
+		//frame.pack();
+		frame.setVisible(true);
+
+		return vH;
+	}
+
+	BufferedImage createResizedCopy(Image originalImage,
+	                                int scaledWidth, int scaledHeight,
+	                                boolean preserveAlpha)
+	{
+		//System.out.println("resizing...");
+		int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
+		BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
+		Graphics2D g = scaledBI.createGraphics();
+		if (preserveAlpha) {
+			g.setComposite(AlphaComposite.Src);
+		}
+		g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null);
+		g.dispose();
+		return scaledBI;
+	}
 
 
 	/*conver jPannel to img
 	* */
-	public BufferedImage createImage(JPanel panel) {
+	public static BufferedImage createImage(JPanel panel) {
 		int w = panel.getWidth();
 		int h = panel.getHeight();
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = bi.createGraphics();
 		panel.paint(g);
 		return bi;
+	}
+
+
+
+	public static void saveBufferedImageToFile(BufferedImage bi) {
+		File outputfile = new File("image.jpg");
+		try {
+			ImageIO.write(bi, "jpg", outputfile);
+			System.out.println("image.jpg made..");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
@@ -85,6 +144,8 @@ public class visualHand extends JPanel {
 		frame.getContentPane().add(vH);
 		frame.pack();
 		frame.setVisible(true);*/
+
+
 		DeckOfCards deck = new DeckOfCards();
 		deck.shuffle();
 		HandOfCards hand = new HandOfCards();
@@ -93,24 +154,12 @@ public class visualHand extends JPanel {
 		hand.add(deck.get(3));
 		hand.add(deck.get(39));
 		hand.add(deck.get(51));
-		generateVisual(hand);
 
 
-	}
-	public static visualHand generateVisual(HandOfCards h){
-		System.out.println(h.get(0).toString());
-		System.out.println(h.get(1).toString());
-		System.out.println(h.get(2).toString());
-		System.out.println(h.get(3).toString());
-		System.out.println(h.get(4).toString());
+		generateVisual(hand, 3000);
 
-		visualHand vH = new visualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
-				h.get(2).toString() + ".png",h.get(3).toString() + ".png",h.get(4).toString() + ".png");
-		JFrame frame = new JFrame();
-		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
-		frame.getContentPane().add(vH);
-		//frame.pack();
-		frame.setVisible(true);
-		return vH;
+		//saveBufferedImageToFile(createImage(generateVisual(hand)));
+
+
 	}
 }

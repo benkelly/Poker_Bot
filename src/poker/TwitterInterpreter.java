@@ -41,30 +41,28 @@ public class TwitterInterpreter {
 		setTwitterStreamInstance();
 	}
 
-	/* initialises app with twitter api keys and makes TwitterFactory instance
+	/*Set ConfigurationBuilder with twitter API keys.
 	* */
-	private final void setTwitterInstance() {
+	private final ConfigurationBuilder getConfigBuilder() {
 		ConfigurationBuilder cb = new ConfigurationBuilder();
 		cb.setDebugEnabled(true)
 				.setOAuthConsumerKey(CONSUMER_KEY)
 				.setOAuthConsumerSecret(CONSUMER_SECRET)
 				.setOAuthAccessToken(ACCESS_TOKEN)
 				.setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
-		TwitterFactory tf = new TwitterFactory(cb.build());
+		return cb;
+	}
+	/* initialises app with twitter api keys and makes TwitterFactory instance
+	* */
+	private final void setTwitterInstance() {
+		TwitterFactory tf = new TwitterFactory(getConfigBuilder().build());
 		twitter = tf.getInstance();
 	}
 	/* initialises app with twitter api keys and makes TwitterStreamFactory instance
 	* */
 	private final void setTwitterStreamInstance() {
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		cb.setDebugEnabled(true)
-				.setOAuthConsumerKey(CONSUMER_KEY)
-				.setOAuthConsumerSecret(CONSUMER_SECRET)
-				.setOAuthAccessToken(ACCESS_TOKEN)
-				.setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
-		TwitterStreamFactory tsf = new TwitterStreamFactory(cb.build());
+		TwitterStreamFactory tsf = new TwitterStreamFactory(getConfigBuilder().build());
 		twitterStream = tsf.getInstance();
-
 	}
 
 
@@ -168,9 +166,9 @@ public class TwitterInterpreter {
 		//ti.postTweet("oo");
 		//ti.getTimeline();
 		//ti.sendDirectMessages("b3nkelly", "hey sxc ;)");
-		//ti.searchForTweets("trump");
+		ti.searchForTweets("trump");
 		//ti.repliesToBot();
-		ti.repliesToBotLoop();
+		//ti.repliesToBotLoop();
 
 	}
 }
