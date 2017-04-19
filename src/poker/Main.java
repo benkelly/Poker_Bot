@@ -16,9 +16,13 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("main class!");
 
+
+
+
+/*
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer("bot: "+j, 30000));
+			playerList.add(new PokerPlayer("bot: "+j,PokerGame.getInstance(), DeckOfCards.getInstance(),  30000));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {
@@ -35,7 +39,7 @@ public class Main {
 		for (int j = 0; j < 100; j++) {
 
 		for (int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).discard();
+			playerList.get(i).discard(3);
 			playerList.get(i).getNewCardsForHand();
 		}
 
@@ -59,6 +63,8 @@ public class Main {
 		System.out.println("DeckOfCards: " + DeckOfCards.getInstance().size());
 		System.out.println("DeckOfCards: " + DeckOfCards.getInstance());
 
+
 		}
+		*/
 	}
 }

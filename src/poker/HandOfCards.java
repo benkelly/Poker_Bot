@@ -68,6 +68,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	/*Calls sort() then goes through all hand Type functions for its hand
 	* */
 	synchronized public void generateHandType() {
+		resetHandTypes();
 		this.sort();
 		this.isRoyalFlush();
 		this.isStraightFlush();
@@ -79,6 +80,20 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 		this.isTwoPair();
 		this.isPair();
 		this.isHighCard();
+	}
+	/*resets bools for next rounds hand.
+	* */
+	private void resetHandTypes() {
+		isRoyalFlush = false;
+		isStraightFlush = false;
+		isFourOfAKind = false;
+		isFullHouse = false;
+		isFlush = false;
+		isStraight = false;
+		isThreeOfAKind = false;
+		isTwoPair = false;
+		isPair = false;
+		isHighCard = false;
 	}
 
 	/*For private testing: Returns string of all
