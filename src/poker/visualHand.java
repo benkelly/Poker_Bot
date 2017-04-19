@@ -33,8 +33,8 @@ public class visualHand extends JPanel {
 		card1 = crd1.getImage();
 		card2 = crd2.getImage();
 		card3 = crd3.getImage();
-		card4 = crd3.getImage();
-		card5 = crd4.getImage();
+		card4 = crd4.getImage();
+		card5 = crd5.getImage();
 		//this.
 	}
 
@@ -44,10 +44,10 @@ public class visualHand extends JPanel {
 		//this.img = img;
 		Dimension size = new Dimension(card1.getWidth(null), card1.getHeight(null));
 		cardWidth =  (int) size.getWidth();
-		//setPreferredSize(size);
-		//setMinimumSize(size);
-		//setMaximumSize(size);
-		//setSize(size);
+		setPreferredSize(size);
+		setMinimumSize(size);
+		setMaximumSize(size);
+		setSize(size);
 		setLayout(null);
 	}
 
@@ -79,17 +79,38 @@ public class visualHand extends JPanel {
 	public static void main(String[] args) {
 		System.out.println("poker.VisualHand.java!");
 
-		visualHand vH = new visualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
+		/*visualHand vH = new visualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
 		JFrame frame = new JFrame();
 		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
 		frame.getContentPane().add(vH);
 		frame.pack();
+		frame.setVisible(true);*/
+		DeckOfCards deck = new DeckOfCards();
+		deck.shuffle();
+		HandOfCards hand = new HandOfCards();
+		hand.add(deck.get(43));
+		hand.add(deck.get(47));
+		hand.add(deck.get(3));
+		hand.add(deck.get(39));
+		hand.add(deck.get(51));
+		generateVisual(hand);
+
+
+	}
+	public static visualHand generateVisual(HandOfCards h){
+		System.out.println(h.get(0).toString());
+		System.out.println(h.get(1).toString());
+		System.out.println(h.get(2).toString());
+		System.out.println(h.get(3).toString());
+		System.out.println(h.get(4).toString());
+
+		visualHand vH = new visualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
+				h.get(2).toString() + ".png",h.get(3).toString() + ".png",h.get(4).toString() + ".png");
+		JFrame frame = new JFrame();
+		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
+		frame.getContentPane().add(vH);
+		//frame.pack();
 		frame.setVisible(true);
-
-
-
-
-
-
+		return vH;
 	}
 }
