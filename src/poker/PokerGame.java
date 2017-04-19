@@ -20,12 +20,11 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	public static final int MAX_HAND = 5;
 	public static final int MAX_DISCARD = 3;
 
-
 	// game stats
 	private DeckOfCards gameDeck;
 	private boolean gameOver = false;
 	private int roundCount = 0;
-	private  boolean playNextRound = false;
+	private  boolean firstRound = true;
 
 	// current round variables
 	private int currentRoundsAnteAmount = 100; // the current round ante, entering fee
@@ -38,8 +37,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		setPokerTable(); // adds human and bots to poker table
 
 		while ( !gameOver ) {
-			payAnteFee(currentRoundsAnteAmount, playNextRound); // players pay their ante to enter game.
-			dealOutCards(playNextRound); // deals out new cards.
+			payAnteFee(currentRoundsAnteAmount, firstRound); // players pay their ante to enter game.
+			if(gameOver) { break; }
+			dealOutCards(firstRound); // deals out new cards.
 
 			currentRoundPlayerOptions(); // gets players round inputs
 
@@ -59,12 +59,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		this.add(new PokerPlayer("human",this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
 		// add bots
 		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
+			this.add(new PlayerBot(this, gameDeck, 100));
 		}
 	}
 
-	synchronized private void dealOutCards(boolean nextRound) {
-		if (nextRound) {
+	/*deals out cards for the next round/
+	* */
+	synchronized private void dealOutCards(boolean firstR) {
+		if ( !firstR ) {
 			for (PokerPlayer player : this) {
 				player.getNewCardsForHand();
 			}
@@ -89,14 +91,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	/*player will pay enter fee if unable then bankrupted
 	* */
-	synchronized private void payAnteFee(int AnteFee, boolean nextRound) {
+	synchronized private void payAnteFee(int AnteFee, boolean isFistRound) {
 		//for (PokerPlayer player : this) {
 		for (int i = 0; i < this.size(); i++) {
 			if( this.get(i).isHuman ) {
-				this.get(i).payAnteFee(AnteFee, nextRound);
+				this.get(i).payAnteFee(AnteFee, isFistRound);
 			}
 			else {
-				this.get(i).payAnteFee(AnteFee, false);
+				this.get(i).payAnteFee(AnteFee, true);
 			}
 		}
 	}
@@ -144,8 +146,10 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		return this.get(tempHighScorePlayerIndex);
 	}
 
+	/*rests rounds data.
+	* */
 	synchronized private void resetRound() {
-		currentRoundsStakeAmount = 0;
+		//currentRoundsStakeAmount = 0;
 		currentRoundsHeldStake = 0;
 		curRoundPlayerList.clear();
 		//System.out.println("**** Return cards to deck: "+gameDeck.getInstance().size());
@@ -154,13 +158,17 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		}
 		//System.out.println("**** Return cards to deck END: "+gameDeck.getInstance().size());
 		gameDeck.getInstance().shuffle();
-		playNextRound = true; // add option to human to exit game at the next ante pay.
+		firstRound = false; // add option to human to exit game at the next ante pay.
 	}
 
+	/*called from pokerPlayer if
+	* */
 	synchronized public void addToCurRoundPlayerList(PokerPlayer temp) {
 		curRoundPlayerList.add(temp);
 	}
 
+	/*called from pokerPlayer if folding from that round.
+	* */
 	synchronized public int curRoundPlayerFolds(PokerPlayer temp) {
 		if(curRoundPlayerList.contains(temp)) {
 			//System.out.println("curRoundPlayerList contain: "+temp.getPlayerName());
@@ -169,6 +177,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		return 0;
 	}
 
+	/*Called when player chooses to rise stake. all pervious called players will have option
+	* to call again to new price or fold.
+	* */
 	synchronized public void matchStakeIncrease(int stakeIncrease) {
 		//System.out.println("matchStakeIncrease START");
 		ArrayList<PokerPlayer> foldingList = new ArrayList<PokerPlayer>(); // players going to fold
@@ -208,6 +219,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 
+	/*Used in pokerPlayers when raising stake.
+	* */
 	synchronized public void setCurrentRoundsStakeAmount(int currentRoundsStakeAmount) {
 		this.currentRoundsStakeAmount = currentRoundsStakeAmount;
 	}
@@ -217,6 +230,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	synchronized public int getCurrentRoundsStakeAmount() {
 		return currentRoundsStakeAmount;
 	}
+
+
+
 
 	/*Class testing method
 	* */
@@ -228,11 +244,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		for (PokerPlayer object : pg) {
 			//object.hand.generateHandType();
 			//System.out.println(object.toString()+"   "+object.hand.getBestHandTypeName());
-			//System.out.println(object.getPlayerChipAmount());
+			System.out.println(object.toString());
+			System.out.println(object.getPlayerChipAmount());
 
 		}
 		System.out.println(pg.gameDeck.getInstance().size());
 		System.out.println(pg.gameDeck.getInstance().toString());
+
+		System.out.println("PokerGame: "+pg.toString());
 
 		System.out.println("getCurrentRoundsHeldStake: "+pg.getCurrentRoundsHeldStake());
 		System.out.println("curRoundPlayerList: "+pg.curRoundPlayerList);
