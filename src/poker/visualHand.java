@@ -13,28 +13,51 @@ import java.awt.image.BufferedImage;
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
 public class visualHand extends JPanel {
-	private static int PIC_WIDTH = 800;
+	private static int PIC_WIDTH = 1600;
 	private static int PIC_HIGHT = 800;
+	private int cardWidth;
 
-	private Image img;
+	private Image card1;
+	private Image card2;
+	private Image card3;
+	private Image card4;
+	private Image card5;
 
 
-	public visualHand(String img) {
-		this(new ImageIcon(img).getImage());
+	public visualHand(String c1, String c2, String c3, String c4, String c5) {
+		ImageIcon crd1 = new ImageIcon("resources/images/playing_cards/" + c1);
+		ImageIcon crd2 = new ImageIcon("resources/images/playing_cards/" + c2);
+		ImageIcon crd3 = new ImageIcon("resources/images/playing_cards/" + c3);
+		ImageIcon crd4 = new ImageIcon("resources/images/playing_cards/" + c4);
+		ImageIcon crd5 = new ImageIcon("resources/images/playing_cards/" + c5);
+		card1 = crd1.getImage();
+		card2 = crd2.getImage();
+		card3 = crd3.getImage();
+		card4 = crd3.getImage();
+		card5 = crd4.getImage();
+		//this.
 	}
 
-	public visualHand(Image img) {
-		this.img = img;
-		Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
-		setPreferredSize(size);
-		setMinimumSize(size);
-		setMaximumSize(size);
-		setSize(size);
+
+
+	public visualHand(Image card1, Image card2, Image card3, Image card4, Image card5) {
+		//this.img = img;
+		Dimension size = new Dimension(card1.getWidth(null), card1.getHeight(null));
+		cardWidth =  (int) size.getWidth();
+		//setPreferredSize(size);
+		//setMinimumSize(size);
+		//setMaximumSize(size);
+		//setSize(size);
 		setLayout(null);
 	}
 
 	public void paintComponent(Graphics g) {
-		g.drawImage(img, 0, 0, null);
+		g.drawImage(card1, 0, 0, null);
+		g.drawImage(card2, 200, 0, null);
+		g.drawImage(card3, 400, 0, null);
+		g.drawImage(card4, 600, 0, null);
+		g.drawImage(card5, 800, 0, null);
+
 	}
 
 
@@ -56,8 +79,12 @@ public class visualHand extends JPanel {
 	public static void main(String[] args) {
 		System.out.println("poker.VisualHand.java!");
 
-		visualHand vH = new visualHand("resources/images/playing_cards/2_of_clubs.png");
-
+		visualHand vH = new visualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
+		JFrame frame = new JFrame();
+		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
+		frame.getContentPane().add(vH);
+		frame.pack();
+		frame.setVisible(true);
 
 
 

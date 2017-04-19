@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/poker/visualHand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/visualHand.java" afterPath="$PROJECT_DIR$/src/poker/visualHand.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -125,14 +123,10 @@
       <file leaf-file-name="visualHand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="261">
+              <caret line="58" column="30" lean-forward="false" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#579#580#0" expanded="true" />
-                <element signature="e#621#622#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
-                <element signature="e#938#939#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -820,8 +814,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Application.visualHand" />
-        <item index="1" class="java.lang.String" itemvalue="Application.PokerGame" />
-        <item index="2" class="java.lang.String" itemvalue="Application.PlayerBot" />
+        <item index="1" class="java.lang.String" itemvalue="Application.PlayerBot" />
+        <item index="2" class="java.lang.String" itemvalue="Application.PokerGame" />
         <item index="3" class="java.lang.String" itemvalue="Application.TwitterInterpreter" />
         <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
@@ -878,14 +872,7 @@
       <workItem from="1487150639591" duration="93100000" />
       <workItem from="1488978619838" duration="5665000" />
       <workItem from="1490811895853" duration="37120000" />
-      <workItem from="1491907992092" duration="50534000" />
-    </task>
-    <task id="LOCAL-00022" summary="some scoring done xxx&#10;">
-      <created>1487331548749</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1487331548749</updated>
+      <workItem from="1491907992092" duration="53248000" />
     </task>
     <task id="LOCAL-00023" summary="fulling system made. more tests needed &#10;">
       <created>1487408092787</created>
@@ -1223,11 +1210,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492532676567</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="PokerGame 99% done + added a bit to visualHand:^)">
+      <created>1492592839893</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1492592839893</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248276000" />
+    <option name="totallyTimeSpent" value="250990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="28" y="23" width="1413" height="877" extended-state="0" />
@@ -1286,7 +1280,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="some scoring done xxx&#10;" />
     <MESSAGE value="fulling system made. more tests needed &#10;" />
     <MESSAGE value="added more test cases" />
     <MESSAGE value="started making getDiscardProbability()" />
@@ -1311,7 +1304,8 @@
     <MESSAGE value="originally paid stake player who then fold after a rase wroks grand now :^)" />
     <MESSAGE value="all card change cmds done and round winnrer basicaly done :^)" />
     <MESSAGE value="PokerGame 99% done :^)" />
-    <option name="LAST_COMMIT_MESSAGE" value="PokerGame 99% done :^)" />
+    <MESSAGE value="PokerGame 99% done + added a bit to visualHand:^)" />
+    <option name="LAST_COMMIT_MESSAGE" value="PokerGame 99% done + added a bit to visualHand:^)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1820,14 +1814,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="51" column="0" lean-forward="true" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="261">
+          <caret line="58" column="30" lean-forward="false" selection-start-line="58" selection-start-column="30" selection-end-line="58" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#579#580#0" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#903#904#0" expanded="true" />
-            <element signature="e#938#939#0" expanded="true" />
           </folding>
         </state>
       </provider>
