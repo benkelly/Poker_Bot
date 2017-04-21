@@ -155,7 +155,7 @@ public class PlayerBot extends PokerPlayer {
 					Random rand = new Random();
 					int value = rand.nextInt(3);
 					switch (value) {
-						case 1: {
+						case 0: {
 							payCurrentStake();
 							return true;
 						}
