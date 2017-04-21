@@ -2,6 +2,8 @@ package poker;
 
 import java.util.ArrayList;
 
+import static poker.HandOfCards.PAIR_WEIGHT;
+
 /**
  * Group: @poker_bot
  * Sean Regan - 13388996 - sean.regan@ucdconnect.ie
@@ -41,6 +43,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			if(gameOver) { break; }
 			dealOutCards(firstRound); // deals out new cards.
 
+			while( checkForBumDeck() ) { } // will re-deal till at least a play has a pair
+
+
 			currentRoundPlayerOptions(); // gets players round inputs
 
 			getRoundWinner(); // calculates winning hand and pays that player the pot.
@@ -56,11 +61,12 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*adds poker players to game.
 	* */
 	private void setPokerTable() {
-		this.add(new PokerPlayer("human",this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
 		// add bots
 		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PlayerBot(this, gameDeck, 100));
+			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
 		}
+		this.add(new PokerPlayer("human",this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
+		// human last may be nicer for tweet format.
 	}
 
 	/*deals out cards for the next round/
@@ -79,9 +85,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		for (PokerPlayer player : this) { // players choose card discard options
 			while(player.playersHandOptions()==false){}
 		}
-
-
-
 
 		for (PokerPlayer player : this) { // players choose their betting options
 			while(player.playersBettingOptions()==false){}
@@ -106,10 +109,12 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
 	* */
-	synchronized public void playerIsBankrupted(PokerPlayer player) {
+	synchronized public void playerIsLeavingGame(PokerPlayer player, boolean isBankrupted) {
 		if( player.isHuman ) {
 			gameOver = true;
-			System.out.println(this.get(0).getPlayerName()+" is bankrupt.... game over dude....");
+			if (isBankrupted) {
+				System.out.println(this.get(0).getPlayerName() + " is bankrupt.... game over dude....");
+			}
 		}
 		else {
 			for (PlayingCard card : player.hand) {
@@ -145,6 +150,34 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		}
 		return this.get(tempHighScorePlayerIndex);
 	}
+
+	/*if all players have lover than a pair. then re-deal.
+	* */
+	synchronized private boolean checkForBumDeck() {
+		//System.out.println("checkForBumDeck   START");
+		int tempHighScore = 0;
+		for (PokerPlayer player : this) {
+			System.out.println(player+": checkForBumDeck");
+			if (tempHighScore < player.getCurrentHandScore()) { // re-calcs all players current scores.
+				tempHighScore = player.getCurrentHandScore();
+			}
+		}
+		if(tempHighScore < HandOfCards.PAIR_WEIGHT) {
+			System.out.println("BUM DECK!!!!");
+			for (PokerPlayer player : this) {
+				player.returnHandToDeck();
+			}
+			gameDeck.getInstance().shuffle();
+
+			dealOutCards(false); // deals out new cards.
+			return true;
+		}
+		else
+			//System.out.println("checkForBumDeck   END");
+			return false;
+	}
+
+
 
 	/*rests rounds data.
 	* */

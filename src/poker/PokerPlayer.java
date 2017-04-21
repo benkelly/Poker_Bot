@@ -26,7 +26,7 @@ public class PokerPlayer {
 	public boolean isHuman;
 	int playerChipAmount = 0;
 
-	private int currentStakePaid = 0;
+	int currentStakePaid = 0;
 
 	public int currentHandScore = 0;
 	public int totalDiscardCount = 0;
@@ -281,7 +281,7 @@ public class PokerPlayer {
 		return playerChipAmount;
 	}
 
-	public int getCurrentHandScore() {
+	synchronized public int getCurrentHandScore() {
 		hand.generateHandType();
 		return hand.getGameValue();
 	}
@@ -337,14 +337,7 @@ public class PokerPlayer {
 
 		while (true) {
 			if (inputStr.toLowerCase().startsWith("y")) {
-				if (playerChipAmount >= stakeIncrease) {
-					pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
-					playerChipAmount -= stakeIncrease;
-					currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
-					return true;
-				} else {
-					return false;
-				}
+				payReRaiseStake(stakeIncrease);
 			}
 			if (inputStr.toLowerCase().startsWith("n")) {
 				return false;
@@ -352,7 +345,19 @@ public class PokerPlayer {
 		}
 	}
 
+	synchronized public boolean payReRaiseStake(int stakeIncrease) {
+		if (playerChipAmount >= stakeIncrease) {
+			pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
+			playerChipAmount -= stakeIncrease;
+			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+			return true;
+		}
+		else
+			return false;
+	}
 
+	/*Calls fold from round in PokerGame.
+	* */
 	synchronized public void foldFromRound() {
 		pokerGame.curRoundPlayerFolds(this);
 		System.out.println(playerName+": has folded.");
@@ -399,11 +404,11 @@ public class PokerPlayer {
 				playerChipAmount -= anteFee;
 				totalRoundsPlayed++;
 			} else {
-				pokerGame.playerIsBankrupted(this);
+				pokerGame.playerIsLeavingGame(this, true);
 			}
 		}
 		if (inputStr.toLowerCase().startsWith("n")) {
-			pokerGame.playerIsBankrupted(this);
+			pokerGame.playerIsLeavingGame(this, false);
 		}
 	}
 

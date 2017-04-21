@@ -133,9 +133,9 @@ public class visualHand extends JPanel {
 		}
 	}
 
-	public void TweetVisualHand(HandOfCards hand, int chipAmount) {
+	public static void TweetVisualHand(HandOfCards hand, int chipAmount, String TweetMsg) {
 		try {
-			TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, chipAmount))), "testing :^)  : ");
+			TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, chipAmount))), TweetMsg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -180,8 +180,8 @@ public class visualHand extends JPanel {
 
 		//saveBufferedImageToFile(createImage(generateVisual(hand)));
 		//saveBufferedImageToFile(createImage(generateVisual(hand, 3000)));
-		//TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "testing :^)  : ");
-
+		//TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "Some text" + "\u00ea" + "\u00f1" + "\u00fc" + " bla"  : ");
+		TweetVisualHand(hand, 3000, "Some text" + "U+1F602" + "\u1F602" + "\u00fc" + " bla" );
 
 	}
 }
