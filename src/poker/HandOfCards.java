@@ -36,16 +36,16 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 	* using multiples of a million to segregate each hand in its own spectrum.
 	* therefor a TwoPair of 2s and 3s will still win over a Pair of aces and so on.
 	*/
-	static private final int ROYAL_FLUSH_WEIGHT = 9000000;
-	static private final int STRAIGHT_FLUSH_WEIGHT = 8000000;
-	static private final int FOUR_OF_A_KIND_WEIGHT = 7000000;
-	static private final int FULL_HOUSE_WEIGHT = 6000000;
-	static private final int FLUSH_WEIGHT = 5000000;
-	static private final int STRAIGHT_WEIGHT = 4000000;
-	static private final int THREE_OF_A_KIND_WEIGHT = 3000000;
-	static private final int TWO_PAIR_WEIGHT = 2000000;
-	static private final int PAIR_WEIGHT = 1000000;
-	static private final int HIGH_CARD_WEIGHT = 0;
+	static public final int ROYAL_FLUSH_WEIGHT = 9000000;
+	static public final int STRAIGHT_FLUSH_WEIGHT = 8000000;
+	static public final int FOUR_OF_A_KIND_WEIGHT = 7000000;
+	static public final int FULL_HOUSE_WEIGHT = 6000000;
+	static public final int FLUSH_WEIGHT = 5000000;
+	static public final int STRAIGHT_WEIGHT = 4000000;
+	static public final int THREE_OF_A_KIND_WEIGHT = 3000000;
+	static public final int TWO_PAIR_WEIGHT = 2000000;
+	static public final int PAIR_WEIGHT = 1000000;
+	static public final int HIGH_CARD_WEIGHT = 0;
 
 	public HandOfCards(){
 	}

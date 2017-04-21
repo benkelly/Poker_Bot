@@ -1,7 +1,5 @@
 package poker;
 
-import org.w3c.dom.ranges.Range;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,13 +22,43 @@ public class PlayerBot extends PokerPlayer {
 	private static final String FIRST_NAMES_LIST = "resources/firstNames.txt";
 	private static final String LAST_NAMES_LIST = "resources/lastNames.txt";
 
-	// stats
+	// bot stats
 	private int botAgressrion;
 	private int botIntellagence;
 
 	public PlayerBot(PokerGame game, DeckOfCards deck, int chips) {
 		super("", game, deck, chips, false);
 		playerName = generateName();
+		generateBotStats();
+		System.out.println(getPlayerName()+": botAgressrion: "+botAgressrion+": botIntellagence: "+botIntellagence);
+	}
+
+	private void generateBotStats() {
+		Random rand = new Random();
+		int value = rand.nextInt(4);
+		switch (value) {
+			case 0: {
+				botAgressrion = 100;
+				botIntellagence = 50;
+				break;
+			}
+			case 1: {
+				botAgressrion = 40;
+				botIntellagence = 80;
+				break;
+			}
+			case 2: {
+				botAgressrion = 50;
+				botIntellagence = 39;
+				break;
+			}
+			case 3: {
+				botAgressrion = 20;
+				botIntellagence = 20;
+				break;
+			}
+		}
+		//System.out.println(getPlayerName()+": generateBotStats VALUE: "+value);
 	}
 
 	/*returns string of a random name generated form a list of names.
@@ -72,39 +100,115 @@ public class PlayerBot extends PokerPlayer {
 
 	//methods from pokerPlayer needed to override to bot
 	public boolean playersHandOptions() {
-		int discardDecision;
-		int discardNumber;
-		discardDecision = getCurrentHandScore() / botAgressrion;
-		if (discardDecision >= 10000) {
-			if (botIntellagence >= 40) {
-				discardNumber = getCurrentHandScore();
-				if (1 <= discardNumber && discardNumber <= 333333) {
+		int discardNumber = 0;
+		if (botIntellagence >= 40 | botAgressrion >=60) {
+			int tempHandScore = getCurrentHandScore();
+			// the lower score more cards to discard.
+			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i+=1000000) {
+				if (i+1 <= tempHandScore && tempHandScore <= i+333333) {
 					discardNumber = 3;
+					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
 				}
-				if (333334 <= discardNumber && discardNumber <= 666666) {
+				if (i+333334 <= tempHandScore && tempHandScore <= i+666666) {
 					discardNumber = 2;
+					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
+
 				}
-				if (666666 <= discardNumber && discardNumber <= 999999) {
+				if (i+666666 <= tempHandScore && tempHandScore <= i+999999) {
 					discardNumber = 1;
+					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
+
 				}
-				discard(discardNumber);
-				return true;
 			}
-			else { // keep
-				return true;
+			discard(discardNumber);
+			return true;
+		}
+		if(botIntellagence < 39 | botAgressrion < 59) {
+			Random rand = new Random();
+			int value = rand.nextInt(2);
+			switch (value) {
+				case 0: { // discard at random
+					Random disNum = new Random();
+					discardNumber = disNum.nextInt(2) + 1;
+					discard(discardNumber);
+					System.out.println(getPlayerName()+": RANDODM COINFLIPP ONE discardNumber: "+discardNumber);
+					return true;
+				}
+				case 1: { // keep
+					break;
+				}
 			}
+		}
+		else { // keep
+			System.out.println(getPlayerName()+": KEEP: ");
+			return true;
 		}
 		return false;
 	}
 
-
 	public boolean playersBettingOptions() {
-		return false;
-	}
 
-	synchronized public boolean reRaiseStake(int stakeIncrease) {
-		return false;
-	}
+		if (botIntellagence >= 40 | botAgressrion >=60) {
+			int tempHandScore = getCurrentHandScore();
+			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i+=1000000) {
+				if (i+1 <= tempHandScore && tempHandScore <= i+333333) {
+					Random rand = new Random();
+					int value = rand.nextInt(3);
+					switch (value) {
+						case 1: {
+							payCurrentStake();
+							return true;
+						}
+						case 1: {
+							payCurrentStake();
+							return true;
+						}
+						case 2: { // increaseStake
+							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
+							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion / 100));
+							if (riseStakeAmount <= playerChipAmount) {
+								increaseStake(riseStakeAmount);
+								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
+							} else {
+								payCurrentStake();
+								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO : " + riseStakeAmount);
+							}
+							return true;
+						}
+					}
+				}
+				if (i+333334 <= tempHandScore && tempHandScore <= i+999999) {
+					Random rand = new Random();
+					int value = rand.nextInt(2);
+					switch (value) {
+						case 0: {
+							payCurrentStake();
+							return true;
+						}
+						case 1: { // increaseStake
+							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
+							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion/100));
+							if(riseStakeAmount <= playerChipAmount) {
+								increaseStake(riseStakeAmount);
+								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
+							}
+							else{
+								payCurrentStake();
+								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO : " + riseStakeAmount);
+							}
+							return true;
+						}
+					}
+
+
+				}
+
+				return false;
+			}
+
+		synchronized public boolean reRaiseStake(int stakeIncrease) {
+			return false;
+		}
 
 	/*public void payAnteFee(int anteFee, boolean noUserInputForRound) {
 
@@ -113,10 +217,10 @@ public class PlayerBot extends PokerPlayer {
 
 	/*Class testing method
 		* */
-	public static void main(String[] args) {
-		System.out.println("poker.PlayerBot.java!");
-		PlayerBot pb = new PlayerBot(PokerGame.getInstance(), DeckOfCards.getInstance(), 3000);
-		System.out.println(pb.getPlayerName());
-		System.out.println(pb.getPlayerChipAmount());
+		public static void main(String[] args) {
+			System.out.println("poker.PlayerBot.java!");
+			PlayerBot pb = new PlayerBot(PokerGame.getInstance(), DeckOfCards.getInstance(), 3000);
+			System.out.println(pb.getPlayerName());
+			System.out.println(pb.getPlayerChipAmount());
+		}
 	}
-}
