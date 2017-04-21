@@ -4,8 +4,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Group: @poker_bot
@@ -71,23 +70,23 @@ public class visualHand extends JPanel {
 
 	}
 
-	public static visualHand generateVisual(HandOfCards h, int chips){
-		System.out.println(h.get(0).toString());
-		System.out.println(h.get(1).toString());
-		System.out.println(h.get(2).toString());
-		System.out.println(h.get(3).toString());
-		System.out.println(h.get(4).toString());
+	public static JPanel generateVisual(HandOfCards h, int chips){
+		//System.out.println(h.get(0).toString());
+		//System.out.println(h.get(1).toString());
+		//System.out.println(h.get(2).toString());
+		//System.out.println(h.get(3).toString());
+		//System.out.println(h.get(4).toString());
 
 		visualHand vH = new visualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
 				h.get(2).toString() + ".png",h.get(3).toString() + ".png",h.get(4).toString() + ".png", chips);
-		JFrame frame = new JFrame();
+		//JPanel panel = new JPanel();
 		//frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
-		frame.setBackground(Color.gray);
-		frame.getContentPane().add(vH);
-		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
-		frame.setMinimumSize(new Dimension(PIC_WIDTH, PIC_HIGHT));
+		//panel.setSize(PIC_WIDTH, PIC_HIGHT);
+		vH.setSize(PIC_WIDTH, PIC_HIGHT);
+		vH.setBackground(Color.gray);
+		//panel.add(vH);
 		//frame.pack();
-		frame.setVisible(true);
+		//panel.setVisible(true);
 
 		return vH;
 	}
@@ -121,6 +120,19 @@ public class visualHand extends JPanel {
 	}
 
 
+	public static InputStream saveBufferedImageToInputStream(BufferedImage bi) {
+		InputStream inputStream = null;
+		try {
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			ImageIO.write(bi, "jpg", os);
+			inputStream = new ByteArrayInputStream(os.toByteArray());
+			return inputStream;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 
 	public static void saveBufferedImageToFile(BufferedImage bi) {
 		File outputfile = new File("image.jpg");
@@ -135,7 +147,7 @@ public class visualHand extends JPanel {
 
 	/*Class testing method
 * */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		System.out.println("poker.VisualHand.java!");
 
 		/*visualHand vH = new visualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
@@ -156,9 +168,11 @@ public class visualHand extends JPanel {
 		hand.add(deck.get(51));
 
 
-		generateVisual(hand, 3000);
+		//generateVisual(hand, 3000);
 
 		//saveBufferedImageToFile(createImage(generateVisual(hand)));
+		//saveBufferedImageToFile(createImage(generateVisual(hand, 3000)));
+		TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "testing :^)");
 
 
 	}

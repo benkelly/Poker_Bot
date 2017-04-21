@@ -1,8 +1,21 @@
 package poker;
 
+import sun.rmi.runtime.Log;
 import twitter4j.*;
 import twitter4j.conf.*;
 
+
+import twitter4j.conf.*;
+import twitter4j.*;
+import twitter4j.auth.*;
+import twitter4j.api.*;
+import twitter4j.media.ImageUpload;
+import twitter4j.media.ImageUploadFactory;
+import twitter4j.media.MediaProvider;
+
+
+import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -30,6 +43,7 @@ public class TwitterInterpreter {
 	private TwitterStream twitterStream;
 	private Paging repliesPage = new Paging();
 
+	ImageUploadFactory imageUploadFactory;
 
 	public static TwitterInterpreter getInstance()
 	{
@@ -77,6 +91,14 @@ public class TwitterInterpreter {
 		System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
 	}
+
+
+	public void tweetPic(InputStream _file, String theTweet) throws Exception {
+		StatusUpdate status = new StatusUpdate(theTweet);
+		status.setMedia("image.jpg", _file);
+		twitter.updateStatus(status);
+	}
+
 
 	private void getTimeline() {
 		List<Status> statuses = null;
