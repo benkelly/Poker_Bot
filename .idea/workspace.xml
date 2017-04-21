@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/HandOfCards.java" afterPath="$PROJECT_DIR$/src/poker/HandOfCards.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
     </list>
     <ignored path="COMP30050.iws" />
@@ -45,10 +44,12 @@
       <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="125" column="41" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+            <state relative-caret-position="876">
+              <caret line="205" column="0" lean-forward="true" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5911#5912#0" expanded="true" />
+                <element signature="e#5930#5931#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -867,14 +868,7 @@
       <workItem from="1490811895853" duration="37120000" />
       <workItem from="1491907992092" duration="46957000" />
       <workItem from="1492595695079" duration="15961000" />
-      <workItem from="1492702656755" duration="12839000" />
-    </task>
-    <task id="LOCAL-00026" summary=":^)">
-      <created>1487672829592</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1487672829594</updated>
+      <workItem from="1492702656755" duration="12895000" />
     </task>
     <task id="LOCAL-00027" summary=":^)">
       <created>1487681517965</created>
@@ -1212,11 +1206,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492767783075</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="started a little on PokerBot">
+      <created>1492774097724</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1492774097724</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="273499000" />
+    <option name="totallyTimeSpent" value="273555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="23" width="1413" height="877" extended-state="6" />
@@ -1783,10 +1784,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="125" column="41" lean-forward="true" selection-start-line="125" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+        <state relative-caret-position="876">
+          <caret line="205" column="0" lean-forward="true" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#5911#5912#0" expanded="true" />
+            <element signature="e#5930#5931#0" expanded="true" />
           </folding>
         </state>
       </provider>

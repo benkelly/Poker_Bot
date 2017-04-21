@@ -150,8 +150,8 @@ public class PlayerBot extends PokerPlayer {
 
 		if (botIntellagence >= 40 | botAgressrion >=60) {
 			int tempHandScore = getCurrentHandScore();
-			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i+=1000000) {
-				if (i+1 <= tempHandScore && tempHandScore <= i+333333) {
+			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i += 1000000) {
+				if (i + 1 <= tempHandScore && tempHandScore <= i + 333333) {
 					Random rand = new Random();
 					int value = rand.nextInt(3);
 					switch (value) {
@@ -177,7 +177,7 @@ public class PlayerBot extends PokerPlayer {
 						}
 					}
 				}
-				if (i+333334 <= tempHandScore && tempHandScore <= i+999999) {
+				if (i + 333334 <= tempHandScore && tempHandScore <= i + 999999) {
 					Random rand = new Random();
 					int value = rand.nextInt(2);
 					switch (value) {
@@ -187,28 +187,29 @@ public class PlayerBot extends PokerPlayer {
 						}
 						case 1: { // increaseStake
 							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
-							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion/100));
-							if(riseStakeAmount <= playerChipAmount) {
+							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion / 100));
+							if (riseStakeAmount <= playerChipAmount) {
 								increaseStake(riseStakeAmount);
 								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
-							}
-							else{
+							} else {
 								payCurrentStake();
 								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO : " + riseStakeAmount);
 							}
 							return true;
 						}
 					}
-
-
 				}
 
-				return false;
-			}
 
-		synchronized public boolean reRaiseStake(int stakeIncrease) {
-			return false;
+			}
 		}
+
+		return false;
+	}
+
+	synchronized public boolean reRaiseStake(int stakeIncrease) {
+		return false;
+	}
 
 	/*public void payAnteFee(int anteFee, boolean noUserInputForRound) {
 
@@ -217,10 +218,10 @@ public class PlayerBot extends PokerPlayer {
 
 	/*Class testing method
 		* */
-		public static void main(String[] args) {
-			System.out.println("poker.PlayerBot.java!");
-			PlayerBot pb = new PlayerBot(PokerGame.getInstance(), DeckOfCards.getInstance(), 3000);
-			System.out.println(pb.getPlayerName());
-			System.out.println(pb.getPlayerChipAmount());
-		}
+	public static void main(String[] args) {
+		System.out.println("poker.PlayerBot.java!");
+		PlayerBot pb = new PlayerBot(PokerGame.getInstance(), DeckOfCards.getInstance(), 3000);
+		System.out.println(pb.getPlayerName());
+		System.out.println(pb.getPlayerChipAmount());
 	}
+}
