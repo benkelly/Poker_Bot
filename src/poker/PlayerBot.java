@@ -1,5 +1,7 @@
 package poker;
 
+import org.w3c.dom.ranges.Range;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,6 +24,9 @@ public class PlayerBot extends PokerPlayer {
 	private static final String FIRST_NAMES_LIST = "resources/firstNames.txt";
 	private static final String LAST_NAMES_LIST = "resources/lastNames.txt";
 
+	// stats
+	private int botAgressrion;
+	private int botIntellagence;
 
 	public PlayerBot(PokerGame game, DeckOfCards deck, int chips) {
 		super("", game, deck, chips, false);
@@ -64,8 +69,31 @@ public class PlayerBot extends PokerPlayer {
 	}
 
 
+
 	//methods from pokerPlayer needed to override to bot
 	public boolean playersHandOptions() {
+		int discardDecision;
+		int discardNumber;
+		discardDecision = getCurrentHandScore() / botAgressrion;
+		if (discardDecision >= 10000) {
+			if (botIntellagence >= 40) {
+				discardNumber = getCurrentHandScore();
+				if (1 <= discardNumber && discardNumber <= 333333) {
+					discardNumber = 3;
+				}
+				if (333334 <= discardNumber && discardNumber <= 666666) {
+					discardNumber = 2;
+				}
+				if (666666 <= discardNumber && discardNumber <= 999999) {
+					discardNumber = 1;
+				}
+				discard(discardNumber);
+				return true;
+			}
+			else { // keep
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -78,16 +106,15 @@ public class PlayerBot extends PokerPlayer {
 		return false;
 	}
 
-	public void payAnteFee(int anteFee, boolean noUserInputForRound) {
+	/*public void payAnteFee(int anteFee, boolean noUserInputForRound) {
 
 	}
-
+*/
 
 	/*Class testing method
 		* */
 	public static void main(String[] args) {
 		System.out.println("poker.PlayerBot.java!");
-
 		PlayerBot pb = new PlayerBot(PokerGame.getInstance(), DeckOfCards.getInstance(), 3000);
 		System.out.println(pb.getPlayerName());
 		System.out.println(pb.getPlayerChipAmount());

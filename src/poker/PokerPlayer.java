@@ -44,7 +44,6 @@ public class PokerPlayer {
 		playerChipAmount = chips;
 		isHuman = human;
 
-
 		getInitialHand();
 		getCurrentHandInfo();
 	}
@@ -189,7 +188,7 @@ public class PokerPlayer {
 	synchronized private int discard() {
 		return discard(pokerGame.MAX_DISCARD);
 	}
-	synchronized private int discard(int discardAmount) {
+	synchronized int discard(int discardAmount) {
 		if(discardAmount > pokerGame.MAX_DISCARD) { discardAmount = pokerGame.MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();
