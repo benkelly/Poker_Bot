@@ -2,8 +2,6 @@ package poker;
 
 import java.util.ArrayList;
 
-import static poker.HandOfCards.PAIR_WEIGHT;
-
 /**
  * Group: @poker_bot
  * Sean Regan - 13388996 - sean.regan@ucdconnect.ie

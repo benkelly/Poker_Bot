@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/visualHand.java" afterPath="$PROJECT_DIR$/src/poker/visualHand.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,8 +48,8 @@
       <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="57" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -73,7 +70,7 @@
       <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
+            <state relative-caret-position="3690">
               <caret line="283" column="17" lean-forward="false" selection-start-line="283" selection-start-column="17" selection-end-line="283" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -82,14 +79,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="171" column="24" lean-forward="false" selection-start-line="171" selection-start-column="12" selection-end-line="171" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="45">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,13 +101,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="173" column="47" lean-forward="false" selection-start-line="173" selection-start-column="47" selection-end-line="173" selection-end-column="59" />
+            <state relative-caret-position="306">
+              <caret line="105" column="4" lean-forward="false" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3501#3502#0" expanded="true" />
+                <element signature="e#3530#3531#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,7 +118,7 @@
       <file leaf-file-name="visualHand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
+            <state relative-caret-position="606">
               <caret line="183" column="70" lean-forward="false" selection-start-line="183" selection-start-column="70" selection-end-line="183" selection-end-column="70" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -169,8 +166,8 @@
       <find>0.7</find>
       <find>\&quot;</find>
       <find>,</find>
-      <find>getCurrentHandScore</find>
       <find>dealOutCards</find>
+      <find>getCurrentHandScore</find>
     </findStrings>
     <replaceStrings>
       <replace>return</replace>
@@ -224,10 +221,10 @@
         <option value="$PROJECT_DIR$/src/poker/DeckOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/visualHand.java" />
-        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
+        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
       </list>
     </option>
   </component>
@@ -332,7 +329,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PokerGame">
+  <component name="RunManager" selected="Application.TwitterInterpreter">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="poker.Main" />
@@ -826,9 +823,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.PokerGame" />
-        <item index="1" class="java.lang.String" itemvalue="Application.PlayerBot" />
-        <item index="2" class="java.lang.String" itemvalue="Application.TwitterInterpreter" />
+        <item index="0" class="java.lang.String" itemvalue="Application.TwitterInterpreter" />
+        <item index="1" class="java.lang.String" itemvalue="Application.PokerGame" />
+        <item index="2" class="java.lang.String" itemvalue="Application.PlayerBot" />
         <item index="3" class="java.lang.String" itemvalue="Application.visualHand" />
         <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
@@ -887,14 +884,7 @@
       <workItem from="1490811895853" duration="37120000" />
       <workItem from="1491907992092" duration="46957000" />
       <workItem from="1492595695079" duration="15961000" />
-      <workItem from="1492702656755" duration="23037000" />
-    </task>
-    <task id="LOCAL-00029" summary=":^)">
-      <created>1487757173308</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1487757173309</updated>
+      <workItem from="1492702656755" duration="25084000" />
     </task>
     <task id="LOCAL-00030" summary="started making getDiscardProbability()">
       <created>1487846377233</created>
@@ -1232,11 +1222,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492774171265</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary=" PokerBot is working. added bump deal checker, changed human to end or poker table as i feel will be better for tweet structure.">
+      <created>1492808839982</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1492808839982</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="283697000" />
+    <option name="totallyTimeSpent" value="285744000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="24" y="23" width="1414" height="877" extended-state="6" />
@@ -1295,7 +1292,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="forget to git much :(" />
     <MESSAGE value=":^)" />
     <MESSAGE value="assignment_5 cleaned up" />
     <MESSAGE value="starting assignment_6" />
@@ -1320,7 +1316,8 @@
     <MESSAGE value="visualHand now able to tweet as status with tweetPic()" />
     <MESSAGE value="visualHand now able to tweet as status with tweetPic() ** cleaned up a lil" />
     <MESSAGE value="started a little on PokerBot" />
-    <option name="LAST_COMMIT_MESSAGE" value="started a little on PokerBot" />
+    <MESSAGE value=" PokerBot is working. added bump deal checker, changed human to end or poker table as i feel will be better for tweet structure." />
+    <option name="LAST_COMMIT_MESSAGE" value=" PokerBot is working. added bump deal checker, changed human to end or poker table as i feel will be better for tweet structure." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1698,41 +1695,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="183" column="70" lean-forward="false" selection-start-line="183" selection-start-column="70" selection-end-line="183" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="173" column="47" lean-forward="false" selection-start-line="173" selection-start-column="47" selection-end-line="173" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="652" column="0" lean-forward="false" selection-start-line="652" selection-start-column="0" selection-end-line="652" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1746,10 +1713,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="283" column="17" lean-forward="false" selection-start-line="283" selection-start-column="17" selection-end-line="283" selection-end-column="17" />
+        <state relative-caret-position="606">
+          <caret line="183" column="70" lean-forward="false" selection-start-line="183" selection-start-column="70" selection-end-line="183" selection-end-column="70" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1758,10 +1725,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="171" column="24" lean-forward="false" selection-start-line="171" selection-start-column="12" selection-end-line="171" selection-end-column="24" />
+        <state relative-caret-position="45">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3690">
+          <caret line="283" column="17" lean-forward="false" selection-start-line="283" selection-start-column="17" selection-end-line="283" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="34" column="45" lean-forward="false" selection-start-line="34" selection-start-column="45" selection-end-line="34" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="105" column="4" lean-forward="false" selection-start-line="105" selection-start-column="4" selection-end-line="105" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3501#3502#0" expanded="true" />
+            <element signature="e#3530#3531#0" expanded="true" />
           </folding>
         </state>
       </provider>
