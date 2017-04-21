@@ -186,10 +186,10 @@ public class PokerPlayer {
 
 	/*auto discards cards based on their discard getDiscardProbability
 	* */
-	synchronized public int discard() {
+	synchronized private int discard() {
 		return discard(pokerGame.MAX_DISCARD);
 	}
-	synchronized public int discard(int discardAmount) {
+	synchronized private int discard(int discardAmount) {
 		if(discardAmount > pokerGame.MAX_DISCARD) { discardAmount = pokerGame.MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();

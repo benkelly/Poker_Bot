@@ -64,6 +64,25 @@ public class PlayerBot extends PokerPlayer {
 	}
 
 
+	//methods from pokerPlayer needed to override to bot
+	public boolean playersHandOptions() {
+		return false;
+	}
+
+
+	public boolean playersBettingOptions() {
+		return false;
+	}
+
+	synchronized public boolean reRaiseStake(int stakeIncrease) {
+		return false;
+	}
+
+	public void payAnteFee(int anteFee, boolean noUserInputForRound) {
+
+	}
+
+
 	/*Class testing method
 		* */
 	public static void main(String[] args) {

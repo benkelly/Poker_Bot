@@ -70,7 +70,7 @@ public class visualHand extends JPanel {
 
 	}
 
-	public static JPanel generateVisual(HandOfCards h, int chips){
+	private static JPanel generateVisual(HandOfCards h, int chips){
 		//System.out.println(h.get(0).toString());
 		//System.out.println(h.get(1).toString());
 		//System.out.println(h.get(2).toString());
@@ -110,7 +110,7 @@ public class visualHand extends JPanel {
 
 	/*conver jPannel to img
 	* */
-	public static BufferedImage createImage(JPanel panel) {
+	private static BufferedImage createImage(JPanel panel) {
 		int w = panel.getWidth();
 		int h = panel.getHeight();
 		BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
@@ -120,7 +120,7 @@ public class visualHand extends JPanel {
 	}
 
 
-	public static InputStream saveBufferedImageToInputStream(BufferedImage bi) {
+	private static InputStream saveBufferedImageToInputStream(BufferedImage bi) {
 		InputStream inputStream = null;
 		try {
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -133,8 +133,16 @@ public class visualHand extends JPanel {
 		}
 	}
 
+	public void TweetVisualHand(HandOfCards hand, int chipAmount) {
+		try {
+			TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, chipAmount))), "testing :^)  : ");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
-	public static void saveBufferedImageToFile(BufferedImage bi) {
+
+	private static void saveBufferedImageToFile(BufferedImage bi) {
 		File outputfile = new File("image.jpg");
 		try {
 			ImageIO.write(bi, "jpg", outputfile);
@@ -159,7 +167,7 @@ public class visualHand extends JPanel {
 
 
 		DeckOfCards deck = new DeckOfCards();
-		deck.shuffle();
+		deck.reset();
 		HandOfCards hand = new HandOfCards();
 		hand.add(deck.get(43));
 		hand.add(deck.get(47));
@@ -172,7 +180,7 @@ public class visualHand extends JPanel {
 
 		//saveBufferedImageToFile(createImage(generateVisual(hand)));
 		//saveBufferedImageToFile(createImage(generateVisual(hand, 3000)));
-		TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "testing :^)");
+		//TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "testing :^)  : ");
 
 
 	}

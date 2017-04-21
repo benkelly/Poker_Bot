@@ -1,20 +1,8 @@
 package poker;
 
-import sun.rmi.runtime.Log;
 import twitter4j.*;
 import twitter4j.conf.*;
 
-
-import twitter4j.conf.*;
-import twitter4j.*;
-import twitter4j.auth.*;
-import twitter4j.api.*;
-import twitter4j.media.ImageUpload;
-import twitter4j.media.ImageUploadFactory;
-import twitter4j.media.MediaProvider;
-
-
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -42,8 +30,6 @@ public class TwitterInterpreter {
 	private Twitter twitter; // thread safe, initialised in setTwitterInstance()
 	private TwitterStream twitterStream;
 	private Paging repliesPage = new Paging();
-
-	ImageUploadFactory imageUploadFactory;
 
 	public static TwitterInterpreter getInstance()
 	{

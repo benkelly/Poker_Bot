@@ -2,7 +2,75 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/10_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/10_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/10_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/10_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/2_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/2_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/2_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/2_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/3_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/3_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/3_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/3_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/4_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/4_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/4_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/4_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/5_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/5_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/5_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/5_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/6_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/6_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/6_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/6_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/7_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/7_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/7_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/7_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/8_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/8_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/8_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/8_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/9_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/9_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/9_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/9_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/ace_of_spades2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/example hand.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_clubs2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_diamonds2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_hearts2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/jack_of_spades2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_clubs2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_diamonds2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_hearts2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/king_of_spades2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_clubs.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_clubs2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_diamonds.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_diamonds2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_hearts.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_hearts2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_spades.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/images/playing_cards/queen_of_spades2.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/visualHand.java" afterPath="$PROJECT_DIR$/src/poker/visualHand.java" />
     </list>
@@ -35,19 +103,27 @@
       <file leaf-file-name="DeckOfCards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+            <state relative-caret-position="165">
+              <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="201">
+              <caret line="64" column="4" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1889#1890#0" expanded="true" />
+                <element signature="e#1908#1909#0" expanded="true" />
+                <element signature="e#1952#1953#0" expanded="true" />
+                <element signature="e#1971#1972#0" expanded="true" />
+                <element signature="e#2035#2036#0" expanded="true" />
+                <element signature="e#2054#2055#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -55,24 +131,21 @@
       <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6945">
-              <caret line="480" column="23" lean-forward="false" selection-start-line="480" selection-start-column="23" selection-end-line="480" selection-end-column="23" />
+            <state relative-caret-position="5010">
+              <caret line="380" column="24" lean-forward="true" selection-start-line="380" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
               <folding>
-                <element signature="e#1281#1282#0" expanded="false" />
-                <element signature="e#1329#1330#0" expanded="false" />
-                <element signature="e#5967#5968#0" expanded="false" />
-                <element signature="e#6011#6012#0" expanded="false" />
-                <element signature="e#8653#8654#0" expanded="false" />
-                <element signature="e#8681#8682#0" expanded="false" />
-                <element signature="e#8724#8725#0" expanded="false" />
-                <element signature="e#8760#8761#0" expanded="false" />
-                <element signature="e#8790#8791#0" expanded="false" />
-                <element signature="e#8870#8871#0" expanded="false" />
-                <element signature="e#8907#8908#0" expanded="false" />
-                <element signature="e#8931#8932#0" expanded="false" />
-                <element signature="e#8968#8969#0" expanded="false" />
-                <element signature="e#8998#8999#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,7 +153,7 @@
       <file leaf-file-name="HandOfCards.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="10485">
               <caret line="701" column="46" lean-forward="false" selection-start-line="701" selection-start-column="46" selection-end-line="701" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -89,14 +162,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="741">
-              <caret line="72" column="35" lean-forward="false" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -104,8 +175,8 @@
       <file leaf-file-name="visualHand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="174" column="49" lean-forward="false" selection-start-line="174" selection-start-column="49" selection-end-line="174" selection-end-column="49" />
+            <state relative-caret-position="216">
+              <caret line="68" column="20" lean-forward="false" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -205,12 +276,12 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/DeckOfCards.java" />
-        <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/visualHand.java" />
         <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+        <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
       </list>
     </option>
   </component>
@@ -266,20 +337,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="twitter4j" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -299,46 +356,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Poker_Bot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="playing_cards" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -924,14 +941,7 @@
       <workItem from="1490811895853" duration="37120000" />
       <workItem from="1491907992092" duration="46957000" />
       <workItem from="1492595695079" duration="15961000" />
-      <workItem from="1492702656755" duration="4234000" />
-    </task>
-    <task id="LOCAL-00023" summary="fulling system made. more tests needed &#10;">
-      <created>1487408092787</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1487408092787</updated>
+      <workItem from="1492702656755" duration="5614000" />
     </task>
     <task id="LOCAL-00024" summary="added more test cases">
       <created>1487412428541</created>
@@ -1269,11 +1279,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492621802270</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="visualHand now able to tweet as status with tweetPic()">
+      <created>1492763385978</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1492763385982</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264894000" />
+    <option name="totallyTimeSpent" value="266274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="27" y="23" width="1413" height="877" extended-state="6" />
@@ -1288,7 +1305,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.502477" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35272276" sideWeight="0.497523" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32920793" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1332,7 +1349,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="fulling system made. more tests needed &#10;" />
     <MESSAGE value="added more test cases" />
     <MESSAGE value="started making getDiscardProbability()" />
     <MESSAGE value="forget to git much :(" />
@@ -1357,7 +1373,8 @@
     <MESSAGE value="all card change cmds done and round winnrer basicaly done :^)" />
     <MESSAGE value="added a good bit to visualHand" />
     <MESSAGE value="added a chip amount to visualHand" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a chip amount to visualHand" />
+    <MESSAGE value="visualHand now able to tweet as status with tweetPic()" />
+    <option name="LAST_COMMIT_MESSAGE" value="visualHand now able to tweet as status with tweetPic()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1656,22 +1673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="33" column="5" lean-forward="false" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5865">
@@ -1734,40 +1735,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6945">
-          <caret line="480" column="23" lean-forward="false" selection-start-line="480" selection-start-column="23" selection-end-line="480" selection-end-column="23" />
-          <folding>
-            <element signature="e#1281#1282#0" expanded="false" />
-            <element signature="e#1329#1330#0" expanded="false" />
-            <element signature="e#5967#5968#0" expanded="false" />
-            <element signature="e#6011#6012#0" expanded="false" />
-            <element signature="e#8653#8654#0" expanded="false" />
-            <element signature="e#8681#8682#0" expanded="false" />
-            <element signature="e#8724#8725#0" expanded="false" />
-            <element signature="e#8760#8761#0" expanded="false" />
-            <element signature="e#8790#8791#0" expanded="false" />
-            <element signature="e#8870#8871#0" expanded="false" />
-            <element signature="e#8907#8908#0" expanded="false" />
-            <element signature="e#8931#8932#0" expanded="false" />
-            <element signature="e#8968#8969#0" expanded="false" />
-            <element signature="e#8998#8999#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/images/chips.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/src.zip!/javax/imageio/ImageIO.java">
@@ -1831,19 +1801,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/DeckOfCards.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="26" column="14" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/visualHand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="174" column="49" lean-forward="false" selection-start-line="174" selection-start-column="49" selection-end-line="174" selection-end-column="49" />
+        <state relative-caret-position="216">
+          <caret line="68" column="20" lean-forward="false" selection-start-line="68" selection-start-column="10" selection-end-line="68" selection-end-column="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="61" lean-forward="false" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/HandOfCards.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
+        <state relative-caret-position="10485">
           <caret line="701" column="46" lean-forward="false" selection-start-line="701" selection-start-column="46" selection-end-line="701" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1851,12 +1845,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="741">
-          <caret line="72" column="35" lean-forward="false" selection-start-line="72" selection-start-column="35" selection-end-line="72" selection-end-column="35" />
+        <state relative-caret-position="5010">
+          <caret line="380" column="24" lean-forward="true" selection-start-line="380" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="64" column="4" lean-forward="false" selection-start-line="64" selection-start-column="4" selection-end-line="64" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1889#1890#0" expanded="true" />
+            <element signature="e#1908#1909#0" expanded="true" />
+            <element signature="e#1952#1953#0" expanded="true" />
+            <element signature="e#1971#1972#0" expanded="true" />
+            <element signature="e#2035#2036#0" expanded="true" />
+            <element signature="e#2054#2055#0" expanded="true" />
           </folding>
         </state>
       </provider>
