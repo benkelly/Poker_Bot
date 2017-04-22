@@ -26,6 +26,7 @@ public class PokerPlayer {
 	public boolean isHuman;
 	public boolean isPlayersHandOptionsSent = false;
 	public boolean isPlayersBettingOptionsSent = false;
+	public boolean isPlayersPayAnteFeeOptionsSent = false;
 	int playerChipAmount = 0;
 
 	int currentStakePaid = 0;
@@ -66,6 +67,20 @@ public class PokerPlayer {
 
 	}
 
+	/* removes @mentions from string.
+	* */
+	private String cleanUpInputTweet(String inputTweet) {
+		if (inputTweet.contains("@"+pokerGame.user.getScreenName())) {
+			inputTweet.replace("@"+pokerGame.user.getScreenName(), "");
+		}
+		if (inputTweet.contains("@"+TwitterInterpreter.getInstance().getTwitterScreenName())) {
+			inputTweet.replace("@"+TwitterInterpreter.getInstance().getTwitterScreenName(), "");
+		}
+		return inputTweet;
+	}
+
+
+
 	public void sendPlayerHandOptions() {
 		hand.generateHandType();
 		hand.getGameValue();
@@ -74,13 +89,13 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
 				+ " HandType: " + hand.getBestHandTypeName());
 
-		pokerGame.tweetStr += "@"+pokerGame.user.getName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " your hand's in \uD83D\uDDBC\n"+"\n";
 		pokerGame.tweetStr += "auto discard, discard, keep, help?";
 
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		TweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
 	}
 
 
@@ -91,6 +106,7 @@ public class PokerPlayer {
 		hand.getGameValue();
 		getHandsDiscardProbability();
 
+		inputStr = cleanUpInputTweet(inputStr);
 		//inputStr = getConsoleInput();
 
 
@@ -156,13 +172,13 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
 				+ " HandType: " + hand.getBestHandTypeName());
 
-		pokerGame.tweetStr += "@"+pokerGame.user.getName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " your hand's in \uD83D\uDDBC\n"+"\n";
 		pokerGame.tweetStr += "call, raise, fold, help?";
 
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		TweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
 	}
 
 
@@ -170,8 +186,9 @@ public class PokerPlayer {
 	/*public method, used in PokerGame to allow player to chose its betting cmds
 	* */
 	public boolean playersBettingOptions(String inputStr) {
+		inputStr = cleanUpInputTweet(inputStr);
 		//System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
-		inputStr = getConsoleInput();
+		//inputStr = getConsoleInput();
 		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
 				| inputStr.toLowerCase().equals("pay stake") | inputStr.toLowerCase().contains("call")
 				| inputStr.toLowerCase().startsWith("c")) {
@@ -418,20 +435,26 @@ public class PokerPlayer {
 		return str;
 	}
 
+	public void sendPayAnteFeeDialog(int anteFee) {
+		System.out.println(playerName + ": do you want to play another round (y/n)?");
+		pokerGame.tweetStr += "Ante: "+anteFee+"\n";
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " do you want to play another round (y/n)?";
+		tweetPlayer(pokerGame.tweetStr);
+	}
+
+
 	/*PokerGame will call this at beginning of every round.
 	* - if player
 	* */
-	public void payAnteFee(int anteFee, boolean noUserInputForRound) {
-		String inputStr = "";
+	public boolean payAnteFee(int anteFee, boolean noUserInputForRound, String inputStr) {
+		//String inputStr = "";
 		if ( !noUserInputForRound ) {
-			boolean inputLoop = true;
-			while ( inputLoop ) {
-				System.out.println(playerName + ": do you want to play another round (y/n)?");
-				inputStr = getConsoleInput();
-				if(inputStr.toLowerCase().startsWith("y") | inputStr.toLowerCase().startsWith("n")) {
-					inputLoop = false;
+				if( !inputStr.toLowerCase().startsWith("y") | !inputStr.toLowerCase().startsWith("n")) {
+					pokerGame.tweetStr = "Ante: "+anteFee+"\n";
+					pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " do you want to play another round (y/n)?";
+					tweetPlayer(pokerGame.tweetStr);
+					return false;
 				}
-			}
 		}
 		else {
 			inputStr = "y";
@@ -442,13 +465,18 @@ public class PokerPlayer {
 				pokerGame.addToCurrentRoundsHeldStake(anteFee);
 				playerChipAmount -= anteFee;
 				totalRoundsPlayed++;
+				return true;
 			} else {
 				pokerGame.playerIsLeavingGame(this, true);
+				return true;
 			}
 		}
 		if (inputStr.toLowerCase().startsWith("n")) {
 			pokerGame.playerIsLeavingGame(this, false);
+			return true;
+
 		}
+		return false;
 	}
 
 
@@ -495,9 +523,14 @@ public class PokerPlayer {
 		return sb.toString();
 	}
 
-	private void TweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr) {
+	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr) {
 		VisualHand.TweetVisualHand(hnd, chp, tweetStr);
 		tweetStr = "";
+	}
+
+	private void tweetPlayer(String tweetStr) {
+	TwitterInterpreter.getInstance().postTweet(tweetStr);
+	tweetStr = "";
 	}
 
 	/*Class testing method

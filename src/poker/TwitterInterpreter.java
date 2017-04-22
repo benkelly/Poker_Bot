@@ -75,33 +75,53 @@ public class TwitterInterpreter {
 		twitterStream = tsf.getInstance();
 	}
 
-	private void checkStreamStatus(Status status) throws TwitterException {
-		String temp = status.getText();
-		if (temp.toLowerCase().contains("dealmein")) {
-			postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16");
+	public String getTwitterScreenName()  {
+		try {
+			return twitter.getScreenName();
+		} catch (TwitterException e) {
+			e.printStackTrace();
 		}
-		else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
-			//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
-			//User tempUser = status.getUser();
-			parseToGameState(status.getUser(), status.getText());
+		return null;
+	}
+
+	synchronized private void checkStreamStatus(Status status) throws TwitterException {
+		String temp = status.getText();
+		try {
+
+			if (temp.toLowerCase().contains("dealmein")) {
+				postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16");
+			}
+			if (twitterStream.getScreenName().equalsIgnoreCase(status.getInReplyToScreenName())
+					& !status.getUser().getScreenName().equalsIgnoreCase(twitterStream.getScreenName())) {
+				//else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
+				//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
+				parseToGameState(status.getUser(), status.getText());
+			}
+		} catch (TwitterException e) {
+			e.printStackTrace();
 		}
 	}
 
-	private void parseToGameState(User user, String TweetBody) {
+	synchronized private void parseToGameState(User user, String TweetBody) {
 		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
 		pokerGame.setUserFromTwitter(user);
 		//pokerGame.;
+		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n START");
 		pokerGame.playPoker(TweetBody);
+		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n END");
+
 	}
 
 	StatusListener listener = new StatusListener() {
 		public void onStatus(Status status) {
+			System.out.println("onStatus STArT");
 			System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
 			try {
 				checkStreamStatus(status);
 			} catch (TwitterException e) {
 				e.printStackTrace();
 			}
+			System.out.println("onStatus END");
 
 		}
 
@@ -128,7 +148,7 @@ public class TwitterInterpreter {
 	};
 
 
-	private void postTweet(String strStatus) {
+	public void postTweet(String strStatus) {
 		Status status = null;
 		try {
 			status = twitter.updateStatus(strStatus);

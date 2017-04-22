@@ -174,7 +174,9 @@ public class PlayerBot extends PokerPlayer {
 				case 1: { // keep
 					//System.out.println(getPlayerName()+": KEEP: ");
 					//pokerGame.tweetStr +=getPlayerName()+": Kept: \n";
-					break;
+					System.out.println(getPlayerName()+": KEEP: ");
+					pokerGame.tweetStr +=getPlayerName()+" Kept\n";
+					return true;
 				}
 			}
 		}
@@ -207,8 +209,8 @@ public class PlayerBot extends PokerPlayer {
 							}
 							else
 								payCurrentStake();
-							pokerGame.tweetStr +=getPlayerName()+" called\n";
-							return true;
+								pokerGame.tweetStr +=getPlayerName()+" called\n";
+								return true;
 						}
 						case 1: {
 							payCurrentStake();
@@ -238,6 +240,7 @@ public class PlayerBot extends PokerPlayer {
 					switch (value) {
 						case 0: {
 							payCurrentStake();
+							pokerGame.tweetStr +=getPlayerName()+" called\n";
 							return true;
 						}
 						case 1: { // increaseStake
@@ -257,7 +260,7 @@ public class PlayerBot extends PokerPlayer {
 						case 2: { // increaseStake ALL-in
 							increaseStake(playerChipAmount);
 							System.out.println(getPlayerName() + " went ALL-IN w/ " + playerChipAmount);
-							System.out.println(getPlayerName() + ": ALL-IN: " + playerChipAmount);
+							pokerGame.tweetStr +=getPlayerName() + ": ALL-IN: " + playerChipAmount+"\n";
 							return true;
 						}
 					}
@@ -265,6 +268,7 @@ public class PlayerBot extends PokerPlayer {
 			}
 		}
 		foldFromRound();
+		pokerGame.tweetStr +=getPlayerName()+" folded\n";
 		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
 		return true;
 	}
@@ -309,10 +313,6 @@ public class PlayerBot extends PokerPlayer {
 		}
 	}
 
-	/*public void payAnteFee(int anteFee, boolean noUserInputForRound) {
-
-	}
-*/
 
 	/*Class testing method
 		* */
