@@ -1,6 +1,9 @@
 package poker;
 
+import twitter4j.*;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Group: @poker_bot
@@ -32,17 +35,24 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private int currentRoundsHeldStake = 0; // the current pot (the ships on the table)
 	private ArrayList<PokerPlayer> curRoundPlayerList = new ArrayList<PokerPlayer>(); // player playing that current hand of poker
 
+	public User user;
+	//public String userName = user.getScreenName();
+
+	public String tweetStr = "";
+
 
 	public PokerGame() {
-		setPokerTable(); // adds human and bots to poker table
+	}
 
+
+	public void playPoker() {
+		setPokerTable(); // adds human and bots to poker table
 		while ( !gameOver ) {
 			payAnteFee(currentRoundsAnteAmount, firstRound); // players pay their ante to enter game.
 			if(gameOver) { break; }
 			dealOutCards(firstRound); // deals out new cards.
 
 			while( checkForBumDeck() ) { } // will re-deal till at least a play has a pair
-
 
 			currentRoundPlayerOptions(); // gets players round inputs
 
@@ -51,10 +61,11 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			resetRound(); // clears round.
 		}
 	}
-	public static PokerGame getInstance() {
+
+/*	public static PokerGame getInstance() {
 		if (instance == null) { instance = new PokerGame();}
 		return instance;
-	}
+	}*/
 
 	/*adds poker players to game.
 	* */
@@ -63,9 +74,17 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		for (int j = 0; j < MAX_BOTS; j++) {
 			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
 		}
-		this.add(new PokerPlayer("human",this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
+		this.add(new PokerPlayer(user.getScreenName(),this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
 		// human last may be nicer for tweet format.
 	}
+
+	public User setUserFromTwitter(User usr) {
+		return user = usr;
+	}
+
+	/*private void setNameFromTwitter() {
+		userName = user.getName();
+	}*/
 
 	/*deals out cards for the next round/
 	* */
@@ -79,11 +98,13 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	/*allows users to input their hand changes and betting options.
 	* */
-	private void currentRoundPlayerOptions() {
+	private void currentRoundPlayerOptions() { // flower deck emoji
+		tweetStr = "\uD83C\uDFB4 - ";
 		for (PokerPlayer player : this) { // players choose card discard options
 			while(player.playersHandOptions()==false){}
 		}
 
+		tweetStr = "\uD83C\uDFB0 - "; // slot machine emoji
 		for (PokerPlayer player : this) { // players choose their betting options
 			while(player.playersBettingOptions()==false){}
 		}
@@ -269,9 +290,282 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	* */
 	public static void main(String[] args) {
 		System.out.println("poker.PokerGame.java!");
+		User user = new User() {
+			@Override
+			public long getId() {
+				return 0;
+			}
 
+			@Override
+			public String getName() {
+				return "getName";
+			}
+
+			@Override
+			public String getScreenName() {
+				return "human  ";
+			}
+
+			@Override
+			public String getLocation() {
+				return null;
+			}
+
+			@Override
+			public String getDescription() {
+				return null;
+			}
+
+			@Override
+			public boolean isContributorsEnabled() {
+				return false;
+			}
+
+			@Override
+			public String getProfileImageURL() {
+				return null;
+			}
+
+			@Override
+			public String getBiggerProfileImageURL() {
+				return null;
+			}
+
+			@Override
+			public String getMiniProfileImageURL() {
+				return null;
+			}
+
+			@Override
+			public String getOriginalProfileImageURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileImageURLHttps() {
+				return null;
+			}
+
+			@Override
+			public String getBiggerProfileImageURLHttps() {
+				return null;
+			}
+
+			@Override
+			public String getMiniProfileImageURLHttps() {
+				return null;
+			}
+
+			@Override
+			public String getOriginalProfileImageURLHttps() {
+				return null;
+			}
+
+			@Override
+			public boolean isDefaultProfileImage() {
+				return false;
+			}
+
+			@Override
+			public String getURL() {
+				return null;
+			}
+
+			@Override
+			public boolean isProtected() {
+				return false;
+			}
+
+			@Override
+			public int getFollowersCount() {
+				return 0;
+			}
+
+			@Override
+			public Status getStatus() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBackgroundColor() {
+				return null;
+			}
+
+			@Override
+			public String getProfileTextColor() {
+				return null;
+			}
+
+			@Override
+			public String getProfileLinkColor() {
+				return null;
+			}
+
+			@Override
+			public String getProfileSidebarFillColor() {
+				return null;
+			}
+
+			@Override
+			public String getProfileSidebarBorderColor() {
+				return null;
+			}
+
+			@Override
+			public boolean isProfileUseBackgroundImage() {
+				return false;
+			}
+
+			@Override
+			public boolean isDefaultProfile() {
+				return false;
+			}
+
+			@Override
+			public boolean isShowAllInlineMedia() {
+				return false;
+			}
+
+			@Override
+			public int getFriendsCount() {
+				return 0;
+			}
+
+			@Override
+			public Date getCreatedAt() {
+				return null;
+			}
+
+			@Override
+			public int getFavouritesCount() {
+				return 0;
+			}
+
+			@Override
+			public int getUtcOffset() {
+				return 0;
+			}
+
+			@Override
+			public String getTimeZone() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBackgroundImageURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBackgroundImageUrlHttps() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerRetinaURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerIPadURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerIPadRetinaURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerMobileURL() {
+				return null;
+			}
+
+			@Override
+			public String getProfileBannerMobileRetinaURL() {
+				return null;
+			}
+
+			@Override
+			public boolean isProfileBackgroundTiled() {
+				return false;
+			}
+
+			@Override
+			public String getLang() {
+				return null;
+			}
+
+			@Override
+			public int getStatusesCount() {
+				return 0;
+			}
+
+			@Override
+			public boolean isGeoEnabled() {
+				return false;
+			}
+
+			@Override
+			public boolean isVerified() {
+				return false;
+			}
+
+			@Override
+			public boolean isTranslator() {
+				return false;
+			}
+
+			@Override
+			public int getListedCount() {
+				return 0;
+			}
+
+			@Override
+			public boolean isFollowRequestSent() {
+				return false;
+			}
+
+			@Override
+			public URLEntity[] getDescriptionURLEntities() {
+				return new URLEntity[0];
+			}
+
+			@Override
+			public URLEntity getURLEntity() {
+				return null;
+			}
+
+			@Override
+			public String[] getWithheldInCountries() {
+				return new String[0];
+			}
+
+			@Override
+			public int compareTo(User o) {
+				return 0;
+			}
+
+			@Override
+			public RateLimitStatus getRateLimitStatus() {
+				return null;
+			}
+
+			@Override
+			public int getAccessLevel() {
+				return 0;
+			}
+		};
 		// testing deck instance
 		PokerGame pg = new PokerGame();
+		pg.setUserFromTwitter(user);
+		//pg.setNameFromTwitter();
+		//System.out.print(pg.userName);
 		for (PokerPlayer object : pg) {
 			//object.hand.generateHandType();
 			//System.out.println(object.toString()+"   "+object.hand.getBestHandTypeName());

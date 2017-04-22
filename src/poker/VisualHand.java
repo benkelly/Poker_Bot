@@ -14,7 +14,7 @@ import java.io.*;
  * Eoin Kerr - 13366801 - eoin.kerr@ucdconnect.ie
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
-public class visualHand extends JPanel {
+public class VisualHand extends JPanel {
 	private static int PIC_WIDTH = 1600;
 	private static int PIC_HIGHT = 800;
 	private int cardWidth;
@@ -28,7 +28,7 @@ public class visualHand extends JPanel {
 	private Image card5;
 
 
-	public visualHand(String c1, String c2, String c3, String c4, String c5, int chipAmount) {
+	public VisualHand(String c1, String c2, String c3, String c4, String c5, int chipAmount) {
 		PlayerChips = chipAmount;
 		ImageIcon chips = new ImageIcon("resources/images/chips.png");
 		//ImageIcon chips = new ImageIcon("resources/images/playing_cards/" + c1);
@@ -47,7 +47,7 @@ public class visualHand extends JPanel {
 
 
 
-	public visualHand(Image card1, Image card2, Image card3, Image card4, Image card5) {
+	public VisualHand(Image card1, Image card2, Image card3, Image card4, Image card5) {
 		//this.img = img;
 		Dimension size = new Dimension(card1.getWidth(null), card1.getHeight(null));
 		cardWidth =  (int) size.getWidth();
@@ -77,7 +77,7 @@ public class visualHand extends JPanel {
 		//System.out.println(h.get(3).toString());
 		//System.out.println(h.get(4).toString());
 
-		visualHand vH = new visualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
+		VisualHand vH = new VisualHand(h.get(0).toString() + ".png",h.get(1).toString() + ".png",
 				h.get(2).toString() + ".png",h.get(3).toString() + ".png",h.get(4).toString() + ".png", chips);
 		//JPanel panel = new JPanel();
 		//frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
@@ -158,7 +158,7 @@ public class visualHand extends JPanel {
 	public static void main(String[] args) throws Exception {
 		System.out.println("poker.VisualHand.java!");
 
-		/*visualHand vH = new visualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
+		/*VisualHand vH = new VisualHand("2_of_clubs.png", "3_of_clubs.png", "4_of_clubs.png", "6_of_clubs.png", "8_of_clubs.png" );
 		JFrame frame = new JFrame();
 		frame.getContentPane().setSize(PIC_WIDTH, PIC_HIGHT);
 		frame.getContentPane().add(vH);

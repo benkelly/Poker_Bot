@@ -75,6 +75,12 @@ public class PokerPlayer {
 				+ " HandType: " + hand.getBestHandTypeName());
 		String inputStr = getConsoleInput();
 
+		pokerGame.tweetStr += "@"+pokerGame.user.getName() + ": yr current hand is " + hand
+				+ " HandType: " + hand.getBestHandTypeName()+"\n";
+		pokerGame.tweetStr += "auto discard, discard, keep?";
+
+		TweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+
 		//auto discard cmd.
 		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
 				| inputStr.toLowerCase().contains("auto")) {
@@ -456,13 +462,19 @@ public class PokerPlayer {
 		return sb.toString();
 	}
 
+	private void TweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr) {
+		VisualHand.TweetVisualHand(hnd, chp, tweetStr);
+		tweetStr = "";
+	}
 
 	/*Class testing method
 	* */
 	public static void main(String[] args) {
 		System.out.println("poker.PokerPlayer.java!");
 		//System.out.println("deck: "+gameDeck);
+		//PokerGame pokerGame = new PokerGame(PokerGame.;);
 
+/*
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
 			playerList.add(new PokerPlayer("player:"+j,PokerGame.getInstance(),  DeckOfCards.getInstance(), 3000, true));
@@ -481,12 +493,15 @@ public class PokerPlayer {
 			playerList.get(i).discard(PokerGame.getInstance().MAX_DISCARD);
 			//playerList.get(i).getNewCardsForHand();
 		}
+*/
 
+/*
 		playNumber = 1;
 		for (PokerPlayer object : playerList) {
 			System.out.println("player" + playNumber + ": " + object + "\t");
 			playNumber++;
 		}
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
+*/
 	}
 }

@@ -1,7 +1,6 @@
 package poker;
 
 import twitter4j.*;
-import twitter4j.conf.*;
 
 
 import twitter4j.FilterQuery;
@@ -76,10 +75,34 @@ public class TwitterInterpreter {
 		twitterStream = tsf.getInstance();
 	}
 
+	private void checkStreamStatus(Status status) throws TwitterException {
+		String temp = status.getText();
+		if (temp.toLowerCase().contains("dealmein")) {
+			postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16");
+		}
+		else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
+			//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
+			//User tempUser = status.getUser();
+			parseToGameState(status.getUser());
+		}
+	}
+
+	private void parseToGameState(User user) {
+		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
+		pokerGame.setUserFromTwitter(user);
+		//pokerGame.;
+		pokerGame.playPoker();
+	}
+
 	StatusListener listener = new StatusListener() {
 		public void onStatus(Status status) {
 			System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-			postTweet("@" + status.getUser().getScreenName() +" "+ "see you like poker \uD83E\uDD16");
+			try {
+				checkStreamStatus(status);
+			} catch (TwitterException e) {
+				e.printStackTrace();
+			}
+
 		}
 
 		public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
@@ -224,8 +247,8 @@ public class TwitterInterpreter {
 		//ti.repliesToBot();
 		//ti.repliesToBotLoop();
 
-		//String keywords[] = {"France", "Germany"};
-		ti.publicStreamReader("dealmein");
+		String keywords[] = {"dealmein", "poker__bot"};
+		ti.publicStreamReader(keywords);
 
 
 	}
