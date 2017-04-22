@@ -24,6 +24,8 @@ public class PokerPlayer {
 	// basic stats
 	String playerName = "";
 	public boolean isHuman;
+	public boolean isPlayersHandOptionsSent = false;
+	public boolean isPlayersBettingOptionsSent = false;
 	int playerChipAmount = 0;
 
 	int currentStakePaid = 0;
@@ -64,22 +66,33 @@ public class PokerPlayer {
 
 	}
 
-	/*public method, used in PokerGame to allow player to chose its hand option cmds
-	* */
-	public boolean playersHandOptions() {
+	public void sendPlayerHandOptions() {
 		hand.generateHandType();
 		hand.getGameValue();
 		getHandsDiscardProbability();
 
 		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
 				+ " HandType: " + hand.getBestHandTypeName());
-		String inputStr = getConsoleInput();
 
-		pokerGame.tweetStr += "@"+pokerGame.user.getName() + ": yr current hand is " + hand
-				+ " HandType: " + hand.getBestHandTypeName()+"\n";
-		pokerGame.tweetStr += "auto discard, discard, keep?";
+		pokerGame.tweetStr += "@"+pokerGame.user.getName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "auto discard, discard, keep, help?";
+
+		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
+		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
 		TweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+	}
+
+
+	/*public method, used in PokerGame to allow player to chose its hand option cmds
+	* */
+	public boolean playersHandOptions(String inputStr) {
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		//inputStr = getConsoleInput();
+
 
 		//auto discard cmd.
 		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
@@ -134,11 +147,31 @@ public class PokerPlayer {
 		}
 		return false;
 	}
+
+	public void sendPlayersBettingOptions() {
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
+				+ " HandType: " + hand.getBestHandTypeName());
+
+		pokerGame.tweetStr += "@"+pokerGame.user.getName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "call, raise, fold, help?";
+
+		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
+		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
+
+		TweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+	}
+
+
+
 	/*public method, used in PokerGame to allow player to chose its betting cmds
 	* */
-	public boolean playersBettingOptions() {
-		System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
-		String inputStr = getConsoleInput();
+	public boolean playersBettingOptions(String inputStr) {
+		//System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
+		inputStr = getConsoleInput();
 		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
 				| inputStr.toLowerCase().equals("pay stake") | inputStr.toLowerCase().contains("call")
 				| inputStr.toLowerCase().startsWith("c")) {

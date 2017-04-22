@@ -83,15 +83,15 @@ public class TwitterInterpreter {
 		else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
 			//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
 			//User tempUser = status.getUser();
-			parseToGameState(status.getUser());
+			parseToGameState(status.getUser(), status.getText());
 		}
 	}
 
-	private void parseToGameState(User user) {
+	private void parseToGameState(User user, String TweetBody) {
 		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
 		pokerGame.setUserFromTwitter(user);
 		//pokerGame.;
-		pokerGame.playPoker();
+		pokerGame.playPoker(TweetBody);
 	}
 
 	StatusListener listener = new StatusListener() {

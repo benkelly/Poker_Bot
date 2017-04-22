@@ -29,6 +29,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private int roundCount = 0;
 	private  boolean firstRound = true;
 
+	private  boolean WasCurrentRoundPlayersHandOptionsTweetedAndReplied = false;
+	private  boolean WasCurrentRoundPlayersBettingOptionsTweetedAndReplied = false;
+
 	// current round variables
 	private int currentRoundsAnteAmount = 100; // the current round ante, entering fee
 	private int currentRoundsStakeAmount = currentRoundsAnteAmount; // the current round cost
@@ -45,20 +48,30 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 
-	public void playPoker() {
+	public void playPoker(String TweetBody) {
 		setPokerTable(); // adds human and bots to poker table
 		while ( !gameOver ) {
 			payAnteFee(currentRoundsAnteAmount, firstRound); // players pay their ante to enter game.
-			if(gameOver) { break; }
+			if(gameOver) { return; }
 			dealOutCards(firstRound); // deals out new cards.
 
 			while( checkForBumDeck() ) { } // will re-deal till at least a play has a pair
 
-			currentRoundPlayerOptions(); // gets players round inputs
+			if( !WasCurrentRoundPlayersHandOptionsTweetedAndReplied ) {
+				if( currentRoundPlayersHandOptions(TweetBody) == false ) {
+					return;
+				}
+			}
+			//currentRoundPlayerOptions(); // gets players round inputs
+
+
 
 			getRoundWinner(); // calculates winning hand and pays that player the pot.
 
 			resetRound(); // clears round.
+
+
+
 		}
 	}
 
@@ -98,18 +111,36 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	/*allows users to input their hand changes and betting options.
 	* */
-	private void currentRoundPlayerOptions() { // flower deck emoji
-		tweetStr = "\uD83C\uDFB4 - ";
+	private boolean currentRoundPlayersHandOptions(String TweetBody) { // flower deck emoji
+		tweetStr = "\uD83C\uDFB4\n";
 		for (PokerPlayer player : this) { // players choose card discard options
-			while(player.playersHandOptions()==false){}
+			if (!player.isPlayersHandOptionsSent & player.isHuman) {
+				player.sendPlayerHandOptions();
+				player.isPlayersHandOptionsSent = true;
+				return false;
+			}
+			player.playersHandOptions(TweetBody);
+			WasCurrentRoundPlayersHandOptionsTweetedAndReplied = true;
+			return true;
 		}
-
-		tweetStr = "\uD83C\uDFB0 - "; // slot machine emoji
-		for (PokerPlayer player : this) { // players choose their betting options
-			while(player.playersBettingOptions()==false){}
-		}
-
+		return false;
 	}
+
+	private boolean currentRoundPlayersBettingOptions(String TweetBody) { // flower deck emoji
+		tweetStr = "\uD83C\uDFB0\n"; // slot machine emoji
+		for (PokerPlayer player : this) { // players choose betting options
+			if (!player.isPlayersBettingOptionsSent & player.isHuman) {
+				player.sendPlayersBettingOptions();
+				player.isPlayersBettingOptionsSent = true;
+				return false;
+			}
+			player.playersBettingOptions(TweetBody);
+			WasCurrentRoundPlayersBettingOptionsTweetedAndReplied = true;
+			return true;
+		}
+		return false;
+	}
+
 
 	/*player will pay enter fee if unable then bankrupted
 	* */
@@ -207,10 +238,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		//System.out.println("**** Return cards to deck: "+gameDeck.getInstance().size());
 		for (PokerPlayer player : this) {
 			player.returnHandToDeck();
+			player.isPlayersBettingOptionsSent = false;
+			player.isPlayersHandOptionsSent = false;
 		}
 		//System.out.println("**** Return cards to deck END: "+gameDeck.getInstance().size());
 		gameDeck.getInstance().shuffle();
 		firstRound = false; // add option to human to exit game at the next ante pay.
+		WasCurrentRoundPlayersHandOptionsTweetedAndReplied = false;
+		WasCurrentRoundPlayersBettingOptionsTweetedAndReplied = false;
 	}
 
 	/*called from pokerPlayer if
