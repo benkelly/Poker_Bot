@@ -112,11 +112,34 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	* */
 	private void setPokerTable() {
 		// add bots
-		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
+				//before that we need check whether those information are stored in database already.
+		String  informationIndatabase=getScreenNameIndatabase(user.getScreenName());
+
+		if(!informationIndatabase.equals("")){
+			String[] tempSample=informationIndatabase.split(",");
+			int numOfPlayer=Integer.parseInt(tempSample[1]);
+			PokerPlayer[] players=new PokerPlayer[numOfPlayer];
+
+			for(int i=0;i<=numOfPlayer-2;i++){
+
+				String name=tempSample[2*(i+1)];
+				int amountOfChips=Integer.parseInt(tempSample[2*(i+1)+1]);
+				this.add(new PlayerBot(name,this,gameDeck,amountOfChips));
+			}
+
+			int amountOfhuman=Integer.parseInt(tempSample[tempSample.length-1]);
+			this.add(new PokerPlayer(user.getScreenName(), this, gameDeck, amountOfhuman, true)); // add human user.
+			// human last may be nicer for tweet format.
 		}
-		this.add(new PokerPlayer(user.getScreenName(),this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
-		// human last may be nicer for tweet format.
+			else {
+
+
+			for (int j = 0; j < MAX_BOTS; j++) {
+				this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
+			}
+			this.add(new PokerPlayer(user.getScreenName(), this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
+			// human last may be nicer for tweet format.
+		}
 	}
 	
 		//before start game, seach in the database. if contain the information about the amount of chip of player and his/her bot, return it
