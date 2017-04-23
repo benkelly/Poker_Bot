@@ -47,7 +47,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	public User user;
 	//public String userName = user.getScreenName();
-
+	public static final String database="resources/database.csv"; 
+	
 	public String tweetStr = "";
 
 
@@ -145,7 +146,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		//before start game, seach in the database. if contain the information about the amount of chip of player and his/her bot, return it
 	//if database doesnt contain such information, use default value.
 	private static synchronized String getScreenNameIndatabase(String screenName){
-		String file="resources/database.csv";
+		String database="resources/database.csv";
 		BufferedReader br;
 		String result="";
 		ArrayList<String> tempFile=new ArrayList<String>();
@@ -183,8 +184,49 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		return result;
 	}
 	
-	//after game, if this human player is done. than writing nothing, else we wrting the information
-	private synchronized void WritingScreenNameIndataase(String screenName){
+	
+	//except human player is bankruptted, when a pockergame is eliminated, we call this function.(important)
+	//the database contains the name and chipamount of each player in this table.
+	//the format of each line in database.
+	//first column is username
+	//second is the remain number of player
+	//than each pair is the name of computer player
+	//the last two is the name of user and the chipamount of user
+	private synchronized void WritingScreenNameIndatabase(String screenName){
+
+		BufferedReader br;
+		String result="";
+		ArrayList<String> tempFile=new ArrayList<String>();
+		try{
+
+
+			BufferedWriter bw=new BufferedWriter(new FileWriter(file,true));
+			String string="";
+			string+=user.getScreenName();
+			string+=","+this.size();
+			for(int i=0;i<=this.size()-2;i++){
+				string+=","+this.get(i).playerName;
+				string+=","+this.get(i).getPlayerChipAmount();
+			}
+			string+=","+this.get(this.size()-1).getPlayerName();
+
+			string+=","+this.get(this.size()-1).getPlayerChipAmount();
+			bw.append("");
+			bw.newLine();
+
+
+			bw.close();
+
+
+
+
+		}
+		catch(Exception ex){
+			System.err.println(ex);
+		}
+
+
+
 
 	}
 	
