@@ -5,6 +5,10 @@ import twitter4j.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.io.*;
+
+
+
 /**
  * Group: @poker_bot
  * Sean Regan - 13388996 - sean.regan@ucdconnect.ie
@@ -114,6 +118,54 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		this.add(new PokerPlayer(user.getScreenName(),this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
 		// human last may be nicer for tweet format.
 	}
+	
+		//before start game, seach in the database. if contain the information about the amount of chip of player and his/her bot, return it
+	//if database doesnt contain such information, use default value.
+	private static synchronized String getScreenNameIndatabase(String screenName){
+		String file="resources/database.csv";
+		BufferedReader br;
+		String result="";
+		ArrayList<String> tempFile=new ArrayList<String>();
+		try{
+
+			br=new BufferedReader(new FileReader(file));
+			String line="";
+			while((line=br.readLine())!=null){
+
+				String[] tempSample=line.split(",");
+
+				if(tempSample[0].equals(screenName)){
+					result=line;
+				}
+				else{
+					tempFile.add(line);
+				}
+
+			}
+			br.close();
+			BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+
+			for(int i=0;i<=tempFile.size()-1;i++){
+				bw.append(tempFile.get(i));
+				bw.newLine();
+			}
+
+			bw.close();
+
+		}
+		catch(Exception ex){
+			System.err.println(ex);
+		}
+
+		return result;
+	}
+	
+	//after game, if this human player is done. than writing nothing, else we wrting the information
+	private synchronized void WritingScreenNameIndataase(String screenName){
+
+	}
+	
+	
 
 	public User setUserFromTwitter(User usr) {
 		return user = usr;
