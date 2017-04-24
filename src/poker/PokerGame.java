@@ -106,6 +106,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 							playPoker("", status);
 						} else {
+							WritingScreenNameInDatabase(user.getScreenName());
+
 							System.out.println("(!\t\t\t\t\tELSE START ");
 							gameOver = true;
 							tweetStr += "@" + user.getScreenName() + " Come back again!!"+PlayerBot.faceTellGenerator();
@@ -152,7 +154,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 				gameOver = false;
 				hasSetPokerTable = false;
 				resetRound();
-				hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = false;
+				hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = true;
 				this.clear();
 				playPoker("", status);			}
 			else {
@@ -169,7 +171,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private void setPokerTable() {
 		// add bots
 				//before that we need check whether those information are stored in database already.
-		String  informationIndatabase=getScreenNameIndatabase(user.getScreenName());
+		String  informationIndatabase= getScreenNameInDatabase(user.getScreenName());
 
 		if(!informationIndatabase.equals("")){
 			String[] tempSample=informationIndatabase.split(",");
@@ -200,14 +202,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	
 		//before start game, seach in the database. if contain the information about the amount of chip of player and his/her bot, return it
 	//if database doesnt contain such information, use default value.
-	private static synchronized String getScreenNameIndatabase(String screenName){
+	private static synchronized String getScreenNameInDatabase(String screenName){
 		String database="resources/database.csv";
 		BufferedReader br;
 		String result="";
 		ArrayList<String> tempFile=new ArrayList<String>();
 		try{
 
-			br=new BufferedReader(new FileReader(file));
+			br=new BufferedReader(new FileReader(database));
 			String line="";
 			while((line=br.readLine())!=null){
 
@@ -222,7 +224,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 			}
 			br.close();
-			BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+			BufferedWriter bw=new BufferedWriter(new FileWriter(database));
 
 			for(int i=0;i<=tempFile.size()-1;i++){
 				bw.append(tempFile.get(i));
@@ -238,8 +240,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 		return result;
 	}
-	
-	
+
 	//except human player is bankruptted, when a pockergame is eliminated, we call this function.(important)
 	//the database contains the name and chipamount of each player in this table.
 	//the format of each line in database.
@@ -247,7 +248,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	//second is the remain number of player
 	//than each pair is the name of computer player
 	//the last two is the name of user and the chipamount of user
-	private synchronized void WritingScreenNameIndatabase(String screenName){
+	private synchronized void WritingScreenNameInDatabase(String screenName){
 
 		BufferedReader br;
 		String result="";
@@ -255,7 +256,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		try{
 
 
-			BufferedWriter bw=new BufferedWriter(new FileWriter(file,true));
+			BufferedWriter bw=new BufferedWriter(new FileWriter(database,true));
 			String string="";
 			string+=user.getScreenName();
 			string+=","+this.size();
@@ -266,7 +267,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			string+=","+this.get(this.size()-1).getPlayerName();
 
 			string+=","+this.get(this.size()-1).getPlayerChipAmount();
-			bw.append("");
+			System.out.println(string);
+			bw.append(string);
 			bw.newLine();
 
 
