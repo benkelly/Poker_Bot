@@ -50,7 +50,7 @@ public class VisualHand extends JPanel {
 	public VisualHand(Image card1, Image card2, Image card3, Image card4, Image card5) {
 		//this.img = img;
 		Dimension size = new Dimension(card1.getWidth(null), card1.getHeight(null));
-		cardWidth =  (int) size.getWidth();
+		//cardWidth =  (int) size.getWidth();
 		setPreferredSize(size);
 		setMinimumSize(size);
 		setMaximumSize(size);
@@ -59,12 +59,15 @@ public class VisualHand extends JPanel {
 	}
 
 	public void paintComponent(Graphics g) {
+		g.setColor(Color.darkGray);
+		g.fillRect(0, 0, PIC_WIDTH, PIC_HIGHT);
 		g.drawImage(createResizedCopy(card1, (int)(card1.getWidth(null)*0.8),(int)(card1.getHeight(null)*0.7),false ), 25, 25, null);
 		g.drawImage(createResizedCopy(card2, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 225, 25, null);
 		g.drawImage(createResizedCopy(card3, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 425, 25, null);
 		g.drawImage(createResizedCopy(card4, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 625, 25, null);
 		g.drawImage(createResizedCopy(card5, (int)(card1.getWidth(null)*0.7),(int)(card1.getHeight(null)*0.7),false ), 825, 25, null);
 		g.drawImage(createResizedCopy(pokerChips, (int)(pokerChips.getWidth(null)*0.3),(int)(pokerChips.getHeight(null)*0.3),false ), 25, 550, null);
+		g.setColor(Color.black);
 		g.setFont(new Font("TimesRoman", Font.PLAIN, 200));
 		g.drawString(" = "+PlayerChips, 255, 725);
 

@@ -67,19 +67,6 @@ public class PokerPlayer {
 
 	}
 
-	/* removes @mentions from string.
-	* */
-	private String cleanUpInputTweet(String inputTweet) {
-		if (inputTweet.contains("@"+pokerGame.user.getScreenName())) {
-			inputTweet.replace("@"+pokerGame.user.getScreenName(), "");
-		}
-		if (inputTweet.contains("@"+TwitterInterpreter.getInstance().getTwitterScreenName())) {
-			inputTweet.replace("@"+TwitterInterpreter.getInstance().getTwitterScreenName(), "");
-		}
-		return inputTweet;
-	}
-
-
 
 	public void sendPlayerHandOptions() {
 		hand.generateHandType();
@@ -106,9 +93,9 @@ public class PokerPlayer {
 		hand.getGameValue();
 		getHandsDiscardProbability();
 
-		inputStr = cleanUpInputTweet(inputStr);
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
 		//inputStr = getConsoleInput();
-
+		System.out.println("######:playersHandOptions: inputStr: "+inputStr);
 
 		//auto discard cmd.
 		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
@@ -124,6 +111,7 @@ public class PokerPlayer {
 				discard();
 			}
 			getNewCardsForHand();
+			System.out.println(getPlayerName()+": auto discard");
 			return true;
 		}
 		// user discard cmd.
@@ -159,6 +147,8 @@ public class PokerPlayer {
 		}
 		// keep cmd
 		if (inputStr.toLowerCase().contains("keep") | inputStr.toLowerCase().startsWith("k")) {
+			System.out.println(getPlayerName()+": keep");
+
 			return true;
 		}
 		return false;
@@ -186,7 +176,8 @@ public class PokerPlayer {
 	/*public method, used in PokerGame to allow player to chose its betting cmds
 	* */
 	public boolean playersBettingOptions(String inputStr) {
-		inputStr = cleanUpInputTweet(inputStr);
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+		System.out.println("###### inputStr: "+inputStr);
 		//System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
 		//inputStr = getConsoleInput();
 		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
@@ -364,7 +355,7 @@ public class PokerPlayer {
 	/*command to increase stake to stated amount
 	*
 	* */
-	synchronized public void increaseStake(int amount) {
+	synchronized public boolean increaseStake(int amount) {
 		if(playerChipAmount >= amount) {
 			if (amount > pokerGame.getCurrentRoundsStakeAmount()) {
 				int stakeDiff = amount - pokerGame.getCurrentRoundsStakeAmount();
@@ -379,9 +370,12 @@ public class PokerPlayer {
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 
 				System.out.println(this.getPlayerName()+" increaseStake paid"); // for testing
-
+				return true;
 			}
 		}
+		else
+			foldFromRound();
+			return false;
 	}
 
 	/* previous players who betted will be asked to match the new stake or fold
@@ -448,6 +442,8 @@ public class PokerPlayer {
 	* */
 	public boolean payAnteFee(int anteFee, boolean noUserInputForRound, String inputStr) {
 		//String inputStr = "";
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+
 		if ( !noUserInputForRound ) {
 				if( !inputStr.toLowerCase().startsWith("y") | !inputStr.toLowerCase().startsWith("n")) {
 					pokerGame.tweetStr = "Ante: "+anteFee+"\n";

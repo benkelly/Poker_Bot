@@ -219,15 +219,17 @@ public class PlayerBot extends PokerPlayer {
 						}
 						case 2: { // increaseStake
 							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
-							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion / 100));
+							riseStakeAmount += ( riseStakeAmount * (botAgressrion / 100));
 							if (riseStakeAmount <= playerChipAmount) {
 								increaseStake(riseStakeAmount);
 								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
-								pokerGame.tweetStr +=getPlayerName()+" raised to"+riseStakeAmount+"\n";
+								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
 								payCurrentStake();
 								pokerGame.tweetStr +=getPlayerName()+" called\n";
 								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO: " + riseStakeAmount);
+								System.out.println(getPlayerName()+" THEREFOR called\n");
+
 							}
 							return true;
 						}
@@ -245,22 +247,23 @@ public class PlayerBot extends PokerPlayer {
 						}
 						case 1: { // increaseStake
 							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
-							riseStakeAmount += (pokerGame.getCurrentRoundsStakeAmount() * (botAgressrion / 100));
+							riseStakeAmount += (riseStakeAmount * (botAgressrion / 100));
 							if (riseStakeAmount <= playerChipAmount) {
 								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
 								increaseStake(riseStakeAmount);
-								pokerGame.tweetStr +=getPlayerName()+" raised to"+riseStakeAmount+"\n";
+								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
 								payCurrentStake();
 								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO : " + riseStakeAmount);
+								System.out.println(getPlayerName()+" THEREFOR called\n");
 								pokerGame.tweetStr +=getPlayerName()+" called\n";
 							}
 							return true;
 						}
 						case 2: { // increaseStake ALL-in
-							increaseStake(playerChipAmount);
 							System.out.println(getPlayerName() + " went ALL-IN w/ " + playerChipAmount);
 							pokerGame.tweetStr +=getPlayerName() + ": ALL-IN: " + playerChipAmount+"\n";
+							increaseStake(playerChipAmount);
 							return true;
 						}
 					}
