@@ -5,6 +5,10 @@ import twitter4j.*;
 import java.util.ArrayList;
 import java.util.Date;
 
+import java.io.*;
+
+
+
 /**
  * Group: @poker_bot
  * Sean Regan - 13388996 - sean.regan@ucdconnect.ie
@@ -43,7 +47,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	public User user;
 	//public String userName = user.getScreenName();
-
+	public static final String database="resources/database.csv"; 
+	
 	public String tweetStr = "";
 
 
@@ -163,12 +168,124 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	* */
 	private void setPokerTable() {
 		// add bots
-		for (int j = 0; j < MAX_BOTS; j++) {
-			this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
+				//before that we need check whether those information are stored in database already.
+		String  informationIndatabase=getScreenNameIndatabase(user.getScreenName());
+
+		if(!informationIndatabase.equals("")){
+			String[] tempSample=informationIndatabase.split(",");
+			int numOfPlayer=Integer.parseInt(tempSample[1]);
+			PokerPlayer[] players=new PokerPlayer[numOfPlayer];
+
+			for(int i=0;i<=numOfPlayer-2;i++){
+
+				String name=tempSample[2*(i+1)];
+				int amountOfChips=Integer.parseInt(tempSample[2*(i+1)+1]);
+				this.add(new PlayerBot(name,this,gameDeck,amountOfChips));
+			}
+
+			int amountOfhuman=Integer.parseInt(tempSample[tempSample.length-1]);
+			this.add(new PokerPlayer(user.getScreenName(), this, gameDeck, amountOfhuman, true)); // add human user.
+			// human last may be nicer for tweet format.
 		}
-		this.add(new PokerPlayer(user.getScreenName(),this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
-		// human last may be nicer for tweet format.
+			else {
+
+
+			for (int j = 0; j < MAX_BOTS; j++) {
+				this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
+			}
+			this.add(new PokerPlayer(user.getScreenName(), this, gameDeck, INITIAL_CHIP_AMOUNT, true)); // add human user.
+			// human last may be nicer for tweet format.
+		}
 	}
+	
+		//before start game, seach in the database. if contain the information about the amount of chip of player and his/her bot, return it
+	//if database doesnt contain such information, use default value.
+	private static synchronized String getScreenNameIndatabase(String screenName){
+		String database="resources/database.csv";
+		BufferedReader br;
+		String result="";
+		ArrayList<String> tempFile=new ArrayList<String>();
+		try{
+
+			br=new BufferedReader(new FileReader(file));
+			String line="";
+			while((line=br.readLine())!=null){
+
+				String[] tempSample=line.split(",");
+
+				if(tempSample[0].equals(screenName)){
+					result=line;
+				}
+				else{
+					tempFile.add(line);
+				}
+
+			}
+			br.close();
+			BufferedWriter bw=new BufferedWriter(new FileWriter(file));
+
+			for(int i=0;i<=tempFile.size()-1;i++){
+				bw.append(tempFile.get(i));
+				bw.newLine();
+			}
+
+			bw.close();
+
+		}
+		catch(Exception ex){
+			System.err.println(ex);
+		}
+
+		return result;
+	}
+	
+	
+	//except human player is bankruptted, when a pockergame is eliminated, we call this function.(important)
+	//the database contains the name and chipamount of each player in this table.
+	//the format of each line in database.
+	//first column is username
+	//second is the remain number of player
+	//than each pair is the name of computer player
+	//the last two is the name of user and the chipamount of user
+	private synchronized void WritingScreenNameIndatabase(String screenName){
+
+		BufferedReader br;
+		String result="";
+		ArrayList<String> tempFile=new ArrayList<String>();
+		try{
+
+
+			BufferedWriter bw=new BufferedWriter(new FileWriter(file,true));
+			String string="";
+			string+=user.getScreenName();
+			string+=","+this.size();
+			for(int i=0;i<=this.size()-2;i++){
+				string+=","+this.get(i).playerName;
+				string+=","+this.get(i).getPlayerChipAmount();
+			}
+			string+=","+this.get(this.size()-1).getPlayerName();
+
+			string+=","+this.get(this.size()-1).getPlayerChipAmount();
+			bw.append("");
+			bw.newLine();
+
+
+			bw.close();
+
+
+
+
+		}
+		catch(Exception ex){
+			System.err.println(ex);
+		}
+
+
+
+
+	}
+	
+	
 
 	public User setUserFromTwitter(User usr) {
 		return user = usr;

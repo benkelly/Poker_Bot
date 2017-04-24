@@ -39,6 +39,15 @@ public class PlayerBot extends PokerPlayer {
 	private int botAgressrion;
 	private int botIntellagence;
 
+	
+		//add a new construct function. 
+	public PlayerBot(String name, PokerGame game, DeckOfCards deck, int chips) {
+		super(name, game, deck, chips, false);
+		//playerName = generateName();
+		generateBotStats();
+		System.out.println(getPlayerName()+": botAgressrion: "+botAgressrion+": botIntellagence: "+botIntellagence);
+	}
+	
 	public PlayerBot(PokerGame game, DeckOfCards deck, int chips) {
 		super("", game, deck, chips, false);
 		playerName = generateName();
