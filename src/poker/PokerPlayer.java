@@ -148,10 +148,10 @@ public class PokerPlayer {
 		// keep cmd
 		if (inputStr.toLowerCase().contains("keep") | inputStr.toLowerCase().startsWith("k")) {
 			System.out.println(getPlayerName()+": keep");
-
 			return true;
 		}
-		return false;
+		else
+			return false;
 	}
 
 	public void sendPlayersBettingOptions() {
@@ -464,7 +464,7 @@ public class PokerPlayer {
 				return true;
 			} else {
 				pokerGame.playerIsLeavingGame(this, true);
-				return true;
+				return false;
 			}
 		}
 		if (inputStr.toLowerCase().startsWith("n")) {
@@ -527,6 +527,10 @@ public class PokerPlayer {
 	private void tweetPlayer(String tweetStr) {
 	TwitterInterpreter.getInstance().postTweet(tweetStr);
 	tweetStr = "";
+	}
+
+	public void setPlayerChipAmount(int amount) {
+		playerChipAmount = amount;
 	}
 
 	/*Class testing method

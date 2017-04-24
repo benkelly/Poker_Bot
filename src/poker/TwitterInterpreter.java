@@ -89,25 +89,25 @@ public class TwitterInterpreter {
 		try {
 
 			if (temp.toLowerCase().contains("dealmein")) {
-				postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16");
+				postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16"+PlayerBot.faceTellGenerator());
 			}
 			if (twitterStream.getScreenName().equalsIgnoreCase(status.getInReplyToScreenName())
 					& !status.getUser().getScreenName().equalsIgnoreCase(twitterStream.getScreenName())) {
 				//else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
 				//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
-				parseToGameState(status.getUser(), status.getText());
+				parseToGameState(status.getUser(), status,  status.getText());
 			}
 		} catch (TwitterException e) {
 			e.printStackTrace();
 		}
 	}
 
-	synchronized private void parseToGameState(User user, String TweetBody) {
+	synchronized private void parseToGameState(User user,Status status, String TweetBody) {
 		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
 		pokerGame.setUserFromTwitter(user);
 		//pokerGame.;
 		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n START");
-		pokerGame.playPoker(TweetBody);
+		pokerGame.playPoker(TweetBody, status);
 		//System.out.println(pokerGame.);
 		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n END");
 
@@ -159,6 +159,18 @@ public class TwitterInterpreter {
 		System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
 	}
+
+	public void postTweetInConvo(String strStatus, Status fromStatus) {
+		Status status = null;
+		try {
+			status = twitter.updateStatus(strStatus);
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Successfully updated the status to [" + status.getText() + "].");
+
+	}
+
 
 
 	public void tweetPic(InputStream _file, String theTweet) throws Exception {

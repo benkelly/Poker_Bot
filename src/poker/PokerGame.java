@@ -51,10 +51,15 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	}
 
 
-	public void playPoker(String TweetBody) {
+	public void playPoker(String TweetBody, Status status) {
 		if (!gameOver) {
 			if (!hasSetPokerTable) {
 				setPokerTable(); // adds human and bots to poker table
+				for (PokerPlayer player : this) { // if human player has no chips left
+					if(player.isHuman & player.getPlayerChipAmount() < INITIAL_CHIP_AMOUNT) {
+						player.setPlayerChipAmount(INITIAL_CHIP_AMOUNT);
+					}
+				}
 				hasSetPokerTable = true;
 			}
 			if (!hasCurrentRoundBeenDealt) {
@@ -64,25 +69,46 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					System.out.println("**********currentRoundsHeldStake on poker Table!!!!: " + currentRoundsHeldStake);
 				}
 
+				System.out.println("hasCurrentRoundBeenDealt START!");
 
 				if (!hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied) {
 					if (!hasCurrentRoundPlayersAnteFeeOptionsTweeted) {
-						tweetStr += "@" + user.getScreenName() + " do you want to play another round (y/n)?";
+						System.out.println("(!hasCurrentRoundPlayersAnteFeeOptionsTweeted) START!");
+
+						tweetStr += "@" + user.getScreenName() + " do you want to play another round (y/n)?"+PlayerBot.faceTellGenerator();
 						TwitterInterpreter.getInstance().postTweet(tweetStr);
 						tweetStr = "";
 						hasCurrentRoundPlayersAnteFeeOptionsTweeted = true;
 						return;
 					}
-					if (cleanUpInputTweet(tweetStr).toLowerCase().startsWith("y") | cleanUpInputTweet(tweetStr).toLowerCase().contains("yes")) {
-						payAnteFee(currentRoundsAnteAmount); // players pay their ante to enter game.
-						hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = true;
-					}
-					else {
-						gameOver = true;
-						tweetStr += "@" + user.getScreenName() + " Come back again!!";
-						TwitterInterpreter.getInstance().postTweet(tweetStr);
-						tweetStr = "";
-						return;
+					if (hasCurrentRoundPlayersAnteFeeOptionsTweeted) {
+						System.out.println("(!\t\t\t\t\tString cleanedUpInputTweet = cleanUpInputTweet(tweetStr).toLowerCase();\n) START!");
+						String cleanedUpInputTweet = cleanUpInputTweet(TweetBody).toLowerCase();
+						System.out.println("cleanedUpInputTweet:  "+cleanedUpInputTweet);
+						System.out.println("(!\t\t\t\t\tString cleanedUpInputTweet = cleanUpInputTweet(tweetStr).toLowerCase();\n) END!");
+
+						if (cleanedUpInputTweet.startsWith("y") | cleanedUpInputTweet.contains("yes")) {
+							System.out.println("(!\t\t\t\t\tcleanedUpInputTweet.startsWith(\"y\") | cleanedUpInputTweet.contains(\"yes\"))!");
+
+							if( !payAnteFee(currentRoundsAnteAmount) ) { // players pay their ante to enter game.
+								tweetStr += "@" + user.getScreenName() + " \n\n";
+								TwitterInterpreter.getInstance().postTweet(tweetStr);
+								tweetStr = "";
+								return;
+							}
+							hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = true;
+							System.out.println("(!\t\t\t\t\tcleanedUpInputTweet.startsWith(\"y\") | cleanedUpInputTweet.contains(\"yes\"))! BEFORE LOOP");
+
+							playPoker("", status);
+						} else {
+							System.out.println("(!\t\t\t\t\tELSE START ");
+							gameOver = true;
+							tweetStr += "@" + user.getScreenName() + " Come back again!!"+PlayerBot.faceTellGenerator();
+							TwitterInterpreter.getInstance().postTweet(tweetStr);
+							tweetStr = "";
+							System.out.println("(!\t\t\t\t\tELSE END ");
+							return;
+						}
 					}
 				}
 
@@ -112,7 +138,23 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					& hasCurrentRoundPlayersHandOptionsTweetedAndReplied) {
 				getRoundWinner(); // calculates winning hand and pays that player the pot.
 				resetRound(); // clears round.
-				playPoker("");
+				playPoker("", status);
+			}
+		}
+		if ( gameOver ) { // start up a new game of poker
+			String cleanedUpInputTweet = cleanUpInputTweet(TweetBody).toLowerCase();
+			if( cleanedUpInputTweet.toLowerCase().startsWith("y") | cleanedUpInputTweet.toLowerCase().contains("yes")) {
+				gameOver = false;
+				hasSetPokerTable = false;
+				resetRound();
+				hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = false;
+				this.clear();
+				playPoker("", status);			}
+			else {
+				tweetStr = "Hey @" + user.getScreenName() + "! " + PlayerBot.faceTellGenerator() + "\n";
+				tweetStr += "You're currently not in any game. Like me to set up a new poker table up?\n(y/n)";
+				TwitterInterpreter.getInstance().postTweet(tweetStr);
+				tweetStr = "";
 			}
 		}
 	}
@@ -165,11 +207,21 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					player.isPlayersHandOptionsSent = true;
 				}
 				if (player.isHuman) {
-					player.playersHandOptions(TweetBody);
-					hasCurrentRoundPlayersHandOptionsTweetedAndReplied = true;
+					if( !player.playersHandOptions(TweetBody)) {
+						tweetStr = "@" + user.getScreenName() + " Need some help? "+PlayerBot.faceTellGenerator();
+						tweetStr += "\n yr hand is "+player.hand+"\n";
+						tweetStr += "you can:\n";
+						tweetStr += "Discard: eg: d"+player.hand.get(3)+player.hand.get(0)+"\n";
+						tweetStr += "Auto discard: eg: a, A2\n";
+						tweetStr += "Keep: eg: K\n";
+						TwitterInterpreter.getInstance().postTweet(tweetStr);
+						tweetStr = "";
+						return false;
+					}
+					else
+						hasCurrentRoundPlayersHandOptionsTweetedAndReplied = true;
 				}
 				System.out.println("currentRoundPlayersHandOptions END - \t\t\t\treturn true;\n");
-				//return true;
 			}
 		}
 		return true;
@@ -189,8 +241,19 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					player.isPlayersBettingOptionsSent = true;
 				}
 				if (player.isHuman) {
-					player.playersBettingOptions(TweetBody);
-					hasCurrentRoundPlayersBettingOptionsTweetedAndReplied = true;
+					if( !player.playersBettingOptions(TweetBody)) {
+						tweetStr = "@" + user.getScreenName() + " Need some betting help? "+PlayerBot.faceTellGenerator();
+						tweetStr += "\nyr hand is "+player.hand+"\n";
+						tweetStr += "Stake: "+getCurrentRoundsStakeAmount()+" you can:\n";
+						tweetStr += "Call eg: call, c";
+						tweetStr += "raise stake: eg: r"+getCurrentRoundsStakeAmount()+"+ \n";
+						tweetStr += "Fold eg: fold, f\n";
+						TwitterInterpreter.getInstance().postTweet(tweetStr);
+						tweetStr = "";
+						return false;
+					}
+					else
+						hasCurrentRoundPlayersBettingOptionsTweetedAndReplied = true;
 				}
 				//return true;
 			}
@@ -235,33 +298,51 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
 	* */
-	synchronized public void playerIsLeavingGame(PokerPlayer player, boolean isBankrupted) {
+	synchronized public boolean playerIsLeavingGame(PokerPlayer player, boolean isBankrupted) {
 		if( player.isHuman ) {
 			gameOver = true;
 			if (isBankrupted) {
-				System.out.println(this.get(0).getPlayerName() + " is bankrupt.... game over dude....");
+				System.out.println(player.getPlayerName() + " is bankrupt.... game over dude....");
+				tweetStr +=player.getPlayerName() + " is bankrupt.... game over dude....";
+				this.remove(player);
+				return false;
 			}
 		}
 		else {
 			for (PlayingCard card : player.hand) {
 				gameDeck.returnCard(card);
+				return true;
 			}
 			this.remove(player);
 			System.out.println(player.getPlayerName() + " is bankrupt!");
+			tweetStr +=(player.getPlayerName() + " is bankrupt!");
+			return true;
 		}
+		return true;
 	}
 
 	/*gets highest scored player and gives them the pot.
 	* */
 	synchronized private void getRoundWinner() {
+		System.out.println("getRoundWinnerSTART**********curRoundPlayerList: " + curRoundPlayerList + "\n\n\n\n\n\n");
+
 		PokerPlayer tempPlayer = calcPlayerHandScores();
+		if(tempPlayer == null) {
+			int tempHighScore = 0;
+			for (PokerPlayer player : curRoundPlayerList) {
+				if (tempHighScore < player.getCurrentHandScore()) { // re-calcs all players current scores.
+					tempHighScore = player.getCurrentHandScore();
+					tempPlayer = player;
+				}
+			}
+		}
 		tempPlayer.receivesStake(currentRoundsHeldStake);
 		tempPlayer.totalRoundsWon += 1;
-		System.out.println(tempPlayer.getPlayerName()+" is the winner!");
-		tweetStr =tempPlayer.getPlayerName()+" won with a "+tempPlayer.hand.getBestHandTypeName()+"\n\n";
-		System.out.println(tempPlayer.getPlayerName()+": new Chips amount: "+tempPlayer.getPlayerChipAmount());
-		System.out.println("ships now on table: "+getCurrentRoundsHeldStake());
-		System.out.println("**********curRoundPlayerList: "+curRoundPlayerList+"\n\n\n\n\n\n");
+		System.out.println(tempPlayer.getPlayerName() + " is the winner!");
+		tweetStr = tempPlayer.getPlayerName() + " won with a " + tempPlayer.hand.getBestHandTypeName() + "\n\n";
+		System.out.println(tempPlayer.getPlayerName() + ": new Chips amount: " + tempPlayer.getPlayerChipAmount());
+		System.out.println("ships now on table: " + getCurrentRoundsHeldStake());
+		System.out.println("**********curRoundPlayerList: " + curRoundPlayerList + "\n\n\n\n\n\n");
 
 	}
 	/*Returns the pokerPlayer with the highest score.

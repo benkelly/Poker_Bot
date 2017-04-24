@@ -19,7 +19,8 @@ import java.util.Random;
 public class PlayerBot extends PokerPlayer {
 
 	// fixed stats
-	private static final String FIRST_NAMES_LIST = "resources/firstNames.txt";
+	private static final String FIRST_NAMES_LIST = "resources/short_first_names_list.txt";
+	//private static final String FIRST_NAMES_LIST = "resources/firstNames.txt";
 	private static final String LAST_NAMES_LIST = "resources/lastNames.txt";
 
 	public static String FACE_TELLS[] = {"\uD83D\uDE00", "\uD83D\uDE2C", "\uD83D\uDE01", "\uD83D\uDE02", "\uD83D\uDE03", "\uD83D\uDE04", "\uD83D\uDE05", "\uD83D\uDE06", "\uD83D\uDE07", "\uD83D\uDE09", "\uD83D\uDE0A", "\uD83D\uDE42", "\uD83D\uDE43",
@@ -44,6 +45,13 @@ public class PlayerBot extends PokerPlayer {
 		generateBotStats();
 		System.out.println(getPlayerName()+": botAgressrion: "+botAgressrion+": botIntellagence: "+botIntellagence);
 	}
+
+	public static String faceTellGenerator() {
+		Random rand = new Random();
+		int value = rand.nextInt(FACE_TELLS.length);
+		return FACE_TELLS[value];
+	}
+
 
 	private void generateBotStats() {
 		Random rand = new Random();
