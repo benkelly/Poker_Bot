@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class GameState extends ArrayList<PokerGame> {
 	private static GameState instance;
+//	private
 
 	//public static User user;
 
@@ -41,8 +42,13 @@ public class GameState extends ArrayList<PokerGame> {
 		return createNewPokerGame(usr);
 	}
 
+	/*synchronized private void cleanPokerClean() {
 
 
+
+	}
+
+*/
 
 
 

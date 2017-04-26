@@ -227,54 +227,88 @@ public class PlayerBot extends PokerPlayer {
 				switch (value) {
 					case 0: {
 						fold();
-					}
+						pokerGame.tweetStr +=getPlayerName()+" folded\n";
+						return true;					}
 					case 1: {
 						if(aggression > 50) {
 							call();
+							pokerGame.tweetStr +=getPlayerName()+" called\n";
+							return true;
 						}else{
 							fold();
-						}
+							pokerGame.tweetStr +=getPlayerName()+" folded\n";
+							return true;						}
 
 					}
 				}
 			}
 			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.THREE_OF_A_KIND_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.THREE_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.FLUSH_WEIGHT && handScore < hand.FULL_HOUSE_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
+
 			}
 			else if(handScore > hand.FULL_HOUSE_WEIGHT && handScore < hand.FOUR_OF_A_KIND_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.FOUR_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT){
 				call();
+				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				return true;
 			}
 			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
 				int value = rand.nextInt(2);
 				switch (value) {
 					case 0: {
 						call();
+						pokerGame.tweetStr +=getPlayerName()+" called\n";
+						return true;
+
 					}
 					case 1:{
+						int riseStakeAmount =100;
 						raise(100);
+						raise(riseStakeAmount);
+						System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
+						pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+						return true;
 					}
 				}
 			}
 			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
-				raise(200);
+				int riseStakeAmount =200;
+				raise(100);
+				raise(riseStakeAmount);
+				System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
+				pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+				return true;
 			}
 			/*
 			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i += 1000000) {
@@ -351,10 +385,10 @@ public class PlayerBot extends PokerPlayer {
 				}
 			}
 			*/
-		}
+		}/*
 		fold();
 		pokerGame.tweetStr +=getPlayerName()+" folded\n";
-		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
+		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");*/
 		return true;
 	}
 

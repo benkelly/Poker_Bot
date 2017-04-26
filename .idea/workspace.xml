@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="added a lil to bots new better method">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database.csv" afterPath="$PROJECT_DIR$/resources/database.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/GameState.java" afterPath="$PROJECT_DIR$/src/poker/GameState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/Main.java" afterPath="$PROJECT_DIR$/src/poker/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/VisualHand.java" afterPath="$PROJECT_DIR$/src/poker/VisualHand.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,11 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -50,139 +56,168 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="465" column="42" lean-forward="false" selection-start-line="465" selection-start-column="0" selection-end-line="466" selection-end-column="0" />
+            <state relative-caret-position="554">
+              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1589#1602#0" expanded="true" />
-                <element signature="e#7817#7825#0" expanded="true" />
-                <element signature="e#8944#8952#0" expanded="true" />
-                <element signature="e#9573#9574#0" expanded="true" />
-                <element signature="e#9597#9598#0" expanded="true" />
-                <element signature="e#18622#18623#0" expanded="true" />
-                <element signature="e#18657#18658#0" expanded="true" />
-                <element signature="e#19267#19280#0" expanded="true" />
-                <element signature="e#19670#19671#0" expanded="true" />
-                <element signature="e#19692#19693#0" expanded="true" />
-                <element signature="e#19762#19763#0" expanded="true" />
-                <element signature="e#19786#19787#0" expanded="true" />
-                <element signature="e#19906#19907#0" expanded="true" />
-                <element signature="e#19942#19943#0" expanded="true" />
-                <element signature="e#20109#20110#0" expanded="true" />
-                <element signature="e#20150#20151#0" expanded="true" />
-                <element signature="e#20483#20484#0" expanded="true" />
-                <element signature="e#20521#20522#0" expanded="true" />
-                <element signature="e#20709#20710#0" expanded="true" />
-                <element signature="e#20728#20729#0" expanded="true" />
-                <element signature="e#20771#20772#0" expanded="true" />
-                <element signature="e#20798#20799#0" expanded="true" />
-                <element signature="e#20847#20848#0" expanded="true" />
-                <element signature="e#20874#20875#0" expanded="true" />
-                <element signature="e#20921#20922#0" expanded="true" />
-                <element signature="e#20943#20944#0" expanded="true" />
-                <element signature="e#20993#20994#0" expanded="true" />
-                <element signature="e#21015#21016#0" expanded="true" />
-                <element signature="e#21073#21074#0" expanded="true" />
-                <element signature="e#21096#21097#0" expanded="true" />
-                <element signature="e#21150#21151#0" expanded="true" />
-                <element signature="e#21172#21173#0" expanded="true" />
-                <element signature="e#21232#21233#0" expanded="true" />
-                <element signature="e#21254#21255#0" expanded="true" />
-                <element signature="e#21312#21313#0" expanded="true" />
-                <element signature="e#21334#21335#0" expanded="true" />
-                <element signature="e#21396#21397#0" expanded="true" />
-                <element signature="e#21418#21419#0" expanded="true" />
-                <element signature="e#21477#21478#0" expanded="true" />
-                <element signature="e#21499#21500#0" expanded="true" />
-                <element signature="e#21564#21565#0" expanded="true" />
-                <element signature="e#21586#21587#0" expanded="true" />
-                <element signature="e#21649#21650#0" expanded="true" />
-                <element signature="e#21671#21672#0" expanded="true" />
-                <element signature="e#21738#21739#0" expanded="true" />
-                <element signature="e#21760#21761#0" expanded="true" />
-                <element signature="e#21818#21819#0" expanded="true" />
-                <element signature="e#21841#21842#0" expanded="true" />
-                <element signature="e#21883#21884#0" expanded="true" />
-                <element signature="e#21905#21906#0" expanded="true" />
-                <element signature="e#21953#21954#0" expanded="true" />
-                <element signature="e#21976#21977#0" expanded="true" />
-                <element signature="e#22026#22027#0" expanded="true" />
-                <element signature="e#22045#22046#0" expanded="true" />
-                <element signature="e#22090#22091#0" expanded="true" />
-                <element signature="e#22112#22113#0" expanded="true" />
-                <element signature="e#22173#22174#0" expanded="true" />
-                <element signature="e#22195#22196#0" expanded="true" />
-                <element signature="e#22250#22251#0" expanded="true" />
-                <element signature="e#22272#22273#0" expanded="true" />
-                <element signature="e#22327#22328#0" expanded="true" />
-                <element signature="e#22349#22350#0" expanded="true" />
-                <element signature="e#22411#22412#0" expanded="true" />
-                <element signature="e#22433#22434#0" expanded="true" />
-                <element signature="e#22497#22498#0" expanded="true" />
-                <element signature="e#22519#22520#0" expanded="true" />
-                <element signature="e#22583#22584#0" expanded="true" />
+                <element signature="e#7968#7976#0" expanded="true" />
+                <element signature="e#9095#9103#0" expanded="true" />
+                <element signature="e#9724#9725#0" expanded="true" />
+                <element signature="e#9748#9749#0" expanded="true" />
+                <element signature="e#18976#18977#0" expanded="true" />
+                <element signature="e#19011#19012#0" expanded="true" />
+                <element signature="e#19621#19634#0" expanded="true" />
+                <element signature="e#20015#20016#0" expanded="true" />
+                <element signature="e#20037#20038#0" expanded="true" />
+                <element signature="e#20107#20108#0" expanded="true" />
+                <element signature="e#20131#20132#0" expanded="true" />
+                <element signature="e#20251#20252#0" expanded="true" />
+                <element signature="e#20287#20288#0" expanded="true" />
+                <element signature="e#20443#20444#0" expanded="true" />
+                <element signature="e#20484#20485#0" expanded="true" />
+                <element signature="e#20817#20818#0" expanded="true" />
+                <element signature="e#20855#20856#0" expanded="true" />
+                <element signature="e#21043#21044#0" expanded="true" />
+                <element signature="e#21062#21063#0" expanded="true" />
+                <element signature="e#21105#21106#0" expanded="true" />
+                <element signature="e#21132#21133#0" expanded="true" />
+                <element signature="e#21181#21182#0" expanded="true" />
+                <element signature="e#21208#21209#0" expanded="true" />
+                <element signature="e#21255#21256#0" expanded="true" />
+                <element signature="e#21277#21278#0" expanded="true" />
+                <element signature="e#21327#21328#0" expanded="true" />
+                <element signature="e#21349#21350#0" expanded="true" />
+                <element signature="e#21407#21408#0" expanded="true" />
+                <element signature="e#21430#21431#0" expanded="true" />
+                <element signature="e#21484#21485#0" expanded="true" />
+                <element signature="e#21506#21507#0" expanded="true" />
+                <element signature="e#21566#21567#0" expanded="true" />
+                <element signature="e#21588#21589#0" expanded="true" />
+                <element signature="e#21646#21647#0" expanded="true" />
+                <element signature="e#21668#21669#0" expanded="true" />
+                <element signature="e#21730#21731#0" expanded="true" />
+                <element signature="e#21752#21753#0" expanded="true" />
+                <element signature="e#21811#21812#0" expanded="true" />
+                <element signature="e#21833#21834#0" expanded="true" />
+                <element signature="e#21898#21899#0" expanded="true" />
+                <element signature="e#21920#21921#0" expanded="true" />
+                <element signature="e#21983#21984#0" expanded="true" />
+                <element signature="e#22005#22006#0" expanded="true" />
+                <element signature="e#22072#22073#0" expanded="true" />
+                <element signature="e#22094#22095#0" expanded="true" />
+                <element signature="e#22152#22153#0" expanded="true" />
+                <element signature="e#22175#22176#0" expanded="true" />
+                <element signature="e#22217#22218#0" expanded="true" />
+                <element signature="e#22239#22240#0" expanded="true" />
+                <element signature="e#22287#22288#0" expanded="true" />
+                <element signature="e#22310#22311#0" expanded="true" />
+                <element signature="e#22360#22361#0" expanded="true" />
+                <element signature="e#22379#22380#0" expanded="true" />
+                <element signature="e#22424#22425#0" expanded="true" />
+                <element signature="e#22446#22447#0" expanded="true" />
+                <element signature="e#22507#22508#0" expanded="true" />
+                <element signature="e#22529#22530#0" expanded="true" />
+                <element signature="e#22584#22585#0" expanded="true" />
                 <element signature="e#22606#22607#0" expanded="true" />
-                <element signature="e#22659#22660#0" expanded="true" />
-                <element signature="e#22682#22683#0" expanded="true" />
-                <element signature="e#22739#22740#0" expanded="true" />
-                <element signature="e#22762#22763#0" expanded="true" />
-                <element signature="e#22810#22811#0" expanded="true" />
-                <element signature="e#22829#22830#0" expanded="true" />
-                <element signature="e#22875#22876#0" expanded="true" />
-                <element signature="e#22897#22898#0" expanded="true" />
-                <element signature="e#22948#22949#0" expanded="true" />
-                <element signature="e#22967#22968#0" expanded="true" />
-                <element signature="e#23012#23013#0" expanded="true" />
-                <element signature="e#23031#23032#0" expanded="true" />
-                <element signature="e#23078#23079#0" expanded="true" />
-                <element signature="e#23100#23101#0" expanded="true" />
-                <element signature="e#23164#23165#0" expanded="true" />
-                <element signature="e#23186#23187#0" expanded="true" />
-                <element signature="e#23255#23256#0" expanded="true" />
-                <element signature="e#23277#23278#0" expanded="true" />
-                <element signature="e#23332#23333#0" expanded="true" />
-                <element signature="e#23354#23355#0" expanded="true" />
-                <element signature="e#23415#23416#0" expanded="true" />
-                <element signature="e#23437#23438#0" expanded="true" />
-                <element signature="e#23496#23497#0" expanded="true" />
-                <element signature="e#23518#23519#0" expanded="true" />
-                <element signature="e#23583#23584#0" expanded="true" />
-                <element signature="e#23605#23606#0" expanded="true" />
+                <element signature="e#22661#22662#0" expanded="true" />
+                <element signature="e#22683#22684#0" expanded="true" />
+                <element signature="e#22745#22746#0" expanded="true" />
+                <element signature="e#22767#22768#0" expanded="true" />
+                <element signature="e#22831#22832#0" expanded="true" />
+                <element signature="e#22853#22854#0" expanded="true" />
+                <element signature="e#22917#22918#0" expanded="true" />
+                <element signature="e#22940#22941#0" expanded="true" />
+                <element signature="e#22993#22994#0" expanded="true" />
+                <element signature="e#23016#23017#0" expanded="true" />
+                <element signature="e#23073#23074#0" expanded="true" />
+                <element signature="e#23096#23097#0" expanded="true" />
+                <element signature="e#23144#23145#0" expanded="true" />
+                <element signature="e#23163#23164#0" expanded="true" />
+                <element signature="e#23209#23210#0" expanded="true" />
+                <element signature="e#23231#23232#0" expanded="true" />
+                <element signature="e#23282#23283#0" expanded="true" />
+                <element signature="e#23301#23302#0" expanded="true" />
+                <element signature="e#23346#23347#0" expanded="true" />
+                <element signature="e#23365#23366#0" expanded="true" />
+                <element signature="e#23412#23413#0" expanded="true" />
+                <element signature="e#23434#23435#0" expanded="true" />
+                <element signature="e#23498#23499#0" expanded="true" />
+                <element signature="e#23520#23521#0" expanded="true" />
+                <element signature="e#23589#23590#0" expanded="true" />
+                <element signature="e#23611#23612#0" expanded="true" />
                 <element signature="e#23666#23667#0" expanded="true" />
                 <element signature="e#23688#23689#0" expanded="true" />
-                <element signature="e#23755#23756#0" expanded="true" />
-                <element signature="e#23777#23778#0" expanded="true" />
-                <element signature="e#23838#23839#0" expanded="true" />
-                <element signature="e#23861#23862#0" expanded="true" />
-                <element signature="e#23904#23905#0" expanded="true" />
-                <element signature="e#23926#23927#0" expanded="true" />
-                <element signature="e#23975#23976#0" expanded="true" />
-                <element signature="e#23994#23995#0" expanded="true" />
-                <element signature="e#24043#24044#0" expanded="true" />
-                <element signature="e#24066#24067#0" expanded="true" />
-                <element signature="e#24113#24114#0" expanded="true" />
-                <element signature="e#24136#24137#0" expanded="true" />
-                <element signature="e#24185#24186#0" expanded="true" />
-                <element signature="e#24208#24209#0" expanded="true" />
-                <element signature="e#24255#24256#0" expanded="true" />
-                <element signature="e#24274#24275#0" expanded="true" />
-                <element signature="e#24330#24331#0" expanded="true" />
-                <element signature="e#24353#24354#0" expanded="true" />
-                <element signature="e#24419#24420#0" expanded="true" />
-                <element signature="e#24453#24454#0" expanded="true" />
-                <element signature="e#24504#24505#0" expanded="true" />
-                <element signature="e#24526#24527#0" expanded="true" />
-                <element signature="e#24586#24587#0" expanded="true" />
-                <element signature="e#24617#24618#0" expanded="true" />
-                <element signature="e#24665#24666#0" expanded="true" />
-                <element signature="e#24684#24685#0" expanded="true" />
-                <element signature="e#24747#24748#0" expanded="true" />
-                <element signature="e#24769#24770#0" expanded="true" />
-                <element signature="e#24816#24817#0" expanded="true" />
-                <element signature="e#24835#24836#0" expanded="true" />
+                <element signature="e#23749#23750#0" expanded="true" />
+                <element signature="e#23771#23772#0" expanded="true" />
+                <element signature="e#23830#23831#0" expanded="true" />
+                <element signature="e#23852#23853#0" expanded="true" />
+                <element signature="e#23917#23918#0" expanded="true" />
+                <element signature="e#23939#23940#0" expanded="true" />
+                <element signature="e#24000#24001#0" expanded="true" />
+                <element signature="e#24022#24023#0" expanded="true" />
+                <element signature="e#24089#24090#0" expanded="true" />
+                <element signature="e#24111#24112#0" expanded="true" />
+                <element signature="e#24172#24173#0" expanded="true" />
+                <element signature="e#24195#24196#0" expanded="true" />
+                <element signature="e#24238#24239#0" expanded="true" />
+                <element signature="e#24260#24261#0" expanded="true" />
+                <element signature="e#24309#24310#0" expanded="true" />
+                <element signature="e#24328#24329#0" expanded="true" />
+                <element signature="e#24377#24378#0" expanded="true" />
+                <element signature="e#24400#24401#0" expanded="true" />
+                <element signature="e#24447#24448#0" expanded="true" />
+                <element signature="e#24470#24471#0" expanded="true" />
+                <element signature="e#24519#24520#0" expanded="true" />
+                <element signature="e#24542#24543#0" expanded="true" />
+                <element signature="e#24589#24590#0" expanded="true" />
+                <element signature="e#24608#24609#0" expanded="true" />
+                <element signature="e#24664#24665#0" expanded="true" />
+                <element signature="e#24687#24688#0" expanded="true" />
+                <element signature="e#24753#24754#0" expanded="true" />
+                <element signature="e#24787#24788#0" expanded="true" />
+                <element signature="e#24838#24839#0" expanded="true" />
+                <element signature="e#24860#24861#0" expanded="true" />
+                <element signature="e#24920#24921#0" expanded="true" />
+                <element signature="e#24951#24952#0" expanded="true" />
+                <element signature="e#24999#25000#0" expanded="true" />
+                <element signature="e#25018#25019#0" expanded="true" />
+                <element signature="e#25081#25082#0" expanded="true" />
+                <element signature="e#25103#25104#0" expanded="true" />
+                <element signature="e#25150#25151#0" expanded="true" />
+                <element signature="e#25169#25170#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="532" column="31" lean-forward="true" selection-start-line="532" selection-start-column="31" selection-end-line="532" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1457#1458#0" expanded="true" />
+                <element signature="e#1539#1540#0" expanded="true" />
+                <element signature="e#7803#7804#0" expanded="true" />
+                <element signature="e#7847#7848#0" expanded="true" />
+                <element signature="e#10482#10483#0" expanded="true" />
+                <element signature="e#10510#10511#0" expanded="true" />
+                <element signature="e#10553#10554#0" expanded="true" />
+                <element signature="e#10589#10590#0" expanded="true" />
+                <element signature="e#10619#10620#0" expanded="true" />
+                <element signature="e#10699#10700#0" expanded="true" />
+                <element signature="e#10736#10737#0" expanded="true" />
+                <element signature="e#10760#10761#0" expanded="true" />
+                <element signature="e#10797#10798#0" expanded="true" />
+                <element signature="e#10827#10828#0" expanded="true" />
+                <element signature="e#16486#16487#0" expanded="true" />
+                <element signature="e#16518#16519#0" expanded="true" />
+                <marker date="1493200649000" expanded="false" signature="16794:16807" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -198,30 +233,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="531" column="35" lean-forward="false" selection-start-line="531" selection-start-column="16" selection-end-line="531" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#16305#16306#0" expanded="true" />
-                <element signature="e#16337#16338#0" expanded="true" />
-                <marker date="1493044850000" expanded="false" signature="16613:16626" ph="&lt;~&gt;" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+            <state relative-caret-position="278">
+              <caret line="114" column="12" lean-forward="false" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4991#4992#0" expanded="true" />
-                <element signature="e#5020#5021#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -230,12 +248,22 @@
       <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="21" column="84" lean-forward="false" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
+            <state relative-caret-position="5126">
+              <caret line="391" column="20" lean-forward="true" selection-start-line="391" selection-start-column="20" selection-end-line="391" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1493045720000" expanded="false" signature="4085:4093" ph="&lt;~&gt;" />
+                <element signature="e#4242#4250#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="57" lean-forward="false" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -255,8 +283,8 @@
       <file leaf-file-name="VisualHand.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/VisualHand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="69" column="30" lean-forward="false" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+            <state relative-caret-position="340">
+              <caret line="192" column="0" lean-forward="true" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -275,8 +303,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>\&quot;</find>
-      <find>,</find>
       <find>dealOutCards</find>
       <find>gameDeck</find>
       <find>pokerGame.tweetStr +=getPlayerName()+&quot;: called\n&quot;;</find>
@@ -284,7 +310,6 @@
       <find>getCurrentHandScore</find>
       <find>isHuman</find>
       <find>getScreenName</find>
-      <find>currentRoundPlayersHandOptions START</find>
       <find>currentRoundPlayersHandOptions START</find>
       <find>playersBettingOptions: START</find>
       <find>res</find>
@@ -305,6 +330,9 @@
       <find>screenName</find>
       <find>getScreenNameInDatabase</find>
       <find>numOfPlayer</find>
+      <find>tostring</find>
+      <find>toStr</find>
+      <find>tweetPic</find>
     </findStrings>
     <replaceStrings>
       <replace>)</replace>
@@ -353,17 +381,17 @@
         <option value="$PROJECT_DIR$/src/PlayingCard.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayingCard.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/DeckOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
         <option value="$PROJECT_DIR$/src/poker/visualHand.java" />
-        <option value="$PROJECT_DIR$/src/poker/GameState.java" />
-        <option value="$PROJECT_DIR$/src/poker/VisualHand.java" />
         <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
-        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
-        <option value="$PROJECT_DIR$/resources/database.csv" />
+        <option value="$PROJECT_DIR$/src/poker/Main.java" />
+        <option value="$PROJECT_DIR$/src/poker/VisualHand.java" />
         <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
+        <option value="$PROJECT_DIR$/resources/database.csv" />
+        <option value="$PROJECT_DIR$/src/poker/GameState.java" />
       </list>
     </option>
   </component>
@@ -375,7 +403,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="25" />
-    <option name="y" value="23" />
+    <option name="y" value="24" />
     <option name="width" value="1414" />
     <option name="height" value="877" />
   </component>
@@ -468,7 +496,119 @@
       <recent name="$PROJECT_DIR$/src/poker" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TwitterInterpreter">
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/poker/PlayerBot.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/poker/PokerGame.java</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/poker/PokerPlayer.java</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="poker.Main" />
@@ -962,11 +1102,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.TwitterInterpreter" />
-        <item index="1" class="java.lang.String" itemvalue="Application.PokerGame" />
-        <item index="2" class="java.lang.String" itemvalue="Application.PlayerBot" />
-        <item index="3" class="java.lang.String" itemvalue="Application.VisualHand" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TwitterInterpreter" />
+        <item index="2" class="java.lang.String" itemvalue="Application.PokerGame" />
+        <item index="3" class="java.lang.String" itemvalue="Application.PlayerBot" />
+        <item index="4" class="java.lang.String" itemvalue="Application.VisualHand" />
       </list>
     </recent_temporary>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -1023,14 +1163,7 @@
       <workItem from="1490811895853" duration="37120000" />
       <workItem from="1491907992092" duration="46957000" />
       <workItem from="1492595695079" duration="15961000" />
-      <workItem from="1492702656755" duration="84986000" />
-    </task>
-    <task id="LOCAL-00037" summary="assignment_5 cleaned up">
-      <created>1488582668455</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1488582668455</updated>
+      <workItem from="1492702656755" duration="92433000" />
     </task>
     <task id="LOCAL-00038" summary="starting assignment_6">
       <created>1488584242481</created>
@@ -1368,14 +1501,21 @@
       <option name="project" value="LOCAL" />
       <updated>1493052318098</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokerGame loop&#10;">
+      <created>1493056401296</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1493056401296</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="345646000" />
+    <option name="totallyTimeSpent" value="353093000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1414" height="877" extended-state="6" />
+    <frame x="25" y="24" width="1414" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1463,8 +1603,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="Initial group comment. &#10;classes from assignments added." />
-    <MESSAGE value="connected twitter account to TwitterInterpreter. added twitter4j libs to project ( ask me if you need help adding them as dependents in your IDE :^) )&#10;&#10;methods made:&#10;~ postTweet( str)&#10;~ show timeline&#10;~ search public tweets (str)&#10;~ show mentions&#10;~ send DM (str username, str msg)" />
     <MESSAGE value="added a bit more to TwitterInterpreter :^)" />
     <MESSAGE value="added a bit more to TwitterInterpreter :^)&#10;&#10;made:&#10;~ repliesToBotLoop()" />
     <MESSAGE value="added a bit of mostly basic stuff to PokerGame! :)" />
@@ -1488,7 +1626,9 @@
     <MESSAGE value="working on GameState, pokerGame and twitter working together -- almost finnished" />
     <MESSAGE value="working on GameState, pokerGame and twitter working together -- done I think" />
     <MESSAGE value=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokergame loop&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokergame loop&#10;" />
+    <MESSAGE value=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokerGame loop&#10;" />
+    <MESSAGE value="added a lil to bots new better method" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a lil to bots new better method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1536,9 +1676,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <marker date="1492508934000" expanded="false" signature="519:532" ph="&lt;~&gt;" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1564,9 +1702,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <marker date="1492508934000" expanded="false" signature="519:532" ph="&lt;~&gt;" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1592,9 +1728,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <marker date="1492508934000" expanded="false" signature="519:532" ph="&lt;~&gt;" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1714,16 +1848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding>
-            <marker date="1492508934000" expanded="false" signature="519:532" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/images/playing_cards/2_of_spades.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1813,26 +1937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/VisualHand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="69" column="30" lean-forward="false" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/twitter4j/twitter4j-stream-4.0.4.jar!/twitter4j/StatusStreamImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -1865,47 +1969,176 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="531" column="35" lean-forward="false" selection-start-line="531" selection-start-column="16" selection-end-line="531" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#16305#16306#0" expanded="true" />
-            <element signature="e#16337#16338#0" expanded="true" />
-            <marker date="1493044850000" expanded="false" signature="16613:16626" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="21" column="84" lean-forward="false" selection-start-line="21" selection-start-column="84" selection-end-line="21" selection-end-column="84" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1493045720000" expanded="false" signature="4085:4093" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="154" column="0" lean-forward="false" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
-            <element signature="e#5020#5021#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$PROJECT_DIR$/twitter4j/twitter4j-core-4.0.4.jar!/twitter4j/TwitterImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
           <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5126">
+          <caret line="391" column="20" lean-forward="true" selection-start-line="391" selection-start-column="20" selection-end-line="391" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4242#4250#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="57" lean-forward="false" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/VisualHand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="192" column="0" lean-forward="true" selection-start-line="192" selection-start-column="0" selection-end-line="192" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1589#1602#0" expanded="true" />
+            <element signature="e#7968#7976#0" expanded="true" />
+            <element signature="e#9095#9103#0" expanded="true" />
+            <element signature="e#9724#9725#0" expanded="true" />
+            <element signature="e#9748#9749#0" expanded="true" />
+            <element signature="e#18976#18977#0" expanded="true" />
+            <element signature="e#19011#19012#0" expanded="true" />
+            <element signature="e#19621#19634#0" expanded="true" />
+            <element signature="e#20015#20016#0" expanded="true" />
+            <element signature="e#20037#20038#0" expanded="true" />
+            <element signature="e#20107#20108#0" expanded="true" />
+            <element signature="e#20131#20132#0" expanded="true" />
+            <element signature="e#20251#20252#0" expanded="true" />
+            <element signature="e#20287#20288#0" expanded="true" />
+            <element signature="e#20443#20444#0" expanded="true" />
+            <element signature="e#20484#20485#0" expanded="true" />
+            <element signature="e#20817#20818#0" expanded="true" />
+            <element signature="e#20855#20856#0" expanded="true" />
+            <element signature="e#21043#21044#0" expanded="true" />
+            <element signature="e#21062#21063#0" expanded="true" />
+            <element signature="e#21105#21106#0" expanded="true" />
+            <element signature="e#21132#21133#0" expanded="true" />
+            <element signature="e#21181#21182#0" expanded="true" />
+            <element signature="e#21208#21209#0" expanded="true" />
+            <element signature="e#21255#21256#0" expanded="true" />
+            <element signature="e#21277#21278#0" expanded="true" />
+            <element signature="e#21327#21328#0" expanded="true" />
+            <element signature="e#21349#21350#0" expanded="true" />
+            <element signature="e#21407#21408#0" expanded="true" />
+            <element signature="e#21430#21431#0" expanded="true" />
+            <element signature="e#21484#21485#0" expanded="true" />
+            <element signature="e#21506#21507#0" expanded="true" />
+            <element signature="e#21566#21567#0" expanded="true" />
+            <element signature="e#21588#21589#0" expanded="true" />
+            <element signature="e#21646#21647#0" expanded="true" />
+            <element signature="e#21668#21669#0" expanded="true" />
+            <element signature="e#21730#21731#0" expanded="true" />
+            <element signature="e#21752#21753#0" expanded="true" />
+            <element signature="e#21811#21812#0" expanded="true" />
+            <element signature="e#21833#21834#0" expanded="true" />
+            <element signature="e#21898#21899#0" expanded="true" />
+            <element signature="e#21920#21921#0" expanded="true" />
+            <element signature="e#21983#21984#0" expanded="true" />
+            <element signature="e#22005#22006#0" expanded="true" />
+            <element signature="e#22072#22073#0" expanded="true" />
+            <element signature="e#22094#22095#0" expanded="true" />
+            <element signature="e#22152#22153#0" expanded="true" />
+            <element signature="e#22175#22176#0" expanded="true" />
+            <element signature="e#22217#22218#0" expanded="true" />
+            <element signature="e#22239#22240#0" expanded="true" />
+            <element signature="e#22287#22288#0" expanded="true" />
+            <element signature="e#22310#22311#0" expanded="true" />
+            <element signature="e#22360#22361#0" expanded="true" />
+            <element signature="e#22379#22380#0" expanded="true" />
+            <element signature="e#22424#22425#0" expanded="true" />
+            <element signature="e#22446#22447#0" expanded="true" />
+            <element signature="e#22507#22508#0" expanded="true" />
+            <element signature="e#22529#22530#0" expanded="true" />
+            <element signature="e#22584#22585#0" expanded="true" />
+            <element signature="e#22606#22607#0" expanded="true" />
+            <element signature="e#22661#22662#0" expanded="true" />
+            <element signature="e#22683#22684#0" expanded="true" />
+            <element signature="e#22745#22746#0" expanded="true" />
+            <element signature="e#22767#22768#0" expanded="true" />
+            <element signature="e#22831#22832#0" expanded="true" />
+            <element signature="e#22853#22854#0" expanded="true" />
+            <element signature="e#22917#22918#0" expanded="true" />
+            <element signature="e#22940#22941#0" expanded="true" />
+            <element signature="e#22993#22994#0" expanded="true" />
+            <element signature="e#23016#23017#0" expanded="true" />
+            <element signature="e#23073#23074#0" expanded="true" />
+            <element signature="e#23096#23097#0" expanded="true" />
+            <element signature="e#23144#23145#0" expanded="true" />
+            <element signature="e#23163#23164#0" expanded="true" />
+            <element signature="e#23209#23210#0" expanded="true" />
+            <element signature="e#23231#23232#0" expanded="true" />
+            <element signature="e#23282#23283#0" expanded="true" />
+            <element signature="e#23301#23302#0" expanded="true" />
+            <element signature="e#23346#23347#0" expanded="true" />
+            <element signature="e#23365#23366#0" expanded="true" />
+            <element signature="e#23412#23413#0" expanded="true" />
+            <element signature="e#23434#23435#0" expanded="true" />
+            <element signature="e#23498#23499#0" expanded="true" />
+            <element signature="e#23520#23521#0" expanded="true" />
+            <element signature="e#23589#23590#0" expanded="true" />
+            <element signature="e#23611#23612#0" expanded="true" />
+            <element signature="e#23666#23667#0" expanded="true" />
+            <element signature="e#23688#23689#0" expanded="true" />
+            <element signature="e#23749#23750#0" expanded="true" />
+            <element signature="e#23771#23772#0" expanded="true" />
+            <element signature="e#23830#23831#0" expanded="true" />
+            <element signature="e#23852#23853#0" expanded="true" />
+            <element signature="e#23917#23918#0" expanded="true" />
+            <element signature="e#23939#23940#0" expanded="true" />
+            <element signature="e#24000#24001#0" expanded="true" />
+            <element signature="e#24022#24023#0" expanded="true" />
+            <element signature="e#24089#24090#0" expanded="true" />
+            <element signature="e#24111#24112#0" expanded="true" />
+            <element signature="e#24172#24173#0" expanded="true" />
+            <element signature="e#24195#24196#0" expanded="true" />
+            <element signature="e#24238#24239#0" expanded="true" />
+            <element signature="e#24260#24261#0" expanded="true" />
+            <element signature="e#24309#24310#0" expanded="true" />
+            <element signature="e#24328#24329#0" expanded="true" />
+            <element signature="e#24377#24378#0" expanded="true" />
+            <element signature="e#24400#24401#0" expanded="true" />
+            <element signature="e#24447#24448#0" expanded="true" />
+            <element signature="e#24470#24471#0" expanded="true" />
+            <element signature="e#24519#24520#0" expanded="true" />
+            <element signature="e#24542#24543#0" expanded="true" />
+            <element signature="e#24589#24590#0" expanded="true" />
+            <element signature="e#24608#24609#0" expanded="true" />
+            <element signature="e#24664#24665#0" expanded="true" />
+            <element signature="e#24687#24688#0" expanded="true" />
+            <element signature="e#24753#24754#0" expanded="true" />
+            <element signature="e#24787#24788#0" expanded="true" />
+            <element signature="e#24838#24839#0" expanded="true" />
+            <element signature="e#24860#24861#0" expanded="true" />
+            <element signature="e#24920#24921#0" expanded="true" />
+            <element signature="e#24951#24952#0" expanded="true" />
+            <element signature="e#24999#25000#0" expanded="true" />
+            <element signature="e#25018#25019#0" expanded="true" />
+            <element signature="e#25081#25082#0" expanded="true" />
+            <element signature="e#25103#25104#0" expanded="true" />
+            <element signature="e#25150#25151#0" expanded="true" />
+            <element signature="e#25169#25170#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1919,144 +2152,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/database.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="465" column="42" lean-forward="false" selection-start-line="465" selection-start-column="0" selection-end-line="466" selection-end-column="0" />
+        <state relative-caret-position="196">
+          <caret line="532" column="31" lean-forward="true" selection-start-line="532" selection-start-column="31" selection-end-line="532" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1589#1602#0" expanded="true" />
-            <element signature="e#7817#7825#0" expanded="true" />
-            <element signature="e#8944#8952#0" expanded="true" />
-            <element signature="e#9573#9574#0" expanded="true" />
-            <element signature="e#9597#9598#0" expanded="true" />
-            <element signature="e#18622#18623#0" expanded="true" />
-            <element signature="e#18657#18658#0" expanded="true" />
-            <element signature="e#19267#19280#0" expanded="true" />
-            <element signature="e#19670#19671#0" expanded="true" />
-            <element signature="e#19692#19693#0" expanded="true" />
-            <element signature="e#19762#19763#0" expanded="true" />
-            <element signature="e#19786#19787#0" expanded="true" />
-            <element signature="e#19906#19907#0" expanded="true" />
-            <element signature="e#19942#19943#0" expanded="true" />
-            <element signature="e#20109#20110#0" expanded="true" />
-            <element signature="e#20150#20151#0" expanded="true" />
-            <element signature="e#20483#20484#0" expanded="true" />
-            <element signature="e#20521#20522#0" expanded="true" />
-            <element signature="e#20709#20710#0" expanded="true" />
-            <element signature="e#20728#20729#0" expanded="true" />
-            <element signature="e#20771#20772#0" expanded="true" />
-            <element signature="e#20798#20799#0" expanded="true" />
-            <element signature="e#20847#20848#0" expanded="true" />
-            <element signature="e#20874#20875#0" expanded="true" />
-            <element signature="e#20921#20922#0" expanded="true" />
-            <element signature="e#20943#20944#0" expanded="true" />
-            <element signature="e#20993#20994#0" expanded="true" />
-            <element signature="e#21015#21016#0" expanded="true" />
-            <element signature="e#21073#21074#0" expanded="true" />
-            <element signature="e#21096#21097#0" expanded="true" />
-            <element signature="e#21150#21151#0" expanded="true" />
-            <element signature="e#21172#21173#0" expanded="true" />
-            <element signature="e#21232#21233#0" expanded="true" />
-            <element signature="e#21254#21255#0" expanded="true" />
-            <element signature="e#21312#21313#0" expanded="true" />
-            <element signature="e#21334#21335#0" expanded="true" />
-            <element signature="e#21396#21397#0" expanded="true" />
-            <element signature="e#21418#21419#0" expanded="true" />
-            <element signature="e#21477#21478#0" expanded="true" />
-            <element signature="e#21499#21500#0" expanded="true" />
-            <element signature="e#21564#21565#0" expanded="true" />
-            <element signature="e#21586#21587#0" expanded="true" />
-            <element signature="e#21649#21650#0" expanded="true" />
-            <element signature="e#21671#21672#0" expanded="true" />
-            <element signature="e#21738#21739#0" expanded="true" />
-            <element signature="e#21760#21761#0" expanded="true" />
-            <element signature="e#21818#21819#0" expanded="true" />
-            <element signature="e#21841#21842#0" expanded="true" />
-            <element signature="e#21883#21884#0" expanded="true" />
-            <element signature="e#21905#21906#0" expanded="true" />
-            <element signature="e#21953#21954#0" expanded="true" />
-            <element signature="e#21976#21977#0" expanded="true" />
-            <element signature="e#22026#22027#0" expanded="true" />
-            <element signature="e#22045#22046#0" expanded="true" />
-            <element signature="e#22090#22091#0" expanded="true" />
-            <element signature="e#22112#22113#0" expanded="true" />
-            <element signature="e#22173#22174#0" expanded="true" />
-            <element signature="e#22195#22196#0" expanded="true" />
-            <element signature="e#22250#22251#0" expanded="true" />
-            <element signature="e#22272#22273#0" expanded="true" />
-            <element signature="e#22327#22328#0" expanded="true" />
-            <element signature="e#22349#22350#0" expanded="true" />
-            <element signature="e#22411#22412#0" expanded="true" />
-            <element signature="e#22433#22434#0" expanded="true" />
-            <element signature="e#22497#22498#0" expanded="true" />
-            <element signature="e#22519#22520#0" expanded="true" />
-            <element signature="e#22583#22584#0" expanded="true" />
-            <element signature="e#22606#22607#0" expanded="true" />
-            <element signature="e#22659#22660#0" expanded="true" />
-            <element signature="e#22682#22683#0" expanded="true" />
-            <element signature="e#22739#22740#0" expanded="true" />
-            <element signature="e#22762#22763#0" expanded="true" />
-            <element signature="e#22810#22811#0" expanded="true" />
-            <element signature="e#22829#22830#0" expanded="true" />
-            <element signature="e#22875#22876#0" expanded="true" />
-            <element signature="e#22897#22898#0" expanded="true" />
-            <element signature="e#22948#22949#0" expanded="true" />
-            <element signature="e#22967#22968#0" expanded="true" />
-            <element signature="e#23012#23013#0" expanded="true" />
-            <element signature="e#23031#23032#0" expanded="true" />
-            <element signature="e#23078#23079#0" expanded="true" />
-            <element signature="e#23100#23101#0" expanded="true" />
-            <element signature="e#23164#23165#0" expanded="true" />
-            <element signature="e#23186#23187#0" expanded="true" />
-            <element signature="e#23255#23256#0" expanded="true" />
-            <element signature="e#23277#23278#0" expanded="true" />
-            <element signature="e#23332#23333#0" expanded="true" />
-            <element signature="e#23354#23355#0" expanded="true" />
-            <element signature="e#23415#23416#0" expanded="true" />
-            <element signature="e#23437#23438#0" expanded="true" />
-            <element signature="e#23496#23497#0" expanded="true" />
-            <element signature="e#23518#23519#0" expanded="true" />
-            <element signature="e#23583#23584#0" expanded="true" />
-            <element signature="e#23605#23606#0" expanded="true" />
-            <element signature="e#23666#23667#0" expanded="true" />
-            <element signature="e#23688#23689#0" expanded="true" />
-            <element signature="e#23755#23756#0" expanded="true" />
-            <element signature="e#23777#23778#0" expanded="true" />
-            <element signature="e#23838#23839#0" expanded="true" />
-            <element signature="e#23861#23862#0" expanded="true" />
-            <element signature="e#23904#23905#0" expanded="true" />
-            <element signature="e#23926#23927#0" expanded="true" />
-            <element signature="e#23975#23976#0" expanded="true" />
-            <element signature="e#23994#23995#0" expanded="true" />
-            <element signature="e#24043#24044#0" expanded="true" />
-            <element signature="e#24066#24067#0" expanded="true" />
-            <element signature="e#24113#24114#0" expanded="true" />
-            <element signature="e#24136#24137#0" expanded="true" />
-            <element signature="e#24185#24186#0" expanded="true" />
-            <element signature="e#24208#24209#0" expanded="true" />
-            <element signature="e#24255#24256#0" expanded="true" />
-            <element signature="e#24274#24275#0" expanded="true" />
-            <element signature="e#24330#24331#0" expanded="true" />
-            <element signature="e#24353#24354#0" expanded="true" />
-            <element signature="e#24419#24420#0" expanded="true" />
-            <element signature="e#24453#24454#0" expanded="true" />
-            <element signature="e#24504#24505#0" expanded="true" />
-            <element signature="e#24526#24527#0" expanded="true" />
-            <element signature="e#24586#24587#0" expanded="true" />
-            <element signature="e#24617#24618#0" expanded="true" />
-            <element signature="e#24665#24666#0" expanded="true" />
-            <element signature="e#24684#24685#0" expanded="true" />
-            <element signature="e#24747#24748#0" expanded="true" />
-            <element signature="e#24769#24770#0" expanded="true" />
-            <element signature="e#24816#24817#0" expanded="true" />
-            <element signature="e#24835#24836#0" expanded="true" />
+            <element signature="e#1457#1458#0" expanded="true" />
+            <element signature="e#1539#1540#0" expanded="true" />
+            <element signature="e#7803#7804#0" expanded="true" />
+            <element signature="e#7847#7848#0" expanded="true" />
+            <element signature="e#10482#10483#0" expanded="true" />
+            <element signature="e#10510#10511#0" expanded="true" />
+            <element signature="e#10553#10554#0" expanded="true" />
+            <element signature="e#10589#10590#0" expanded="true" />
+            <element signature="e#10619#10620#0" expanded="true" />
+            <element signature="e#10699#10700#0" expanded="true" />
+            <element signature="e#10736#10737#0" expanded="true" />
+            <element signature="e#10760#10761#0" expanded="true" />
+            <element signature="e#10797#10798#0" expanded="true" />
+            <element signature="e#10827#10828#0" expanded="true" />
+            <element signature="e#16486#16487#0" expanded="true" />
+            <element signature="e#16518#16519#0" expanded="true" />
+            <marker date="1493200649000" expanded="false" signature="16794:16807" ph="&lt;~&gt;" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="114" column="12" lean-forward="false" selection-start-line="114" selection-start-column="12" selection-end-line="114" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="36" column="37" lean-forward="true" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

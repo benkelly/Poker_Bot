@@ -1,6 +1,8 @@
 package poker;
 
 
+import twitter4j.Status;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -54,7 +56,7 @@ public class PokerPlayer {
 	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
-		return playerName+ ": " + hand.toString();
+		return playerName+ ": " + hand.toString()+"  Chips: "+getPlayerChipAmount();
 	}
 
 
@@ -82,7 +84,7 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus );
 	}
 
 
@@ -94,6 +96,7 @@ public class PokerPlayer {
 		getHandsDiscardProbability();
 
 		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+		inputStr = inputStr.replace("10", "t");
 		//inputStr = getConsoleInput();
 		System.out.println("######:playersHandOptions: inputStr: "+inputStr);
 
@@ -168,7 +171,7 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus);
 	}
 
 
@@ -519,14 +522,18 @@ public class PokerPlayer {
 		return sb.toString();
 	}
 
-	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr) {
-		VisualHand.TweetVisualHand(hnd, chp, tweetStr);
+	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr, Status fromStatus) {
+		VisualHand.TweetVisualHand(hnd, chp, tweetStr, fromStatus);
 		tweetStr = "";
 	}
 
 	private void tweetPlayer(String tweetStr) {
-	TwitterInterpreter.getInstance().postTweet(tweetStr);
-	tweetStr = "";
+		try {
+			TwitterInterpreter.getInstance().postTweet(tweetStr, pokerGame.currentFromStatus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		tweetStr = "";
 	}
 
 	public void setPlayerChipAmount(int amount) {

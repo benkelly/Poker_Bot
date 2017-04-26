@@ -1,5 +1,7 @@
 package poker;
 
+import twitter4j.Status;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -136,9 +138,9 @@ public class VisualHand extends JPanel {
 		}
 	}
 
-	public static void TweetVisualHand(HandOfCards hand, int chipAmount, String TweetMsg) {
+	public static void TweetVisualHand(HandOfCards hand, int chipAmount, String TweetMsg, Status fromStatus) {
 		try {
-			TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, chipAmount))), TweetMsg);
+			TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, chipAmount))), TweetMsg, fromStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -184,7 +186,7 @@ public class VisualHand extends JPanel {
 		//saveBufferedImageToFile(createImage(generateVisual(hand)));
 		//saveBufferedImageToFile(createImage(generateVisual(hand, 3000)));
 		//TwitterInterpreter.getInstance().tweetPic(saveBufferedImageToInputStream(createImage(generateVisual(hand, 3000))), "Some text" + "\u00ea" + "\u00f1" + "\u00fc" + " bla"  : ");
-		TweetVisualHand(hand, 3000, "Some text" + "U+1F602" + "\u1F602" + "\u00fc" + " bla" );
+		TweetVisualHand(hand, 3000, "Some text" + "U+1F602" + "\u1F602" + "\u00fc" + " bla" , null);
 
 	}
 }

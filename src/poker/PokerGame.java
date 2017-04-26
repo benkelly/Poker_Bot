@@ -51,12 +51,15 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	public String tweetStr = "";
 
+	Status currentFromStatus;
+
 
 	public PokerGame() {
 	}
 
 
-	public void playPoker(String TweetBody, Status status) {
+	public void playPoker(String TweetBody, Status status) throws Exception {
+		currentFromStatus = status;
 		if (!gameOver) {
 			if (!hasSetPokerTable) {
 				setPokerTable(); // adds human and bots to poker table
@@ -81,7 +84,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 						System.out.println("(!hasCurrentRoundPlayersAnteFeeOptionsTweeted) START!");
 
 						tweetStr += "@" + user.getScreenName() + " do you want to play another round (y/n)?"+PlayerBot.faceTellGenerator();
-						TwitterInterpreter.getInstance().postTweet(tweetStr);
+						TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
 						tweetStr = "";
 						hasCurrentRoundPlayersAnteFeeOptionsTweeted = true;
 						return;
@@ -97,7 +100,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 							if( !payAnteFee(currentRoundsAnteAmount) ) { // players pay their ante to enter game.
 								tweetStr += "@" + user.getScreenName() + " \n\n";
-								TwitterInterpreter.getInstance().postTweet(tweetStr);
+								TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
 								tweetStr = "";
 								return;
 							}
@@ -111,7 +114,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 							System.out.println("(!\t\t\t\t\tELSE START ");
 							gameOver = true;
 							tweetStr += "@" + user.getScreenName() + " Come back again!!"+PlayerBot.faceTellGenerator();
-							TwitterInterpreter.getInstance().postTweet(tweetStr);
+							TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
 							tweetStr = "";
 							System.out.println("(!\t\t\t\t\tELSE END ");
 							return;
@@ -160,7 +163,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			else {
 				tweetStr = "Hey @" + user.getScreenName() + "! " + PlayerBot.faceTellGenerator() + "\n";
 				tweetStr += "You're currently not in any game. Like me to set up a new poker table up?\n(y/n)";
-				TwitterInterpreter.getInstance().postTweet(tweetStr);
+				TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
 				tweetStr = "";
 			}
 		}
@@ -334,7 +337,11 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 						tweetStr += "Discard: eg: d"+player.hand.get(3)+player.hand.get(0)+"\n";
 						tweetStr += "Auto discard: eg: a, A2\n";
 						tweetStr += "Keep: eg: K\n";
-						TwitterInterpreter.getInstance().postTweet(tweetStr);
+						try {
+							TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						tweetStr = "";
 						return false;
 					}
@@ -368,7 +375,11 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 						tweetStr += "Call eg: call, c";
 						tweetStr += "raise stake: eg: r"+getCurrentRoundsStakeAmount()+"+ \n";
 						tweetStr += "Fold eg: f\n";
-						TwitterInterpreter.getInstance().postTweet(tweetStr);
+						try {
+							TwitterInterpreter.getInstance().postTweet(tweetStr, currentFromStatus);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
 						tweetStr = "";
 						return false;
 					}
@@ -436,6 +447,9 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			this.remove(player);
 			System.out.println(player.getPlayerName() + " is bankrupt!");
 			tweetStr +=(player.getPlayerName() + " is bankrupt!");
+			if(this.size() == 1 & this.get(0).isHuman == true){
+				tweetStr +=(this.get(0).getPlayerName() + " is has Won the table!");
+			}
 			return true;
 		}
 		return true;
@@ -449,14 +463,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		PokerPlayer tempPlayer = calcPlayerHandScores();
 		if(tempPlayer == null) {
 			int tempHighScore = 0;
-			for (PokerPlayer player : curRoundPlayerList) {
+			for (PokerPlayer player : this) {
 				if (tempHighScore < player.getCurrentHandScore()) { // re-calcs all players current scores.
 					tempHighScore = player.getCurrentHandScore();
 					tempPlayer = player;
 				}
 			}
 		}
-		if(tempPlayer != null) {
+		//if(tempPlayer != null) {
 			tempPlayer.receivesStake(currentRoundsHeldStake);
 			tempPlayer.totalRoundsWon += 1;
 			System.out.println(tempPlayer.getPlayerName() + " is the winner!");
@@ -465,10 +479,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			System.out.println("ships now on table: " + getCurrentRoundsHeldStake());
 			System.out.println("**********curRoundPlayerList: " + curRoundPlayerList + "\n\n\n\n\n\n");
 		}
-		else
-			System.out.println("NO WINNER**********curRoundPlayerList: " + curRoundPlayerList + "\n\n\n\n\n\n");
 
-	}
 	/*Returns the pokerPlayer with the highest score.
 	* */
 	synchronized private PokerPlayer calcPlayerHandScores() {
