@@ -252,7 +252,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	//second is the remain number of player
 	//than each pair is the name of computer player
 	//the last two is the name of user and the chipamount of user
-	private synchronized void WritingScreenNameInDatabase(String screenName){
+	public synchronized void WritingScreenNameInDatabase(String screenName){
 
 		BufferedReader br;
 		String result="";
