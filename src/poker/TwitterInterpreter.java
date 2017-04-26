@@ -89,7 +89,7 @@ public class TwitterInterpreter {
 		try {
 
 			if (temp.toLowerCase().contains("dealmein")) {
-				postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16"+PlayerBot.faceTellGenerator(), status);
+				postTweet("@" + status.getUser().getScreenName() + " " + "We see you like poker! If you would like to play, just reply to this tweet! \uD83E\uDD16"+PlayerBot.faceTellGenerator(), status);
 			}
 			if (twitterStream.getScreenName().equalsIgnoreCase(status.getInReplyToScreenName())
 					& !status.getUser().getScreenName().equalsIgnoreCase(twitterStream.getScreenName())) {
