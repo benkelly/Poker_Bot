@@ -183,7 +183,7 @@ public class PokerPlayer {
 		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
 				| inputStr.toLowerCase().equals("pay stake") | inputStr.toLowerCase().contains("call")
 				| inputStr.toLowerCase().startsWith("c")) {
-			payCurrentStake();
+			call();
 			return true;
 		}
 
@@ -194,9 +194,9 @@ public class PokerPlayer {
 
 				if (inputStr.matches(".*\\d+.*")) { // if str has number
 					String isStrInt = extractIntFromString(inputStr);
-					increaseStake(Integer.parseInt(isStrInt));
+					raise(Integer.parseInt(isStrInt));
 					//System.out.println(Integer.parseInt(isStrInt));
-					System.out.println(this.getPlayerName() + ": *********** increaseStake() called");
+					System.out.println(this.getPlayerName() + ": *********** raise() called");
 					return true;
 				}
 				else{
@@ -206,7 +206,7 @@ public class PokerPlayer {
 			}
 		}
 		if (inputStr.toLowerCase().contains("fold") | inputStr.toLowerCase().startsWith("f")) {
-			foldFromRound();
+			fold();
 			return true;
 		}
 		return false;
@@ -335,7 +335,7 @@ public class PokerPlayer {
 
 	/*player will call the current stake to stay in game.
 	* */
-	synchronized public void payCurrentStake() {
+	synchronized public void call() {
 		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
 		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
 
@@ -345,17 +345,17 @@ public class PokerPlayer {
 			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
 			//paidStake = true;
 			pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
-			System.out.println(this.getPlayerName()+": payCurrentStake paid");
+			System.out.println(this.getPlayerName()+": call paid");
 
 		}
 		else
-			System.out.println(this.getPlayerName()+": unable to payCurrentStake...");
+			System.out.println(this.getPlayerName()+": unable to call...");
 	}
 
 	/*command to increase stake to stated amount
 	*
 	* */
-	synchronized public boolean increaseStake(int amount) {
+	synchronized public boolean raise(int amount) {
 		if(playerChipAmount >= amount) {
 			if (amount > pokerGame.getCurrentRoundsStakeAmount()) {
 				int stakeDiff = amount - pokerGame.getCurrentRoundsStakeAmount();
@@ -369,12 +369,12 @@ public class PokerPlayer {
 				//paidStake = true;
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 
-				System.out.println(this.getPlayerName()+" increaseStake paid"); // for testing
+				System.out.println(this.getPlayerName()+" raise paid"); // for testing
 				return true;
 			}
 		}
 		else
-			foldFromRound();
+			fold();
 			return false;
 	}
 
@@ -408,7 +408,7 @@ public class PokerPlayer {
 
 	/*Calls fold from round in PokerGame.
 	* */
-	synchronized public void foldFromRound() {
+	synchronized public void fold() {
 		pokerGame.curRoundPlayerFolds(this);
 		System.out.println(playerName+": has folded.");
 	}

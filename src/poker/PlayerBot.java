@@ -36,8 +36,8 @@ public class PlayerBot extends PokerPlayer {
 			"\uD83D\uDE08", "\uD83D\uDC7D", "\uD83E\uDD16"};
 
 	// bot stats
-	private int botAgressrion;
-	private int botIntellagence;
+	private int aggression;
+	private int intelligence;
 
 	
 		//add a new construct function. 
@@ -45,14 +45,14 @@ public class PlayerBot extends PokerPlayer {
 		super(name, game, deck, chips, false);
 		//playerName = generateName();
 		generateBotStats();
-		System.out.println(getPlayerName()+": botAgressrion: "+botAgressrion+": botIntellagence: "+botIntellagence);
+		System.out.println(getPlayerName()+": aggression: "+ aggression +": intelligence: "+ intelligence);
 	}
 	
 	public PlayerBot(PokerGame game, DeckOfCards deck, int chips) {
 		super("", game, deck, chips, false);
 		playerName = generateName();
 		generateBotStats();
-		System.out.println(getPlayerName()+": botAgressrion: "+botAgressrion+": botIntellagence: "+botIntellagence);
+		System.out.println(getPlayerName()+": aggression: "+ aggression +": intelligence: "+ intelligence);
 	}
 
 	public static String faceTellGenerator() {
@@ -64,29 +64,36 @@ public class PlayerBot extends PokerPlayer {
 
 	private void generateBotStats() {
 		Random rand = new Random();
-		int value = rand.nextInt(4);
-		switch (value) {
-			case 0: {
-				botAgressrion = 100;
-				botIntellagence = 50;
-				break;
-			}
-			case 1: {
-				botAgressrion = 40;
-				botIntellagence = 80;
-				break;
-			}
-			case 2: {
-				botAgressrion = 50;
-				botIntellagence = 39;
+		aggression = rand.nextInt(100);
+		intelligence = rand.nextInt(100);
+		if(intelligence > 50){
+			aggression = rand.nextInt(65);
+		}else{
+			aggression = rand.nextInt(100);
+		}
+		/*int value = rand.nextInt(4);
+				switch (value) {
+					case 0: {
+						aggression = 100;
+						intelligence = 50;
+						break;
+					}
+					case 1: {
+						aggression = 40;
+						intelligence = 80;
+						break;
+					}
+					case 2: {
+				aggression = 50;
+				intelligence = 39;
 				break;
 			}
 			case 3: {
-				botAgressrion = 20;
-				botIntellagence = 20;
+				aggression = 20;
+				intelligence = 20;
 				break;
 			}
-		}
+		}*/
 		//System.out.println(getPlayerName()+": generateBotStats VALUE: "+value);
 	}
 
@@ -137,7 +144,7 @@ public class PlayerBot extends PokerPlayer {
 	//methods from pokerPlayer needed to override to bot
 	public boolean playersHandOptions(String inputStr) {
 		int discardNumber = 0;
-		if (botIntellagence >= 40 | botAgressrion >=60) {
+		if (intelligence >= 40 | aggression >=60) {
 			int tempHandScore = getCurrentHandScore();
 			// the lower score more cards to discard.
 			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i+=1000000) {
@@ -168,7 +175,7 @@ public class PlayerBot extends PokerPlayer {
 			getNewCardsForHand();
 			return true;
 		}
-		if(botIntellagence < 39 | botAgressrion < 59) {
+		if(intelligence < 39 | aggression < 59) {
 			Random rand = new Random();
 			int value = rand.nextInt(2);
 			switch (value) {
@@ -208,43 +215,100 @@ public class PlayerBot extends PokerPlayer {
 	public boolean playersBettingOptions(String inputStr) {
 		System.out.println(getPlayerName()+": playersBettingOptions: START");
 
-		if (botIntellagence >= 40 | botAgressrion >=60) {
-			System.out.println(getPlayerName()+": playersBettingOptions: botIntellagence >= 40 | botAgressrion >=60)");
+		if (intelligence >= 40 | aggression >=60) {
+			System.out.println(getPlayerName()+": playersBettingOptions: intelligence >= 40 | aggression >=60)");
 
 			hand.generateHandType();
 			int tempHandScore = getCurrentHandScore();
+			int handScore = getCurrentHandScore();
+			Random rand = new Random();
+			if(handScore < hand.PAIR_WEIGHT){
+				int value = rand.nextInt(2);
+				switch (value) {
+					case 0: {
+						fold();
+					}
+					case 1: {
+						if(aggression > 50) {
+							call();
+						}else{
+							fold();
+						}
+
+					}
+				}
+			}
+			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.THREE_OF_A_KIND_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.THREE_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.FLUSH_WEIGHT && handScore < hand.FULL_HOUSE_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.FULL_HOUSE_WEIGHT && handScore < hand.FOUR_OF_A_KIND_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.FOUR_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT){
+				call();
+			}
+			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
+				int value = rand.nextInt(2);
+				switch (value) {
+					case 0: {
+						call();
+					}
+					case 1:{
+						raise(100);
+					}
+				}
+			}
+			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
+				raise(200);
+			}
+			/*
 			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i += 1000000) {
-				if (i + 1 <= tempHandScore && tempHandScore <= i + 333333) {
+				if (i + 1 <= tempHandScore && tempHandScore <= 1000000) {
 					Random rand = new Random();
 					int value = rand.nextInt(3);
 					switch (value) {
 						case 0: {
-							if(botIntellagence < 39 | botAgressrion < 59) {
-								foldFromRound();
+							if(intelligence < 39 | aggression < 59) {
+								fold();
 								pokerGame.tweetStr +=getPlayerName()+" folded\n";
 								return true;
 							}
 							else
-								payCurrentStake();
+								call();
 								pokerGame.tweetStr +=getPlayerName()+" called\n";
 								return true;
 						}
 						case 1: {
-							payCurrentStake();
+							call();
 							pokerGame.tweetStr +=getPlayerName()+" called\n";
 							return true;
 						}
-						case 2: { // increaseStake
+						case 2: { // raise
 							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
-							riseStakeAmount += ( riseStakeAmount * (botAgressrion / 100));
+							riseStakeAmount += ( riseStakeAmount * (aggression / 100));
 							if (riseStakeAmount <= playerChipAmount) {
-								increaseStake(riseStakeAmount);
-								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
+								raise(riseStakeAmount);
+								System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
 								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
-								payCurrentStake();
+								call();
 								pokerGame.tweetStr +=getPlayerName()+" called\n";
-								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO: " + riseStakeAmount);
+								System.out.println(getPlayerName() + ": raise BUT UNABLE TO: " + riseStakeAmount);
 								System.out.println(getPlayerName()+" THEREFOR called\n");
 
 							}
@@ -258,36 +322,37 @@ public class PlayerBot extends PokerPlayer {
 					int value = rand.nextInt(3);
 					switch (value) {
 						case 0: {
-							payCurrentStake();
+							call();
 							pokerGame.tweetStr +=getPlayerName()+" called\n";
 							return true;
 						}
-						case 1: { // increaseStake
+						case 1: { // raise
 							int riseStakeAmount = pokerGame.getCurrentRoundsStakeAmount();
-							riseStakeAmount += (riseStakeAmount * (botAgressrion / 100));
+							riseStakeAmount += (riseStakeAmount * (aggression / 100));
 							if (riseStakeAmount <= playerChipAmount) {
-								System.out.println(getPlayerName() + ": increaseStake: " + riseStakeAmount);
-								increaseStake(riseStakeAmount);
+								System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
+								raise(riseStakeAmount);
 								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
-								payCurrentStake();
-								System.out.println(getPlayerName() + ": increaseStake BUT UNABLE TO : " + riseStakeAmount);
+								call();
+								System.out.println(getPlayerName() + ": raise BUT UNABLE TO : " + riseStakeAmount);
 								System.out.println(getPlayerName()+" THEREFOR called\n");
 								pokerGame.tweetStr +=getPlayerName()+" called\n";
 							}
 							return true;
 						}
-						case 2: { // increaseStake ALL-in
+						case 2: { // raise ALL-in
 							System.out.println(getPlayerName() + " went ALL-IN w/ " + playerChipAmount);
 							pokerGame.tweetStr +=getPlayerName() + ": ALL-IN: " + playerChipAmount+"\n";
-							increaseStake(playerChipAmount);
+							raise(playerChipAmount);
 							return true;
 						}
 					}
 				}
 			}
+			*/
 		}
-		foldFromRound();
+		fold();
 		pokerGame.tweetStr +=getPlayerName()+" folded\n";
 		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
 		return true;
@@ -295,12 +360,12 @@ public class PlayerBot extends PokerPlayer {
 
 	synchronized public boolean reRaiseStake(int stakeIncrease) {
 		System.out.println(getPlayerName()+": reRaiseStake: START");
-		if (botIntellagence >= 40 | botAgressrion >=60) {
+		if (intelligence >= 40 | aggression >=60) {
 			if (stakeIncrease <= currentStakePaid / 2) {
 				botPayReRaiseStake(stakeIncrease);
 			}
 			if (stakeIncrease > currentStakePaid / 2) {
-				if (botIntellagence >= 50 & botAgressrion >= 50) {
+				if (intelligence >= 50 & aggression >= 50) {
 					botPayReRaiseStake(stakeIncrease);
 				}
 			}

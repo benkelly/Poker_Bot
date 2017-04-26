@@ -574,7 +574,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			}
 		}
 		for (PokerPlayer object : foldingList) {
-			object.foldFromRound();
+			object.fold();
 		}
 	}
 
@@ -596,7 +596,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		return currentRoundsHeldStake;
 	}
 
-	/*pokerPlayers able to add their stake in conjunction with PokerPlayer.payCurrentStake()
+	/*pokerPlayers able to add their stake in conjunction with PokerPlayer.call()
 	* */
 	synchronized public void addToCurrentRoundsHeldStake(int addStake) {
 		currentRoundsHeldStake += addStake;
