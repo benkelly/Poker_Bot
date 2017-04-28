@@ -49,8 +49,8 @@ public class PokerPlayer {
 		playerChipAmount = chips;
 		isHuman = human;
 
-		getInitialHand();
-		getCurrentHandInfo();
+		//getInitialHand();
+		//getCurrentHandInfo();
 	}
 
 	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
@@ -64,7 +64,7 @@ public class PokerPlayer {
 	* */
 	synchronized private void getInitialHand() {
 		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
-			hand.add(gameDeck.getInstance().dealNext());
+			hand.add(gameDeck.dealNext());
 		}
 
 	}
@@ -220,7 +220,7 @@ public class PokerPlayer {
 	synchronized public void getNewCardsForHand() {
 		if(hand.size() < pokerGame.MAX_HAND) {
 			for (int i = hand.size(); i < pokerGame.MAX_HAND; i++) {
-				hand.add(gameDeck.getInstance().dealNext());
+				hand.add(gameDeck.dealNext());
 				totalTakeCardCount++;
 			}
 		}
@@ -250,7 +250,7 @@ public class PokerPlayer {
 		for (probabilityScoreList object : scoreList) {
 			if (discardCount >= discardAmount ) { break; }
 			if (object.getCardProbabilityScore() > 0) {
-				gameDeck.getInstance().returnCard(hand.get(object.cardLocation));
+				gameDeck.returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
 				discardCount++;
 				totalDiscardCount++;
@@ -270,7 +270,7 @@ public class PokerPlayer {
 	synchronized public void returnHandToDeck() {
 		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 		for (PlayingCard card : hand) {
-			gameDeck.getInstance().returnCard(card);
+			gameDeck.returnCard(card);
 		}
 		hand.clear();
 		//System.out.println(getPlayerName()+": returnHandToDeck END ");

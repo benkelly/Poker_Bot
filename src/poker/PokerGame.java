@@ -55,10 +55,15 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 
 	public PokerGame() {
+		gameDeck = new DeckOfCards();
 	}
 
 
 	public void playPoker(String TweetBody, Status status) throws Exception {
+		System.out.println("*********************************DECK SIZE!!!!!!!: " + gameDeck.size());
+		System.out.println(gameDeck);
+
+
 		currentFromStatus = status;
 		if (!gameOver) {
 			if (!hasSetPokerTable) {
@@ -67,6 +72,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					if(player.isHuman & player.getPlayerChipAmount() < INITIAL_CHIP_AMOUNT) {
 						player.setPlayerChipAmount(INITIAL_CHIP_AMOUNT);
 					}
+					dealOutCards(false);
 				}
 				hasSetPokerTable = true;
 			}
@@ -125,8 +131,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 				dealOutCards(firstRound); // deals out new cards.
 
-				while (checkForBumDeck()) {
-				} // will re-deal till at least a play has a pair
+				//while (checkForBumDeck()) {
+				//} // will re-deal till at least a play has a pair
 				hasCurrentRoundBeenDealt = true;
 
 			}
@@ -143,6 +149,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					return;
 				}
 			}
+
 
 			if (hasCurrentRoundPlayersBettingOptionsTweetedAndReplied
 					& hasCurrentRoundPlayersHandOptionsTweetedAndReplied) {
