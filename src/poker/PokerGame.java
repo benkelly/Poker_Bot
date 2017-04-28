@@ -60,11 +60,8 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 
 	public void playPoker(String TweetBody, Status status) throws Exception {
-		System.out.println("*********************************DECK SIZE!!!!!!!: " + gameDeck.size());
-		System.out.println(gameDeck);
+		currentFromStatus = status; // used for in conversation reply tweets
 
-
-		currentFromStatus = status;
 		if (!gameOver) {
 			if (!hasSetPokerTable) {
 				setPokerTable(); // adds human and bots to poker table
@@ -127,30 +124,42 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 						}
 					}
 				}
-
-
 				dealOutCards(firstRound); // deals out new cards.
 
-				//while (checkForBumDeck()) {
-				//} // will re-deal till at least a play has a pair
+				while (checkForBumDeck()) {
+				} // will re-deal till at least a play has a pair
 				hasCurrentRoundBeenDealt = true;
 
 			}
 
-
+			/*
+			* Will twitPic hand and all other bots discard options.
+			* then the returning input from their tweet will be their
+			* discard options. will not continue un-till appropriate command
+			* */
 			if (!hasCurrentRoundPlayersHandOptionsTweetedAndReplied) {
 				if (currentRoundPlayersHandOptions(TweetBody) == false) {
 					return;
 				}
 			}
 
+
+			/*
+			* Will twitPic hand and all other bots Betting options.
+			* then the returning input from their tweet will be their
+			* betting options. will not continue un-till appropriate command
+			* */
 			if (!hasCurrentRoundPlayersBettingOptionsTweetedAndReplied) {
 				if (currentRoundPlayersBettingOptions(TweetBody) == false) {
 					return;
 				}
 			}
 
-
+			/* When all bets are in the round winner will be calculated.
+			*  winner will be paid
+			*  round will be reset
+			*  and now human user will have option to pay another game or not.
+			* */
 			if (hasCurrentRoundPlayersBettingOptionsTweetedAndReplied
 					& hasCurrentRoundPlayersHandOptionsTweetedAndReplied) {
 				getRoundWinner(); // calculates winning hand and pays that player the pot.
@@ -200,9 +209,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			// human last may be nicer for tweet format.
 		}
 		else {
-
-
-
 			for (int j = 0; j < MAX_BOTS; j++) {
 				this.add(new PlayerBot(this, gameDeck, INITIAL_CHIP_AMOUNT));
 			}
@@ -219,36 +225,28 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		String result="";
 		ArrayList<String> tempFile=new ArrayList<String>();
 		try{
-
 			br=new BufferedReader(new FileReader(database));
 			String line="";
 			while((line=br.readLine())!=null){
-
 				String[] tempSample=line.split(",");
-
 				if(tempSample[0].equals(screenName)){
 					result=line;
 				}
 				else{
 					tempFile.add(line);
 				}
-
 			}
 			br.close();
 			BufferedWriter bw=new BufferedWriter(new FileWriter(database));
-
 			for(int i=0;i<=tempFile.size()-1;i++){
 				bw.append(tempFile.get(i));
 				bw.newLine();
 			}
-
 			bw.close();
-
 		}
 		catch(Exception ex){
 			System.err.println(ex);
 		}
-
 		return result;
 	}
 
@@ -260,13 +258,10 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	//than each pair is the name of computer player
 	//the last two is the name of user and the chipamount of user
 	public synchronized void WritingScreenNameInDatabase(String screenName){
-
 		BufferedReader br;
 		String result="";
 		ArrayList<String> tempFile=new ArrayList<String>();
 		try{
-
-
 			BufferedWriter bw=new BufferedWriter(new FileWriter(database,true));
 			String string="";
 			string+=user.getScreenName();
@@ -281,32 +276,19 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			System.out.println(string);
 			bw.append(string);
 			bw.newLine();
-
-
 			bw.close();
-
-
-
-
 		}
 		catch(Exception ex){
 			System.err.println(ex);
 		}
-
-
-
-
 	}
 
-
-
+	/*Set the User from twitter
+	* */
 	public User setUserFromTwitter(User usr) {
 		return user = usr;
 	}
 
-	/*private void setNameFromTwitter() {
-		userName = user.getName();
-	}*/
 
 	/*deals out cards for the next round/
 	* */
@@ -393,7 +375,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 					else
 						hasCurrentRoundPlayersBettingOptionsTweetedAndReplied = true;
 				}
-				//return true;
 			}
 		}
 		return true;
@@ -401,37 +382,10 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 
 	synchronized private boolean payAnteFee(int AnteFee) {
 		for (int i = 0; i < this.size(); i++) {
-			System.out.println("************************ anteFee loop!!!!: "+this.get(i));
 			this.get(i).payAnteFee(AnteFee, true, "");
 		}
 		return true;
 	}
-
-
-/*	*//*player will pay enter fee if unable then bankrupted
-	* *//*
-	synchronized private boolean payAnteFee(int AnteFee, boolean isFistRound, String TweetMsg) {
-		//for (PokerPlayer player : this) {
-		for (int i = 0; i < this.size(); i++) {
-			System.out.println("************************REPLAY anteFee loop!!!!: "+this.get(i));
-
-			if (!this.get(i).isPlayersPayAnteFeeOptionsSent & this.get(i).isHuman) {
-				this.get(i).sendPayAnteFeeDialog(AnteFee);
-				this.get(i).isPlayersPayAnteFeeOptionsSent = true;
-				return false;
-			}
-			if (this.get(i).isPlayersPayAnteFeeOptionsSent & this.get(i).isHuman) {
-				this.get(i).payAnteFee(AnteFee, isFistRound, TweetMsg);
-				hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = true;
-				return true;
-			}
-			if (!this.get(i).isPlayersPayAnteFeeOptionsSent & !this.get(i).isHuman) {
-				this.get(i).payAnteFee(AnteFee, true, TweetMsg);
-				this.get(i).isPlayersPayAnteFeeOptionsSent = true;
-			}
-		}
-		return true;
-	}*/
 
 	/*removes pokerPlayer at that list location.
 	* ~ checks if human player and if so gameOver = true;
@@ -560,6 +514,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		hasCurrentRoundPlayersAnteFeeOptionsTweetedAndReplied = false;
 		hasCurrentRoundBeenDealt = false;
 		hasCurrentRoundPlayersAnteFeeOptionsTweeted = false;
+		currentRoundsStakeAmount = currentRoundsAnteAmount;  // reset stake
 
 	}
 
@@ -914,11 +869,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 		// testing deck instance
 		PokerGame pg = new PokerGame();
 		pg.setUserFromTwitter(user);
-		//pg.setNameFromTwitter();
-		//System.out.print(pg.userName);
 		for (PokerPlayer object : pg) {
-			//object.hand.generateHandType();
-			//System.out.println(object.toString()+"   "+object.hand.getBestHandTypeName());
 			System.out.println(object.toString());
 			System.out.println(object.getPlayerChipAmount());
 

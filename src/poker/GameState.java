@@ -17,8 +17,6 @@ public class GameState extends ArrayList<PokerGame> {
 	private ArrayList<PokerGame> interactionList = new ArrayList<PokerGame>();
 	private static int MAX_GAMES = 50 ;
 
-	//public static User user;
-
 	public GameState() {
 	}
 

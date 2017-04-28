@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" afterPath="$PROJECT_DIR$/out/production/COMP30050/poker/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database.csv" afterPath="$PROJECT_DIR$/resources/database.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/GameState.java" afterPath="$PROJECT_DIR$/src/poker/GameState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/HandOfCards.java" afterPath="$PROJECT_DIR$/src/poker/HandOfCards.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerGame.java" afterPath="$PROJECT_DIR$/src/poker/PokerGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
     </list>
     <ignored path="COMP30050.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,26 +44,24 @@
       <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="480" column="54" lean-forward="false" selection-start-line="480" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
+            <state relative-caret-position="300">
+              <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1589#1602#0" expanded="true" />
-                <element signature="e#1865#1866#0" expanded="true" />
-                <element signature="e#1900#1901#0" expanded="true" />
-                <element signature="e#8160#8168#0" expanded="true" />
-                <element signature="e#9286#9294#0" expanded="true" />
-                <element signature="e#19812#19825#0" expanded="true" />
+                <element signature="e#8661#8669#0" expanded="true" />
+                <element signature="e#9778#9786#0" expanded="true" />
+                <element signature="e#19251#19264#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GameState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
+            <state relative-caret-position="45">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#535#546#0" expanded="true" />
@@ -73,16 +70,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="272" column="35" lean-forward="false" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+            <state relative-caret-position="291">
+              <caret line="267" column="0" lean-forward="true" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#7779#7780#0" expanded="true" />
-                <element signature="e#7823#7824#0" expanded="true" />
-                <marker date="1493366900000" expanded="false" signature="16742:16755" ph="&lt;~&gt;" />
+                <element signature="e#7751#7752#0" expanded="true" />
+                <element signature="e#7795#7796#0" expanded="true" />
+                <marker date="1493371574000" expanded="false" signature="16220:16233" ph="&lt;~&gt;" />
               </folding>
             </state>
           </provider>
@@ -103,8 +100,8 @@
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+            <state relative-caret-position="1342">
+              <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -275,7 +272,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getCurrentHandScore</find>
       <find>isHuman</find>
       <find>getScreenName</find>
       <find>currentRoundPlayersHandOptions START</find>
@@ -303,8 +299,9 @@
       <find>database</find>
       <find>dealOutCards</find>
       <find>gameDeck</find>
-      <find>gameDeck.getInstance().</find>
       <find>winner</find>
+      <find>gameDeck.getInstance().</find>
+      <find>reSet</find>
     </findStrings>
     <replaceStrings>
       <replace>)+&quot;\tScore: &quot;+player1.getGameValue());</replace>
@@ -358,12 +355,12 @@
         <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
         <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/VisualHand.java" />
-        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
         <option value="$PROJECT_DIR$/resources/database.csv" />
+        <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
         <option value="$PROJECT_DIR$/src/poker/GameState.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       </list>
     </option>
   </component>
@@ -1024,14 +1021,7 @@
       <workItem from="1491907992092" duration="46957000" />
       <workItem from="1492595695079" duration="15961000" />
       <workItem from="1492702656755" duration="104817000" />
-      <workItem from="1493303495258" duration="3657000" />
-    </task>
-    <task id="LOCAL-00039" summary="assignment_6 added some methods to pokerplayer class">
-      <created>1488587124028</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1488587124028</updated>
+      <workItem from="1493303495258" duration="7328000" />
     </task>
     <task id="LOCAL-00040" summary="assignment_6 added some methods to pokerplayer class">
       <created>1488588235870</created>
@@ -1369,11 +1359,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493201998643</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="GameState - Max_games dropping and saving the least used games now is fully working :^)">
+      <created>1493368811534</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1493368811536</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="369134000" />
+    <option name="totallyTimeSpent" value="372805000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="23" y="23" width="1414" height="877" extended-state="0" />
@@ -1432,7 +1429,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="added a bit more to TwitterInterpreter :^)" />
     <MESSAGE value="added a bit more to TwitterInterpreter :^)&#10;&#10;made:&#10;~ repliesToBotLoop()" />
     <MESSAGE value="added a bit of mostly basic stuff to PokerGame! :)" />
     <MESSAGE value="started a bit for pokerBot!&#10;&#10;made a random generate name from a large list" />
@@ -1457,7 +1453,8 @@
     <MESSAGE value=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokergame loop&#10;" />
     <MESSAGE value=" getScreenNameInDatabase and WritingScreenNameInDatabase now in pokerGame loop&#10;" />
     <MESSAGE value="added a lil to bots new better method" />
-    <option name="LAST_COMMIT_MESSAGE" value="added a lil to bots new better method" />
+    <MESSAGE value="GameState - Max_games dropping and saving the least used games now is fully working :^)" />
+    <option name="LAST_COMMIT_MESSAGE" value="GameState - Max_games dropping and saving the least used games now is fully working :^)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1769,16 +1766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="97" column="0" lean-forward="false" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_72.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20730">
@@ -1840,6 +1827,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding>
+            <element signature="e#7312#7313#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1930,6 +1920,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270">
@@ -1940,50 +1938,50 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1342">
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#535#546#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="480" column="54" lean-forward="false" selection-start-line="480" selection-start-column="0" selection-end-line="481" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="57" column="8" lean-forward="false" selection-start-line="57" selection-start-column="8" selection-end-line="57" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1589#1602#0" expanded="true" />
-            <element signature="e#1865#1866#0" expanded="true" />
-            <element signature="e#1900#1901#0" expanded="true" />
-            <element signature="e#8160#8168#0" expanded="true" />
-            <element signature="e#9286#9294#0" expanded="true" />
-            <element signature="e#19812#19825#0" expanded="true" />
+            <element signature="e#8661#8669#0" expanded="true" />
+            <element signature="e#9778#9786#0" expanded="true" />
+            <element signature="e#19251#19264#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="272" column="35" lean-forward="false" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+        <state relative-caret-position="291">
+          <caret line="267" column="0" lean-forward="true" selection-start-line="267" selection-start-column="0" selection-end-line="267" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7779#7780#0" expanded="true" />
-            <element signature="e#7823#7824#0" expanded="true" />
-            <marker date="1493366900000" expanded="false" signature="16742:16755" ph="&lt;~&gt;" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/database.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/GameState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="37" lean-forward="false" selection-start-line="17" selection-start-column="37" selection-end-line="17" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#535#546#0" expanded="true" />
+            <element signature="e#7751#7752#0" expanded="true" />
+            <element signature="e#7795#7796#0" expanded="true" />
+            <marker date="1493371574000" expanded="false" signature="16220:16233" ph="&lt;~&gt;" />
           </folding>
         </state>
       </provider>

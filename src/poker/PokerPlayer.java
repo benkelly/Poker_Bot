@@ -96,13 +96,12 @@ public class PokerPlayer {
 		getHandsDiscardProbability();
 
 		inputStr = pokerGame.cleanUpInputTweet(inputStr);
-		inputStr = inputStr.replace("10", "t");
+		inputStr = inputStr.replace("10", "t"); // as 10 cards are t in our format :)
 		//inputStr = getConsoleInput();
 		System.out.println("######:playersHandOptions: inputStr: "+inputStr);
 
 		//auto discard cmd.
-		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
-				| inputStr.toLowerCase().contains("auto")) {
+		if (inputStr.toLowerCase().contains("auto") | inputStr.toLowerCase().contains("a")) {
 			if (inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				int discardAmount = Integer.parseInt(isStrInt);
@@ -125,7 +124,6 @@ public class PokerPlayer {
 				| inputStr.toUpperCase().contains(hand.get(4).toString().toUpperCase())
 				| inputStr.toLowerCase().startsWith("d")
 				| inputStr.toLowerCase().contains("discard")) {
-			System.out.println(this.getPlayerName() + ": it worked!!!!!!!!!!!!!!!!!!!!!");
 			System.out.println(hand.get(0).toString().toUpperCase());
 			int discardCount = 0;
 			ArrayList<PlayingCard> discardList = new ArrayList<>();
@@ -210,6 +208,7 @@ public class PokerPlayer {
 		}
 		if (inputStr.toLowerCase().contains("fold") | inputStr.toLowerCase().startsWith("f")) {
 			fold();
+			System.out.println(this.getPlayerName() + ": *********** folded");
 			return true;
 		}
 		return false;
@@ -267,14 +266,13 @@ public class PokerPlayer {
 		return discardCount;
 	}
 
+	/*called my PokerGame when resetting round
+	* */
 	synchronized public void returnHandToDeck() {
-		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 		for (PlayingCard card : hand) {
 			gameDeck.returnCard(card);
 		}
 		hand.clear();
-		//System.out.println(getPlayerName()+": returnHandToDeck END ");
-		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 	}
 
 	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
@@ -339,8 +337,6 @@ public class PokerPlayer {
 	/*player will call the current stake to stay in game.
 	* */
 	synchronized public void call() {
-		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
-		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
 
 		if(playerChipAmount >= pokerGame.getCurrentRoundsStakeAmount()) {
 			playerChipAmount -= pokerGame.getCurrentRoundsStakeAmount();
@@ -369,7 +365,6 @@ public class PokerPlayer {
 				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
 
 				currentStakePaid = amount;
-				//paidStake = true;
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 
 				System.out.println(this.getPlayerName()+" raise paid"); // for testing
@@ -479,22 +474,12 @@ public class PokerPlayer {
 	}
 
 
-
 	/*when player wins round, PokerGame will call this.
 	* */
 	public void receivesStake(int amount) {
 		playerChipAmount += amount;
 		totalRoundsWon++;
 	}
-
-
-/*	public boolean isPaidStake() {
-		return paidStake;
-	}
-
-	public void resetPaidStake() {
-		paidStake = false;
-	}*/
 
 	/*Calcs Probability for all 5 cards in players hand.
 	* */
