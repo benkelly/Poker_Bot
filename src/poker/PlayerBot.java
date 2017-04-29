@@ -33,7 +33,7 @@ public class PlayerBot extends PokerPlayer {
 			"\uD83D\uDE24", "\uD83D\uDE2E", "\uD83D\uDE31", "\uD83D\uDE28", "\uD83D\uDE30", "\uD83D\uDE2F", "\uD83D\uDE26",
 			"\uD83D\uDE27", "\uD83D\uDE22", "\uD83D\uDE25", "\uD83D\uDE2A", "\uD83D\uDE13", "\uD83D\uDE2D", "\uD83D\uDE35",
 			"\uD83D\uDE32", "\uD83E\uDD10", "\uD83D\uDE37", "\uD83E\uDD12", "\uD83E\uDD15", "\uD83D\uDE34", "\uD83D\uDCA9",
-			"\uD83D\uDE08", "\uD83D\uDC7D", "\uD83E\uDD16"};
+			"\uD83D\uDE08", "\uD83D\uDC7D", "\uD83E\uDD16"}; // check /resource/face_tell_arr_index_guide.png to see emojis
 
 	// bot stats
 	private int aggression;
@@ -151,21 +151,21 @@ public class PlayerBot extends PokerPlayer {
 				if (i+1 <= tempHandScore && tempHandScore <= i+333333) {
 					discardNumber = 3;
 					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
-					//pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" cards\n";
-					pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
+					//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" cards\n";
+					pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
 				}
 				if (i+333334 <= tempHandScore && tempHandScore <= i+666666) {
 					discardNumber = 2;
 					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
-					//pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" cards\n";
-					pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
+					//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" cards\n";
+					pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
 
 				}
 				if (i+666666 <= tempHandScore && tempHandScore <= i+999999) {
 					discardNumber = 1;
 					System.out.println(getPlayerName()+": discardNumber: "+discardNumber);
-					//pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" card\n";
-					pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
+					//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" card\n";
+					pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
 
 
 				}
@@ -187,26 +187,26 @@ public class PlayerBot extends PokerPlayer {
 					getNewCardsForHand();
 					System.out.println(getPlayerName()+": RANDODM COINFLIPP ONE discardNumber: "+discardNumber);
 					if(discardNumber==1){
-						//pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" card\n";
-						pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
+						//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" card\n";
+						pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
 					}
 					else
-						//pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" cards\n";
-						pokerGame.tweetStr +=getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
+						//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" cards\n";
+						pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" discarded "+discardNumber+" \uD83C\uDFB4\n";
 					return true;
 				}
 				case 1: { // keep
 					//System.out.println(getPlayerName()+": KEEP: ");
-					//pokerGame.tweetStr +=getPlayerName()+": Kept: \n";
+					//pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+": Kept: \n";
 					System.out.println(getPlayerName()+": KEEP: ");
-					pokerGame.tweetStr +=getPlayerName()+" Kept\n";
+					pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" Kept\n";
 					return true;
 				}
 			}
 		}
 		else { // keep
 			System.out.println(getPlayerName()+": KEEP: ");
-			pokerGame.tweetStr +=getPlayerName()+" Kept\n";
+			pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" Kept\n";
 			return true;
 		}
 		return false;
@@ -227,16 +227,16 @@ public class PlayerBot extends PokerPlayer {
 				switch (value) {
 					case 0: {
 						fold();
-						pokerGame.tweetStr +=getPlayerName()+" folded\n";
+						pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" folded\n";
 						return true;					}
 					case 1: {
 						if(aggression > 50) {
 							call();
-							pokerGame.tweetStr +=getPlayerName()+" called\n";
+							pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 							return true;
 						}else{
 							fold();
-							pokerGame.tweetStr +=getPlayerName()+" folded\n";
+							pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" folded\n";
 							return true;						}
 
 					}
@@ -244,43 +244,43 @@ public class PlayerBot extends PokerPlayer {
 			}
 			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.THREE_OF_A_KIND_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.THREE_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.FLUSH_WEIGHT && handScore < hand.FULL_HOUSE_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 
 			}
 			else if(handScore > hand.FULL_HOUSE_WEIGHT && handScore < hand.FOUR_OF_A_KIND_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.FOUR_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT){
 				call();
-				pokerGame.tweetStr +=getPlayerName()+" called\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 				return true;
 			}
 			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
@@ -288,7 +288,7 @@ public class PlayerBot extends PokerPlayer {
 				switch (value) {
 					case 0: {
 						call();
-						pokerGame.tweetStr +=getPlayerName()+" called\n";
+						pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 						return true;
 
 					}
@@ -297,7 +297,7 @@ public class PlayerBot extends PokerPlayer {
 						raise(100);
 						raise(riseStakeAmount);
 						System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
-						pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+						pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" raised to "+riseStakeAmount+"\n";
 						return true;
 					}
 				}
@@ -307,7 +307,7 @@ public class PlayerBot extends PokerPlayer {
 				raise(100);
 				raise(riseStakeAmount);
 				System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
-				pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+				pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" raised to "+riseStakeAmount+"\n";
 				return true;
 			}
 			/*
@@ -319,17 +319,17 @@ public class PlayerBot extends PokerPlayer {
 						case 0: {
 							if(intelligence < 39 | aggression < 59) {
 								fold();
-								pokerGame.tweetStr +=getPlayerName()+" folded\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" folded\n";
 								return true;
 							}
 							else
 								call();
-								pokerGame.tweetStr +=getPlayerName()+" called\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 								return true;
 						}
 						case 1: {
 							call();
-							pokerGame.tweetStr +=getPlayerName()+" called\n";
+							pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 							return true;
 						}
 						case 2: { // raise
@@ -338,10 +338,10 @@ public class PlayerBot extends PokerPlayer {
 							if (riseStakeAmount <= playerChipAmount) {
 								raise(riseStakeAmount);
 								System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
-								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
 								call();
-								pokerGame.tweetStr +=getPlayerName()+" called\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 								System.out.println(getPlayerName() + ": raise BUT UNABLE TO: " + riseStakeAmount);
 								System.out.println(getPlayerName()+" THEREFOR called\n");
 
@@ -357,7 +357,7 @@ public class PlayerBot extends PokerPlayer {
 					switch (value) {
 						case 0: {
 							call();
-							pokerGame.tweetStr +=getPlayerName()+" called\n";
+							pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 							return true;
 						}
 						case 1: { // raise
@@ -366,12 +366,12 @@ public class PlayerBot extends PokerPlayer {
 							if (riseStakeAmount <= playerChipAmount) {
 								System.out.println(getPlayerName() + ": raise: " + riseStakeAmount);
 								raise(riseStakeAmount);
-								pokerGame.tweetStr +=getPlayerName()+" raised to "+riseStakeAmount+"\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" raised to "+riseStakeAmount+"\n";
 							} else {
 								call();
 								System.out.println(getPlayerName() + ": raise BUT UNABLE TO : " + riseStakeAmount);
 								System.out.println(getPlayerName()+" THEREFOR called\n");
-								pokerGame.tweetStr +=getPlayerName()+" called\n";
+								pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" called\n";
 							}
 							return true;
 						}
@@ -385,10 +385,10 @@ public class PlayerBot extends PokerPlayer {
 				}
 			}
 			*/
-		}/*
+		}
 		fold();
-		pokerGame.tweetStr +=getPlayerName()+" folded\n";
-		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");*/
+		pokerGame.tweetStr +=faceTellGenerator()+" "+ getPlayerName()+" folded\n";
+		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
 		return true;
 	}
 

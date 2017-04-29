@@ -409,7 +409,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			System.out.println(player.getPlayerName() + " is bankrupt!");
 			tweetStr +=(player.getPlayerName() + " is bankrupt!");
 			if(this.size() == 1 & this.get(0).isHuman == true){
-				tweetStr +=(this.get(0).getPlayerName() + " is has Won the table!");
+				tweetStr +=(this.get(0).getPlayerName() + " has Won the table!");
 			}
 			return true;
 		}
@@ -435,7 +435,7 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 			tempPlayer.receivesStake(currentRoundsHeldStake);
 			tempPlayer.totalRoundsWon += 1;
 			System.out.println(tempPlayer.getPlayerName() + " is the winner!");
-			tweetStr = tempPlayer.getPlayerName() + " won with a " + tempPlayer.hand.getBestHandTypeName() + "\n\n";
+			tweetStr = tempPlayer.getPlayerName() + " won "+getCurrentRoundsHeldStake() +" with a "+ tempPlayer.hand.getBestHandTypeName() + "\n\n";
 			System.out.println(tempPlayer.getPlayerName() + ": new Chips amount: " + tempPlayer.getPlayerChipAmount());
 			System.out.println("ships now on table: " + getCurrentRoundsHeldStake());
 			System.out.println("**********curRoundPlayerList: " + curRoundPlayerList + "\n\n\n\n\n\n");

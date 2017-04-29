@@ -17,7 +17,7 @@ public class Main {
 		System.out.println("main class!");
 
 		TwitterInterpreter ti = new TwitterInterpreter();
-		String keywords[] = {"dealmein", "poker__bot"};
+		String keywords[] = {"dealmein", ti.getTwitterScreenName()};
 		ti.publicStreamReader(keywords);
 	}
 }
