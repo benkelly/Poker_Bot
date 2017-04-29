@@ -239,19 +239,74 @@ public class PlayerBot extends PokerPlayer {
 				}
 			}
 			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
-				call();
+				int value = rand.nextInt(3);
+				switch (value) {
+					case 0: {
+						if(aggression < 25) {
+							fold();
+						}
+						call();
+					}
+					case 1: {
+						if(aggression > 50) {
+							raise(50);
+						}else{
+							call();
+						}
+
+					}
+					case 2: {
+						call();
+					}
+				}
 			}
-			else if(handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT){
-				call();
-			}
-			else if(handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.THREE_OF_A_KIND_WEIGHT){
-				call();
-			}
-			else if(handScore > hand.THREE_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_WEIGHT){
-				call();
+
+			else if(handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.STRAIGHT_WEIGHT){
+				int value = rand.nextInt(3);
+				switch (value) {
+					case 0: {
+						if(aggression < 25) {
+							call();
+						}
+						raise(50);
+					}
+					case 1: {
+						if(aggression > 50) {
+							raise(150);
+						}else{
+							raise(100);
+						}
+
+					}
+					case 2: {
+						if(aggression > 50) {
+							raise(200);
+						}else{
+							call();
+						}
+					}
+				}
 			}
 			else if(handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT){
-				call();
+				int value = rand.nextInt(3);
+				switch (value) {
+					case 0: {
+						if(aggression < 20) {
+							call();
+						}
+						raise(50);
+					}
+					case 1: {
+						raise(150);
+					}
+					case 2: {
+						if(aggression > 50) {
+							raise(200);
+						}else{
+							call();
+						}
+					}
+				}
 			}
 			else if(handScore > hand.FLUSH_WEIGHT && handScore < hand.FULL_HOUSE_WEIGHT){
 				call();
@@ -262,20 +317,27 @@ public class PlayerBot extends PokerPlayer {
 			else if(handScore > hand.FOUR_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT){
 				call();
 			}
-			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
+			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT){
 				int value = rand.nextInt(2);
 				switch (value) {
 					case 0: {
-						call();
+						raise(100);
 					}
 					case 1:{
-						raise(100);
+						if(aggression > 50) {
+							raise(200);
+						}else{
+							raise(150);
+						}
+					}
+					case 2:{
+						if(intelligence < 30){//all in
+							raise(this.playerChipAmount);
+						}
 					}
 				}
 			}
-			else if(handScore > hand.STRAIGHT_FLUSH_WEIGHT && handScore < hand.ROYAL_FLUSH_WEIGHT){
-				raise(200);
-			}
+
 			/*
 			for (int i = 0; i < hand.ROYAL_FLUSH_WEIGHT; i += 1000000) {
 				if (i + 1 <= tempHandScore && tempHandScore <= 1000000) {
@@ -352,9 +414,9 @@ public class PlayerBot extends PokerPlayer {
 			}
 			*/
 		}
-		fold();
-		pokerGame.tweetStr +=getPlayerName()+" folded\n";
-		System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
+		//fold(pokerGame);
+		//pokerGame.tweetStr +=getPlayerName()+" folded\n";
+		//System.out.println(getPlayerName() + ": playersBettingOptions FOLD FROM ROUND");
 		return true;
 	}
 
