@@ -330,22 +330,7 @@ public class PlayerBot extends PokerPlayer {
 						}
 					}
 				}
-			} else if (handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT) {
-				call();
-			} else if (handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.THREE_OF_A_KIND_WEIGHT) {
-				call();
-			} else if (handScore > hand.THREE_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_WEIGHT) {
-				call();
-			} else if (handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT) {
-				call();
-			} else if (handScore > hand.FLUSH_WEIGHT && handScore < hand.FULL_HOUSE_WEIGHT) {
-				call();
-
-			} else if (handScore > hand.FULL_HOUSE_WEIGHT && handScore < hand.FOUR_OF_A_KIND_WEIGHT) {
-				call();
-			} else if (handScore > hand.FOUR_OF_A_KIND_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT) {
-				call();
-			} else if (handScore > hand.STRAIGHT_FLUSH_WEIGHT) {
+			}else if (handScore > hand.STRAIGHT_FLUSH_WEIGHT) {
 				int value = rand.nextInt(2);
 				switch (value) {
 					case 0: {
