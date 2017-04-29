@@ -89,15 +89,13 @@ public class TwitterInterpreter {
 		try {
 
 			if (temp.toLowerCase().contains("dealmein")) {
-				postTweet("@" + status.getUser().getScreenName() + " " + "yoyo, see you like poker \uD83E\uDD16"+PlayerBot.faceTellGenerator());
+				postTweet("@" + status.getUser().getScreenName() + " " + "We see you like poker! If you would like to play, just reply to this tweet! \uD83E\uDD16"+PlayerBot.faceTellGenerator(), status);
 			}
 			if (twitterStream.getScreenName().equalsIgnoreCase(status.getInReplyToScreenName())
 					& !status.getUser().getScreenName().equalsIgnoreCase(twitterStream.getScreenName())) {
-				//else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
-				//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
 				parseToGameState(status.getUser(), status,  status.getText());
 			}
-		} catch (TwitterException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -105,12 +103,11 @@ public class TwitterInterpreter {
 	synchronized private void parseToGameState(User user,Status status, String TweetBody) {
 		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
 		pokerGame.setUserFromTwitter(user);
-		//pokerGame.;
-		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n START");
-		pokerGame.playPoker(TweetBody, status);
-		//System.out.println(pokerGame.);
-		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n END");
-
+		try {
+			pokerGame.playPoker(TweetBody, status);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	StatusListener listener = new StatusListener() {
@@ -149,7 +146,7 @@ public class TwitterInterpreter {
 	};
 
 
-	public void postTweet(String strStatus) {
+/*	public void postTweet(String strStatus) {
 		Status status = null;
 		try {
 			status = twitter.updateStatus(strStatus);
@@ -158,23 +155,20 @@ public class TwitterInterpreter {
 		}
 		System.out.println("Successfully updated the status to [" + status.getText() + "].");
 
-	}
+	}*/
 
-	public void postTweetInConvo(String strStatus, Status fromStatus) {
-		Status status = null;
-		try {
-			status = twitter.updateStatus(strStatus);
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Successfully updated the status to [" + status.getText() + "].");
-
+	public void postTweet(String strStatus, Status fromStatus) throws Exception {
+		StatusUpdate status = new StatusUpdate(strStatus);
+		status.setInReplyToStatusId(fromStatus.getId());
+		twitter.updateStatus(status);
+		System.out.println("Successfully updated the status to [" + status.toString() + "].");
 	}
 
 
 
-	public void tweetPic(InputStream _file, String theTweet) throws Exception {
+	public void tweetPic(InputStream _file, String theTweet, Status fromStatus) throws Exception {
 		StatusUpdate status = new StatusUpdate(theTweet);
+		status.setInReplyToStatusId(fromStatus.getId());
 		status.setMedia("image.jpg", _file);
 		twitter.updateStatus(status);
 	}
@@ -256,7 +250,7 @@ public class TwitterInterpreter {
 		publicStreamReader(keywords);
 	}
 
-	private void publicStreamReader(String keywords[]) {
+	public void publicStreamReader(String keywords[]) {
 		FilterQuery fq = new FilterQuery();
 		//String keywords[] = {"France", "Germany"};
 		fq.track(keywords);

@@ -1,6 +1,8 @@
 package poker;
 
 
+import twitter4j.Status;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -47,14 +49,14 @@ public class PokerPlayer {
 		playerChipAmount = chips;
 		isHuman = human;
 
-		getInitialHand();
-		getCurrentHandInfo();
+		//getInitialHand();
+		//getCurrentHandInfo();
 	}
 
 	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
-		return playerName+ ": " + hand.toString();
+		return playerName+ ": " + hand.toString()+"  Chips: "+getPlayerChipAmount();
 	}
 
 
@@ -62,7 +64,7 @@ public class PokerPlayer {
 	* */
 	synchronized private void getInitialHand() {
 		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
-			hand.add(gameDeck.getInstance().dealNext());
+			hand.add(gameDeck.dealNext());
 		}
 
 	}
@@ -82,7 +84,7 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus );
 	}
 
 
@@ -94,12 +96,12 @@ public class PokerPlayer {
 		getHandsDiscardProbability();
 
 		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+		inputStr = inputStr.replace("10", "t"); // as 10 cards are t in our format :)
 		//inputStr = getConsoleInput();
 		System.out.println("######:playersHandOptions: inputStr: "+inputStr);
 
 		//auto discard cmd.
-		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
-				| inputStr.toLowerCase().contains("auto")) {
+		if (inputStr.toLowerCase().contains("auto") | inputStr.toLowerCase().contains("a")) {
 			if (inputStr.matches(".*\\d+.*")) { // if str has number
 				String isStrInt = extractIntFromString(inputStr);
 				int discardAmount = Integer.parseInt(isStrInt);
@@ -122,7 +124,6 @@ public class PokerPlayer {
 				| inputStr.toUpperCase().contains(hand.get(4).toString().toUpperCase())
 				| inputStr.toLowerCase().startsWith("d")
 				| inputStr.toLowerCase().contains("discard")) {
-			System.out.println(this.getPlayerName() + ": it worked!!!!!!!!!!!!!!!!!!!!!");
 			System.out.println(hand.get(0).toString().toUpperCase());
 			int discardCount = 0;
 			ArrayList<PlayingCard> discardList = new ArrayList<>();
@@ -168,7 +169,7 @@ public class PokerPlayer {
 		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
 		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
 
-		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr );
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus);
 	}
 
 
@@ -207,6 +208,7 @@ public class PokerPlayer {
 		}
 		if (inputStr.toLowerCase().contains("fold") | inputStr.toLowerCase().startsWith("f")) {
 			fold();
+			System.out.println(this.getPlayerName() + ": *********** folded");
 			return true;
 		}
 		return false;
@@ -217,7 +219,7 @@ public class PokerPlayer {
 	synchronized public void getNewCardsForHand() {
 		if(hand.size() < pokerGame.MAX_HAND) {
 			for (int i = hand.size(); i < pokerGame.MAX_HAND; i++) {
-				hand.add(gameDeck.getInstance().dealNext());
+				hand.add(gameDeck.dealNext());
 				totalTakeCardCount++;
 			}
 		}
@@ -247,7 +249,7 @@ public class PokerPlayer {
 		for (probabilityScoreList object : scoreList) {
 			if (discardCount >= discardAmount ) { break; }
 			if (object.getCardProbabilityScore() > 0) {
-				gameDeck.getInstance().returnCard(hand.get(object.cardLocation));
+				gameDeck.returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
 				discardCount++;
 				totalDiscardCount++;
@@ -264,14 +266,13 @@ public class PokerPlayer {
 		return discardCount;
 	}
 
+	/*called my PokerGame when resetting round
+	* */
 	synchronized public void returnHandToDeck() {
-		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 		for (PlayingCard card : hand) {
-			gameDeck.getInstance().returnCard(card);
+			gameDeck.returnCard(card);
 		}
 		hand.clear();
-		//System.out.println(getPlayerName()+": returnHandToDeck END ");
-		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 	}
 
 	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
@@ -336,8 +337,6 @@ public class PokerPlayer {
 	/*player will call the current stake to stay in game.
 	* */
 	synchronized public void call() {
-		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
-		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
 
 		if(playerChipAmount >= pokerGame.getCurrentRoundsStakeAmount()) {
 			playerChipAmount -= pokerGame.getCurrentRoundsStakeAmount();
@@ -366,7 +365,6 @@ public class PokerPlayer {
 				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
 
 				currentStakePaid = amount;
-				//paidStake = true;
 				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
 
 				System.out.println(this.getPlayerName()+" raise paid"); // for testing
@@ -476,22 +474,12 @@ public class PokerPlayer {
 	}
 
 
-
 	/*when player wins round, PokerGame will call this.
 	* */
 	public void receivesStake(int amount) {
 		playerChipAmount += amount;
 		totalRoundsWon++;
 	}
-
-
-/*	public boolean isPaidStake() {
-		return paidStake;
-	}
-
-	public void resetPaidStake() {
-		paidStake = false;
-	}*/
 
 	/*Calcs Probability for all 5 cards in players hand.
 	* */
@@ -519,14 +507,18 @@ public class PokerPlayer {
 		return sb.toString();
 	}
 
-	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr) {
-		VisualHand.TweetVisualHand(hnd, chp, tweetStr);
+	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr, Status fromStatus) {
+		VisualHand.TweetVisualHand(hnd, chp, tweetStr, fromStatus);
 		tweetStr = "";
 	}
 
 	private void tweetPlayer(String tweetStr) {
-	TwitterInterpreter.getInstance().postTweet(tweetStr);
-	tweetStr = "";
+		try {
+			TwitterInterpreter.getInstance().postTweet(tweetStr, pokerGame.currentFromStatus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		tweetStr = "";
 	}
 
 	public void setPlayerChipAmount(int amount) {
