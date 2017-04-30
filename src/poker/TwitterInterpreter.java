@@ -24,7 +24,7 @@ import java.util.List;
  * Eoin Kerr - 13366801 - eoin.kerr@ucdconnect.ie
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
-public class TwitterInterpreter {
+public class TwitterInterpreter extends GameState {
 	private static TwitterInterpreter instance;
 
 	/* API Keys to our Twitter account (https://twitter.com/poker__bot)
@@ -145,17 +145,6 @@ public class TwitterInterpreter {
 		}
 	};
 
-
-/*	public void postTweet(String strStatus) {
-		Status status = null;
-		try {
-			status = twitter.updateStatus(strStatus);
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Successfully updated the status to [" + status.getText() + "].");
-
-	}*/
 
 	public void postTweet(String strStatus, Status fromStatus) throws Exception {
 		StatusUpdate status = new StatusUpdate(strStatus);

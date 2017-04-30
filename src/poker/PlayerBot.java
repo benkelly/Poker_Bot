@@ -477,7 +477,7 @@ public class PlayerBot extends PokerPlayer {
 			}
 			*/
 
-	synchronized public boolean reraiseStake(int stakeIncrease) {
+	synchronized public boolean reRaiseStake(int stakeIncrease) {
 		System.out.println(getPlayerName()+": reraise(raiseAmount)Stake: START");
 		if (intelligence >= 40 | aggression >=60) {
 			if (stakeIncrease <= currentStakePaid / 2) {
