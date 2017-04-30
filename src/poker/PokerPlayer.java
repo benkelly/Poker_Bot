@@ -1,7 +1,11 @@
 package poker;
 
-import com.sun.xml.internal.bind.v2.TODO;
 
+import twitter4j.Status;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 /**
@@ -14,58 +18,213 @@ import java.util.*;
  */
 public class PokerPlayer {
 
-	private int MAX_HAND = 5;
-	private int MAX_DISCARD = 3;
+	private DeckOfCards gameDeck;
+	PokerGame pokerGame;
 
 	public HandOfCards hand = new HandOfCards();
 
 	// basic stats
 	String playerName = "";
-	private int playerChipAmount = 0;
+	public boolean isHuman;
+	public boolean isPlayersHandOptionsSent = false;
+	public boolean isPlayersBettingOptionsSent = false;
+	public boolean isPlayersPayAnteFeeOptionsSent = false;
+	int playerChipAmount = 0;
+
+	int currentStakePaid = 0;
 
 	public int currentHandScore = 0;
 	public int totalDiscardCount = 0;
 	public int totalTakeCardCount = 0;
+	public int totalRoundsWon = 0;
+	public int totalRoundsPlayed = 0;
 
 	// current round variables
-	private boolean paidStake = false;
+	//private boolean paidStake = false;
 
-	public PokerPlayer(String name, int chips) {
+	public PokerPlayer(String name, PokerGame game, DeckOfCards deck, int chips, boolean human) {
 		playerName = name;
+		pokerGame = game;
+		gameDeck = deck;
 		playerChipAmount = chips;
+		isHuman = human;
 
 		getInitialHand();
 		getCurrentHandInfo();
 	}
 
-
-
-	/* prints  in [3S, 6H, 6D, 7D, 9H]... format
+	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
 	* */
 	public String toString() {
-		return hand.toString();
+		return playerName+ ": " + hand.toString()+"  Chips: "+getPlayerChipAmount();
 	}
+
 
 	/*private method creates first hand from deck.
 	* */
 	synchronized private void getInitialHand() {
-		for (int i = 0; i < MAX_HAND; i++) {
-			hand.add(DeckOfCards.getInstance().dealNext());
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
+			hand.add(gameDeck.getInstance().dealNext());
 		}
 
 	}
 
-	/*private method collects new card from deck after discarding.
+
+	public void sendPlayerHandOptions() {
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
+				+ " HandType: " + hand.getBestHandTypeName());
+
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "auto discard, discard, keep, help?";
+
+		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
+		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
+
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus );
+	}
+
+
+	/*public method, used in PokerGame to allow player to chose its hand option cmds
+	* */
+	public boolean playersHandOptions(String inputStr) {
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+		inputStr = inputStr.replace("10", "t");
+		//inputStr = getConsoleInput();
+		System.out.println("######:playersHandOptions: inputStr: "+inputStr);
+
+		//auto discard cmd.
+		if (inputStr.toLowerCase().contains("auto discard") | inputStr.toLowerCase().contains("a")
+				| inputStr.toLowerCase().contains("auto")) {
+			if (inputStr.matches(".*\\d+.*")) { // if str has number
+				String isStrInt = extractIntFromString(inputStr);
+				int discardAmount = Integer.parseInt(isStrInt);
+				if (discardAmount < pokerGame.MAX_DISCARD && discardAmount > 0) {
+					discard(discardAmount);
+				} else
+					discard();
+			} else {
+				discard();
+			}
+			getNewCardsForHand();
+			System.out.println(getPlayerName()+": auto discard");
+			return true;
+		}
+		// user discard cmd.
+		if (inputStr.toUpperCase().contains(hand.get(0).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(1).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(2).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(3).toString().toUpperCase())
+				| inputStr.toUpperCase().contains(hand.get(4).toString().toUpperCase())
+				| inputStr.toLowerCase().startsWith("d")
+				| inputStr.toLowerCase().contains("discard")) {
+			System.out.println(this.getPlayerName() + ": it worked!!!!!!!!!!!!!!!!!!!!!");
+			System.out.println(hand.get(0).toString().toUpperCase());
+			int discardCount = 0;
+			ArrayList<PlayingCard> discardList = new ArrayList<>();
+
+			for (PlayingCard card : hand) {
+				if (inputStr.toUpperCase().contains(card.toString().toUpperCase())) {
+					if (discardCount < pokerGame.MAX_DISCARD) {
+						discardList.add(card);
+						System.out.println(card + ": added to removedList");
+						discardCount++;
+					}
+				}
+			}
+			for (PlayingCard card : discardList) {
+				hand.remove(card);
+				System.out.println(card + ": removed");
+			}
+			getNewCardsForHand();
+			System.out.println(this.getPlayerName() + ": your new hand is: " + hand
+					+ " HandType: " + hand.getBestHandTypeName());
+			return true;
+		}
+		// keep cmd
+		if (inputStr.toLowerCase().contains("keep") | inputStr.toLowerCase().startsWith("k")) {
+			System.out.println(getPlayerName()+": keep");
+			return true;
+		}
+		else
+			return false;
+	}
+
+	public void sendPlayersBettingOptions() {
+		hand.generateHandType();
+		hand.getGameValue();
+		getHandsDiscardProbability();
+
+		System.out.println(this.getPlayerName() + ": your current hand is: " + hand
+				+ " HandType: " + hand.getBestHandTypeName());
+
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " your hand's in \uD83D\uDDBC\n"+"\n";
+		pokerGame.tweetStr += "call, raise, fold, help?";
+
+		System.out.println(this.getPlayerName() +": *****char count: "+pokerGame.tweetStr.length());
+		System.out.println(this.getPlayerName() +": TWEETSTR: "+pokerGame.tweetStr);
+
+		tweetPlayerVisualHand(hand, playerChipAmount, pokerGame.tweetStr, pokerGame.currentFromStatus);
+	}
+
+
+
+	/*public method, used in PokerGame to allow player to chose its betting cmds
+	* */
+	public boolean playersBettingOptions(String inputStr) {
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+		System.out.println("###### inputStr: "+inputStr);
+		//System.out.println(this.getPlayerName() + ": your current hand is: " + hand + "");
+		//inputStr = getConsoleInput();
+		if (inputStr.toLowerCase().contains("pay") | inputStr.toLowerCase().equals("ps")
+				| inputStr.toLowerCase().equals("pay stake") | inputStr.toLowerCase().contains("call")
+				| inputStr.toLowerCase().startsWith("c")) {
+			call();
+			return true;
+		}
+
+		if (inputStr.toLowerCase().contains("increase") | inputStr.toLowerCase().contains("i")
+				| inputStr.toLowerCase().startsWith("r") | inputStr.toLowerCase().startsWith("rise")) {
+			System.out.println(this.getPlayerName() + ": *********** increase triggered");
+			while (true){
+
+				if (inputStr.matches(".*\\d+.*")) { // if str has number
+					String isStrInt = extractIntFromString(inputStr);
+					raise(Integer.parseInt(isStrInt));
+					//System.out.println(Integer.parseInt(isStrInt));
+					System.out.println(this.getPlayerName() + ": *********** raise() called");
+					return true;
+				}
+				else{
+					System.out.println(this.getPlayerName() + ": please re-enter the amount: ");
+					inputStr = getConsoleInput();
+				}
+			}
+		}
+		if (inputStr.toLowerCase().contains("fold") | inputStr.toLowerCase().startsWith("f")) {
+			fold();
+			return true;
+		}
+		return false;
+	}
+
+	/*public method collects new card from deck after discarding.
 	* */
 	synchronized public void getNewCardsForHand() {
-		if(hand.size() < MAX_HAND) {
-			for (int i = hand.size(); i < MAX_HAND; i++) {
-				hand.add(DeckOfCards.getInstance().dealNext());
+		if(hand.size() < pokerGame.MAX_HAND) {
+			for (int i = hand.size(); i < pokerGame.MAX_HAND; i++) {
+				hand.add(gameDeck.getInstance().dealNext());
 				totalTakeCardCount++;
 			}
 		}
 	}
-
 	/*private method gets and returns hands current score and updates currentHandScore
 	* */
 	synchronized private int getCurrentHandInfo() {
@@ -74,19 +233,24 @@ public class PokerPlayer {
 		return currentHandScore;
 	}
 
-
-	synchronized public int discard() {
+	/*auto discards cards based on their discard getDiscardProbability
+	* */
+	synchronized private int discard() {
+		return discard(pokerGame.MAX_DISCARD);
+	}
+	synchronized int discard(int discardAmount) {
+		if(discardAmount > pokerGame.MAX_DISCARD) { discardAmount = pokerGame.MAX_DISCARD; }
 		int discardCount = 0;
 		List<probabilityScoreList> scoreList = new ArrayList<>();
 
-		for (int i = 0; i < MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) { scoreList.add(new probabilityScoreList(i, hand.getDiscardProbability(i))); }
 		// sorts scores in descending order
 		sortProbabilityScoreDescending(scoreList);
 		List<probabilityScoreList> removeList = new ArrayList<>();
 		for (probabilityScoreList object : scoreList) {
-			if (discardCount >= MAX_DISCARD ) { break; }
+			if (discardCount >= discardAmount ) { break; }
 			if (object.getCardProbabilityScore() > 0) {
-				DeckOfCards.getInstance().returnCard(hand.get(object.cardLocation));
+				gameDeck.getInstance().returnCard(hand.get(object.cardLocation));
 				removeList.add(object);
 				discardCount++;
 				totalDiscardCount++;
@@ -101,6 +265,16 @@ public class PokerPlayer {
 			}
 		}
 		return discardCount;
+	}
+
+	synchronized public void returnHandToDeck() {
+		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
+		for (PlayingCard card : hand) {
+			gameDeck.getInstance().returnCard(card);
+		}
+		hand.clear();
+		//System.out.println(getPlayerName()+": returnHandToDeck END ");
+		//System.out.println(getPlayerName()+": returnHandToDeck: "+hand);
 	}
 
 	/*Will sort List<probabilityScoreList> object.cardLocation in descending order
@@ -149,7 +323,6 @@ public class PokerPlayer {
 		}
 	}
 
-
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -158,42 +331,226 @@ public class PokerPlayer {
 		return playerChipAmount;
 	}
 
-	public int getCurrentHandScore() {
+	synchronized public int getCurrentHandScore() {
 		hand.generateHandType();
 		return hand.getGameValue();
 	}
 
-	public void payCurrentStake() {
-		if(playerChipAmount >= PokerGame.getInstance().getCurrentRoundsHeldStake()) {
-			playerChipAmount -= PokerGame.getInstance().getCurrentRoundsHeldStake();
-			PokerGame.getInstance().addToCurrentRoundsHeldStake(PokerGame.getInstance().getCurrentRoundsHeldStake());
-			paidStake = true;
+	/*player will call the current stake to stay in game.
+	* */
+	synchronized public void call() {
+		//System.out.println("getCurrentRoundsStakeAmount: "+pokerGame.getCurrentRoundsStakeAmount()+"");
+		//System.out.println("getCurrentRoundsHeldStake: "+pokerGame.getCurrentRoundsHeldStake()+"");
+
+		if(playerChipAmount >= pokerGame.getCurrentRoundsStakeAmount()) {
+			playerChipAmount -= pokerGame.getCurrentRoundsStakeAmount();
+			pokerGame.addToCurrentRoundsHeldStake(pokerGame.getCurrentRoundsStakeAmount());
+			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+			//paidStake = true;
+			pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
+			System.out.println(this.getPlayerName()+": call paid");
+
 		}
-		System.out.println(this.getPlayerName()+"unable to payCurrentStake...");
+		else
+			System.out.println(this.getPlayerName()+": unable to call...");
 	}
 
-	public boolean isPaidStake() {
+	/*command to increase stake to stated amount
+	*
+	* */
+	synchronized public boolean raise(int amount) {
+		if(playerChipAmount >= amount) {
+			if (amount > pokerGame.getCurrentRoundsStakeAmount()) {
+				int stakeDiff = amount - pokerGame.getCurrentRoundsStakeAmount();
+				playerChipAmount -= amount;
+				pokerGame.addToCurrentRoundsHeldStake(amount);
+				pokerGame.setCurrentRoundsStakeAmount(amount);
+
+				pokerGame.matchStakeIncrease(stakeDiff); // asks all others who paid to match or fold
+
+				currentStakePaid = amount;
+				//paidStake = true;
+				pokerGame.addToCurRoundPlayerList(this); // add self to cur hand/round list
+
+				System.out.println(this.getPlayerName()+" raise paid"); // for testing
+				return true;
+			}
+		}
+		else
+			fold();
+			return false;
+	}
+
+	/* previous players who betted will be asked to match the new stake or fold
+	* */
+	synchronized public boolean reRaiseStake(int stakeIncrease) {
+
+		System.out.println(playerName + ": do you want to re-raise of " + stakeIncrease + " (y/n)?");
+		String inputStr = getConsoleInput();
+
+		while (true) {
+			if (inputStr.toLowerCase().startsWith("y")) {
+				payReRaiseStake(stakeIncrease);
+			}
+			if (inputStr.toLowerCase().startsWith("n")) {
+				return false;
+			}
+		}
+	}
+
+	synchronized public boolean payReRaiseStake(int stakeIncrease) {
+		if (playerChipAmount >= stakeIncrease) {
+			pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
+			playerChipAmount -= stakeIncrease;
+			currentStakePaid = pokerGame.getCurrentRoundsHeldStake();
+			return true;
+		}
+		else
+			return false;
+	}
+
+	/*Calls fold from round in PokerGame.
+	* */
+	synchronized public void fold() {
+		pokerGame.curRoundPlayerFolds(this);
+		System.out.println(playerName+": has folded.");
+	}
+
+	/*get keyboard input
+	* */
+	private String getConsoleInput() {
+		String str= "";
+		try{
+			BufferedReader bufferRead = new BufferedReader(new InputStreamReader(System.in));
+			str = bufferRead.readLine();
+			System.out.println(str);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		return str;
+	}
+
+	public void sendPayAnteFeeDialog(int anteFee) {
+		System.out.println(playerName + ": do you want to play another round (y/n)?");
+		pokerGame.tweetStr += "Ante: "+anteFee+"\n";
+		pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " do you want to play another round (y/n)?";
+		tweetPlayer(pokerGame.tweetStr);
+	}
+
+
+	/*PokerGame will call this at beginning of every round.
+	* - if player
+	* */
+	public boolean payAnteFee(int anteFee, boolean noUserInputForRound, String inputStr) {
+		//String inputStr = "";
+		inputStr = pokerGame.cleanUpInputTweet(inputStr);
+
+		if ( !noUserInputForRound ) {
+				if( !inputStr.toLowerCase().startsWith("y") | !inputStr.toLowerCase().startsWith("n")) {
+					pokerGame.tweetStr = "Ante: "+anteFee+"\n";
+					pokerGame.tweetStr += "@"+pokerGame.user.getScreenName() + " do you want to play another round (y/n)?";
+					tweetPlayer(pokerGame.tweetStr);
+					return false;
+				}
+		}
+		else {
+			inputStr = "y";
+		}
+
+		if (inputStr.toLowerCase().startsWith("y")) {
+			if (playerChipAmount >= anteFee) {
+				pokerGame.addToCurrentRoundsHeldStake(anteFee);
+				playerChipAmount -= anteFee;
+				totalRoundsPlayed++;
+				return true;
+			} else {
+				pokerGame.playerIsLeavingGame(this, true);
+				return false;
+			}
+		}
+		if (inputStr.toLowerCase().startsWith("n")) {
+			pokerGame.playerIsLeavingGame(this, false);
+			return true;
+
+		}
+		return false;
+	}
+
+
+
+	/*when player wins round, PokerGame will call this.
+	* */
+	public void receivesStake(int amount) {
+		playerChipAmount += amount;
+		totalRoundsWon++;
+	}
+
+
+/*	public boolean isPaidStake() {
 		return paidStake;
 	}
 
 	public void resetPaidStake() {
 		paidStake = false;
+	}*/
+
+	/*Calcs Probability for all 5 cards in players hand.
+	* */
+	private void getHandsDiscardProbability() {
+		for (int i = 0; i < pokerGame.MAX_HAND; i++) {
+			hand.getDiscardProbability(i);
+		}
 	}
 
+	/*Collects number from String.
+	* */
+	public static String extractIntFromString(final String str) {
+		if(str == null || str.isEmpty()) { return ""; }
+		StringBuilder sb = new StringBuilder();
+		boolean found = false;
+		for(char cur: str.toCharArray()) {
+			if(Character.isDigit(cur)) {
+				sb.append(cur);
+				found = true;
+			}
+			else if(found) {
+				break;
+			}
+		}
+		return sb.toString();
+	}
 
+	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr, Status fromStatus) {
+		VisualHand.TweetVisualHand(hnd, chp, tweetStr, fromStatus);
+		tweetStr = "";
+	}
 
+	private void tweetPlayer(String tweetStr) {
+		try {
+			TwitterInterpreter.getInstance().postTweet(tweetStr, pokerGame.currentFromStatus);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		tweetStr = "";
+	}
 
-
+	public void setPlayerChipAmount(int amount) {
+		playerChipAmount = amount;
+	}
 
 	/*Class testing method
-				* */
+	* */
 	public static void main(String[] args) {
 		System.out.println("poker.PokerPlayer.java!");
-		//System.out.println("deck: "+DeckOfCards.getInstance());
+		//System.out.println("deck: "+gameDeck);
+		//PokerGame pokerGame = new PokerGame(PokerGame.;);
 
+/*
 		ArrayList<PokerPlayer> playerList = new ArrayList<PokerPlayer>();
 		for (int j = 0; j < 10; j++) {
-			playerList.add(new PokerPlayer("player:"+j, 3000));
+			playerList.add(new PokerPlayer("player:"+j,PokerGame.getInstance(),  DeckOfCards.getInstance(), 3000, true));
 		}
 		int playNumber = 1;
 		for (PokerPlayer object : playerList) {
@@ -206,15 +563,18 @@ public class PokerPlayer {
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
 
 		for (int i = 0; i < playerList.size(); i++) {
-			playerList.get(i).discard();
+			playerList.get(i).discard(PokerGame.getInstance().MAX_DISCARD);
 			//playerList.get(i).getNewCardsForHand();
 		}
+*/
 
+/*
 		playNumber = 1;
 		for (PokerPlayer object : playerList) {
 			System.out.println("player" + playNumber + ": " + object + "\t");
 			playNumber++;
 		}
 		System.out.println("DeckOfCards: "+DeckOfCards.getInstance().size());
+*/
 	}
 }

@@ -1,9 +1,8 @@
 
-*.class
+*.DS_Store
 
 *.class
-
-*.class
+<<<<<<< HEAD
 
 out/production/COMP30050/poker/Main.class
 
@@ -20,3 +19,5 @@ out/production/COMP30050/poker/Main.class
 src/poker/PlayerBot.java
 
 out/production/COMP30050/poker/PlayingCard.class
+=======
+>>>>>>> origin/master
