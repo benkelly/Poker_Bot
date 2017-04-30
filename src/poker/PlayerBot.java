@@ -216,7 +216,6 @@ public class PlayerBot extends PokerPlayer {
 		System.out.println(getPlayerName() + ": playersBettingOptions: START");
 
 		int raiseAmount = 0, action = 0;
-			System.out.println(getPlayerName() + ": playersBettingOptions: intelligence >= 40 | aggression >=60)");
 
 			hand.generateHandType();
 			int tempHandScore = getCurrentHandScore();
@@ -228,6 +227,7 @@ public class PlayerBot extends PokerPlayer {
 					case 0: {
 						fold();
 						action = 0;
+						break;
 					}
 					case 1: {
 						if (aggression > 50) {
@@ -237,11 +237,11 @@ public class PlayerBot extends PokerPlayer {
 							fold();
 							action = 0;
 						}
-
+						break;
 					}
-					bettingOutput(action, raiseAmount);
-					return true;
 				}
+				bettingOutput(action, raiseAmount);
+				return true;
 			} else if (handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT) {
 				int value = rand.nextInt(3);
 				switch (value) {
@@ -249,9 +249,11 @@ public class PlayerBot extends PokerPlayer {
 						if (aggression < 25) {
 							fold();
 							action = 0;
+						} else {
+							call();
+							action = 1;
 						}
-						call();
-						action = 1;
+						break;
 					}
 					case 1: {
 						if (aggression > 50) {
@@ -267,11 +269,12 @@ public class PlayerBot extends PokerPlayer {
 					case 2: {
 						call();
 						action = 1;
+						break;
 					}
-					bettingOutput(action, raiseAmount);
-					return true;
-				}
 
+				}
+				bettingOutput(action, raiseAmount);
+				return true;
 			} else if (handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.STRAIGHT_WEIGHT) {
 				int value = rand.nextInt(3);
 				switch (value) {
@@ -279,10 +282,12 @@ public class PlayerBot extends PokerPlayer {
 						if (aggression < 25) {
 							call();
 							action = 1;
-						}
+						} else{
 						raiseAmount = 50;
 						raise(raiseAmount);
 						action = 2;
+						}
+						break;
 					}
 					case 1: {
 						if (aggression > 50) {
@@ -293,37 +298,41 @@ public class PlayerBot extends PokerPlayer {
 							raise(raiseAmount);
 							action = 2;
 						}
-
+						break;
 					}
 					case 2: {
 						if (aggression > 50) {
-							raiseAmount = 50;
+							raiseAmount = 100;
 							raise(raiseAmount);
 							action = 2;
 						} else {
 							call();
 							action = 1;
 						}
+						break;
 					}
-					bettingOutput(action, raiseAmount);
-					return true;
 				}
-			} else if (handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT) {
+				bettingOutput(action, raiseAmount);
+				return true;
+			} else if (handScore > hand.STRAIGHT_WEIGHT && handScore < hand.STRAIGHT_FLUSH_WEIGHT) {
 				int value = rand.nextInt(3);
 				switch (value) {
 					case 0: {
 						if (aggression < 20) {
 							call();
 							action = 1;
+						}else {
+							raiseAmount = 100;
+							raise(raiseAmount);
+							action = 2;
 						}
+						break;
+					}
+					case 1: {
 						raiseAmount = 100;
 						raise(raiseAmount);
 						action = 2;
-					}
-					case 1: {
-						raiseAmount = 50;
-						raise(raiseAmount);
-						action = 2;
+						break;
 					}
 					case 2: {
 						if (aggression > 40) {
@@ -334,6 +343,7 @@ public class PlayerBot extends PokerPlayer {
 							call();
 							action = 1;
 						}
+						break;
 					}
 				}
 				bettingOutput(action, raiseAmount);
@@ -342,27 +352,32 @@ public class PlayerBot extends PokerPlayer {
 				int value = rand.nextInt(2);
 				switch (value) {
 					case 0: {
-						raiseAmount = 50;
+						raiseAmount = 150;
 						raise(raiseAmount);
 						action = 2;
+						break;
 					}
 					case 1: {
 						if (aggression > 50) {
-							raiseAmount = 50;
+							raiseAmount = 200;
 							raise(raiseAmount);
 							action = 2;
 						} else {
-							raiseAmount = 50;
+							raiseAmount = 100;
 							raise(raiseAmount);
 							action = 2;
 						}
+						break;
 					}
 					case 2: {
 						if (intelligence < 30) {//all in
 							raiseAmount = this.playerChipAmount;
 							raise(raiseAmount);
 							action = 2;
+						}else {
+							raise(200);
 						}
+						break;
 					}
 				}
 				bettingOutput(action, raiseAmount);
@@ -375,12 +390,15 @@ public class PlayerBot extends PokerPlayer {
 		switch (action) {
 			case 0: {
 				pokerGame.tweetStr += faceTellGenerator() + " " + getPlayerName() + " folded\n";
+				break;
 			}
 			case 1: {
 				pokerGame.tweetStr += faceTellGenerator() + " " + getPlayerName() + " called\n";
+				break;
 			}
 			case 2: {
 				pokerGame.tweetStr += faceTellGenerator() + " " + getPlayerName() + " raised by " + raiseAmount + "\n";
+				break;
 			}
 		}
 	}
