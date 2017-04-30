@@ -216,7 +216,6 @@ public class PlayerBot extends PokerPlayer {
 		System.out.println(getPlayerName() + ": playersBettingOptions: START");
 
 		int raiseAmount = 0, action = 0;
-		if (intelligence >= 40 | aggression >= 60) {
 			System.out.println(getPlayerName() + ": playersBettingOptions: intelligence >= 40 | aggression >=60)");
 
 			hand.generateHandType();
@@ -240,6 +239,8 @@ public class PlayerBot extends PokerPlayer {
 						}
 
 					}
+					bettingOutput(action, raiseAmount);
+					return true;
 				}
 			} else if (handScore > hand.PAIR_WEIGHT && handScore < hand.TWO_PAIR_WEIGHT) {
 				int value = rand.nextInt(3);
@@ -261,13 +262,16 @@ public class PlayerBot extends PokerPlayer {
 							call();
 							action = 1;
 						}
-
+						break;
 					}
 					case 2: {
 						call();
 						action = 1;
 					}
+					bettingOutput(action, raiseAmount);
+					return true;
 				}
+
 			} else if (handScore > hand.TWO_PAIR_WEIGHT && handScore < hand.STRAIGHT_WEIGHT) {
 				int value = rand.nextInt(3);
 				switch (value) {
@@ -282,7 +286,7 @@ public class PlayerBot extends PokerPlayer {
 					}
 					case 1: {
 						if (aggression > 50) {
-							raiseAmount = 50;
+							raiseAmount = 100;
 							raise(raiseAmount);
 						} else {
 							raiseAmount = 50;
@@ -301,6 +305,8 @@ public class PlayerBot extends PokerPlayer {
 							action = 1;
 						}
 					}
+					bettingOutput(action, raiseAmount);
+					return true;
 				}
 			} else if (handScore > hand.STRAIGHT_WEIGHT && handScore < hand.FLUSH_WEIGHT) {
 				int value = rand.nextInt(3);
@@ -310,7 +316,7 @@ public class PlayerBot extends PokerPlayer {
 							call();
 							action = 1;
 						}
-						raiseAmount = 50;
+						raiseAmount = 100;
 						raise(raiseAmount);
 						action = 2;
 					}
@@ -321,7 +327,7 @@ public class PlayerBot extends PokerPlayer {
 					}
 					case 2: {
 						if (aggression > 40) {
-							raiseAmount = 50;
+							raiseAmount = 150;
 							raise(raiseAmount);
 							action = 2;
 						} else {
@@ -330,6 +336,8 @@ public class PlayerBot extends PokerPlayer {
 						}
 					}
 				}
+				bettingOutput(action, raiseAmount);
+				return true;
 			}else if (handScore > hand.STRAIGHT_FLUSH_WEIGHT) {
 				int value = rand.nextInt(2);
 				switch (value) {
@@ -357,10 +365,13 @@ public class PlayerBot extends PokerPlayer {
 						}
 					}
 				}
+				bettingOutput(action, raiseAmount);
+				return true;
 			}
 
-
-		}
+		return true;
+	}
+	private void bettingOutput(int action, int raiseAmount){
 		switch (action) {
 			case 0: {
 				pokerGame.tweetStr += faceTellGenerator() + " " + getPlayerName() + " folded\n";
@@ -372,7 +383,6 @@ public class PlayerBot extends PokerPlayer {
 				pokerGame.tweetStr += faceTellGenerator() + " " + getPlayerName() + " raised by " + raiseAmount + "\n";
 			}
 		}
-		return true;
 	}
 
 
