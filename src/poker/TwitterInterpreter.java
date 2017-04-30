@@ -24,7 +24,7 @@ import java.util.List;
  * Eoin Kerr - 13366801 - eoin.kerr@ucdconnect.ie
  * Benjamin Kelly - 14700869 - benjamin.kelly.1@ucdconnect.ie
  */
-public class TwitterInterpreter {
+public class TwitterInterpreter extends GameState {
 	private static TwitterInterpreter instance;
 
 	/* API Keys to our Twitter account (https://twitter.com/poker__bot)
@@ -93,12 +93,8 @@ public class TwitterInterpreter {
 			}
 			if (twitterStream.getScreenName().equalsIgnoreCase(status.getInReplyToScreenName())
 					& !status.getUser().getScreenName().equalsIgnoreCase(twitterStream.getScreenName())) {
-				//else if (status.getInReplyToScreenName().equalsIgnoreCase(twitter.getScreenName())) {
-				//postTweet("@" + status.getUser().getScreenName() + " " + "tks for the mention \uD83E\uDD16");
 				parseToGameState(status.getUser(), status,  status.getText());
 			}
-		} catch (TwitterException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -107,16 +103,11 @@ public class TwitterInterpreter {
 	synchronized private void parseToGameState(User user,Status status, String TweetBody) {
 		PokerGame pokerGame = GameState.getInstance().checkForGameState(user);
 		pokerGame.setUserFromTwitter(user);
-		//pokerGame.;
-		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n START");
 		try {
 			pokerGame.playPoker(TweetBody, status);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//System.out.println(pokerGame.);
-		System.out.println("\t\tpokerGame.playPoker(TweetBody);\n END");
-
 	}
 
 	StatusListener listener = new StatusListener() {
@@ -154,17 +145,6 @@ public class TwitterInterpreter {
 		}
 	};
 
-
-/*	public void postTweet(String strStatus) {
-		Status status = null;
-		try {
-			status = twitter.updateStatus(strStatus);
-		} catch (TwitterException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Successfully updated the status to [" + status.getText() + "].");
-
-	}*/
 
 	public void postTweet(String strStatus, Status fromStatus) throws Exception {
 		StatusUpdate status = new StatusUpdate(strStatus);

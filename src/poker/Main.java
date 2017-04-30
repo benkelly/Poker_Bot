@@ -12,12 +12,12 @@ import java.util.ArrayList;
  */
 
 public class Main {
-
 	public static void main(String[] args) {
 		System.out.println("main class!");
 
 		TwitterInterpreter ti = new TwitterInterpreter();
-		String keywords[] = {"dealmein", "poker__bot"};
+		String keywords[] = {"dealmein", ti.getTwitterScreenName()};
+		//String keywords[] = {"dealmein", "poker__bot"};
 		ti.publicStreamReader(keywords);
 	}
 }

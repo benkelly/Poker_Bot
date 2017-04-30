@@ -14,13 +14,10 @@ import java.util.ArrayList;
  */
 public class GameState extends ArrayList<PokerGame> {
 	private static GameState instance;
-	private ArrayList<PokerGame> interactionlist;
-	private static int MAX_GAMES = 2;
-
-	//public static User user;
+	private ArrayList<PokerGame> interactionList = new ArrayList<PokerGame>();
+	private static int MAX_GAMES = 50 ;
 
 	public GameState() {
-		//createNewPokerGame(usr);
 	}
 
 	public static GameState getInstance() {
@@ -36,39 +33,61 @@ public class GameState extends ArrayList<PokerGame> {
 		return this.get((this.size() - 1));
 	}
 
+	/*User parsed from their tweet. if new user. will create new pokerGame for them.
+	* if returning user then will return their PokerGame.
+	* */
 	synchronized public PokerGame checkForGameState(User usr) {
-		checkGamesInstances();
+		checkGamesInstancesLimit();
 		for (PokerGame game : this) {
 			if (game.user.equals(usr)) {
-				cleanPokerGame(game);
+				touchPokerGameInteractionList(game);
 				return game;
 			}
 		}
-		return createNewPokerGame(usr);
+		PokerGame newGame = createNewPokerGame(usr);
+		touchPokerGameInteractionList(newGame);
+		return newGame;
 	}
 
-	synchronized private void cleanPokerGame( PokerGame pkgame) {
-		for(PokerGame game: this) {
-			if (game.user.equals(pkgame.user)) {
-				interactionlist.remove(pkgame);
+	/* every time user touches their pokerGame, they'll go to the back of the interactionList.
+	* if/when games reaches MAX_GAMES the last used pokerGame will be saved anf dropped.
+	* */
+	synchronized private void touchPokerGameInteractionList( PokerGame pkgame) {
+		if( !interactionList.isEmpty() ) {
+			PokerGame tempGame = null;
+			for (PokerGame game : interactionList) {
+				if (game.user.equals(pkgame.user)) {
+					tempGame = game;
+				}
+			}
+			if (tempGame != null) {
+				interactionList.remove(tempGame);
 			}
 		}
-		interactionlist.add(pkgame);
+		interactionList.add(pkgame);
 	}
 
-	synchronized private void checkGamesInstances(){
-		if(this.size() >= MAX_GAMES){
-			PokerGame temp = interactionlist.get(0);
+	/* if at MAX_GAMES the last touched poked game will get saved into database and dropped
+	* for Garbage collection to help insure server from being overloaded. :^)
+	* */
+	synchronized private void checkGamesInstancesLimit(){
+		if((this.size() + 1) > MAX_GAMES){
+			System.out.println(interactionList);
+			PokerGame temp = interactionList.get(0);
 			for(PokerGame game: this) {
 				if (game.user.equals(temp.user)) {
-					temp.WritingScreenNameInDatabase(temp.user.getScreenName());
-					System.out.println("A");
-					this.remove(temp);
+					for(PokerPlayer player: game) { // human gets the held stake for his trouble
+						if (player.isHuman) {
+							player.receivesStake(game.getCurrentRoundsHeldStake());
+							System.out.println("####### "+player.getPlayerName()+"'s game saved and dropped as games at MAX_GAMES of: "+MAX_GAMES);
+						}
+					}
+					game.WritingScreenNameInDatabase(game.user.getScreenName());
+					this.remove(game);
 				}
-				interactionlist.remove(0);
 			}
+			interactionList.remove(0);
 		}
-		System.out.println("B");
 	}
 
 	/*Class testing method

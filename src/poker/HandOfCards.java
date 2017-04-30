@@ -52,7 +52,7 @@ public class HandOfCards extends ArrayList<PlayingCard> {
 
 	/*Sorts hand of cards in ascending order by their type value.
 	* */
-	synchronized private void sort() {
+	private void sort() {
 		Collections.sort(this ,new Comparator<PlayingCard>() {
 			@Override
 			public int compare(PlayingCard card1, PlayingCard card2) {
