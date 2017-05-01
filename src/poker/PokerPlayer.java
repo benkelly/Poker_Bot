@@ -30,7 +30,6 @@ public class PokerPlayer {
 	public boolean isPlayersBettingOptionsSent = false;
 	public boolean isPlayersPayAnteFeeOptionsSent = false;
 	int playerChipAmount = 0;
-
 	int currentStakePaid = 0;
 
 	public int currentHandScore = 0;
@@ -39,8 +38,6 @@ public class PokerPlayer {
 	public int totalRoundsWon = 0;
 	public int totalRoundsPlayed = 0;
 
-	// current round variables
-	//private boolean paidStake = false;
 
 	public PokerPlayer(String name, PokerGame game, DeckOfCards deck, int chips, boolean human) {
 		playerName = name;
@@ -49,8 +46,6 @@ public class PokerPlayer {
 		playerChipAmount = chips;
 		isHuman = human;
 
-		//getInitialHand();
-		//getCurrentHandInfo();
 	}
 
 	/* prints  in Name: [3S, 6H, 6D, 7D, 9H]... format
@@ -321,6 +316,7 @@ public class PokerPlayer {
 		}
 	}
 
+
 	public String getPlayerName() {
 		return playerName;
 	}
@@ -393,6 +389,8 @@ public class PokerPlayer {
 		}
 	}
 
+	/*called if user decides to pay new raise amount.
+	* */
 	synchronized public boolean payReRaiseStake(int stakeIncrease) {
 		if (playerChipAmount >= stakeIncrease) {
 			pokerGame.addToCurrentRoundsHeldStake(stakeIncrease);
@@ -507,11 +505,15 @@ public class PokerPlayer {
 		return sb.toString();
 	}
 
+	/*tweets player with in conversation reply with their currentt card hand
+	* */
 	private void tweetPlayerVisualHand(HandOfCards hnd, int chp, String tweetStr, Status fromStatus) {
 		VisualHand.TweetVisualHand(hnd, chp, tweetStr, fromStatus);
 		tweetStr = "";
 	}
 
+	/*tweets player with in conversation reply
+	* */
 	private void tweetPlayer(String tweetStr) {
 		try {
 			TwitterInterpreter.getInstance().postTweet(tweetStr, pokerGame.currentFromStatus);
@@ -521,6 +523,8 @@ public class PokerPlayer {
 		tweetStr = "";
 	}
 
+	/*set players PlayerChipAmount used in restoring data
+	* */
 	public void setPlayerChipAmount(int amount) {
 		playerChipAmount = amount;
 	}

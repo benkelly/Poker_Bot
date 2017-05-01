@@ -46,7 +46,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	private ArrayList<PokerPlayer> curRoundPlayerList = new ArrayList<PokerPlayer>(); // player playing that current hand of poker
 
 	public User user;
-	//public String userName = user.getScreenName();
 	public static final String database="resources/database.csv";
 
 	public String tweetStr = "";
@@ -431,7 +430,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 				}
 			}
 		}
-		//if(tempPlayer != null) {
 			tempPlayer.receivesStake(currentRoundsHeldStake);
 			tempPlayer.totalRoundsWon += 1;
 			System.out.println(tempPlayer.getPlayerName() + " is the winner!");
@@ -496,17 +494,14 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	/*rests rounds data.
 	* */
 	synchronized private void resetRound() {
-		//currentRoundsStakeAmount = 0;
 		currentRoundsHeldStake = 0;
 		curRoundPlayerList.clear();
-		//System.out.println("**** Return cards to deck: "+gameDeck.getInstance().size());
 		for (PokerPlayer player : this) {
 			player.returnHandToDeck();
 			player.isPlayersBettingOptionsSent = false;
 			player.isPlayersHandOptionsSent = false;
 			player.isPlayersPayAnteFeeOptionsSent = false;
 		}
-		//System.out.println("**** Return cards to deck END: "+gameDeck.getInstance().size());
 		gameDeck.getInstance().shuffle();
 		firstRound = false; // add option to human to exit game at the next ante pay.
 		hasCurrentRoundPlayersHandOptionsTweetedAndReplied = false;
@@ -528,7 +523,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	* */
 	synchronized public int curRoundPlayerFolds(PokerPlayer temp) {
 		if(curRoundPlayerList.contains(temp)) {
-			//System.out.println("curRoundPlayerList contain: "+temp.getPlayerName());
 			curRoundPlayerList.remove(temp);
 		}
 		return 0;
@@ -538,7 +532,6 @@ public class PokerGame extends ArrayList<PokerPlayer> {
 	* to call again to new price or fold.
 	* */
 	synchronized public void matchStakeIncrease(int stakeIncrease) {
-		//System.out.println("matchStakeIncrease START");
 		ArrayList<PokerPlayer> foldingList = new ArrayList<PokerPlayer>(); // players going to fold
 
 		for (PokerPlayer object : curRoundPlayerList) {
