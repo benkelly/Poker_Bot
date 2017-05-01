@@ -112,7 +112,7 @@ public class TwitterInterpreter extends GameState {
 
 	StatusListener listener = new StatusListener() {
 		public void onStatus(Status status) {
-			System.out.println("onStatus STArT");
+			System.out.println("onStatus START");
 			System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
 			try {
 				checkStreamStatus(status);

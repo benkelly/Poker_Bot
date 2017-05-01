@@ -434,7 +434,7 @@ public class PokerPlayer {
 
 
 	/*PokerGame will call this at beginning of every round.
-	* - if player
+	* - if human player & not firstround
 	* */
 	public boolean payAnteFee(int anteFee, boolean noUserInputForRound, String inputStr) {
 		//String inputStr = "";

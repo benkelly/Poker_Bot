@@ -6,11 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="">
+    <list default="true" id="0177e1df-9ddb-4b27-bd9f-e8b38f6f2983" name="Default" comment="cleaned up code more">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/database.csv" afterPath="$PROJECT_DIR$/resources/database.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/GameState.java" afterPath="$PROJECT_DIR$/src/poker/GameState.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/Main.java" afterPath="$PROJECT_DIR$/src/poker/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PlayerBot.java" afterPath="$PROJECT_DIR$/src/poker/PlayerBot.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/PokerPlayer.java" afterPath="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" afterPath="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
@@ -50,12 +48,12 @@
       <file leaf-file-name="PokerGame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9799">
-              <caret line="89" column="66" lean-forward="false" selection-start-line="89" selection-start-column="57" selection-end-line="89" selection-end-column="66" />
+            <state relative-caret-position="397">
+              <caret line="534" column="0" lean-forward="false" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1865#1866#0" expanded="true" />
-                <element signature="e#1900#1901#0" expanded="true" />
+                <element signature="e#1815#1816#0" expanded="true" />
+                <element signature="e#1850#1851#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,27 +81,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PokerPlayer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="531" column="4" lean-forward="false" selection-start-line="531" selection-start-column="4" selection-end-line="531" selection-end-column="4" />
+            <state relative-caret-position="178">
+              <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#16017#16018#0" expanded="true" />
+                <element signature="e#16069#16070#0" expanded="true" />
+                <element signature="e#16101#16102#0" expanded="true" />
+                <element signature="e#16174#16175#0" expanded="true" />
+                <element signature="e#16226#16227#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PlayerBot.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5483">
-              <caret line="56" column="44" lean-forward="false" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+            <state relative-caret-position="158">
+              <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3875#3883#0" expanded="true" />
+                <element signature="e#3878#3886#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -112,8 +113,8 @@
       <file leaf-file-name="TwitterInterpreter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
+            <state relative-caret-position="158">
+              <caret line="211" column="23" lean-forward="false" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -214,13 +215,13 @@
         <option value="$PROJECT_DIR$/src/poker/visualHand.java" />
         <option value="$PROJECT_DIR$/src/poker/VisualHand.java" />
         <option value="$PROJECT_DIR$/src/poker/HandOfCards.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
         <option value="$PROJECT_DIR$/resources/database.csv" />
         <option value="$PROJECT_DIR$/src/poker/Main.java" />
         <option value="$PROJECT_DIR$/src/poker/GameState.java" />
-        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
-        <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerGame.java" />
         <option value="$PROJECT_DIR$/src/poker/TwitterInterpreter.java" />
+        <option value="$PROJECT_DIR$/src/poker/PlayerBot.java" />
+        <option value="$PROJECT_DIR$/src/poker/PokerPlayer.java" />
       </list>
     </option>
   </component>
@@ -1010,21 +1011,7 @@
       <workItem from="1492702656755" duration="104817000" />
       <workItem from="1493303495258" duration="8133000" />
       <workItem from="1493381556574" duration="232000" />
-      <workItem from="1493472897186" duration="16222000" />
-    </task>
-    <task id="LOCAL-00043" summary="assignment_6 added some methods to pokerplayer class">
-      <created>1488722879162</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1488722879163</updated>
-    </task>
-    <task id="LOCAL-00044" summary="assignment_6 added some methods to pokerplayer class">
-      <created>1488761112276</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1488761112276</updated>
+      <workItem from="1493472897186" duration="19020000" />
     </task>
     <task id="LOCAL-00045" summary="assignment_6 added some methods to pokerplayer class">
       <created>1488919928181</created>
@@ -1355,11 +1342,25 @@
       <option name="project" value="LOCAL" />
       <updated>1493557087837</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="cleaned up code more">
+      <created>1493617768712</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1493617768713</updated>
+    </task>
+    <task id="LOCAL-00093" summary="cleaned up code more">
+      <created>1493623425552</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1493623425557</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="390064000" />
+    <option name="totallyTimeSpent" value="392862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="23" width="1413" height="877" extended-state="0" />
@@ -1418,7 +1419,6 @@
     <ignored-roots>
       <path value="$USER_HOME$" />
     </ignored-roots>
-    <MESSAGE value="added royalty free card images to rec" />
     <MESSAGE value="added more to pokerGame and pokerPlayer" />
     <MESSAGE value="added even more to pokerGame and pokerPlayer" />
     <MESSAGE value="added even more to pokerGame and pokerPlayer :^)" />
@@ -1443,7 +1443,8 @@
     <MESSAGE value="Cleanned up code a bit" />
     <MESSAGE value="added face tells to bots" />
     <MESSAGE value="bots working" />
-    <option name="LAST_COMMIT_MESSAGE" value="bots working" />
+    <MESSAGE value="cleaned up code more" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up code more" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1939,15 +1940,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9799">
-          <caret line="89" column="66" lean-forward="false" selection-start-line="89" selection-start-column="57" selection-end-line="89" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1865#1866#0" expanded="true" />
-            <element signature="e#1900#1901#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1961,42 +1958,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="531" column="4" lean-forward="false" selection-start-line="531" selection-start-column="4" selection-end-line="531" selection-end-column="4" />
+        <state relative-caret-position="397">
+          <caret line="534" column="0" lean-forward="false" selection-start-line="534" selection-start-column="0" selection-end-line="534" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#16017#16018#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="241" column="0" lean-forward="true" selection-start-line="241" selection-start-column="0" selection-end-line="241" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#1815#1816#0" expanded="true" />
+            <element signature="e#1850#1851#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/PlayerBot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5483">
-          <caret line="56" column="44" lean-forward="false" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+        <state relative-caret-position="158">
+          <caret line="58" column="4" lean-forward="false" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3875#3883#0" expanded="true" />
+            <element signature="e#3878#3886#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/TwitterInterpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="211" column="23" lean-forward="false" selection-start-line="211" selection-start-column="23" selection-end-line="211" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/PokerPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="32" column="29" lean-forward="true" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#16069#16070#0" expanded="true" />
+            <element signature="e#16101#16102#0" expanded="true" />
+            <element signature="e#16174#16175#0" expanded="true" />
+            <element signature="e#16226#16227#0" expanded="true" />
           </folding>
         </state>
       </provider>
