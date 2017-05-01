@@ -32,8 +32,8 @@ public class TwitterInterpreter extends GameState {
 	 *  or you'll get shanked my me.
 	 *  Love ben XXX
 	* */
-	private final String CONSUMER_KEY = "0WPzHZO7lXrVSDgfTXlg1Taid";
-	private final String CONSUMER_SECRET = "RKaY2xEiJpjfJuTAjRtxugdGb8WLonBQ1UAzuLwBtmTFPGrT2q";
+	private final String CONSUMER_KEY = "UJ3uKBzdzwHGBx6pRBmM42od8";
+	private final String CONSUMER_SECRET = "H7MbO5fkqPjWBEYcZRDsirhwVavKtpKzz8nfrc0LDPZ0Sul2XP";
 	private final String ACCESS_TOKEN = "824278872212512768-zibsklC9KmsURIg0APsDFEvQMIWAXWe";
 	private final String ACCESS_TOKEN_SECRET = "BpIBU1x5t4sHf9ZJ5zNduWDngKDxn9vsQd2Yr3RHw42JA";
 
@@ -214,29 +214,6 @@ public class TwitterInterpreter extends GameState {
 			//System.out.println("@" + status.getUser().getScreenName() + " : " + status.getText());
 			repliesPage.setSinceId(status.getId());
 		}
-	}
-
-	private void repliesToBotLoop() {
-		do {
-			final long startTime = System.nanoTime();
-
-			this.repliesToBot();
-
-			final long duration = System.nanoTime() - startTime;
-			if ((5500 - duration / 1000000) > 0) {
-				//logger.info("Sleep for " + (6000 - duration / 1000000) + " miliseconds");
-				try {
-					Thread.sleep((5500 - duration / 1000000));
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}
-		} while (true);
-	}
-
-	private void publicStreamReader(String keyword) {
-		String keywords[] = {keyword};
-		publicStreamReader(keywords);
 	}
 
 	public void publicStreamReader(String keywords[]) {

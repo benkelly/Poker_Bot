@@ -27,6 +27,8 @@ public class GameState extends ArrayList<PokerGame> {
 		return instance;
 	}
 
+	/*called by checkForGameState() if user has no existing pokerGame
+	* */
 	synchronized private PokerGame createNewPokerGame(User usr) {
 		this.add(new PokerGame());
 		System.out.println(usr.getName() + "add to gameState list");

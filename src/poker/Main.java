@@ -17,7 +17,6 @@ public class Main {
 
 		TwitterInterpreter ti = new TwitterInterpreter();
 		String keywords[] = {"dealmein", ti.getTwitterScreenName()};
-		//String keywords[] = {"dealmein", "poker__bot"};
 		ti.publicStreamReader(keywords);
 	}
 }
